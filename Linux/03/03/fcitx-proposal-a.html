@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于Fcitx的提议 (一) | Nankor Dream</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="小企鹅（Fcitx）输入法英文自动输入的提议。">
+<meta name="keywords" content="fcitx,英文自动输入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Fcitx的提议 (一)">
+<meta property="og:url" content="http://nankor.org/Linux/03/03/fcitx-proposal-a.html">
+<meta property="og:site_name" content="Nankor Dream">
+<meta property="og:description" content="小企鹅（Fcitx）输入法英文自动输入的提议。">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/1.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/2.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/3.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/4.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/5.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/6.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/7.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/8.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/9.jpg">
+<meta property="og:updated_time" content="2017-06-18T15:27:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Fcitx的提议 (一)">
+<meta name="twitter:description" content="小企鹅（Fcitx）输入法英文自动输入的提议。">
+<meta name="twitter:image" content="http://nankor.org/uploads/2012/03/1.jpg">
+<meta name="twitter:creator" content="@Nan_Kor">
+<link rel="publisher" href="南柯">
+  
+    <link rel="alternative" href="/atom.xml" title="Nankor Dream" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29624318-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Nankor Dream</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Nankor&#39;s Blog</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="http://nankor.org/wiki/wikihtml">Wiki</a>
+        
+          <a class="main-nav-link" href="/vim-and-vimrc">Vim</a>
+        
+          <a class="main-nav-link" href="/about_me">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://nankor.org"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-fcitx-proposal-a" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Linux/03/03/fcitx-proposal-a.html" class="article-date">
+  <time datetime="2012-03-02T18:51:34.000Z" itemprop="datePublished">2012-03-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于Fcitx的提议 (一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>小企鹅（Fcitx）输入法英文自动输入的提议。<a id="more"></a></p>
+<p>在使用fcitx输入法的过程中，突然有点小想法。在fcitx输入法的配置中有个小功能“自动英文模式”：</p>
+<p><img src="http://nankor.org/uploads/2012/03/1.jpg" alt=""></p>
+<p>正如所说“在输入特定字符串时切换到英文模式”，打开之后看配置的英文模式触发词库:</p>
+<p><img src="http://nankor.org/uploads/2012/03/2.jpg" alt=""></p>
+<p>这些英文单词与标点很清楚的表明接下来要输入英文了，输入法不用手工切换自动转换为英文输入模式。举个例子：</p>
+<p><img src="http://nankor.org/uploads/2012/03/3.jpg" alt=""></p>
+<p>当我在中文汉字输入法模式下输入“www”，上图看到输入法还处于中文模式，当我再输入“.”时，输入法自动切换（如下图）：</p>
+<p><img src="http://nankor.org/uploads/2012/03/4.jpg" alt=""></p>
+<p>这是个很节约时间的输入状态，但是fcitx所给的英文模式触发词显然太少了，在*nix下CLI是经常需要打开终端就输入的，一旦开启了输入法在所有程序间“共享”，打开终端输入“sudo”就成了“速度哦”，反映快点可以按下回车（设定为自动提交输入），但是若习惯使然输入命令的快感使我提前按下了空格，提交了“速度哦”，这时输入本次输入就算失败了</p>
+<p><img src="http://nankor.org/uploads/2012/03/5.jpg" alt=""></p>
+<p>假如我反映够灵敏，我按下回车把sudo准确提交了，但接下来仍得手动去切换英文输入法了，因为我没把握一直这么灵敏，这就要按下shift（假设我输入英文切换键是shift）换到真正的英文模式。等命令输入完毕，我回来写一篇中文文档，要用“shift”唤回中文汉字输入法，这中间我需要按两次“shift”。</p>
+<p>有没有办法让我在输入命令时自动识别不再显示中文候选词并且阻止上面的一系列切换，使我一直处于中文输入法状态下呢？我打起了fcitx自动触发英文模式的主意！在终端输入的命令基本都来自于超级用户与普通用户的执行程序目录下，看下我bash的执行路径：</p>
+<p><img src="http://nankor.org/uploads/2012/03/6.jpg" alt=""></p>
+<p>shell外部命令就来自于上图所列目录，把这些目录下的二进制程序名加入英文模式触发词库后，fcitx是不是就会自动检测我输入的是shell命令而自动停止显示候选词触发英文模式呢？</p>
+<p>这应该是个不错的想法….尝试下，我先把sudo加入英文模式触发词词库，重启下fcitx看下效果：</p>
+<p><img src="http://nankor.org/uploads/2012/03/7.jpg" alt=""></p>
+<p>fcitx已经识别我输入的是shell指令，不再显示中文候选词了，看起来效果不错！我把上面路径的binary file name全加入我的英文模式触发词库吧!</p>
+<p>先把超级用户的执行程序名加入英文模式触发词，#:ls /sbin|sort&gt;/usr/share/fcitx/data/AutoEn.dat，貌似感觉好多了（看起来很厉害的样子！！！）我挑个命令试下：su</p>
+<p><img src="http://nankor.org/uploads/2012/03/8.jpg" alt=""></p>
+<p>正常输入，自动识别……这好象缺点什么？？貌似我没有办法输入拼音“su”了，更别说打出“su”音 “suo”音等的汉字了！</p>
+<p>一个新的问题：这些二进制可执行程序名中有多少与汉语拼音有冲突？尽量把这些排除在外，或者当输入“su”时，fcitx能够自动把su作为按频率统计的第一候选词，也就是候选词要中英文混排。</p>
+<p>首先解决汉语拼音与命令冲突的问题，先下载汉语拼音音节表(共计398个)，稍后需要从这里过滤文本：</p>
+<pre><code>a ai an ao ang 
+
+b babobaibeibaobanbenbangbengbibiebiaobianbinbing  
+
+p papopaipaopoupanpenpangpengpipiepiaopianpinping 
+
+m mamomemaimaomoumanmenmangmengmimiemiaomiumianminming   
+
+f fafofeifoufanfenfangfeng
+
+d dadedaideidaodoudandangdengdidiediaodiudianding
+
+t tatetaitaotoutantangtengtitietiaotianting
+
+n nanaineinaononennangnengninieniaoniunianninniangning
+
+l lalelaileilaoloulanlanglenglilialieliaoliulianlinliangling
+
+g gagegaigeigaogougangenganggeng
+
+k kakekaikoukankenkangkeng
+
+h hahehaiheihaohouhenhangheng
+
+j jijiajiejiaojiujianjinjiangjing
+
+q qiqiaqieqiaoqiuqianqinqiangqing
+
+x xixiaxiexiaoxiuxianxinxiangxing
+
+zh zhazhezhizhaizhaozhouzhanzhenzhangzheng
+
+ch chachechichaichouchanchenchangcheng
+
+sh shasheshishaishaoshoushanshenshangsheng
+
+r reriraorouranrenrangreng
+
+z zazezizaizaozouzangzeng
+
+c cacecicaicaocoucancencangceng
+
+s sasesisaisaosousansensangseng
+
+y yayaoyouyanyangyuyeyueyuanyiyinyunying
+
+w wawowaiweiwanwenwangwengwu
+</code></pre><p>from <a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8" target="_blank" rel="external">http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8</a></p>
+<p>下面将所有二进制程序名按单词首字母排序：</p>
+<pre><code>#!/bin/bash
+i=1;
+for i in ` seq 8 ` ;
+ do
+     ls $(echo $PATH|cut -d &quot;:&quot; -f $i)|sort&gt;&gt;bins;
+ done
+sort bins&gt;bins.ok;rm bins
+exit
+</code></pre><p>文本文件bins.ok几乎涵盖shell所有外部命令，当然这里还有shell内建指令没有包含进来，如cd等，都是很少的了。</p>
+<p><img src="http://nankor.org/uploads/2012/03/9.jpg" alt=""></p>
+<p>分析中间“不听话”的命令把它揪出来！上图看到这有3000多行，人工怎么一个个揪出来！！这时拼音音节表要用上了，这像是编译原理的词法分析？？！！差不多，该啐觉了，以后再按拼音音节分解英文单词。</p>
+<p>2012.2.22 凌晨</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://nankor.org/Linux/03/03/fcitx-proposal-a.html" data-id="cj42vagls0002e9b2hrh6tp1a" class="article-share-link">Share</a>
+      
+        <a href="http://nankor.org/Linux/03/03/fcitx-proposal-a.html#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fcitx/">fcitx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英文自动输入/">英文自动输入</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Linux/03/03/the-ubuntu-common-problem-solving.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ubuntu常见问题解决
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Think/03/02/blog-parting-the-past.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">开博，离别过去</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Web/08/21/shanghai-web.html">魏武挥:从上海的互联网产业说开去</a>
+          </li>
+        
+          <li>
+            <a href="/Program/08/19/about-c++-smart-ptr.html">C++智能指针漫谈</a>
+          </li>
+        
+          <li>
+            <a href="/Program/08/18/avoid-inserting-blank-line-by-vim.html">关于Vim添加文件末尾空行</a>
+          </li>
+        
+          <li>
+            <a href="/Program/08/18/master-a-language.html">怎样才算会一门编程语言</a>
+          </li>
+        
+          <li>
+            <a href="/Linux/06/09/u-disk-only-read-filesystem.html">U盘只读文件系统</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Alogrithm/">Alogrithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Walk/">Walk</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/3D/" style="font-size: 10px;">3D</a> <a href="/tags/APJP/" style="font-size: 10px;">APJP</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Dota/" style="font-size: 10px;">Dota</a> <a href="/tags/Goagent/" style="font-size: 10px;">Goagent</a> <a href="/tags/HHKB/" style="font-size: 10px;">HHKB</a> <a href="/tags/IO-Stack/" style="font-size: 10px;">IO-Stack</a> <a href="/tags/IPV6/" style="font-size: 10px;">IPV6</a> <a href="/tags/Invictus/" style="font-size: 10px;">Invictus</a> <a href="/tags/Knproxy/" style="font-size: 10px;">Knproxy</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MS-office/" style="font-size: 10px;">MS-office</a> <a href="/tags/PDFXChange/" style="font-size: 10px;">PDFXChange</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/archlinux/" style="font-size: 20px;">archlinux</a> <a href="/tags/arm-linux/" style="font-size: 10px;">arm-linux</a> <a href="/tags/aur/" style="font-size: 10px;">aur</a> <a href="/tags/axel/" style="font-size: 10px;">axel</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/fcitx/" style="font-size: 10px;">fcitx</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/girl/" style="font-size: 10px;">girl</a> <a href="/tags/google-redirect/" style="font-size: 10px;">google redirect</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/hack/" style="font-size: 10px;">hack</a> <a href="/tags/ixwebhosting/" style="font-size: 10px;">ixwebhosting</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/lingo/" style="font-size: 10px;">lingo</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux-matlab/" style="font-size: 10px;">linux matlab</a> <a href="/tags/lzw/" style="font-size: 10px;">lzw</a> <a href="/tags/mindmap/" style="font-size: 10px;">mindmap</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/packer/" style="font-size: 10px;">packer</a> <a href="/tags/pacman/" style="font-size: 10px;">pacman</a> <a href="/tags/php-ini/" style="font-size: 10px;">php.ini</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/sqlite/" style="font-size: 10px;">sqlite</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/synergy/" style="font-size: 10px;">synergy</a> <a href="/tags/trace/" style="font-size: 10px;">trace</a> <a href="/tags/trash/" style="font-size: 10px;">trash</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/upload/" style="font-size: 10px;">upload</a> <a href="/tags/utf8/" style="font-size: 10px;">utf8</a> <a href="/tags/vim/" style="font-size: 20px;">vim</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/wineqq/" style="font-size: 10px;">wineqq</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/yaourt/" style="font-size: 15px;">yaourt</a> <a href="/tags/上海/" style="font-size: 10px;">上海</a> <a href="/tags/乱码/" style="font-size: 15px;">乱码</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/别离/" style="font-size: 10px;">别离</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/启程/" style="font-size: 10px;">启程</a> <a href="/tags/大峪/" style="font-size: 10px;">大峪</a> <a href="/tags/字节对齐/" style="font-size: 10px;">字节对齐</a> <a href="/tags/宋朝/" style="font-size: 10px;">宋朝</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/思维发散/" style="font-size: 10px;">思维发散</a> <a href="/tags/思考/" style="font-size: 10px;">思考</a> <a href="/tags/成都/" style="font-size: 10px;">成都</a> <a href="/tags/数学/" style="font-size: 10px;">数学</a> <a href="/tags/曼德拉/" style="font-size: 10px;">曼德拉</a> <a href="/tags/朝花夕拾/" style="font-size: 10px;">朝花夕拾</a> <a href="/tags/杂/" style="font-size: 10px;">杂</a> <a href="/tags/清明上河园/" style="font-size: 10px;">清明上河园</a> <a href="/tags/编程效率/" style="font-size: 10px;">编程效率</a> <a href="/tags/老家/" style="font-size: 10px;">老家</a> <a href="/tags/自由/" style="font-size: 10px;">自由</a> <a href="/tags/英文自动输入/" style="font-size: 10px;">英文自动输入</a> <a href="/tags/英雄主义/" style="font-size: 10px;">英雄主义</a> <a href="/tags/虚拟光驱/" style="font-size: 10px;">虚拟光驱</a> <a href="/tags/虹鳟/" style="font-size: 10px;">虹鳟</a> <a href="/tags/软件设计/" style="font-size: 10px;">软件设计</a> <a href="/tags/追风筝的人/" style="font-size: 10px;">追风筝的人</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">17</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 nankor<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="http://nankor.org/wiki/wikihtml" class="mobile-nav-link">Wiki</a>
+  
+    <a href="/vim-and-vimrc" class="mobile-nav-link">Vim</a>
+  
+    <a href="/about_me" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'turing1988';
+  
+  var disqus_url = 'http://nankor.org/Linux/03/03/fcitx-proposal-a.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
