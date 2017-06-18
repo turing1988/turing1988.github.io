@@ -1,11 +1,99 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>交叉编译gdb | Nankor Dream</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="项目需要，交叉编译本地版gdb 6.5">
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="gdb,arm-linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="项目需要，交叉编译本地版gdb 6.5">
 <meta name="keywords" content="gdb,arm-linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="交叉编译gdb">
@@ -16,98 +104,243 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="交叉编译gdb">
 <meta name="twitter:description" content="项目需要，交叉编译本地版gdb 6.5">
-<meta name="twitter:creator" content="@Nan_Kor">
-<link rel="publisher" href="南柯">
-  
-    <link rel="alternative" href="/atom.xml" title="Nankor Dream" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-29624318-1']);
-  _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
 </script>
 
+
+
+  <link rel="canonical" href="http://nankor.org/Linux/05/08/cross-complie-gdb.html"/>
+
+
+
+
+
+  <title>交叉编译gdb | Nankor Dream</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Nankor Dream</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Nankor&#39;s Blog</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="http://nankor.org/wiki/wikihtml">Wiki</a>
-        
-          <a class="main-nav-link" href="/vim-and-vimrc">Vim</a>
-        
-          <a class="main-nav-link" href="/about_me">About</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://nankor.org"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-cross-complie-gdb" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Linux/05/08/cross-complie-gdb.html" class="article-date">
-  <time datetime="2013-05-08T13:53:11.000Z" itemprop="datePublished">2013-05-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
-    <h1 class="article-title" itemprop="name">
-      交叉编译gdb
-    </h1>
+  
+    
   
 
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Nankor Dream</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Nankor's Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://nankor.org/Linux/05/08/cross-complie-gdb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nankor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nankor Dream">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">交叉编译gdb</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-05-08T21:53:11+08:00">
+                2013-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <p>项目需要，交叉编译本地版gdb 6.5 <a id="more"></a></p>
 <h2 id="预读"><a href="#预读" class="headerlink" title="预读"></a>预读</h2><p>首先明确configure的三个参数:</p>
@@ -275,156 +508,357 @@ CPPFLAGS=-I$HOME/arm/ncurses/include
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://nankor.org/Linux/05/08/cross-complie-gdb.html" data-id="cj42vagnn002de9b20niskl5c" class="article-share-link">Share</a>
-      
-        <a href="http://nankor.org/Linux/05/08/cross-complie-gdb.html#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arm-linux/">arm-linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gdb/">gdb</a></li></ul>
 
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gdb/" rel="tag"># gdb</a>
+          
+            <a href="/tags/arm-linux/" rel="tag"># arm-linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Think/03/26/tao.html" rel="next" title="识道">
+                <i class="fa fa-chevron-left"></i> 识道
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Linux/05/12/some-interesting-thing-about-net-on-android-and-pc.html" rel="prev" title="一些有趣的事情关于android和网络">
+                一些有趣的事情关于android和网络 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
-  
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-<nav id="article-nav">
-  
-    <a href="/Linux/05/12/some-interesting-thing-about-net-on-android-and-pc.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  </div>
+
+
+        </div>
         
-          一些有趣的事情关于android和网络
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="nankor" />
+          <p class="site-author-name" itemprop="name">nankor</p>
+           
+              <p class="site-description motion-element" itemprop="description">Code OS Web</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预读"><span class="nav-number">1.</span> <span class="nav-text">预读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-嵌入式应用gdb调试"><span class="nav-number">2.</span> <span class="nav-text">0. 嵌入式应用gdb调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PC端调试"><span class="nav-number">2.1.</span> <span class="nav-text">PC端调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备本地gdb调试"><span class="nav-number">2.2.</span> <span class="nav-text">设备本地gdb调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-交叉编译本地版gdb"><span class="nav-number">3.</span> <span class="nav-text">1. 交叉编译本地版gdb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉编译ncurses"><span class="nav-number">3.1.</span> <span class="nav-text">交叉编译ncurses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译gdb"><span class="nav-number">3.2.</span> <span class="nav-text">编译gdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#放置gdb"><span class="nav-number">3.3.</span> <span class="nav-text">放置gdb</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/Think/03/26/tao.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">识道</div>
-    </a>
-  
-</nav>
+    </main>
 
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-</article>
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nankor</span>
+</div>
 
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/Web/08/21/shanghai-web.html">魏武挥:从上海的互联网产业说开去</a>
-          </li>
-        
-          <li>
-            <a href="/Program/08/19/about-c++-smart-ptr.html">C++智能指针漫谈</a>
-          </li>
-        
-          <li>
-            <a href="/Program/08/18/avoid-inserting-blank-line-by-vim.html">关于Vim添加文件末尾空行</a>
-          </li>
-        
-          <li>
-            <a href="/Program/08/18/master-a-language.html">怎样才算会一门编程语言</a>
-          </li>
-        
-          <li>
-            <a href="/Linux/06/09/u-disk-only-read-filesystem.html">U盘只读文件系统</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Alogrithm/">Alogrithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Walk/">Walk</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">4</span></li></ul>
-    </div>
-  </div>
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/3D/" style="font-size: 10px;">3D</a> <a href="/tags/APJP/" style="font-size: 10px;">APJP</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Dota/" style="font-size: 10px;">Dota</a> <a href="/tags/Goagent/" style="font-size: 10px;">Goagent</a> <a href="/tags/HHKB/" style="font-size: 10px;">HHKB</a> <a href="/tags/IO-Stack/" style="font-size: 10px;">IO-Stack</a> <a href="/tags/IPV6/" style="font-size: 10px;">IPV6</a> <a href="/tags/Invictus/" style="font-size: 10px;">Invictus</a> <a href="/tags/Knproxy/" style="font-size: 10px;">Knproxy</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MS-office/" style="font-size: 10px;">MS-office</a> <a href="/tags/PDFXChange/" style="font-size: 10px;">PDFXChange</a> <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/archlinux/" style="font-size: 20px;">archlinux</a> <a href="/tags/arm-linux/" style="font-size: 10px;">arm-linux</a> <a href="/tags/aur/" style="font-size: 10px;">aur</a> <a href="/tags/axel/" style="font-size: 10px;">axel</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/fcitx/" style="font-size: 10px;">fcitx</a> <a href="/tags/gdb/" style="font-size: 10px;">gdb</a> <a href="/tags/girl/" style="font-size: 10px;">girl</a> <a href="/tags/google-redirect/" style="font-size: 10px;">google redirect</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/hack/" style="font-size: 10px;">hack</a> <a href="/tags/ixwebhosting/" style="font-size: 10px;">ixwebhosting</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/lingo/" style="font-size: 10px;">lingo</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/linux-matlab/" style="font-size: 10px;">linux matlab</a> <a href="/tags/lzw/" style="font-size: 10px;">lzw</a> <a href="/tags/mindmap/" style="font-size: 10px;">mindmap</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/packer/" style="font-size: 10px;">packer</a> <a href="/tags/pacman/" style="font-size: 10px;">pacman</a> <a href="/tags/php-ini/" style="font-size: 10px;">php.ini</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/sqlite/" style="font-size: 10px;">sqlite</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/synergy/" style="font-size: 10px;">synergy</a> <a href="/tags/trace/" style="font-size: 10px;">trace</a> <a href="/tags/trash/" style="font-size: 10px;">trash</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/upload/" style="font-size: 10px;">upload</a> <a href="/tags/utf8/" style="font-size: 10px;">utf8</a> <a href="/tags/vim/" style="font-size: 20px;">vim</a> <a href="/tags/wget/" style="font-size: 10px;">wget</a> <a href="/tags/wineqq/" style="font-size: 10px;">wineqq</a> <a href="/tags/wordpress/" style="font-size: 10px;">wordpress</a> <a href="/tags/yaourt/" style="font-size: 15px;">yaourt</a> <a href="/tags/上海/" style="font-size: 10px;">上海</a> <a href="/tags/乱码/" style="font-size: 15px;">乱码</a> <a href="/tags/互联网/" style="font-size: 10px;">互联网</a> <a href="/tags/别离/" style="font-size: 10px;">别离</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/压缩/" style="font-size: 10px;">压缩</a> <a href="/tags/启程/" style="font-size: 10px;">启程</a> <a href="/tags/大峪/" style="font-size: 10px;">大峪</a> <a href="/tags/字节对齐/" style="font-size: 10px;">字节对齐</a> <a href="/tags/宋朝/" style="font-size: 10px;">宋朝</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/思维发散/" style="font-size: 10px;">思维发散</a> <a href="/tags/思考/" style="font-size: 10px;">思考</a> <a href="/tags/成都/" style="font-size: 10px;">成都</a> <a href="/tags/数学/" style="font-size: 10px;">数学</a> <a href="/tags/曼德拉/" style="font-size: 10px;">曼德拉</a> <a href="/tags/朝花夕拾/" style="font-size: 10px;">朝花夕拾</a> <a href="/tags/杂/" style="font-size: 10px;">杂</a> <a href="/tags/清明上河园/" style="font-size: 10px;">清明上河园</a> <a href="/tags/编程效率/" style="font-size: 10px;">编程效率</a> <a href="/tags/老家/" style="font-size: 10px;">老家</a> <a href="/tags/自由/" style="font-size: 10px;">自由</a> <a href="/tags/英文自动输入/" style="font-size: 10px;">英文自动输入</a> <a href="/tags/英雄主义/" style="font-size: 10px;">英雄主义</a> <a href="/tags/虚拟光驱/" style="font-size: 10px;">虚拟光驱</a> <a href="/tags/虹鳟/" style="font-size: 10px;">虹鳟</a> <a href="/tags/软件设计/" style="font-size: 10px;">软件设计</a> <a href="/tags/追风筝的人/" style="font-size: 10px;">追风筝的人</a>
-    </div>
-  </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">17</span></li></ul>
-    </div>
-  </div>
+        
 
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 nankor<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="http://nankor.org/wiki/wikihtml" class="mobile-nav-link">Wiki</a>
-  
-    <a href="/vim-and-vimrc" class="mobile-nav-link">Vim</a>
-  
-    <a href="/about_me" class="mobile-nav-link">About</a>
-  
-</nav>
+    </footer>
+
     
-<script>
-  var disqus_shortname = 'turing1988';
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
   
-  var disqus_url = 'http://nankor.org/Linux/05/08/cross-complie-gdb.html';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
-  </div>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
