@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="archlinux,linux," />
+  <meta name="keywords" content="Hexo, Nankor" />
 
 
 
@@ -95,17 +95,16 @@
 
 
 
-<meta name="description" content="Linux下使用U盘时，在没有卸载的情况下擅自拔出U盘后，U盘成为只读文件系统，说下修复的办法。">
-<meta name="keywords" content="archlinux,linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="U盘只读文件系统">
-<meta property="og:url" content="http://nankor.org/Linux/06/09/u-disk-only-read-filesystem.html">
+<meta name="description" content="Code OS Web">
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="http://nankor.org/categories/index.html">
 <meta property="og:site_name" content="Nankor Dream">
-<meta property="og:description" content="Linux下使用U盘时，在没有卸载的情况下擅自拔出U盘后，U盘成为只读文件系统，说下修复的办法。">
-<meta property="og:updated_time" content="2017-06-18T15:27:08.000Z">
+<meta property="og:description" content="Code OS Web">
+<meta property="og:updated_time" content="2017-06-18T17:36:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="U盘只读文件系统">
-<meta name="twitter:description" content="Linux下使用U盘时，在没有卸载的情况下擅自拔出U盘后，U盘成为只读文件系统，说下修复的办法。">
+<meta name="twitter:title" content="分类">
+<meta name="twitter:description" content="Code OS Web">
 
 
 
@@ -133,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://nankor.org/Linux/06/09/u-disk-only-read-filesystem.html"/>
+  <link rel="canonical" href="http://nankor.org/categories/"/>
 
 
 
 
 
-  <title>U盘只读文件系统 | Nankor Dream</title>
+  <title>分类 | Nankor Dream</title>
   
 
 
@@ -332,283 +331,33 @@
             
 
   <div id="posts" class="posts-expand">
-    
+  <header class="post-header">
 
-  
+	<h1 class="post-title" itemprop="name headline">分类</h1>
 
-  
-  
-  
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://nankor.org/Linux/06/09/u-disk-only-read-filesystem.html">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="nankor">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nankor Dream">
-    </span>
+</header>
 
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">U盘只读文件系统</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-06-09T00:04:52+08:00">
-                2013-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Linux/06/09/u-disk-only-read-filesystem.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="Linux/06/09/u-disk-only-read-filesystem.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+    
+      <div class="category-all-page">
+        <div class="category-all-title">
+            目前共计 6 个分类
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>Linux下使用U盘时，在没有卸载的情况下擅自拔出U盘后，U盘成为只读文件系统，说下修复的办法。<a id="more"></a></p>
-<p>环境：</p>
-<pre><code>OS: Linux  3.9.4-1-ARCH
-U盘：FAT32
-</code></pre><p>今天向U盘上拷了文件后，没有卸载就拔了U盘，再插上电脑，稍等片刻时，发现成为只读文件系统。尝试使用<code>sudo chmod a+w /U</code>，显示为只读文件系统。只好查看打印的系统信息</p>
-<p>查看系统打印信息：</p>
-<pre><code>$ demsg | less
-</code></pre><p>看到如下内容：</p>
-<pre>
-[29153.253989] usb 2-1.2.3.3: new full-speed USB device number 40 using ehci-pci
-[29153.423524] usb 2-1.2.3.3: not running at top speed; connect to a high speed hub
-[29153.431450] scsi20 : usb-storage 2-1.2.3.3:1.0
-[29154.435792] scsi 20:0:0:0: Direct-Access     Generic  Flash Disk       8.07 PQ: 0 ANSI: 2
-[29154.437255] sd 20:0:0:0: [sdb] 8212480 512-byte logical blocks: (4.20 GB/3.91 GiB)
-[29154.438207] sd 20:0:0:0: [sdb] Write Protect is off
-[29154.438214] sd 20:0:0:0: [sdb] Mode Sense: 03 00 00 00
-[29154.438930] sd 20:0:0:0: [sdb] No Caching mode page present
-[29154.438934] sd 20:0:0:0: [sdb] Assuming drive cache: write through
-[29154.442123] sd 20:0:0:0: [sdb] No Caching mode page present
-[29154.442128] sd 20:0:0:0: [sdb] Assuming drive cache: write through
-[29154.473636]  sdb: sdb1
-[29154.476380] sd 20:0:0:0: [sdb] No Caching mode page present
-[29154.476388] sd 20:0:0:0: [sdb] Assuming drive cache: write through
-[29154.476404] sd 20:0:0:0: [sdb] Attached SCSI removable disk
-[29155.527602] FAT-fs (sdb1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
-[29167.626139] FAT-fs (sdb1): error, fat_get_cluster: invalid cluster chain (i_pos 2111071)
-[29167.626143] FAT-fs (sdb1): Filesystem has been set read-only
-[29167.626154] FAT-fs (sdb1): error, fat_get_cluster: invalid cluster chain (i_pos 2111071)
-</pre>
-
-<p>写的很明白，被不适当的卸载造成有些数据错误，请使用fsck修复。</p>
-<p>使用fsck修复：（sdb1是U盘的分区）</p>
-<pre><code>$ sudo fsck -fy /dev/sdb1
-</code></pre><p>含义:肯定回答修复损坏的扇区，保险起见可以不加f与y。</p>
-<p>修复后，正常卸载U盘，再插上U盘：</p>
-<pre><code>$ dmesg | less
-</code></pre><p>看到：</p>
-<pre>
-[29665.364058] usb 2-1.2.3.3: new full-speed USB device number 43 using ehci-pci
-[29665.543688] usb 2-1.2.3.3: not running at top speed; connect to a high speed hub
-[29665.551693] scsi23 : usb-storage 2-1.2.3.3:1.0
-[29666.555758] scsi 23:0:0:0: Direct-Access     Generic  Flash Disk       8.07 PQ: 0 ANSI: 2
-[29666.557362] sd 23:0:0:0: [sdb] 8212480 512-byte logical blocks: (4.20 GB/3.91 GiB)
-[29666.557984] sd 23:0:0:0: [sdb] Write Protect is off
-[29666.557987] sd 23:0:0:0: [sdb] Mode Sense: 03 00 00 00
-[29666.558605] sd 23:0:0:0: [sdb] No Caching mode page present
-[29666.558608] sd 23:0:0:0: [sdb] Assuming drive cache: write through
-[29666.561606] sd 23:0:0:0: [sdb] No Caching mode page present
-[29666.561609] sd 23:0:0:0: [sdb] Assuming drive cache: write through
-[29666.893013]  sdb: sdb1
-[29666.895352] sd 23:0:0:0: [sdb] No Caching mode page present
-[29666.895357] sd 23:0:0:0: [sdb] Assuming drive cache: write through
-[29666.895361] sd 23:0:0:0: [sdb] Attached SCSI removable disk
-</pre>
-
-<p>打开U盘，可以正常读写了。</p>
-<p>（完）</p>
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/archlinux/" rel="tag"># archlinux</a>
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
+        <div class="category-all">
+          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Alogrithm/">Alogrithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Program/">Program</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Think/">Think</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Walk/">Walk</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">4</span></li></ul>
         </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/Linux/06/04/radical-archlinux.html" rel="next" title="激进的archlinux">
-                <i class="fa fa-chevron-left"></i> 激进的archlinux
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Program/08/18/master-a-language.html" rel="prev" title="怎样才算会一门编程语言">
-                怎样才算会一门编程语言 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
       </div>
     
   </div>
 
+
+          </div>
+          
+
+
+          
 
         </div>
         
@@ -813,10 +562,10 @@ U盘：FAT32
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-
+  
 
   
 
@@ -834,18 +583,6 @@ U盘：FAT32
       <script id="dsq-count-scr" src="https://turing1988.disqus.com/count.js" async></script>
     
 
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://nankor.org/Linux/06/09/u-disk-only-read-filesystem.html';
-          this.page.identifier = 'Linux/06/09/u-disk-only-read-filesystem.html';
-          this.page.title = 'U盘只读文件系统';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://turing1988.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
     
 
   
