@@ -306,8 +306,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>aur</tag>
         <tag>yaourt</tag>
+        <tag>aur</tag>
       </tags>
   </entry>
   <entry>
@@ -318,11 +318,11 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>yaourt</tag>
         <tag>axel</tag>
         <tag>packer</tag>
         <tag>pacman</tag>
         <tag>wget</tag>
+        <tag>yaourt</tag>
       </tags>
   </entry>
   <entry>
