@@ -182,18 +182,12 @@
         if (/(?:^|\.)chinaso\.com$/.test(host)) return "DIRECT";
         if (/(?:^|\.)chinaz\.com$/.test(host)) return "DIRECT";
         if (/^http:\/\/nrch\.culture\.tw\//.test(url)) return "DIRECT";
-        if (/(?:^|\.)dl\.google\.com$/.test(host)) return "DIRECT";
-        if (/(?:^|\.)kh\.google\.com$/.test(host)) return "DIRECT";
-        if (/(?:^|\.)fonts\.googleapis\.com$/.test(host)) return "DIRECT";
-        if (/(?:^|\.)storage\.googleapis\.com$/.test(host)) return "DIRECT";
         if (/(?:^|\.)cn\.gravatar\.com$/.test(host)) return "DIRECT";
         if (/(?:^|\.)csi\.gstatic\.com$/.test(host)) return "DIRECT";
         if (/(?:^|\.)fonts\.gstatic\.com$/.test(host)) return "DIRECT";
         if (/(?:^|\.)haosou\.com$/.test(host)) return "DIRECT";
         if (/(?:^|\.)jd\.com$/.test(host)) return "DIRECT";
         if (/(?:^|\.)jike\.com$/.test(host)) return "DIRECT";
-        if (/^http:\/\/translate\.google\.cn/.test(url)) return "DIRECT";
-        if (/^http:\/\/www\.google\.cn\/maps/.test(url)) return "DIRECT";
         if (/(?:^|\.)http2\.golang\.org$/.test(host)) return "DIRECT";
         if (/(?:^|\.)gov\.cn$/.test(host)) return "DIRECT";
         if (/(?:^|\.)qq\.com$/.test(host)) return "DIRECT";
