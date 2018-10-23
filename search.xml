@@ -281,9 +281,9 @@
         <category>Program</category>
       </categories>
       <tags>
-        <tag>乱码</tag>
         <tag>sqlite</tag>
         <tag>utf8</tag>
+        <tag>乱码</tag>
       </tags>
   </entry>
   <entry>
@@ -333,8 +333,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
         <tag>3D</tag>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -443,10 +443,10 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>latex</tag>
-        <tag>linux matlab</tag>
         <tag>ubuntu</tag>
         <tag>乱码</tag>
+        <tag>latex</tag>
+        <tag>linux matlab</tag>
         <tag>虚拟光驱</tag>
       </tags>
   </entry>

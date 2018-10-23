@@ -22,7 +22,7 @@
     <published>2013-08-21T10:44:05.000Z</published>
     <updated>2017-06-18T17:22:53.000Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="http://weiwuhui.com/5607.html" target="_blank" rel="external">原文地址 http://weiwuhui.com/5607.html</a></p>
+    <content type="html"><![CDATA[<p><a href="http://weiwuhui.com/5607.html" target="_blank" rel="noopener">原文地址 http://weiwuhui.com/5607.html</a></p>
 <p>近日，网络上开始传一个流言（未经证实或证伪）：阿里巴巴会同湖南卫视（后又传为会同苏宁）拿下了PPTV。如果这个消息属实，就意味着又一家上海的互联网公司被并购。事实上，上海做得略有名气的互联网公司本来就不多，在这不多的公司中，先后有易趣、土豆、PPS、一号店、Triniti Interactive被收购，如今，名单上可能又会多上一个。</p>
 <a id="more"></a>
 <p>上海成名的网络公司大致有如下一些：</p>
@@ -67,7 +67,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;http://weiwuhui.com/5607.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文地址 http://weiwuhui.com/5607.html&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;http://weiwuhui.com/5607.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原文地址 http://weiwuhui.com/5607.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;近日，网络上开始传一个流言（未经证实或证伪）：阿里巴巴会同湖南卫视（后又传为会同苏宁）拿下了PPTV。如果这个消息属实，就意味着又一家上海的互联网公司被并购。事实上，上海做得略有名气的互联网公司本来就不多，在这不多的公司中，先后有易趣、土豆、PPS、一号店、Triniti Interactive被收购，如今，名单上可能又会多上一个。&lt;/p&gt;
     
     </summary>
@@ -89,9 +89,9 @@
     <updated>2017-06-18T15:27:08.000Z</updated>
     
     <content type="html"><![CDATA[<p>关于C++智能指针三篇文章<br><a id="more"></a></p>
-<p><a href="http://my.oschina.net/sulliy/blog/79991" target="_blank" rel="external">C++智能指针漫谈[上]</a></p>
-<p><a href="http://my.oschina.net/sulliy/blog/79993" target="_blank" rel="external">C++智能指针漫谈[中]</a></p>
-<p><a href="http://my.oschina.net/sulliy/blog/79995" target="_blank" rel="external">C++智能指针漫谈[下]</a></p>
+<p><a href="http://my.oschina.net/sulliy/blog/79991" target="_blank" rel="noopener">C++智能指针漫谈[上]</a></p>
+<p><a href="http://my.oschina.net/sulliy/blog/79993" target="_blank" rel="noopener">C++智能指针漫谈[中]</a></p>
+<p><a href="http://my.oschina.net/sulliy/blog/79995" target="_blank" rel="noopener">C++智能指针漫谈[下]</a></p>
 ]]></content>
     
     <summary type="html">
@@ -248,11 +248,11 @@ U盘：FAT32
     <updated>2017-06-18T15:27:08.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天查看feedly，突然看到arch关于更新的通知，不得不惊叹，arch的激进主义！<a id="more"></a></p>
-<p><a href="https://www.archlinux.org/news/binaries-move-to-usrbin-requiring-update-intervention/" target="_blank" rel="external">原文</a>,<br>翻译如下：</p>
+<p><a href="https://www.archlinux.org/news/binaries-move-to-usrbin-requiring-update-intervention/" target="_blank" rel="noopener">原文</a>,<br>翻译如下：</p>
 <p>在您下次更新时，你将得到如下的错误信息：</p>
 <pre><code>error: failed to commit transaction (conflicting files)
 filesystem: /bin exists in filesystem
-</code></pre><p>这次更新把所有二进制文件都转移至统一的目录/usr/bin。移除这个 二进制文件的存放位置的差别对arch系统没有太大影响，但是却简化了开发团队的包维护工作。你可以参考这篇<a href="https://mailman.archlinux.org/pipermail/arch-dev-public/2012-March/022625.html" target="_blank" rel="external">文章</a>来得到这次变化的进一步解释。</p>
+</code></pre><p>这次更新把所有二进制文件都转移至统一的目录/usr/bin。移除这个 二进制文件的存放位置的差别对arch系统没有太大影响，但是却简化了开发团队的包维护工作。你可以参考这篇<a href="https://mailman.archlinux.org/pipermail/arch-dev-public/2012-March/022625.html" target="_blank" rel="noopener">文章</a>来得到这次变化的进一步解释。</p>
 <p>按照以下说明，进行安全更新：</p>
 <ol>
 <li>整理/bin /sbin /usr/bin目录下的所有非官方源安装包，把它们放进/usr/bin目录下。按照以下方法可以得到需要整理的非官方源的安装包清单：<br> $ pacman -Qqo /bin /sbin /usr/sbin | pacman -Qm -</li>
@@ -432,8 +432,8 @@ gdb-src ：6.5
 libncurses ：5.6
 arm-linux : 2.6.34
 </code></pre><p>下载：</p>
-<p><a href="http://ftp.gnu.org/gnu/gdb/gdb-6.5a.tar.gz" target="_blank" rel="external">gdb 6.5a</a></p>
-<p><a href="http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.6.tar.gz" target="_blank" rel="external">ncurses</a></p>
+<p><a href="http://ftp.gnu.org/gnu/gdb/gdb-6.5a.tar.gz" target="_blank" rel="noopener">gdb 6.5a</a></p>
+<p><a href="http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.6.tar.gz" target="_blank" rel="noopener">ncurses</a></p>
 <p>由于gdb依赖于termcap库，现在这个库可以通过ncurses来代替，所以先交叉编译产生libncurses，我选择的5.6版本</p>
 <h3 id="交叉编译ncurses"><a href="#交叉编译ncurses" class="headerlink" title="交叉编译ncurses"></a>交叉编译ncurses</h3><p><strong>解压</strong></p>
 <pre><code>$ tar zxvf ncurses-5.6.tar.gz
@@ -635,21 +635,21 @@ CPPFLAGS=-I$HOME/arm/ncurses/include
 <p>Alt按键的冲突问题：Gnome下：系统-首选项-窗口，将移动按键由ALT改成super。KDE下：系统设置-窗口行为-窗口动作-修饰键由ALT改成Meta。</p>
 <p>4、 无法启动 报错</p>
 <p>export LANG=zh_CN</p>
-<h3 id="MS-copy-Office-Visio"><a href="#MS-copy-Office-Visio" class="headerlink" title="MS&copy; Office Visio"></a>MS&copy; Office Visio</h3><p>目前<a href="http://zh-cn.libreoffice.org/" target="_blank" rel="external">LibreOffice&copy;</a>对于MS&copy; Office的兼容相比<a href="http://www.openoffice.org/zh-cn/" target="_blank" rel="external">OpenOffice&copy;</a>，做的已经很好了，但是使用LibreOffice Writer打开MS Word的doc后，在Win下重新打开时，文档格式会发生变化。因此不推荐在Linux下使用LibreOffice 编辑MS Office的私有格式文件。</p>
+<h3 id="MS-copy-Office-Visio"><a href="#MS-copy-Office-Visio" class="headerlink" title="MS&copy; Office Visio"></a>MS&copy; Office Visio</h3><p>目前<a href="http://zh-cn.libreoffice.org/" target="_blank" rel="noopener">LibreOffice&copy;</a>对于MS&copy; Office的兼容相比<a href="http://www.openoffice.org/zh-cn/" target="_blank" rel="noopener">OpenOffice&copy;</a>，做的已经很好了，但是使用LibreOffice Writer打开MS Word的doc后，在Win下重新打开时，文档格式会发生变化。因此不推荐在Linux下使用LibreOffice 编辑MS Office的私有格式文件。</p>
 <p>####替代方法</p>
 <ul>
-<li><p>对于2003版 MS Word Excel Powerpoint，国内用户强烈推荐使用<a href="http://bbs.wps.cn/thread-22358932-1-1.html" target="_blank" rel="external">WPS&copy; for Linux</a>，目前已经开发至Beta了，界面风格与MS Office已几无差异，而且比较稳定。</p>
+<li><p>对于2003版 MS Word Excel Powerpoint，国内用户强烈推荐使用<a href="http://bbs.wps.cn/thread-22358932-1-1.html" target="_blank" rel="noopener">WPS&copy; for Linux</a>，目前已经开发至Beta了，界面风格与MS Office已几无差异，而且比较稳定。</p>
 </li>
-<li><p>对于2007版MS Office，推荐使用<a href="http://www.yozosoft.com/indexch.jsp" target="_blank" rel="external">Linux 永中&copy; Office</a>。</p>
+<li><p>对于2007版MS Office，推荐使用<a href="http://www.yozosoft.com/indexch.jsp" target="_blank" rel="noopener">Linux 永中&copy; Office</a>。</p>
 </li>
 </ul>
 <p>####<strong>Visio</strong></p>
 <p>Libreoffice Draw 3.5已经开始支持打开MS Visio,但是需要安装libvisio。</p>
 <h3 id="QQ"><a href="#QQ" class="headerlink" title="QQ"></a>QQ</h3><p>关于QQ的使用，一直是初始linuxer最先遇到的问题，在过去有不同的插件完成，但随着TX对于QQ协议的疯狂升级，可使用的插件已所剩无几。最方便的是QQ的大多功能都可以保留。</p>
 <p>webqq是种解决方案，但是用于传输文件时，速度奇慢，截图也是非常不方便。</p>
-<p>我使用的是龍井的<a href="http://www.longene.org/forum/viewtopic.php?f=6&amp;t=4700" target="_blank" rel="external">wineqq2012 beta3</a> ;除了相互视频时有些问题，其他运行流畅，无重大bug。</p>
+<p>我使用的是龍井的<a href="http://www.longene.org/forum/viewtopic.php?f=6&amp;t=4700" target="_blank" rel="noopener">wineqq2012 beta3</a> ;除了相互视频时有些问题，其他运行流畅，无重大bug。</p>
 <h3 id="PDFXChange"><a href="#PDFXChange" class="headerlink" title="PDFXChange"></a>PDFXChange</h3><p>在Linux下修改已被封装PDF是件比较麻烦的事情。Linux下原生的可以通过Mupdf做简单修改，比如加书签。但是如果要修改内容，暂时还没有发现。</p>
-<p>对于封装好的PDF，我使用的是wine下的<a href="http://www.soft711.com/html/PDF-XChangePro.html" target="_blank" rel="external">PDFXchange2.04</a>。可对文档进行修改，以及增加水印、填写注释等等。</p>
+<p>对于封装好的PDF，我使用的是wine下的<a href="http://www.soft711.com/html/PDF-XChangePro.html" target="_blank" rel="noopener">PDFXchange2.04</a>。可对文档进行修改，以及增加水印、填写注释等等。</p>
 <p>（完）</p>
 ]]></content>
     
@@ -681,10 +681,10 @@ CPPFLAGS=-I$HOME/arm/ncurses/include
     
     <content type="html"><![CDATA[<p>项目过程中需要规范代码,决定采用svn,(git 主要项目组内其他成员尚不熟悉，且当前已有多个项目在svn服务器中)，我也有机会对此作了一定程度的学习，在这里记下笔记。<a id="more"></a></p>
 <blockquote>
-<p><a href="http://subversion.apache.org/" target="_blank" rel="external">Subversion</a>，简称 <strong>SVN</strong>，是一个开放源代码的版本控制系统，相对于的RCS、CVS，采用了分支管理系统，它的设计目标就是取代CVS。互联网上越来越多的控制服务从CVS转移到Subversion。</p>
+<p><a href="http://subversion.apache.org/" target="_blank" rel="noopener">Subversion</a>，简称 <strong>SVN</strong>，是一个开放源代码的版本控制系统，相对于的RCS、CVS，采用了分支管理系统，它的设计目标就是取代CVS。互联网上越来越多的控制服务从CVS转移到Subversion。</p>
 </blockquote>
-<p><a href="http://zh.wikipedia.org/wiki/Subversion" target="_blank" rel="external">来源</a></p>
-<p>SVN使用过程中我主要参考这本<a href="http://www.subversion.org.cn/svnbook/1.4/index.html" target="_blank" rel="external">书</a>。</p>
+<p><a href="http://zh.wikipedia.org/wiki/Subversion" target="_blank" rel="noopener">来源</a></p>
+<p>SVN使用过程中我主要参考这本<a href="http://www.subversion.org.cn/svnbook/1.4/index.html" target="_blank" rel="noopener">书</a>。</p>
 <p>SVN改变了开发过程中代码版本迭代的过程，由传统的“锁定-修改-解锁”方案转变为“拷贝-修改-合并”方案。开发成员从中央版本库（服务器中）得到一份拷贝（又称为工作副本，在客户端）后，代码在每个开发成员手里都存在一份。因此每人都可以单独的修改自己工作副本中的代码，而不用在修改时顾及是否冲突，只要在合并时需要注意是否冲突；开发成员对代码并行修改，相对“锁定-修改-解锁”方案中的串行修改，大大加速了开发过程。</p>
 <p>拷贝修改合并版本模型：</p>
 <p><img src="http://www.subversion.org.cn/svnbook/1.4/images/ch02dia4.png" alt="拷贝修改合并"><br><img src="http://www.subversion.org.cn/svnbook/1.4/images/ch02dia5.png" alt="拷贝修改合并"></p>
@@ -906,15 +906,15 @@ c&lt;=pmin-1;
 <p>完全是怒于看不到真实的互联网了。</p>
 <p>首先你得有改hosts的经历（没有，就没必要向下看本文了），用思维导图阐述下（形容词和第一招的形容词一样多，原谅我小学没学那么多成语吧）第二招。</p>
 <p><a href="http://nankor.org/uploads/2012/08/去外网兜圈.jpg"><img src="http://nankor.org/uploads/2012/08/去外网兜圈.jpg" alt=""></a></p>
-<h2 id="2-不改hosts，上部分IPV6的网站"><a href="#2-不改hosts，上部分IPV6的网站" class="headerlink" title="2.      不改hosts，上部分IPV6的网站"></a>2.      不改hosts，上部分IPV6的网站</h2><p>这个只能上部分网站，有兴趣的可以参考，内涵的给了一份IPV6的<a href="http://is.gd/AeVm0n" target="_blank" rel="external">hosts</a>。</p>
-<h2 id="3-Goagent使用IPV6-GAE"><a href="#3-Goagent使用IPV6-GAE" class="headerlink" title="3.      Goagent使用IPV6 GAE"></a>3.      Goagent使用IPV6 GAE</h2><h3 id="3-1-GAE"><a href="#3-1-GAE" class="headerlink" title="3.1 GAE"></a>3.1 GAE</h3><p>GAE主页地址：<a href="http://appengine.google.com/" target="_blank" rel="external">http://appengine.google.com/</a></p>
-<p>详细参考：<a href="https://developers.google.com/appengine/docs/" target="_blank" rel="external">https://developers.google.com/appengine/docs/</a><em>**</em></p>
+<h2 id="2-不改hosts，上部分IPV6的网站"><a href="#2-不改hosts，上部分IPV6的网站" class="headerlink" title="2.      不改hosts，上部分IPV6的网站"></a>2.      不改hosts，上部分IPV6的网站</h2><p>这个只能上部分网站，有兴趣的可以参考，内涵的给了一份IPV6的<a href="http://is.gd/AeVm0n" target="_blank" rel="noopener">hosts</a>。</p>
+<h2 id="3-Goagent使用IPV6-GAE"><a href="#3-Goagent使用IPV6-GAE" class="headerlink" title="3.      Goagent使用IPV6 GAE"></a>3.      Goagent使用IPV6 GAE</h2><h3 id="3-1-GAE"><a href="#3-1-GAE" class="headerlink" title="3.1 GAE"></a>3.1 GAE</h3><p>GAE主页地址：<a href="http://appengine.google.com/" target="_blank" rel="noopener">http://appengine.google.com/</a></p>
+<p>详细参考：<a href="https://developers.google.com/appengine/docs/" target="_blank" rel="noopener">https://developers.google.com/appengine/docs/</a><em>**</em></p>
 <p>GAE 英文全称为 Google App Engine。Google管理的数据中心中用于WEB应用程序的开发和托管的平台。2008年4月发布第一个测试版本。目前支持python、java与go语言开发。全球已有数十万的开发者在其上开发了众多的应用。GAE也是Google云计算的一部分，是一个互联网应用服务引擎，开发人员可以使用GAE的API开发互联网应用，而带宽、主机全都不用担心，Google都提供给你了。数据库是google专有的数据库，数据库和空间可以免费使用1G，每月500万次PV，对于一般的应用应该足够了。</p>
 <h3 id="3-2-Goagent项目"><a href="#3-2-Goagent项目" class="headerlink" title="3.2 Goagent项目"></a>3.2 Goagent项目</h3><p>（希望你能用上1的办法）</p>
 <p>Goagent是使用Python编写的网络软件，可以运行在Windows/Mac/Linux/Android/iTouch/iPhone/iPad/webOS/OpenWRT/Maemo上。</p>
-<p>PC Goagent项目主页：<a href="https://code.google.com/p/goagent/" target="_blank" rel="external">https://code.google.com/p/goagent/</a></p>
-<p><a href="https://github.com/goagent/goagent" target="_blank" rel="external">https://github.com/goagent/goagent</a></p>
-<p>Android上Goagent项目主页：<a href="https://code.google.com/p/gaeproxy/" target="_blank" rel="external">https://code.google.com/p/gaeproxy/</a></p>
+<p>PC Goagent项目主页：<a href="https://code.google.com/p/goagent/" target="_blank" rel="noopener">https://code.google.com/p/goagent/</a></p>
+<p><a href="https://github.com/goagent/goagent" target="_blank" rel="noopener">https://github.com/goagent/goagent</a></p>
+<p>Android上Goagent项目主页：<a href="https://code.google.com/p/gaeproxy/" target="_blank" rel="noopener">https://code.google.com/p/gaeproxy/</a></p>
 <p>Goagent共有三种部署方式，其中一种部署方式即为部署在GAE上，另外两种为部署在php空间、python方式（PAAS）。最新版的Goagent  GAE的fetch是用go语言（猜测）开发的，稍旧的版本使用python开发。</p>
 <p>Goagent原理图：</p>
 <p><a href="http://nankor.org/uploads/2012/08/代理示意图2.png"><img src="http://nankor.org/uploads/2012/08/代理示意图2.png" alt=""></a></p>
@@ -928,7 +928,7 @@ c&lt;=pmin-1;
 <p>需要将正常的IPv4 http请求由Goagent通过IPV6的GAE封装，然后返回回复数据，浏览器解析。</p>
 <p>需要关心三步：</p>
 <p>1、需要能够访问IPV6的GAE，这要求hosts修改为IPv6的google hosts，1中的hosts用上了。</p>
-<p>2、需要有可使用的GAE Appid：这个简单，搭建GAE使用goagent不是本文叙述的目的（可参考此<a href="http://ishare.cn.ms/archives/181" target="_blank" rel="external">http://ishare.cn.ms/archives/181</a> ）</p>
+<p>2、需要有可使用的GAE Appid：这个简单，搭建GAE使用goagent不是本文叙述的目的（可参考此<a href="http://ishare.cn.ms/archives/181" target="_blank" rel="noopener">http://ishare.cn.ms/archives/181</a> ）</p>
 <p>3、确保Goagent走的是IPV6的google。对于上面的1、2步已经解决了，第3步是关键。</p>
 <p>看下Goagent中local目录下proxy.ini的配置文件各字段含义：</p>
 <p><a href="http://nankor.org/uploads/2012/08/proxyini1.jpg"><img src="http://nankor.org/uploads/2012/08/proxyini1.jpg" alt=""></a></p>
@@ -944,24 +944,24 @@ c&lt;=pmin-1;
 <p>[2] 修改proxy.ini的gae数据段的profile，将其修改为</p>
 <p>profile = google_ipv6</p>
 <p>好了，现在走IPv6 GAE的Goagent搭建好了，浏览器怎么访问呢？</p>
-<p>方法还在这里：<a href="http://ishare.cn.ms/archives/181" target="_blank" rel="external">http://ishare.cn.ms/archives/181</a>（设为全局代理就行了）</p>
+<p>方法还在这里：<a href="http://ishare.cn.ms/archives/181" target="_blank" rel="noopener">http://ishare.cn.ms/archives/181</a>（设为全局代理就行了）</p>
 <h2 id="4-Goagent使用IPV6的php空间"><a href="#4-Goagent使用IPV6的php空间" class="headerlink" title="4.      Goagent使用IPV6的php空间"></a>4.      Goagent使用IPV6的php空间</h2><p>这个原理与Goagent使用GAE搭建代理类似：只不过将数据抓取的中转端放在了php空间中，用了curl函数去抓取目标服务器数据。</p>
 <p>1、 首先得有个php空间，支持IPv4就行（废话）</p>
 <p>2、 使用cloudflaer CDN加速ipv4 php空间，开启空间的IPV6访问</p>
 <p>3、 搭建Goagent的php代理</p>
-<h3 id="4-1-获取IPv4-php空间与域名申请"><a href="#4-1-获取IPv4-php空间与域名申请" class="headerlink" title="4.1 获取IPv4 php空间与域名申请"></a>4.1 获取IPv4 php空间与域名申请</h3><p>关于php主机空间选择这点，穷人遵循免费的原则（虽然俺有个付费的主机空间，可不是用来折腾这个的）。我选择1freehosting的免费主机空间与tk免费域名。先说下1freehosting的免费主机空间（<a href="http://1freehosting.com/" target="_blank" rel="external">http://1freehosting.com</a>）,这个空间的详细信息（探针发回的信息）：</p>
+<h3 id="4-1-获取IPv4-php空间与域名申请"><a href="#4-1-获取IPv4-php空间与域名申请" class="headerlink" title="4.1 获取IPv4 php空间与域名申请"></a>4.1 获取IPv4 php空间与域名申请</h3><p>关于php主机空间选择这点，穷人遵循免费的原则（虽然俺有个付费的主机空间，可不是用来折腾这个的）。我选择1freehosting的免费主机空间与tk免费域名。先说下1freehosting的免费主机空间（<a href="http://1freehosting.com/" target="_blank" rel="noopener">http://1freehosting.com</a>）,这个空间的详细信息（探针发回的信息）：</p>
 <p><a href="http://nankor.org/uploads/2012/08/2012-8-26-周日-23-22-57.png"><img src="http://nankor.org/uploads/2012/08/2012-8-26-周日-23-22-57.png" alt=""></a></p>
 <p>Goagent的php代理方式对于php空间是有要求的：</p>
 <p>1、 支持curl模块或者allow_url_fopen打开</p>
 <p>2、 支持zlib压缩模块</p>
 <p>3、 php空间不能有广告</p>
 <p>从上面的探针返回的信息看到前两条1freehosting的主机空间是符合要求的，对于第3条的支持情况稍后谈到。Goagent从1.8.4版本以后逐渐去掉了探针php。</p>
-<p>主机空间鼓捣好了，tk的域名申请也很简单，去tk主页<a href="http://www.dot.tk/zh/index.html" target="_blank" rel="external">http://www.dot.tk/zh/index.html</a>注册，申请一个免费的域名,绑定到1freehosting空间就行了，这样IPV4的php空间搞定了。</p>
-<p>如果上面不明白参考此：<a href="http://ishare.cn.ms/archives/703" target="_blank" rel="external">http://ishare.cn.ms/archives/703</a></p>
+<p>主机空间鼓捣好了，tk的域名申请也很简单，去tk主页<a href="http://www.dot.tk/zh/index.html" target="_blank" rel="noopener">http://www.dot.tk/zh/index.html</a>注册，申请一个免费的域名,绑定到1freehosting空间就行了，这样IPV4的php空间搞定了。</p>
+<p>如果上面不明白参考此：<a href="http://ishare.cn.ms/archives/703" target="_blank" rel="noopener">http://ishare.cn.ms/archives/703</a></p>
 <h3 id="4-2-获取IPv6-php空间"><a href="#4-2-获取IPv6-php空间" class="headerlink" title="4.2 获取IPv6 php空间"></a>4.2 获取IPv6 php空间</h3><p>需要将IPV4的php空间分配一个IPV6的地址,这个就要靠CDN了，采用的是cloudflare CDN（希望大家不要过多使用这样优秀的免费资源，为了国内一大批博客的生存，希望大家节省使用）。</p>
 <p>先介绍下cloudflare CDN加速服务：cloudflare免费DNS的CDN节点主要分布于荷兰、美国、香港、法国、日本等国家和地区，但是cloudflare在亚太地区的CDN节点却大大可以加速你在美国或者欧洲的主机访问速度。CloudFlare已经将路由调整到了香港或者日本，并且不断增加在亚洲增加服务器分布，来优化调整针对亚洲客户的访问。</p>
 <p>使用cloudflare CDN加速主机空间的访问与开通主机空间的IPV6访问，主要有这几步：</p>
-<p>1、 首先<a href="https://www.cloudflare.com/sign-up" target="_blank" rel="external">注册cloudflare CDN</a>；</p>
+<p>1、 首先<a href="https://www.cloudflare.com/sign-up" target="_blank" rel="noopener">注册cloudflare CDN</a>；</p>
 <p>2、 接着填写自己要加速的域名（例子是korlj.tk）：如下图</p>
 <p>   <a href="http://nankor.org/uploads/2012/08/cloudflarecdn11.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflarecdn11.jpg" alt=""></a></p>
 <p>接下来Cloudflare CDN会检查你的域名是否有效（大概1 min），如果有效，contitue setup。</p>
@@ -970,7 +970,7 @@ c&lt;=pmin-1;
 <p><a href="http://nankor.org/uploads/2012/08/cloudflarecdn2.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflarecdn2.jpg" alt=""></a></p>
 <p>5、  好了，最后一步，cloudflare CDN为你的域名做了最优的DNS服务器的选择：</p>
 <p> <a href="http://nankor.org/uploads/2012/08/cloudflare3.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflare3.jpg" alt=""></a></p>
-<p><a href="http://korlj.tk/" target="_blank" rel="external">http://korlj.tk</a> 原来默认使用TK提供的DNS解析服务：ns01/2.dot.tk那两个，使用cloudflare CDN后使用lady/seth.ns.cloudflare.com</p>
+<p><a href="http://korlj.tk/" target="_blank" rel="noopener">http://korlj.tk</a> 原来默认使用TK提供的DNS解析服务：ns01/2.dot.tk那两个，使用cloudflare CDN后使用lady/seth.ns.cloudflare.com</p>
 <p>6、 继续设置空间的IPv6的访问，点击 <a href="http://nankor.org/uploads/2012/08/cloudflare4.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflare4.jpg" alt=""></a>上步</p>
 <p>会看到这样：</p>
 <p><a href="http://nankor.org/uploads/2012/08/cloudflare5.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflare5.jpg" alt=""></a></p>
@@ -997,9 +997,9 @@ c&lt;=pmin-1;
 <p>好了，现在打开goagent，会看到已经启用fetchsever，设置浏览器的全局代理为127.0.0.1:8080就可以了。</p>
 <p>经过我的实验，访问一些网站还是比较快的，真实的互联网就在你的面前！</p>
 <p>这种方法速度上优于上种方法。</p>
-<h2 id="5-APJP使用IPv6-php空间"><a href="#5-APJP使用IPv6-php空间" class="headerlink" title="5.      APJP使用IPv6 php空间"></a>5.      APJP使用IPv6 php空间</h2><h3 id="5-1-APJP项目"><a href="#5-1-APJP项目" class="headerlink" title="5.1 APJP项目"></a>5.1 APJP项目</h3><p>Google code：<a href="https://code.google.com/p/apjp/" target="_blank" rel="external">https://code.google.com/p/apjp/</a></p>
-<p>Github：<a href="https://github.com/jvansteirteghem/apjp" target="_blank" rel="external">https://github.com/jvansteirteghem/apjp</a></p>
-<p>Google code Wiki: <a href="https://code.google.com/p/apjp/wiki/AboutAPJP" target="_blank" rel="external">https://code.google.com/p/apjp/wiki/AboutAPJP</a></p>
+<h2 id="5-APJP使用IPv6-php空间"><a href="#5-APJP使用IPv6-php空间" class="headerlink" title="5.      APJP使用IPv6 php空间"></a>5.      APJP使用IPv6 php空间</h2><h3 id="5-1-APJP项目"><a href="#5-1-APJP项目" class="headerlink" title="5.1 APJP项目"></a>5.1 APJP项目</h3><p>Google code：<a href="https://code.google.com/p/apjp/" target="_blank" rel="noopener">https://code.google.com/p/apjp/</a></p>
+<p>Github：<a href="https://github.com/jvansteirteghem/apjp" target="_blank" rel="noopener">https://github.com/jvansteirteghem/apjp</a></p>
+<p>Google code Wiki: <a href="https://code.google.com/p/apjp/wiki/AboutAPJP" target="_blank" rel="noopener">https://code.google.com/p/apjp/wiki/AboutAPJP</a></p>
 <p>APJP提供的使用平台还是比较广泛的，原理与Goagent类似。有些时候，访问一些网站需要使用代理，而APJP是一项开源代理项目，是非常适合个人使用自建代理工具。APJP分为两个部分，LOCAL(客户端)和REMOTE(服务器端)，其中LOCAL部分由Java语言编写，REMOTE则分别用PHP, Java, Python, Ruby等语言编写以适应不同的平台，LOCAL部分是一个本地代理，通过和远端服务器部分连接，以RC4 128bit 加密通讯，达到一个比较完整的代理方案。</p>
 <h3 id="5-2-IPV6-php空间的获取"><a href="#5-2-IPV6-php空间的获取" class="headerlink" title="5.2 IPV6 php空间的获取"></a>5.2 IPV6 php空间的获取</h3><p>与上面Goagent获取IPv6php空间的方式一致，略去。</p>
 <h3 id="5-3-使用APJP建立IPv6-php空间代理"><a href="#5-3-使用APJP建立IPv6-php空间代理" class="headerlink" title="5.3 使用APJP建立IPv6 php空间代理"></a>5.3 使用APJP建立IPv6 php空间代理</h3><p>主要提供的平台与安装办法google code wiki写的已经比较详细了：</p>
@@ -1017,8 +1017,8 @@ java -classpath APJP_LOCAL_JAVA-1.0.0.jar APJP/Main
 </code></pre><p>并且我迫切希望你重新保存或者建立脚本写入以上内容，以保存成*inx文本行结尾符，因为原作者脚本的行结尾符是DOS下的…-_-||,这点我已经在github fork这个项目并修改了此。</p>
 <p>APJP项目相对Goagent使用php空间作为代理，安全性会提高很多。</p>
 <h2 id="6-自己搭建简单的IPV6-代理网站"><a href="#6-自己搭建简单的IPV6-代理网站" class="headerlink" title="6.      自己搭建简单的IPV6 代理网站"></a>6.      自己搭建简单的IPV6 代理网站</h2><h3 id="6-1-申请IPv6-主机空间"><a href="#6-1-申请IPv6-主机空间" class="headerlink" title="6.1 申请IPv6 主机空间"></a>6.1 申请IPv6 主机空间</h3><p>关于IPv6主机空间的申请以上已经说过，略去</p>
-<h3 id="6-2-使用knproxy"><a href="#6-2-使用knproxy" class="headerlink" title="6.2 使用knproxy"></a>6.2 使用knproxy</h3><p>knproxy：<a href="http://sourceforge.net/projects/knproxy/" target="_blank" rel="external">http://sourceforge.net/projects/knproxy/</a></p>
-<p>完整方案：<a href="http://sourceforge.net/projects/level5/" target="_blank" rel="external">http://sourceforge.net/projects/level5/</a></p>
+<h3 id="6-2-使用knproxy"><a href="#6-2-使用knproxy" class="headerlink" title="6.2 使用knproxy"></a>6.2 使用knproxy</h3><p>knproxy：<a href="http://sourceforge.net/projects/knproxy/" target="_blank" rel="noopener">http://sourceforge.net/projects/knproxy/</a></p>
+<p>完整方案：<a href="http://sourceforge.net/projects/level5/" target="_blank" rel="noopener">http://sourceforge.net/projects/level5/</a></p>
 <p>1、 Knproxy简介</p>
 <p>KnProxy是一系列基于PHP和cURL模块的网页版代理系统。它的主要目标就是：</p>
 <p>1）方便架设：只需上传即可使用</p>
@@ -1028,9 +1028,9 @@ java -classpath APJP_LOCAL_JAVA-1.0.0.jar APJP/Main
 <p>上传knproxy至你的目录即可，打开浏览器至knproxy目录下就可以了，马上会看到效果。</p>
 <p>由于空间使用IPv6 所以没有校园网流量时，这种方法访问外网是最简单的，也是最有效的。</p>
 <h2 id="7-IPv6代理软件-IPv6代理网站"><a href="#7-IPv6代理软件-IPv6代理网站" class="headerlink" title="7.      IPv6代理软件 IPv6代理网站"></a>7.      IPv6代理软件 IPv6代理网站</h2><p>这一类比较多，各位自行Google，IPv6代理网站推荐以下几个：</p>
-<p>StudioProxy代理：<a href="http://ipv6.studioproxy.com/" target="_blank" rel="external">http://ipv6.studioproxy.com</a></p>
-<p>yegle’s glype代理  <a href="http://yegle.net/glype/index.php" target="_blank" rel="external">http://yegle.net/glype/index.php</a></p>
-<p>sixxs.org代理： <a href="http://www.sixxs.net/tools/gateway/" target="_blank" rel="external">http://www.sixxs.net/tools/gateway/</a>   sixxs.org同时提供ipv6 to ipv4和ipv4 to ipv6，也可以直接在网址后面加上 .sixxs.org来使用IPV6浏览目标网站。</p>
+<p>StudioProxy代理：<a href="http://ipv6.studioproxy.com/" target="_blank" rel="noopener">http://ipv6.studioproxy.com</a></p>
+<p>yegle’s glype代理  <a href="http://yegle.net/glype/index.php" target="_blank" rel="noopener">http://yegle.net/glype/index.php</a></p>
+<p>sixxs.org代理： <a href="http://www.sixxs.net/tools/gateway/" target="_blank" rel="noopener">http://www.sixxs.net/tools/gateway/</a>   sixxs.org同时提供ipv6 to ipv4和ipv4 to ipv6，也可以直接在网址后面加上 .sixxs.org来使用IPV6浏览目标网站。</p>
 <h2 id="8-关于“代理”后记"><a href="#8-关于“代理”后记" class="headerlink" title="8.      关于“代理”后记"></a>8.      关于“代理”后记</h2><p>有人会询问如何使用IPv6代理上QQ之类的，这种软件存在，不过博主尊重该软件原作者的意愿，不在此说了。以上Goagent是无法提供QQ代理的，我已测试，其他几个像APJP我没有测试。</p>
 <p>本来没有心思做这个的，可是被DX校园网搞的没流量了。。。再次向DX XXX处表示“我能说脏话吗？”式的感谢！</p>
 <h2 id="9-Nan-Kor与病魔作斗争的故事"><a href="#9-Nan-Kor与病魔作斗争的故事" class="headerlink" title="9.      Nan Kor与病魔作斗争的故事"></a>9.      Nan Kor与病魔作斗争的故事</h2><p>说来惭愧，这里写的内容都是博主顶着肺炎的折磨做完的。</p>
@@ -1112,7 +1112,7 @@ java -classpath APJP_LOCAL_JAVA-1.0.0.jar APJP/Main
     <published>2012-05-29T03:05:30.000Z</published>
     <updated>2017-06-18T15:27:08.000Z</updated>
     
-    <content type="html"><![CDATA[<p><span style="font-family: 'comic sans ms', sans-serif; font-size: large;">       5月20日晚上七点，在新校区给2011级同学做了一场<a href="http://xgc.xidian.edu.cn/view.asp?newsid=1758" target="_blank" rel="external">报告</a>，自己想对他们说的都说了，但是缺点对自己说的东西。</span><span style="font-family: 'comic sans ms', sans-serif;"><a id="more"></a></span></p>
+    <content type="html"><![CDATA[<p><span style="font-family: 'comic sans ms', sans-serif; font-size: large;">       5月20日晚上七点，在新校区给2011级同学做了一场<a href="http://xgc.xidian.edu.cn/view.asp?newsid=1758" target="_blank" rel="noopener">报告</a>，自己想对他们说的都说了，但是缺点对自己说的东西。</span><span style="font-family: 'comic sans ms', sans-serif;"><a id="more"></a></span></p>
 <p><span style="font-size: large; font-family: 'comic sans ms', sans-serif;">          没有开始报告前，和Y与F坐在11级导员面前，导员提到“现在的学生，100多号人去上大物课，可能只有不到40人在听课”、“许多人大一下了在迷茫该干什么”、“有些家长就接受不了：孩子考上大学了，突然连20分都考不到了”。</span></p>
 <p><span style="font-size: large; font-family: 'comic sans ms', sans-serif;">          听到上面的话，只能说导员见怪不怪了。</span></p>
 <p><span style="font-size: large; font-family: 'comic sans ms', sans-serif;">          大学是天堂，也是地狱。         </span></p>
@@ -1126,7 +1126,7 @@ java -classpath APJP_LOCAL_JAVA-1.0.0.jar APJP/Main
     
     <summary type="html">
     
-      &lt;p&gt;&lt;span style=&quot;font-family: &#39;comic sans ms&#39;, sans-serif; font-size: large;&quot;&gt;       5月20日晚上七点，在新校区给2011级同学做了一场&lt;a href=&quot;http://xgc.xidian.edu.cn/view.asp?newsid=1758&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;报告&lt;/a&gt;，自己想对他们说的都说了，但是缺点对自己说的东西。&lt;/span&gt;&lt;span style=&quot;font-family: &#39;comic sans ms&#39;, sans-serif;&quot;&gt;
+      &lt;p&gt;&lt;span style=&quot;font-family: &#39;comic sans ms&#39;, sans-serif; font-size: large;&quot;&gt;       5月20日晚上七点，在新校区给2011级同学做了一场&lt;a href=&quot;http://xgc.xidian.edu.cn/view.asp?newsid=1758&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;报告&lt;/a&gt;，自己想对他们说的都说了，但是缺点对自己说的东西。&lt;/span&gt;&lt;span style=&quot;font-family: &#39;comic sans ms&#39;, sans-serif;&quot;&gt;
     
     </summary>
     
@@ -1197,13 +1197,13 @@ java -classpath APJP_LOCAL_JAVA-1.0.0.jar APJP/Main
 <ol>
 <li><p>如果用户希望访问 Google.com 而不进行重定向，可以单击 Google 主页右下方的”Google.com”链接。如果用户启用了 Cookie，之后每次进行访问时，用户的浏览器都会直接连接到 Google.com。如果禁用 Cookie，则每次访问 Google 时，都照样会进行重定向。</p>
 </li>
-<li><p>启用Cookie，为<a href="http://www.google.com/webhp" target="_blank" rel="external">http://www.google.com/webhp</a> 设置书签。每次在您选择该书签时，都会转到 <a href="http://www.google.com/webhp" target="_blank" rel="external">http://www.google.com/webhp</a>，它与 Google.com 完全相同。</p>
+<li><p>启用Cookie，为<a href="http://www.google.com/webhp" target="_blank" rel="noopener">http://www.google.com/webhp</a> 设置书签。每次在您选择该书签时，都会转到 <a href="http://www.google.com/webhp" target="_blank" rel="noopener">http://www.google.com/webhp</a>，它与 Google.com 完全相同。</p>
 </li>
-<li><p>启用Cookie，为<a href="http://www.google.com/ncr" target="_blank" rel="external">http://www.google.com/ncr</a>  （ncr: no country redirect  不启用按国家跳转）设置书签。每次在您选择该书签时，都会转到 <a href="%20http://www.google.com/ncr">http://www.google.com/ncr</a>，它与 Google.com 完全相同。</p>
+<li><p>启用Cookie，为<a href="http://www.google.com/ncr" target="_blank" rel="noopener">http://www.google.com/ncr</a>  （ncr: no country redirect  不启用按国家跳转）设置书签。每次在您选择该书签时，都会转到 <a href="%20http://www.google.com/ncr">http://www.google.com/ncr</a>，它与 Google.com 完全相同。</p>
 </li>
 <li><p>各种浏览器中, 可以通过设置语言选项中, 添加英语并置为最上面</p>
 </li>
-<li><p>使用插件：<a href="http://kanoha.org/?fetchDownload=9" target="_blank" rel="external">SkipGoogle.crx</a>，或者搜索下油猴之类的。</p>
+<li><p>使用插件：<a href="http://kanoha.org/?fetchDownload=9" target="_blank" rel="noopener">SkipGoogle.crx</a>，或者搜索下油猴之类的。</p>
 </li>
 <li><p>IP伪装成国外的或者肉身那个，大家都懂的。</p>
 </li>
@@ -1233,10 +1233,10 @@ java -classpath APJP_LOCAL_JAVA-1.0.0.jar APJP/Main
     <updated>2017-06-18T15:27:08.000Z</updated>
     
     <content type="html"><![CDATA[<p>这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。<a id="more"></a></p>
-<p>早上6点半，在床上坐起来想了想穿什么衣服，刚穿完衣服，<a href="http://www.thepunch.info/blog/" target="_blank" rel="external">王宇</a>师兄就打手机过来催起床了。</p>
+<p>早上6点半，在床上坐起来想了想穿什么衣服，刚穿完衣服，<a href="http://www.thepunch.info/blog/" target="_blank" rel="noopener">王宇</a>师兄就打手机过来催起床了。</p>
 <p>7点到新科楼前发现大家都不在，自己应该是迟到了，孙师兄刚好也赶到，就相随去门口追大伙，在外面拿了三个包子，和30多人等公交车奔赴目的地。</p>
 <p>大峪水库比较远，中间转了一趟车，然后坐923从起点到终点。</p>
-<p><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=zh-CN&amp;geocode=&amp;q=%E8%A5%BF%E5%AE%89+%E5%A4%A7%E5%B3%AA&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=46.946584,93.076172&amp;ie=UTF8&amp;hq=&amp;hnear=%E4%B8%AD%E5%9B%BD%E9%99%95%E8%A5%BF%E7%9C%81%E8%A5%BF%E5%AE%89%E9%95%BF%E5%AE%89%E5%8C%BA%E5%A4%A7%E5%B3%AA%E4%B9%A1&amp;ll=34.018954,109.119909&amp;spn=0.024156,0.045447&amp;t=m&amp;z=14" target="_blank" rel="external">查看大图</a></p>
+<p><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=zh-CN&amp;geocode=&amp;q=%E8%A5%BF%E5%AE%89+%E5%A4%A7%E5%B3%AA&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=46.946584,93.076172&amp;ie=UTF8&amp;hq=&amp;hnear=%E4%B8%AD%E5%9B%BD%E9%99%95%E8%A5%BF%E7%9C%81%E8%A5%BF%E5%AE%89%E9%95%BF%E5%AE%89%E5%8C%BA%E5%A4%A7%E5%B3%AA%E4%B9%A1&amp;ll=34.018954,109.119909&amp;spn=0.024156,0.045447&amp;t=m&amp;z=14" target="_blank" rel="noopener">查看大图</a></p>
 <p>到达目的地大概9点吧，来的人比较多，同学是47个吧。本来目的是来捡垃圾的，所以一人发了一个垃圾袋与一只白手套。然后我们就兴冲冲出发了。</p>
 <p>出发了！</p>
 <p><a href="http://nankor.org/uploads/2012/04/出发.jpg"><img src="http://nankor.org/uploads/2012/04/出发.jpg" alt=""></a></p>
