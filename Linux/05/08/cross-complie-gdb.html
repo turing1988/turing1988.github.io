@@ -1,38 +1,584 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.nankor.org","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="项目需要，交叉编译本地版gdb 6.5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="交叉编译gdb">
+<meta property="og:url" content="https://www.nankor.org/Linux/05/08/cross-complie-gdb.html">
+<meta property="og:site_name" content="Nankor Dream">
+<meta property="og:description" content="项目需要，交叉编译本地版gdb 6.5">
+<meta property="og:locale">
+<meta property="article:published_time" content="2013-05-08T13:53:11.000Z">
+<meta property="article:modified_time" content="2017-06-18T15:27:08.529Z">
+<meta property="article:author" content="nankor">
+<meta property="article:tag" content="gdb">
+<meta property="article:tag" content="arm-linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.nankor.org/Linux/05/08/cross-complie-gdb.html">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>交叉编译gdb | Nankor Dream</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nankor Dream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Nankor's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.nankor.org/Linux/05/08/cross-complie-gdb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nankor">
+      <meta itemprop="description" content="Code OS Web">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nankor Dream">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          交叉编译gdb
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2013-05-08 21:53:11" itemprop="dateCreated datePublished" datetime="2013-05-08T21:53:11+08:00">2013-05-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-06-18 23:27:08" itemprop="dateModified" datetime="2017-06-18T23:27:08+08:00">2017-06-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>项目需要，交叉编译本地版gdb 6.5 <span id="more"></span></p>
+<h2 id="预读"><a href="#预读" class="headerlink" title="预读"></a>预读</h2><p>首先明确configure的三个参数:</p>
+<p>–build : 运行交叉编译器的环境</p>
+<p>–host : 编译出的可执行文件的执行环境</p>
+<p>–target : 编译出的可执行文件执行后能产生的文件的执行环境</p>
+<p>所有值默认都等于–build，–build默认为本机环境，–target默认为–host</p>
+<p>比如 在gcc源码目录：</p>
+<p>   $ .&#x2F;configure  CC&#x3D;arm-linux-gcc –build&#x3D;i686-pc-linux –host&#x3D;arm-linux –target&#x3D;mips</p>
+<p>在intel pc上编译产生arm上运行的gcc，在arm平台运用产生的gcc编译mips上执行的程序</p>
+<h2 id="0-嵌入式应用gdb调试"><a href="#0-嵌入式应用gdb调试" class="headerlink" title="0. 嵌入式应用gdb调试"></a>0. 嵌入式应用gdb调试</h2><p>嵌入式应用gdb调试主要有两种方法：</p>
+<h3 id="PC端调试"><a href="#PC端调试" class="headerlink" title="PC端调试"></a>PC端调试</h3><p>这是主流方法，进入gdb目录，交叉编译时.&#x2F;configure 重要参数</p>
+<pre><code>--build=i686-pc-linux
+--host=i686-pc-linux
+--target=arm-linux
+</code></pre>
+<p>交叉编译产生的arm-linux-gdb在PC端运行</p>
+<p>进入gdbserver目录，交叉编译.&#x2F;configure 时重要参数：</p>
+<pre><code>--build=i686-pc-linux
+--host=arm-linux
+--target=arm-linux
+</code></pre>
+<p>交叉编译产生的gdbserver放在arm设备上</p>
+<p>过程：调试时，arm设备上打开gdbserver，附加至应用程序进程，在PC端通过arm-linux-gdb设置端口连接gdbserver调试。整个过程两者间通信类似于CS架构通信</p>
+<p>arm-linux-gdb功能有限，一般可采用PC端的gdb代替之进行调试；另外PC和设备之间需要至少一种方式通信，串口与网络皆可，关于gdbserver通过串口调试方法，可自行搜索；由于作者所用设备只能通过串口调试，且串口有其他调试信息输出，故不采用此方式。</p>
+<h3 id="设备本地gdb调试"><a href="#设备本地gdb调试" class="headerlink" title="设备本地gdb调试"></a>设备本地gdb调试</h3><p>交叉编译时.&#x2F;configure 的重要参数</p>
+<pre><code>CC=arm-linux-gcc
+--build=i686-pc-linux
+--host=arm-linux
+--target=arm-linux
+</code></pre>
+<p>过程：交叉编译产生arm设备上运行的gdb，直接在arm设备上运行gdb，调试应用程序。</p>
+<p>本文主要讨论此种方法。</p>
+<h2 id="1-交叉编译本地版gdb"><a href="#1-交叉编译本地版gdb" class="headerlink" title="1. 交叉编译本地版gdb"></a>1. 交叉编译本地版gdb</h2><p>交叉编译gdb时，与PC端的arm-linux-gcc的版本是相关的，过低版本的arm-linux-gcc不能交叉编译版本太高的gdb，本机的编译环境如下：</p>
+<pre><code>arm-linux-gcc：4.3.2 
+gdb-src ：6.5 
+libncurses ：5.6
+arm-linux : 2.6.34
+</code></pre>
+<p>下载：</p>
+<p><a target="_blank" rel="noopener" href="http://ftp.gnu.org/gnu/gdb/gdb-6.5a.tar.gz">gdb 6.5a</a></p>
+<p><a target="_blank" rel="noopener" href="http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.6.tar.gz">ncurses</a></p>
+<p>由于gdb依赖于termcap库，现在这个库可以通过ncurses来代替，所以先交叉编译产生libncurses，我选择的5.6版本</p>
+<h3 id="交叉编译ncurses"><a href="#交叉编译ncurses" class="headerlink" title="交叉编译ncurses"></a>交叉编译ncurses</h3><p><strong>解压</strong></p>
+<pre><code>$ tar zxvf ncurses-5.6.tar.gz
+$ cd ncurses-5.6 
+</code></pre>
+<p><strong>配置环境</strong></p>
+<pre><code>$ CC=arm-linux-gcc ./configure --build=i686-pc-linux --host=arm-linux  --prefix=$HOME/arm/ncurses --without-ada --enable-termcap --with-shared
+</code></pre>
+<p>以上产生Makefile，其中.&#x2F;configure 参数含义：</p>
+<p>CC&#x3D;arm-linux-gcc 使用arm-linux-gcc交叉编译器</p>
+<p>–prefix&#x3D;$HOME&#x2F;arm&#x2F;ncurses 将生成ncurses的相关文件安装在$HOME&#x2F;arm&#x2F;ncurses目录下</p>
+<p>–without-ada 不编译ada库</p>
+<p>–enable-termcap 支持termcap，这个很重要</p>
+<p>–with-shared 以动态库形式封装libncurses</p>
+<p><strong>make</strong></p>
+<pre><code>$ make
+</code></pre>
+<p><strong>make install</strong></p>
+<pre><code>$ make install
+</code></pre>
+<p>然后在$HOME&#x2F;arm&#x2F;ncurses看到如下文件：</p>
+<pre>
+ncurses/
+ ├── bin
+ │   ├── captoinfo -> tic
+ │   ├── clear
+ │   ├── infocmp
+ │   ├── infotocap -> tic
+ │   ├── ncurses5-config
+ │   ├── reset -> tset
+ │   ├── tack
+ │   ├── tic
+ │   ├── toe
+ │   ├── tput
+ │   └── tset
+ ├── include
+ │   └── ncurses
+ ├── lib
+ │   ├── libform.a
+ │   ├── libform_g.a
+ │   ├── libform.so -> libform.so.5
+ │   ├── libform.so.5 -> libform.so.5.6
+ │   ├── libform.so.5.6
+ │   ├── libmenu.a
+ │   ├── libmenu_g.a
+ │   ├── libmenu.so -> libmenu.so.5
+ │   ├── libmenu.so.5 -> libmenu.so.5.6
+ │   ├── libmenu.so.5.6
+ │   ├── libncurses.a
+ │   ├── libncurses++.a
+ │   ├── libncurses_g.a
+ │   ├── libncurses.so -> libncurses.so.5
+ │   ├── libncurses.so.5 -> libncurses.so.5.6
+ │   ├── libncurses.so.5.6
+ │   ├── libpanel.a
+ │   ├── libpanel_g.a
+ │   ├── libpanel.so -> libpanel.so.5
+ │   ├── libpanel.so.5 -> libpanel.so.5.6
+ │   ├── libpanel.so.5.6
+ │   └── terminfo -> ../share/terminfo
+ ├── man
+ │   ├── man1
+ │   ├── man3
+ │   ├── man5
+ │   └── man7
+ └── share
+     ├── tabset
+     └── terminfo
+</pre>
+
+<h3 id="编译gdb"><a href="#编译gdb" class="headerlink" title="编译gdb"></a>编译gdb</h3><p><strong>.&#x2F;configure</strong></p>
+<pre><code>$ CC=&#39;arm-linux-gcc&#39;  LDFLAGS=-L$HOME/arm/ncurses/lib CPPFLAGS=-I$HOME/arm/ncurses/include ./configure  --build=i686-pc-linux  --host=arm-linux --target=arm-linux --enable-shared --prefix=$HOME/arm/gdb --without-x --disable-gdbtk --disable-tui
+</code></pre>
+<p>参数含义：</p>
+<p>libncurses 路径</p>
+<pre><code>LDFLAGS=-L$HOME/arm/ncurses/lib 
+
+CPPFLAGS=-I$HOME/arm/ncurses/include
+</code></pre>
+<p>–enable-shared    动态编译</p>
+<p>–prefix&#x3D;$HOME&#x2F;arm&#x2F;gdb 安装目录</p>
+<p>–without-x      取消x windows 支持 </p>
+<p>–disable-gdbtk  取消gdbtk,应该也是图形界面相关的</p>
+<p>–disable-tui    取消tui 界面</p>
+<p>这点要说明一下，CC LDFLAGS CPPFLAGS这些编译参数本是放到.&#x2F;configure后的，但是当我放到.&#x2F;configure后提示错误：<code>configure: error: can only configure for one host and one target at a time</code> ，应该是configure的nonopt变量设置问题，我只好放到了前面，其实到后面会发现其是不起作用的。</p>
+<p>以上生成Makefile</p>
+<p><strong>make</strong></p>
+<pre><code>$ make
+</code></pre>
+<p>然后出现几个问题；</p>
+<ul>
+<li>no termcap library found</li>
+</ul>
+<p>明明添加了ncurses的库路径为什么不行？它既然是找libtermcap，给它在$HOME&#x2F;arm&#x2F;ncurses&#x2F;lib下建个指向libncurses.so的软连接</p>
+<pre><code>$ ln -s $HOME/arm/ncurses/lib/libncurses.so $HOME/arm/ncurses/lib/libtermcap.so
+</code></pre>
+<p>结果仍然提示上述错误。</p>
+<p>这应该是configure时配置的FLAGS不起作用；</p>
+<p>因此将上面的make修正为</p>
+<pre><code>$ make LDFLAGS=-L$HOME/arm/ncurses/lib CPPFLAGS=-I$HOME/arm/ncurses/include
+</code></pre>
+<p>编译顺利进行</p>
+<ul>
+<li>gdb&#x2F;gdb_curses.h头文件错误</li>
+</ul>
+<p>将代码修改为如下：</p>
+<pre>
+    #if defined (HAVE_NCURSES_H)
+    #include <ncurses.h>
+    #elif defined (HAVE_CURSESX_H)
+    #include <cursesX.h>
+    #elif defined (HAVE_CURSES_H)
+    #include <curses.h>
+    #endif
+    
+    #if defined (HAVE_TERM_H)
+    #include <term.h>
+    #else
+    /* On MinGW, a real termcap library is usually not present.  Stub versions
+       of the termcap functions will be built from win32-termcap.c.  Readline
+       provides its own extern declarations when there's no termcap.h; do the
+       same here for the termcap functions used in GDB.  */
+    extern int tgetnum (const char *);
+    #endif
+</pre>
+
+<p>编译通过</p>
+<p><strong>make install</strong></p>
+<pre><code>$ make install
+</code></pre>
+<p>安装后在$HOME&#x2F;arm&#x2F;gdb目录下会看到bin等目录，其下有 gdb gdbserver run三个文件，表示安装成功。</p>
+<p>刚生成的gdb有10M左右，嵌入式设备Flash不大，可以将其strip下,减下肥</p>
+<pre><code>$ arm-linux-strip gdb
+</code></pre>
+<p>此时gdb只有2M多了</p>
+<h3 id="放置gdb"><a href="#放置gdb" class="headerlink" title="放置gdb"></a>放置gdb</h3><p>将$HOME&#x2F;arm&#x2F;gdb&#x2F;bin&#x2F;gdb 拷贝至设备&#x2F;usr&#x2F;bin目录，将$HOME&#x2F;arm&#x2F;ncurses&#x2F;libncurse.so,libtermcap.so拷贝至设备&#x2F;usr&#x2F;lib目录即可</p>
+<p>&lt; 完 &gt;</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/gdb/" rel="tag"># gdb</a>
+              <a href="/tags/arm-linux/" rel="tag"># arm-linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Think/03/26/tao.html" rel="prev" title="识道">
+      <i class="fa fa-chevron-left"></i> 识道
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Linux/05/12/some-interesting-thing-about-net-on-android-and-pc.html" rel="next" title="一些有趣的事情关于android和网络">
+      一些有趣的事情关于android和网络 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E8%AF%BB"><span class="nav-number">1.</span> <span class="nav-text">预读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BA%94%E7%94%A8gdb%E8%B0%83%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">0. 嵌入式应用gdb调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PC%E7%AB%AF%E8%B0%83%E8%AF%95"><span class="nav-number">2.1.</span> <span class="nav-text">PC端调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%9C%AC%E5%9C%B0gdb%E8%B0%83%E8%AF%95"><span class="nav-number">2.2.</span> <span class="nav-text">设备本地gdb调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E6%9C%AC%E5%9C%B0%E7%89%88gdb"><span class="nav-number">3.</span> <span class="nav-text">1. 交叉编译本地版gdb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91ncurses"><span class="nav-number">3.1.</span> <span class="nav-text">交叉编译ncurses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91gdb"><span class="nav-number">3.2.</span> <span class="nav-text">编译gdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BE%E7%BD%AEgdb"><span class="nav-number">3.3.</span> <span class="nav-text">放置gdb</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nankor</p>
+  <div class="site-description" itemprop="description">Code OS Web</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nankor</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

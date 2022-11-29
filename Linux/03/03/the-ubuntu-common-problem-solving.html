@@ -1,38 +1,585 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.nankor.org","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="自己使用ubuntu过程中总结的一些小问题及解决办法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu常见问题解决">
+<meta property="og:url" content="https://www.nankor.org/Linux/03/03/the-ubuntu-common-problem-solving.html">
+<meta property="og:site_name" content="Nankor Dream">
+<meta property="og:description" content="自己使用ubuntu过程中总结的一些小问题及解决办法。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2012-03-03T14:58:37.000Z">
+<meta property="article:modified_time" content="2017-06-18T15:27:08.529Z">
+<meta property="article:author" content="nankor">
+<meta property="article:tag" content="latex">
+<meta property="article:tag" content="linux matlab">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="乱码">
+<meta property="article:tag" content="虚拟光驱">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.nankor.org/Linux/03/03/the-ubuntu-common-problem-solving.html">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>ubuntu常见问题解决 | Nankor Dream</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nankor Dream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Nankor's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.nankor.org/Linux/03/03/the-ubuntu-common-problem-solving.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nankor">
+      <meta itemprop="description" content="Code OS Web">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nankor Dream">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu常见问题解决
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-03-03 22:58:37" itemprop="dateCreated datePublished" datetime="2012-03-03T22:58:37+08:00">2012-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-06-18 23:27:08" itemprop="dateModified" datetime="2017-06-18T23:27:08+08:00">2017-06-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>自己使用ubuntu过程中总结的一些小问题及解决办法。</p>
+<span id="more"></span>
+
+
+<h2 id="使用虚拟光驱"><a href="#使用虚拟光驱" class="headerlink" title="使用虚拟光驱"></a>使用虚拟光驱</h2><p>在 ubuntu 下使用虚拟光驱很简单，和 window下需要安装专门的软件不同，只要运行下面的命令就可以查看其中的内容了:</p>
+<ul>
+<li>挂载iso文件</li>
+</ul>
+<p>一般查看iso文件内容，只需要：#mount -t iso9660 -o loop xxx.iso &#x2F;mnt&#x2F;cdrom，就可以在&#x2F;mnt&#x2F;cdrom下看到xxx.iso的复制光盘为iso镜像</p>
+<pre><code>#dd if=/dev/hdb of=xxx.iso或者#cp /dev/cdrom xxx.iso
+</code></pre>
+<ul>
+<li><p>虚拟iso为设备</p>
+<pre><code>#rm -rf /dev/cdrom //删除原来的符号连接，最好先查看一下，记得之后复原哦:-)
+
+#ln -s /dev/loop7 /dev/cdrom //建立符号连接
+
+#losetup /dev/loop7 /path/to/xxx.iso //虚拟iso为设备loop7
+
+#mount /dev/cdrom /mnt/cdrom //挂载虚拟设备
+</code></pre>
+</li>
+</ul>
+<p>以下是换盘步骤：</p>
+<pre><code>#losetup -d /dev/loop7 //删除虚拟设备
+
+#losetup /dev/loop7 /path/to/yyy.iso
+
+#mount /dev/cdrom /mnt/cdrom
+</code></pre>
+<ul>
+<li><p>使用虚拟光驱软件gmountiso</p>
+<p>sudo apt-get install gmountiso</p>
+</li>
+</ul>
+<h2 id="ubuntu下安装LaTex"><a href="#ubuntu下安装LaTex" class="headerlink" title="ubuntu下安装LaTex"></a>ubuntu下安装LaTex</h2><p>安装LaTeX：</p>
+<p>sudo apt-get install texlive</p>
+<p>安装IDE 介面：</p>
+<pre><code>sudo apt-get install texmaker
+</code></pre>
+<p>如果够专业的话，装上完整版，空间消耗425M／884M：</p>
+<pre><code>sudo apt-get install texlive-full
+</code></pre>
+<p>LaTex是非常棒的论文书写软件，详细信息和讲稿内容请浏览：<a target="_blank" rel="noopener" href="http://fsa.ia.ac.cn/?q=node/114">http://fsa.ia.ac.cn/?q=node/114</a></p>
+<h2 id="安装matlab："><a href="#安装matlab：" class="headerlink" title="安装matlab："></a>安装matlab：</h2><p>1）加载mount ISO文件，可以用Gmount-iso打开。</p>
+<p>2）建立安装matlab的目录：我是装在 &#x2F;opt&#x2F;matlab，</p>
+<p>命令：sudo mkdir &#x2F;opt&#x2F;matlab，然后把license文件拷贝到安装目录下面。根据安装过程是否联网，分别在crack文件夹下面，拷贝相应的license文件到&#x2F;opt&#x2F;matlab&#x2F;。</p>
+<p>3）安装，运行相应光盘下的install文件： sudo &#x2F;media&#x2F;cdrom0&#x2F;install</p>
+<p>4）运行：sudo &#x2F;opt&#x2F;matlab&#x2F;install_matlab进行一些相关的设置，就按照默认的就行了.</p>
+<p>5)解决在gnome下界面中文显示不正常的问题：</p>
+<p>下载sun-java6-jre, 在新立得软件里下。</p>
+<p>终端执行</p>
+<pre><code>#sudo su
+
+#rm -n /opt/matlab/sys/java/jre
+
+#cp -n /usr/lib/jvm/java-6-sun-xxxx/jre /opt/matlab/sys/java/   #xxxx表示jre的版本
+
+#gedit /opt/matlab/bin/matlab
+</code></pre>
+<p>添加：(添加在文件开始处即可)export MATLAB_JAVA&#x3D;&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;java-6-sun&#x2F;jre&#x2F;</p>
+<p>6）建立启动器：命令为:&#x2F;opt&#x2F;matlab&#x2F;bin&#x2F;matlab -desktop</p>
+<p>matlab在linux下的安装速度和启动速度都比在Win下快得多。</p>
+<h2 id="显卡驱动更新"><a href="#显卡驱动更新" class="headerlink" title="显卡驱动更新"></a>显卡驱动更新</h2><p><a target="_blank" rel="noopener" href="http://www.lyzsoft.cn/kubuntuubuntu9-04-install-the-latest-nvidia-graphics-driver-185-18-04.html">http://www.lyzsoft.cn/kubuntuubuntu9-04-install-the-latest-nvidia-graphics-driver-185-18-04.html</a></p>
+<h2 id="安装flash插件"><a href="#安装flash插件" class="headerlink" title="安装flash插件"></a>安装flash插件</h2><p>复制这个文件之前，需要先把以前安装的flash插件都删除。</p>
+<ol>
+<li><p>删除已经安装的任何flash插件</p>
+<p> sudo apt-get purge flashplugin-nonfree gnash gnash-common mozilla-plugin-gnash nspluginwrapper swfdec-mozilla</p>
+</li>
+<li><p>访问<a target="_blank" rel="noopener" href="http://labs.adobe.com/downloads/flashplayer10.html%E8%8E%B7%E5%BE%97%E6%9C%80%E6%96%B0%E7%9A%84flash%E6%8F%92%E4%BB%B6%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E6%9C%80%E6%96%B0%E7%9A%84%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5%E6%9B%BF%E6%8D%A2%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4%E7%9A%84%E9%93%BE%E6%8E%A5%E9%83%A8%E5%88%86%E3%80%82%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%91%BD%E4%BB%A4%E5%8F%AF%E4%BB%A5%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84flash%E6%8F%92%E4%BB%B6%EF%BC%8C%E5%B9%B6%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%88%B0%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E3%80%82">http://labs.adobe.com/downloads/flashplayer10.html获得最新的flash插件，可以使用最新的下载链接替换以下命令的链接部分。执行下面的命令可以下载最新的flash插件，并解压缩到当前目录。</a></p>
+<p> wget <a target="_blank" rel="noopener" href="http://download.macromedia.com/pub/labs">http://download.macromedia.com/pub/labs</a> … .so.tar.gz &amp;&amp; tar xvfz libflashplayer-10.0.&#x2F;</p>
+</li>
+</ol>
+<h2 id="删除旧内核"><a href="#删除旧内核" class="headerlink" title="删除旧内核"></a>删除旧内核</h2><pre><code>sudo aptitude purge ~ilinux-image-.*\(\!`uname -r`\)
+</code></pre>
+<h2 id="乱码问题解决"><a href="#乱码问题解决" class="headerlink" title="乱码问题解决"></a>乱码问题解决</h2><p>使用 Ubuntu乱码最郁闷的事莫过于乱码了，网页中的flash乱码、TXT文档乱码，歌曲信息乱码、mplayer播放器字幕乱码，wine乱码等等。居然装10.04以后，竟然发现TXT文件还是一片乱码，并且那乱的水平比Windows的乱码还要高。为了使用Windows下保存的TXT文件，不得不找各种方法。这些是常见的。</p>
+<p>1）txt乱码</p>
+<p>终端输入：gconf-editor（有点类似Windows下的注册表）</p>
+<p>依次打开：apps—gedit2—preferences— encodings双击右边的“auto_detected”输入：gb18030，点向上把它移动到第二位，即utf-8下面就可以，这样打开TXT就不会乱码了。</p>
+<p>2）FLASH乱码</p>
+<p>终端中输入:sudo gedit &#x2F;etc&#x2F;fonts&#x2F;conf.d&#x2F;49-sansserif.conf</p>
+<p>将其中的第1、2、4个后面的sans-serif用你自己系统中的中文字体的名字代替，</p>
+<p>比如：系统中安装了“文泉驿微米黑”(文泉驿，ubuntu中文自带），则用“文泉驿微米黑”代替上述所说的字段，结果如下：</p>
+<match target=”pattern”>
+
+<test qual=”all” name=”family” compare=”not_eq”>
+
+<p><string>文泉驿微米黑</string></p>
+</test>
+
+<test qual=”all” name=”family” compare=”not_eq”>
+
+<p><string>文泉驿微米黑</string></p>
+</test>
+
+<test qual=”all” name=”family” compare=”not_eq”>
+
+<p><string>monospace</string></p>
+</test>
+
+<edit name=”family” mode=”append_last”>
+
+<p><string>文泉驿微米黑</string></p>
+</edit>
+
+</match>
+
+<p>保存退出，FLASH就好了。</p>
+<p>3）Audacious播放器歌曲乱码</p>
+<p>方法一：</p>
+<p>打开并选中Audacious–“ctrl+p”或右键”preference”–右栏选“播放列表”–左栏“标题格式”选“自定义”–左栏“自定义字符串”输入：%f</p>
+<p>搞定Audacious乱码。</p>
+<p>方法二：（没试过）</p>
+<p>安装mutagen：sudo apt-get install python-mutagen</p>
+<p>然后转到你的MP3目录，例如我的歌曲放在系统的音乐文件夹则输入：cd &#x2F;home&#x2F;holmesrain（此为我的用户名，你需要换成你的用户名）&#x2F;音乐</p>
+<p>执行以全命令进行转换：mid3iconv -e GBK *.mp3。完成以后用播放器导入就不会有Ubuntu乱码了。</p>
+<p>4）盘符乱码</p>
+<p>终端执行： sudo gedit &#x2F;etc&#x2F;fstab ，找到这一行：</p>
+<p>&#x2F;dev&#x2F;scd0 &#x2F;media&#x2F;cdrom0 udf,iso9660 user,noauto 0 0</p>
+<p>在options里添加一句iocharset&#x3D;utf8即可，如下所示：&#x2F;dev &#x2F;scd0 &#x2F;media&#x2F;cdrom0 udf,iso9660 user,noauto,iocharset&#x3D;utf8 0 0</p>
+<p>以后遇到含中文的光盘就不会出现Ubuntu乱码和问号了。</p>
+<p>5）PDF乱码</p>
+<p>方法太多了，仅说最简单的，需要的话可以了解下其他的forum.ubuntu.org.cn&#x2F;viewtopic.php</p>
+<p>终端输入：<code>sudo apt-get install xpdf xpdf-chinese-simplified</code></p>
+<p>基本上是完美解决了。</p>
+<p>6）rar乱码</p>
+<p>rar 解压或查看win下的中文文件有乱码，unrar 就没有，</p>
+<p>为了能在file-roller里面正确显示中文，就要把rar 卸载，保留unrar</p>
+<h2 id="火狐字体发虚"><a href="#火狐字体发虚" class="headerlink" title="火狐字体发虚"></a>火狐字体发虚</h2><p><a target="_blank" rel="noopener" href="http://wiki.ubuntu.org.cn/Firefox_%E5%AD%97%E4%BD%93">http://wiki.ubuntu.org.cn/Firefox_%E5%AD%97%E4%BD%93</a></p>
+<h2 id="音频播放"><a href="#音频播放" class="headerlink" title="音频播放"></a>音频播放</h2><p>ubuntu skype出现“关于音频播放的问题”，根结在于pulseaudio。</p>
+<p>首先介绍一下pulseaudio：Linux声音系统。PulseAudio是Linux的声音系统，或许是最无序的子系统部分！</p>
+<p>作为Server来说，声音无足轻重，无人问津，而作为桌面来说太多的实现方案，各有各的长出和不足，ALSA经过多年的发展，基本统一了Linux声卡硬件驱动层的借口，OSS日渐退出，但是在ALSA之上的各个应用层面，方案和软件之多让人咋舌！ESD，aRts, JACK,GStreamer,这些系统组件各个为战，实现了不同的功能，ESD是GNOME的声音服务器，而aRts是KDE的，JACK可以处理一些底层的应用，GStreamer是GNOME平台比较新的Code和Decode的中间层，向声音服务器输送解码后的RAWAudio，还有很多程序，比如Xine和Mplayer，他们的声音处理完全是独自完成的，从编解码到输出到ALSA驱动，应用程序全包办了，不需其他的中间层！这就使整个声音系统显的极其复杂和杂乱无章！PulseAudio声音服务器试图以全新的架构来提供新的声音处理架构，希望能像ALSA统一底层那样一统声音应用领域！</p>
+<p>对于现今的大部分GNOME程序而言，声音处理流程是这样的：应用程序调用GSTreamer解码，将压缩的声音文件解成rawaudio数据，然后交给ESD声音服务器，由ESD交由ALSA转至设备层，完成声音输出，这个过程中，使用PulseAudio的话，只要把ESD换成PulseAudio应该就可以了！而对于其他方式的应用而言，问题还不止这些！PulseAudio的目的就是要让声音系统整体复杂度有效的降下来，方便更好的开发各类声音应用。由于pulseaudio-esound-compat的出色替代工作，大部分基于ESD的应用用上了PulseAudio。约90％的应用可以使用PulseAudio，KDE程序可以设置aRTs直接路由到ESD，而XMMS，Amarok程序可以设置后台声音服务器为ESD。PulseAudio通过网络处理请求的能力也很强，可以处理来自多个数据原的声音，这是其它最大的特色之一！</p>
+<p>关于更多的信息，可以参见PulseAudio主页！</p>
+<p>实际应用中，Mplayer, Skype等软件因为是由ALSA输出声音，往往在ubuntu7.10 8.04 8.10等系统中容易遇到问题，典型的是在skype中语音连接的时候提示“关于音频播放的问题”。</p>
+<p>网络上常见的方法有：</p>
+<p>1、把软件都改用PulseAudio输出，不支持PulseAudio的，就在ALSA中模拟一个channel到PulseAudio。（asound的修改）</p>
+<p>参考：<a target="_blank" rel="noopener" href="http://ubuntuforums.org/showthread.php?p=4928900">http://ubuntuforums.org/showthread.php?p=4928900</a></p>
+<p>2、删除PulseAudio，转回ALSA。</p>
+<p>例如：<code>sudo apt-get remove gstreamer0.10-pulseaudio</code></p>
+<p>这些方法使用复杂，还可能带来其他问题，不太理想。</p>
+<p>下面介绍的方法经过测试，可以完美支持ALSA和PulseAudio：</p>
+<p>既然Ubuntu在尽可能的使用PulseAudio，那么就应该让已经成功在PulseAudio上运行的软件继续使用PulseAudio，只支持ALSA的软件继续使用ALSA，</p>
+<p>方法：</p>
+<p>1、关闭Gnome“登录”、“注销”声音（与第二步有关）打开“系统－首选项－音效”，切换到“音效”，把“登录”、“注销”声音都改为“无声音”</p>
+<p>2、修改&#x2F;etc&#x2F;pulse&#x2F;default.pa,找到：</p>
+<pre><code>#load-module module-alsa-skin
+</code></pre>
+<p>改为：</p>
+<pre><code>load-module module-alsa-sink device=dmix
+</code></pre>
+<p>找到：（解决声音输入问题，如skype、audacity等）</p>
+<pre><code>load-module module-hal-detect
+</code></pre>
+<p>改为：</p>
+<pre><code>#load-module module-hal-detect
+</code></pre>
+<p>通过使用dmix，PulseAudio就不会独占整个audio系统，成为ALSA中的一个MixChannel，ALSA和PulseAudio就能很好的共存，以后都不再需要什么libflashsupport forpulseaudio了。</p>
+<p>另外推荐安装PulseAudio的控制器：apt-get install padevchooser</p>
+<h2 id="安装Win32codecs-deb包"><a href="#安装Win32codecs-deb包" class="headerlink" title="安装Win32codecs.deb包"></a>安装Win32codecs.deb包</h2><p>添加源deb <a target="_blank" rel="noopener" href="http://packages.medibuntu.org/">http://packages.medibuntu.org/</a> lucid  free  non-free</p>
+<h2 id="添加ppa公鈅"><a href="#添加ppa公鈅" class="headerlink" title="添加ppa公鈅"></a>添加ppa公鈅</h2><p>在我们为了更快的下载更新而换更新源后，更新完后，恢复原来的更新源后，发现检查更新提示：</p>
+<p>W: GPG签名验证错误： <a target="_blank" rel="noopener" href="http://packages.medibuntu.org/">http://packages.medibuntu.org</a>  lucid  Release: 由于没有公钥,下列签名无法进行验证： NO_PUBKEY 31A5F97FED8A569E</p>
+<p>方法一：</p>
+<p>当然，错误的关键是没有公钥，应用程序－－附件－－－终端中手动输入如下命令：</p>
+<p>下载密匙：</p>
+<p>gpg  –keyserver  subkeys.pgp.net  –recv  ********（如：ED8A569E）</p>
+<p>导入密匙：</p>
+<p>gpg  –export  –armor  ********|sudo apt-key add –</p>
+<p>注： * 号是指密匙的后八位</p>
+<p>方法二：</p>
+<p>把下列命令中的ID替换为NO_PUBKEY</p>
+<pre><code>sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com ID
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/latex/" rel="tag"># latex</a>
+              <a href="/tags/linux-matlab/" rel="tag"># linux matlab</a>
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/%E4%B9%B1%E7%A0%81/" rel="tag"># 乱码</a>
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E5%85%89%E9%A9%B1/" rel="tag"># 虚拟光驱</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Linux/03/03/fcitx-proposal-a.html" rel="prev" title="关于Fcitx的提议 (一)">
+      <i class="fa fa-chevron-left"></i> 关于Fcitx的提议 (一)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Web/03/04/the-modify-ixwebhosting-upload-file-size-limit.html" rel="next" title="修改IXWebhosting上传文件大小限制">
+      修改IXWebhosting上传文件大小限制 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E5%85%89%E9%A9%B1"><span class="nav-number">1.</span> <span class="nav-text">使用虚拟光驱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85LaTex"><span class="nav-number">2.</span> <span class="nav-text">ubuntu下安装LaTex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85matlab%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">安装matlab：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E6%9B%B4%E6%96%B0"><span class="nav-number">4.</span> <span class="nav-text">显卡驱动更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85flash%E6%8F%92%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">安装flash插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%97%A7%E5%86%85%E6%A0%B8"><span class="nav-number">6.</span> <span class="nav-text">删除旧内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">7.</span> <span class="nav-text">乱码问题解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%AB%E7%8B%90%E5%AD%97%E4%BD%93%E5%8F%91%E8%99%9A"><span class="nav-number">8.</span> <span class="nav-text">火狐字体发虚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91%E6%92%AD%E6%94%BE"><span class="nav-number">9.</span> <span class="nav-text">音频播放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Win32codecs-deb%E5%8C%85"><span class="nav-number">10.</span> <span class="nav-text">安装Win32codecs.deb包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0ppa%E5%85%AC%E9%88%85"><span class="nav-number">11.</span> <span class="nav-text">添加ppa公鈅</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nankor</p>
+  <div class="site-description" itemprop="description">Code OS Web</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nankor</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

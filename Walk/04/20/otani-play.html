@@ -1,38 +1,477 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.nankor.org","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大峪游玩">
+<meta property="og:url" content="https://www.nankor.org/Walk/04/20/otani-play.html">
+<meta property="og:site_name" content="Nankor Dream">
+<meta property="og:description" content="这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。">
+<meta property="og:locale">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/hill.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/ku1.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/ku2.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/ku3.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg">
+<meta property="article:published_time" content="2012-04-20T14:34:01.000Z">
+<meta property="article:modified_time" content="2017-06-18T15:27:08.529Z">
+<meta property="article:author" content="nankor">
+<meta property="article:tag" content="大峪">
+<meta property="article:tag" content="虹鳟">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg">
+
+<link rel="canonical" href="https://www.nankor.org/Walk/04/20/otani-play.html">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>大峪游玩 | Nankor Dream</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nankor Dream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Nankor's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.nankor.org/Walk/04/20/otani-play.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nankor">
+      <meta itemprop="description" content="Code OS Web">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nankor Dream">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大峪游玩
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-04-20 22:34:01" itemprop="dateCreated datePublished" datetime="2012-04-20T22:34:01+08:00">2012-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-06-18 23:27:08" itemprop="dateModified" datetime="2017-06-18T23:27:08+08:00">2017-06-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Walk/" itemprop="url" rel="index"><span itemprop="name">Walk</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。<span id="more"></span></p>
+<p>早上6点半，在床上坐起来想了想穿什么衣服，刚穿完衣服，<a target="_blank" rel="noopener" href="http://www.thepunch.info/blog/">王宇</a>师兄就打手机过来催起床了。</p>
+<p>7点到新科楼前发现大家都不在，自己应该是迟到了，孙师兄刚好也赶到，就相随去门口追大伙，在外面拿了三个包子，和30多人等公交车奔赴目的地。</p>
+<p>大峪水库比较远，中间转了一趟车，然后坐923从起点到终点。</p>
+<p><a target="_blank" rel="noopener" href="http://maps.google.com/maps?f=q&source=embed&hl=zh-CN&geocode=&q=%E8%A5%BF%E5%AE%89+%E5%A4%A7%E5%B3%AA&aq=&sll=37.0625,-95.677068&sspn=46.946584,93.076172&ie=UTF8&hq=&hnear=%E4%B8%AD%E5%9B%BD%E9%99%95%E8%A5%BF%E7%9C%81%E8%A5%BF%E5%AE%89%E9%95%BF%E5%AE%89%E5%8C%BA%E5%A4%A7%E5%B3%AA%E4%B9%A1&ll=34.018954,109.119909&spn=0.024156,0.045447&t=m&z=14">查看大图</a></p>
+<p>到达目的地大概9点吧，来的人比较多，同学是47个吧。本来目的是来捡垃圾的，所以一人发了一个垃圾袋与一只白手套。然后我们就兴冲冲出发了。</p>
+<p>出发了！</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"></a></p>
+<p>下面是路上的一些见闻（由于没有带相机，只能从师兄师姐那里盗点图了。）：</p>
+<p>拔地而起的高山：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/hill.jpg"><img src="http://nankor.org/uploads/2012/04/hill.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"></a></p>
+<p>山上的流水：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"></a>在路上：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/ku1.jpg"><img src="http://nankor.org/uploads/2012/04/ku1.jpg"></a></p>
+<p>还是在路上：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/ku2.jpg"><img src="http://nankor.org/uploads/2012/04/ku2.jpg"></a></p>
+<p>见到水库了：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"></a></p>
+<p>平湖：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/ku3.jpg"><img src="http://nankor.org/uploads/2012/04/ku3.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"></a></p>
+<p>碰到的烈士陵园:</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"><img src="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"></a></p>
+<p>路上的付老师和马老师：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"></a></p>
+<p>在路上，走的比较靠前，和蒋老师聊了会儿天，蒋老师说，今天的目标是10000步，老人家真带着计步器呢</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"></a></p>
+<p>除了半路业余式的捡些垃圾，我们主要还是看好那里的鳟鱼的，要吃午饭的农家乐就是我们徒步的终点与重点。</p>
+<p>农家乐：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"></a></p>
+<p>到达半山中的农家乐大概才11点吧，和几个同级同学与师兄玩了会纸牌，就开始吃午饭了。</p>
+<p>下面是午饭的主角儿：</p>
+<p> <a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"></a></p>
+<p>没有把那盘鱼给留下来做个纪念。饭间又认识了几位师兄与师姐，很尴尬的是把一位学姐当大四的了。</p>
+<p>如果说以上算平淡的游玩，下面的就有些意思了：吃完饭几个同学商量去爬山，自己没有仔细考虑就欣然同意前去了。</p>
+<p>和老祝走在盘山公路的前面为大家探山，之所以说探山，这里的山由于被盘山公路切开，没有直接从地面形成斜坡的，很多是拔地而起，我们要找个坡度合适的、时间上来的及的打下“牙祭”。看到由两位可能是采药的人在山上“逛荡”（真觉得他们很轻松的在山上），我们敲定了就爬她们所在的山。</p>
+<p>探山路上：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"></a></p>
+<p>去寻山路，居然没有路，我们几个男生就成为了开路着。奇岩怪石，山间荆棘遍地，巨石硕大如房屋，在没有路的野山中，披荆斩棘，望山寻路，虽然被刮伤了几处，不过路倒是开得挺顺当。随行大概20多人吧，像攀岩般体验了这次冒险，一路坎坷，大有野山寻古墓的阵势，让我不断想起《盗墓笔记》与说列宁的《日出》那段。</p>
+<p>时间有限，下山还有坐公交车，爬到一处平台，大家感觉爬的差不多了，拍照留纪念，准备下山。其实这山本就是让看的，爬起来像是在挑战这座山一样。</p>
+<p>山间平台留影：</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"></a></p>
+<p>下山就没什么了，蹦崩跳跳的就下来了。不过人太多，还是注意安全好。</p>
+<p>回到半腰的农家乐休息了一会儿，看天色不好我们就向山脚下赶了。</p>
+<p>回来路上和几个同学，沿盘山公路一路开跑狂奔，好不欢乐！结果是枫姐拿个对讲机使劲追我们，不断向断后的王宇报告我们的行踪。</p>
+<p>中间有段路，因为喝水太多了，跑起来腹中排山倒海，只能慢下来了，从第一集团跌入第二集团。</p>
+<p>走在山谷间，闲暇的带着耳机一边听着班德瑞一边淋着雨，漫步中观察着一座座欲比天的青峰，想着再静也不过如此了。</p>
+<p>不知觉间居然被枫姐赶超了，好吧，继续狂奔。</p>
+<p>功夫不负有心人，和大四的同学一起首先回到山脚下，坐上公交除了脚底疼什么感觉都没了。</p>
+<p>时间不早了，明天写些感受吧，上面纯是流水。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E5%B3%AA/" rel="tag"># 大峪</a>
+              <a href="/tags/%E8%99%B9%E9%B3%9F/" rel="tag"># 虹鳟</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Linux/04/20/linux-recycle-the-bin.html" rel="prev" title="Linux回收站">
+      <i class="fa fa-chevron-left"></i> Linux回收站
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Web/04/21/google-search-redirects.html" rel="next" title="关于google搜索重定向">
+      关于google搜索重定向 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nankor</p>
+  <div class="site-description" itemprop="description">Code OS Web</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nankor</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

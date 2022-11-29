@@ -1,38 +1,501 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.nankor.org","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="小企鹅（Fcitx）输入法英文自动输入的提议。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Fcitx的提议 (一)">
+<meta property="og:url" content="https://www.nankor.org/Linux/03/03/fcitx-proposal-a.html">
+<meta property="og:site_name" content="Nankor Dream">
+<meta property="og:description" content="小企鹅（Fcitx）输入法英文自动输入的提议。">
+<meta property="og:locale">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/1.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/2.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/3.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/4.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/5.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/6.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/7.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/8.jpg">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/9.jpg">
+<meta property="article:published_time" content="2012-03-02T18:51:34.000Z">
+<meta property="article:modified_time" content="2017-06-18T15:27:08.529Z">
+<meta property="article:author" content="nankor">
+<meta property="article:tag" content="fcitx">
+<meta property="article:tag" content="英文自动输入">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://nankor.org/uploads/2012/03/1.jpg">
+
+<link rel="canonical" href="https://www.nankor.org/Linux/03/03/fcitx-proposal-a.html">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>关于Fcitx的提议 (一) | Nankor Dream</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nankor Dream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Nankor's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.nankor.org/Linux/03/03/fcitx-proposal-a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nankor">
+      <meta itemprop="description" content="Code OS Web">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nankor Dream">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于Fcitx的提议 (一)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-03-03 02:51:34" itemprop="dateCreated datePublished" datetime="2012-03-03T02:51:34+08:00">2012-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-06-18 23:27:08" itemprop="dateModified" datetime="2017-06-18T23:27:08+08:00">2017-06-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>小企鹅（Fcitx）输入法英文自动输入的提议。<span id="more"></span></p>
+<p>在使用fcitx输入法的过程中，突然有点小想法。在fcitx输入法的配置中有个小功能“自动英文模式”：</p>
+<p><img src="http://nankor.org/uploads/2012/03/1.jpg"></p>
+<p>正如所说“在输入特定字符串时切换到英文模式”，打开之后看配置的英文模式触发词库:</p>
+<p><img src="http://nankor.org/uploads/2012/03/2.jpg"></p>
+<p>这些英文单词与标点很清楚的表明接下来要输入英文了，输入法不用手工切换自动转换为英文输入模式。举个例子：</p>
+<p><img src="http://nankor.org/uploads/2012/03/3.jpg"></p>
+<p>当我在中文汉字输入法模式下输入“www”，上图看到输入法还处于中文模式，当我再输入“.”时，输入法自动切换（如下图）：</p>
+<p><img src="http://nankor.org/uploads/2012/03/4.jpg"></p>
+<p>这是个很节约时间的输入状态，但是fcitx所给的英文模式触发词显然太少了，在*nix下CLI是经常需要打开终端就输入的，一旦开启了输入法在所有程序间“共享”，打开终端输入“sudo”就成了“速度哦”，反映快点可以按下回车（设定为自动提交输入），但是若习惯使然输入命令的快感使我提前按下了空格，提交了“速度哦”，这时输入本次输入就算失败了</p>
+<p><img src="http://nankor.org/uploads/2012/03/5.jpg"></p>
+<p>假如我反映够灵敏，我按下回车把sudo准确提交了，但接下来仍得手动去切换英文输入法了，因为我没把握一直这么灵敏，这就要按下shift（假设我输入英文切换键是shift）换到真正的英文模式。等命令输入完毕，我回来写一篇中文文档，要用“shift”唤回中文汉字输入法，这中间我需要按两次“shift”。</p>
+<p>有没有办法让我在输入命令时自动识别不再显示中文候选词并且阻止上面的一系列切换，使我一直处于中文输入法状态下呢？我打起了fcitx自动触发英文模式的主意！在终端输入的命令基本都来自于超级用户与普通用户的执行程序目录下，看下我bash的执行路径：</p>
+<p><img src="http://nankor.org/uploads/2012/03/6.jpg"></p>
+<p>shell外部命令就来自于上图所列目录，把这些目录下的二进制程序名加入英文模式触发词库后，fcitx是不是就会自动检测我输入的是shell命令而自动停止显示候选词触发英文模式呢？</p>
+<p>这应该是个不错的想法….尝试下，我先把sudo加入英文模式触发词词库，重启下fcitx看下效果：</p>
+<p><img src="http://nankor.org/uploads/2012/03/7.jpg"></p>
+<p>fcitx已经识别我输入的是shell指令，不再显示中文候选词了，看起来效果不错！我把上面路径的binary file name全加入我的英文模式触发词库吧!</p>
+<p>先把超级用户的执行程序名加入英文模式触发词，#:ls &#x2F;sbin|sort&gt;&#x2F;usr&#x2F;share&#x2F;fcitx&#x2F;data&#x2F;AutoEn.dat，貌似感觉好多了（看起来很厉害的样子！！！）我挑个命令试下：su</p>
+<p><img src="http://nankor.org/uploads/2012/03/8.jpg"></p>
+<p>正常输入，自动识别……这好象缺点什么？？貌似我没有办法输入拼音“su”了，更别说打出“su”音 “suo”音等的汉字了！</p>
+<p>一个新的问题：这些二进制可执行程序名中有多少与汉语拼音有冲突？尽量把这些排除在外，或者当输入“su”时，fcitx能够自动把su作为按频率统计的第一候选词，也就是候选词要中英文混排。</p>
+<p>首先解决汉语拼音与命令冲突的问题，先下载汉语拼音音节表(共计398个)，稍后需要从这里过滤文本：</p>
+<pre><code>a ai an ao ang 
+
+b babobaibeibaobanbenbangbengbibiebiaobianbinbing  
+
+p papopaipaopoupanpenpangpengpipiepiaopianpinping 
+
+m mamomemaimaomoumanmenmangmengmimiemiaomiumianminming   
+
+f fafofeifoufanfenfangfeng
+
+d dadedaideidaodoudandangdengdidiediaodiudianding
+
+t tatetaitaotoutantangtengtitietiaotianting
+
+n nanaineinaononennangnengninieniaoniunianninniangning
+
+l lalelaileilaoloulanlanglenglilialieliaoliulianlinliangling
+
+g gagegaigeigaogougangenganggeng
+
+k kakekaikoukankenkangkeng
+
+h hahehaiheihaohouhenhangheng
+
+j jijiajiejiaojiujianjinjiangjing
+
+q qiqiaqieqiaoqiuqianqinqiangqing
+
+x xixiaxiexiaoxiuxianxinxiangxing
+
+zh zhazhezhizhaizhaozhouzhanzhenzhangzheng
+
+ch chachechichaichouchanchenchangcheng
+
+sh shasheshishaishaoshoushanshenshangsheng
+
+r reriraorouranrenrangreng
+
+z zazezizaizaozouzangzeng
+
+c cacecicaicaocoucancencangceng
+
+s sasesisaisaosousansensangseng
+
+y yayaoyouyanyangyuyeyueyuanyiyinyunying
+
+w wawowaiweiwanwenwangwengwu
+</code></pre>
+<p>from <a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8">http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8</a></p>
+<p>下面将所有二进制程序名按单词首字母排序：</p>
+<pre><code>#!/bin/bash
+i=1;
+for i in ` seq 8 ` ;
+ do
+     ls $(echo $PATH|cut -d &quot;:&quot; -f $i)|sort&gt;&gt;bins;
+ done
+sort bins&gt;bins.ok;rm bins
+exit
+</code></pre>
+<p>文本文件bins.ok几乎涵盖shell所有外部命令，当然这里还有shell内建指令没有包含进来，如cd等，都是很少的了。</p>
+<p><img src="http://nankor.org/uploads/2012/03/9.jpg"></p>
+<p>分析中间“不听话”的命令把它揪出来！上图看到这有3000多行，人工怎么一个个揪出来！！这时拼音音节表要用上了，这像是编译原理的词法分析？？！！差不多，该啐觉了，以后再按拼音音节分解英文单词。</p>
+<p>2012.2.22 凌晨</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/fcitx/" rel="tag"># fcitx</a>
+              <a href="/tags/%E8%8B%B1%E6%96%87%E8%87%AA%E5%8A%A8%E8%BE%93%E5%85%A5/" rel="tag"># 英文自动输入</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Think/03/02/blog-parting-the-past.html" rel="prev" title="开博，离别过去">
+      <i class="fa fa-chevron-left"></i> 开博，离别过去
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Linux/03/03/the-ubuntu-common-problem-solving.html" rel="next" title="ubuntu常见问题解决">
+      ubuntu常见问题解决 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nankor</p>
+  <div class="site-description" itemprop="description">Code OS Web</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nankor</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

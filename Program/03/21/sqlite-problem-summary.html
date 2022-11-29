@@ -1,38 +1,513 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-{% block page_class %}page-post-detail{% endblock %}
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.nankor.org","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最近为了学习用了一下sqlite，开始就碰上了最棘手的问题，乱码、版本不兼容等。查了些资料，自己终于想办法解决了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sqlite问题小结">
+<meta property="og:url" content="https://www.nankor.org/Program/03/21/sqlite-problem-summary.html">
+<meta property="og:site_name" content="Nankor Dream">
+<meta property="og:description" content="最近为了学习用了一下sqlite，开始就碰上了最棘手的问题，乱码、版本不兼容等。查了些资料，自己终于想办法解决了。">
+<meta property="og:locale">
+<meta property="og:image" content="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png">
+<meta property="article:published_time" content="2012-03-20T16:46:23.000Z">
+<meta property="article:modified_time" content="2017-06-18T15:27:08.529Z">
+<meta property="article:author" content="nankor">
+<meta property="article:tag" content="乱码">
+<meta property="article:tag" content="sqlite">
+<meta property="article:tag" content="utf8">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png">
+
+<link rel="canonical" href="https://www.nankor.org/Program/03/21/sqlite-problem-summary.html">
 
 
-{% block content %}
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+  <title>Sqlite问题小结 | Nankor Dream</title>
+  
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Nankor Dream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Nankor's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.nankor.org/Program/03/21/sqlite-problem-summary.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="nankor">
+      <meta itemprop="description" content="Code OS Web">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nankor Dream">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Sqlite问题小结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2012-03-21 00:46:23" itemprop="dateCreated datePublished" datetime="2012-03-21T00:46:23+08:00">2012-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2017-06-18 23:27:08" itemprop="dateModified" datetime="2017-06-18T23:27:08+08:00">2017-06-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最近为了学习用了一下sqlite，开始就碰上了最棘手的问题，乱码、版本不兼容等。查了些资料，自己终于想办法解决了。<span id="more"></span></p>
+<p>之前没有接触过sqlite，只是知道在嵌入式方面用的颇广，这次也算学习一下。</p>
+<h4 id="一、-版本兼容问题"><a href="#一、-版本兼容问题" class="headerlink" title="一、 版本兼容问题"></a>一、 版本兼容问题</h4><p>首先是版本兼容的问题，刚拿到的是个sqlite2数据库，而我的arch上都是sqlite3的各种包，sqlite3 pinyin.db自然失败。好吧，把sqlite2的各种包装上。</p>
+<pre><code>sudo yaourt -Ss sqlite|grep installed
+core/sqlite3 3.7.10-1 [installed]
+core/sqlite3-doc 3.7.10-1 [installed]
+community/gambas2-gb-db-sqlite2 2.23.1-8 (gambas2) [installed]
+community/gambas3-gb-db-sqlite2 3.0.0-5 (gambas3) [installed]
+community/libgda3 3.1.5-11 [installed]
+community/sqlite2 2.8.17-5 [installed]
+community/sqlitebrowser 2.0b1-2 [installed]
+community/sqliteman 1.2.2-5 [installed]
+community/sqlitemanager 1.2.4-2 [installed]
+</code></pre>
+<p>好了 尝试打开数据库：</p>
+<pre><code>sqlite pinyin.db
+SQLite version 2.8.17
+Enter &quot;.help&quot; for instructions
+sqlite&gt; .tables
+acs_active        firereport        lapes_list        netconfig
+acs_key_active    firereport_his    list_dev          pinyin
+acssub            floor             logic_detail      sys
+carddev           gz_type           logic_fixtimerun  timelist
+cardmain          gz_view           logic_list        userinfo
+devname           id100             logic_main        usertip
+devtype           language          logic_out
+sqlite&gt;
+</code></pre>
+<p>OK，顺利打开。</p>
+<p>不过我想采用GUI的方式查看数据库，我已经安装了sqliteman与sqlitebroswer，但是他们全是支持sqlite3的，好吧，需要把sqlite2的数据库转化为sqlite3的。</p>
+<p>sqlite有个.dump命令，十分好用，先看下帮助：</p>
+<pre><code>sqlite
+SQLite version 2.8.17
+Enter &quot;.help&quot; for instructions
+sqlite&gt; .help
+.databases             List names and files of attached databases
+.dump ?TABLE? ...      Dump the database in a text format
+.echo ON|OFF           Turn command echo on or off
+.exit                  Exit this program
+.explain ON|OFF        Turn output mode suitable for EXPLAIN on or off.
+.header(s) ON|OFF      Turn display of headers on or off
+.help                  Show this message
+.indices TABLE         Show names of all indices on TABLE
+.mode MODE             Set mode to one of &quot;line(s)&quot;, &quot;column(s)&quot;,
+                       &quot;insert&quot;, &quot;list&quot;, or &quot;html&quot;
+.mode insert TABLE     Generate SQL insert statements for TABLE
+.nullvalue STRING      Print STRING instead of nothing for NULL data
+.output FILENAME       Send output to FILENAME
+.output stdout         Send output to the screen
+.prompt MAIN CONTINUE  Replace the standard prompts
+.quit                  Exit this program
+.read FILENAME         Execute SQL in FILENAME
+.schema ?TABLE?        Show the CREATE statements
+.separator STRING      Change separator string for &quot;list&quot; mode
+.show                  Show the current values for various settings
+.tables ?PATTERN?      List names of tables matching a pattern
+.timeout MS            Try opening locked tables for MS milliseconds
+.width NUM NUM ...     Set column widths for &quot;column&quot; mode
+sqlite&gt;
+</code></pre>
+<p><strong>.dump 将数据库转换为文本格式保存，我理解是保存为sql，稍后会发现这个.dump确实太有用了。</strong></p>
+<p>使用下面的命令实现sqlite2与sqlite3间的装换：</p>
+<pre><code>sqlite pinyin.db .dump|sqlite3 pinyin.db3;file pinyin*
+pinyin.db:  SQLite 2.x database
+pinyin.db3: SQLite 3.x database
+</code></pre>
+<p>接下来使用sqliteman或者sqlitebroswer就能顺利打开pinyin.db3了。</p>
+<h4 id="二、UTF-8与GBK间的乱码问题"><a href="#二、UTF-8与GBK间的乱码问题" class="headerlink" title="二、UTF-8与GBK间的乱码问题"></a>二、UTF-8与GBK间的乱码问题</h4><p>——————————————————————————————————————————————————</p>
+<p>首先需要明确的是sqlite默认采用UTF-8编码；</p>
+<p>Sqlite管理器类的工具不论平台当然使用的文本编码也是UTF8；</p>
+<p>Windows中AAuto默认编码是ANSI(不是UTF8,而是GBK)；</p>
+<p>windows下AAuto标准库里的sqlite库中的sqlite类对象会自动转换编码(UTF8-&gt;ANSI或ANSI-&gt;UTF8),使用UTF8编码写入sqlite数据库,再将读取的UTF8转换为ANSI编码.而直接用sqlite库的原始API,不会自动进行编码转换,需要自已调用string.fromto()函数转换.</p>
+<p>在archlinux下xterm默认用的是UTF-8编码.</p>
+<p>——————————————————————————————————————————————————</p>
+<p>我数据库是从Windows平台下拷过来的，果不其然中间出现了乱码问题，必然需要转码了。</p>
+<p>先看下原来的编码，pinyin.db是sqlie2数据库，pinyin.db3刚转化而来的sqlite3数据库</p>
+<pre><code>enca pinyin*
+pinyin.db: Simplified Chinese National Standard; GB2312
+  Surrounded by/intermixed with non-text data
+pinyin.db3: Unrecognized encoding
+</code></pre>
+<p>一个个text让应用去转码不可能，直接在数据库中转不具备可操作性，最后我想到了dump：</p>
+<pre><code>sqlite3 pinyin.db3 .dump&gt;&gt;conv.txt;enca conv.txt
+Simplified Chinese National Standard; GB2312
+</code></pre>
+<p>将数据库以文本格式保存，对文本进行转码，这个就多了，用iconv、enconv专门转码的也可以，用vim、gedit也行；我最终选择了vim，因为转起来方便。</p>
+<p>vim conv.txt后，:set fileencoding&#x3D;utf8，最后:wq保存退出就可以了。看下结果</p>
+<pre><code>vim conv.txt
+
+
+
+
+enca conv.txt
+Universal transformation format 8 bits; UTF-8
+  Surrounded by/intermixed with non-text data
+</code></pre>
+<p>好了，sql文本已经转换为UTF-8编码，这时候问题已经基本解决了。</p>
+<p>最后重新生成sqlite3数据库即可：</p>
+<pre><code>cat conv.txt|sqlite3 utf8pinyin.db3
+</code></pre>
+<p>好了，现在可以轻松使用sqliteman或者sqlitebroswer打开utf8pinyin.db3，没有乱码了。</p>
+<p><a target="_blank" rel="noopener" href="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"><img src="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"></a></p>
+<p><strong>最后，我想团队开发一定要注意工作平台，另外尽量采用广泛支持的国际unicode编码。</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%B9%B1%E7%A0%81/" rel="tag"># 乱码</a>
+              <a href="/tags/sqlite/" rel="tag"># sqlite</a>
+              <a href="/tags/utf8/" rel="tag"># utf8</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Think/03/18/look-at-you-girl.html" rel="prev" title="Look at you girl">
+      <i class="fa fa-chevron-left"></i> Look at you girl
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Linux/03/23/the-of-of-of-synergy-sharing-tool-for-mouse-and-keyboard.html" rel="next" title="Synergy-共享鼠标与键盘的利器">
+      Synergy-共享鼠标与键盘的利器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">一、 版本兼容问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81UTF-8%E4%B8%8EGBK%E9%97%B4%E7%9A%84%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">二、UTF-8与GBK间的乱码问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">nankor</p>
+  <div class="site-description" itemprop="description">Code OS Web</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nankor</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
