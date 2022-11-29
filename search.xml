@@ -533,7 +533,7 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
 <h2 id="大宋-东京梦华"><a href="#大宋-东京梦华" class="headerlink" title="大宋.东京梦华"></a>大宋.东京梦华</h2><p>【我去那天告知：这个只有夜晚演出】</p>
 <p>《大宋·东京梦华》是在清明上河园皇家园林区的景龙湖上举行的大型水上实景演出项目。该项目由<a href="http://zh.wikipedia.org/w/index.php?title=%E6%A2%85%E5%B8%85%E5%85%83&action=edit&redlink=1">梅帅元</a>担任导演，全剧共70分钟，有700多名演员参与演出。演出把张择端的《清明上河图》长卷和<a href="http://zh.wikipedia.org/wiki/%E5%AD%9F%E5%85%83%E8%80%81">孟元老</a>的《<a href="http://zh.wikipedia.org/wiki/%E4%B8%9C%E4%BA%AC%E6%A2%A6%E5%8D%8E%E5%BD%95">东京梦华录</a>》中的相关记载作为切入点，以八阕经典<a href="http://zh.wikipedia.org/wiki/%E5%AE%8B%E8%AF%8D">宋词</a>蕴含的意境为主线，以亭台楼榭、水系桥廊为背景，生动再现了宋代都城的繁华盛景和宋朝的辉煌。版本可分为<a href="http://zh.wikipedia.org/wiki/%E6%97%A5%E9%97%B4">日间</a>现实版和<a href="http://zh.wikipedia.org/wiki/%E5%A4%9C%E9%96%93">夜间</a>梦幻版。，夜间版演出通过运用亮彩技术，映射出流光溢彩的“柳树”和随波荡漾的“水中明月”，运用机械技术设计的可自由拼合的水上栈桥，可“绽放”的菊花舞台等，制造出梦幻般的场景效果</p>
 <p>##一些照片</p>
-<p><img src="http://nankor.org/uploads/2012/03/IMG_0170.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0176.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0186.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0191.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0199.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0204.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170017.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170036.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170048.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/IMG_0170.jpg"><br><img src="https://www.nankor.org/uploads/2012/03/IMG_0176.jpg"><br><img src="https://www.nankor.org/uploads/2012/03/IMG_0186.jpg"><br><img src="https://www.nankor.org/uploads/2012/03/IMG_0191.jpg"><br><img src="https://www.nankor.org/uploads/2012/03/IMG_0199.jpg"><br><img src="https://www.nankor.org/uploads/2012/03/IMG_0204.jpg"><br><img src="https://www.nankor.org/uploads/2012/03/P7170017.jpg"><br><img src="https://www.nankor.org/uploads/2012/03/P7170036.jpg"><br><img src="https://www.nankor.org/uploads/2012/03/P7170048.jpg"></p>
 ]]></content>
       <categories>
         <category>Walk</category>
@@ -671,24 +671,24 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
     <url>/Linux/03/03/fcitx-proposal-a.html</url>
     <content><![CDATA[<p>小企鹅（Fcitx）输入法英文自动输入的提议。<span id="more"></span></p>
 <p>在使用fcitx输入法的过程中，突然有点小想法。在fcitx输入法的配置中有个小功能“自动英文模式”：</p>
-<p><img src="http://nankor.org/uploads/2012/03/1.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/1.jpg"></p>
 <p>正如所说“在输入特定字符串时切换到英文模式”，打开之后看配置的英文模式触发词库:</p>
-<p><img src="http://nankor.org/uploads/2012/03/2.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/2.jpg"></p>
 <p>这些英文单词与标点很清楚的表明接下来要输入英文了，输入法不用手工切换自动转换为英文输入模式。举个例子：</p>
-<p><img src="http://nankor.org/uploads/2012/03/3.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/3.jpg"></p>
 <p>当我在中文汉字输入法模式下输入“www”，上图看到输入法还处于中文模式，当我再输入“.”时，输入法自动切换（如下图）：</p>
-<p><img src="http://nankor.org/uploads/2012/03/4.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/4.jpg"></p>
 <p>这是个很节约时间的输入状态，但是fcitx所给的英文模式触发词显然太少了，在*nix下CLI是经常需要打开终端就输入的，一旦开启了输入法在所有程序间“共享”，打开终端输入“sudo”就成了“速度哦”，反映快点可以按下回车（设定为自动提交输入），但是若习惯使然输入命令的快感使我提前按下了空格，提交了“速度哦”，这时输入本次输入就算失败了</p>
-<p><img src="http://nankor.org/uploads/2012/03/5.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/5.jpg"></p>
 <p>假如我反映够灵敏，我按下回车把sudo准确提交了，但接下来仍得手动去切换英文输入法了，因为我没把握一直这么灵敏，这就要按下shift（假设我输入英文切换键是shift）换到真正的英文模式。等命令输入完毕，我回来写一篇中文文档，要用“shift”唤回中文汉字输入法，这中间我需要按两次“shift”。</p>
 <p>有没有办法让我在输入命令时自动识别不再显示中文候选词并且阻止上面的一系列切换，使我一直处于中文输入法状态下呢？我打起了fcitx自动触发英文模式的主意！在终端输入的命令基本都来自于超级用户与普通用户的执行程序目录下，看下我bash的执行路径：</p>
-<p><img src="http://nankor.org/uploads/2012/03/6.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/6.jpg"></p>
 <p>shell外部命令就来自于上图所列目录，把这些目录下的二进制程序名加入英文模式触发词库后，fcitx是不是就会自动检测我输入的是shell命令而自动停止显示候选词触发英文模式呢？</p>
 <p>这应该是个不错的想法….尝试下，我先把sudo加入英文模式触发词词库，重启下fcitx看下效果：</p>
-<p><img src="http://nankor.org/uploads/2012/03/7.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/7.jpg"></p>
 <p>fcitx已经识别我输入的是shell指令，不再显示中文候选词了，看起来效果不错！我把上面路径的binary file name全加入我的英文模式触发词库吧!</p>
 <p>先把超级用户的执行程序名加入英文模式触发词，#:ls &#x2F;sbin|sort&gt;&#x2F;usr&#x2F;share&#x2F;fcitx&#x2F;data&#x2F;AutoEn.dat，貌似感觉好多了（看起来很厉害的样子！！！）我挑个命令试下：su</p>
-<p><img src="http://nankor.org/uploads/2012/03/8.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/8.jpg"></p>
 <p>正常输入，自动识别……这好象缺点什么？？貌似我没有办法输入拼音“su”了，更别说打出“su”音 “suo”音等的汉字了！</p>
 <p>一个新的问题：这些二进制可执行程序名中有多少与汉语拼音有冲突？尽量把这些排除在外，或者当输入“su”时，fcitx能够自动把su作为按频率统计的第一候选词，也就是候选词要中英文混排。</p>
 <p>首先解决汉语拼音与命令冲突的问题，先下载汉语拼音音节表(共计398个)，稍后需要从这里过滤文本：</p>
@@ -752,7 +752,7 @@ sort bins&gt;bins.ok;rm bins
 exit
 </code></pre>
 <p>文本文件bins.ok几乎涵盖shell所有外部命令，当然这里还有shell内建指令没有包含进来，如cd等，都是很少的了。</p>
-<p><img src="http://nankor.org/uploads/2012/03/9.jpg"></p>
+<p><img src="https://www.nankor.org/uploads/2012/03/9.jpg"></p>
 <p>分析中间“不听话”的命令把它揪出来！上图看到这有3000多行，人工怎么一个个揪出来！！这时拼音音节表要用上了，这像是编译原理的词法分析？？！！差不多，该啐觉了，以后再按拼音音节分解英文单词。</p>
 <p>2012.2.22 凌晨</p>
 ]]></content>
@@ -1077,7 +1077,7 @@ Universal transformation format 8 bits; UTF-8
 <pre><code>cat conv.txt|sqlite3 utf8pinyin.db3
 </code></pre>
 <p>好了，现在可以轻松使用sqliteman或者sqlitebroswer打开utf8pinyin.db3，没有乱码了。</p>
-<p><a href="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"><img src="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"><img src="https://www.nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"></a></p>
 <p><strong>最后，我想团队开发一定要注意工作平台，另外尽量采用广泛支持的国际unicode编码。</strong></p>
 ]]></content>
       <categories>
@@ -1211,10 +1211,10 @@ XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
 <span id="more"></span>
 
 
-<h2 id="1、Vim-Mind"><a href="#1、Vim-Mind" class="headerlink" title="1、Vim_Mind"></a>1、Vim_Mind</h2><p><a href="http://nankor.org/uploads/2012/04/Vim_mind.png"><img src="http://nankor.org/uploads/2012/04/Vim_mind.png"></a></p>
-<h2 id="2、linux-io-stack-diagram"><a href="#2、linux-io-stack-diagram" class="headerlink" title="2、linux-io-stack-diagram"></a>2、linux-io-stack-diagram</h2><p><a href="http://nankor.org/uploads/2012/04/linux-io-stack-diagram_v0.1.png"><img src="http://nankor.org/uploads/2012/04/linux-io-stack-diagram_v0.1.png"></a></p>
-<h2 id="3、STL-Containers"><a href="#3、STL-Containers" class="headerlink" title="3、STL-Containers"></a>3、STL-Containers</h2><p><a href="http://nankor.org/uploads/2012/04/STL-Containers.png"><img src="http://nankor.org/uploads/2012/04/STL-Containers.png"></a></p>
-<h2 id="4、主流开源协议比较"><a href="#4、主流开源协议比较" class="headerlink" title="4、主流开源协议比较"></a>4、主流开源协议比较</h2><p><a href="http://nankor.org/uploads/2012/04/protocol.jpg"><img src="http://nankor.org/uploads/2012/04/protocol.jpg"></a></p>
+<h2 id="1、Vim-Mind"><a href="#1、Vim-Mind" class="headerlink" title="1、Vim_Mind"></a>1、Vim_Mind</h2><p><a href="https://www.nankor.org/uploads/2012/04/Vim_mind.png"><img src="https://www.nankor.org/uploads/2012/04/Vim_mind.png"></a></p>
+<h2 id="2、linux-io-stack-diagram"><a href="#2、linux-io-stack-diagram" class="headerlink" title="2、linux-io-stack-diagram"></a>2、linux-io-stack-diagram</h2><p><a href="https://www.nankor.org/uploads/2012/04/linux-io-stack-diagram_v0.1.png"><img src="https://www.nankor.org/uploads/2012/04/linux-io-stack-diagram_v0.1.png"></a></p>
+<h2 id="3、STL-Containers"><a href="#3、STL-Containers" class="headerlink" title="3、STL-Containers"></a>3、STL-Containers</h2><p><a href="https://www.nankor.org/uploads/2012/04/STL-Containers.png"><img src="https://www.nankor.org/uploads/2012/04/STL-Containers.png"></a></p>
+<h2 id="4、主流开源协议比较"><a href="#4、主流开源协议比较" class="headerlink" title="4、主流开源协议比较"></a>4、主流开源协议比较</h2><p><a href="https://www.nankor.org/uploads/2012/04/protocol.jpg"><img src="https://www.nankor.org/uploads/2012/04/protocol.jpg"></a></p>
 <p>以后慢慢配上注释。</p>
 ]]></content>
       <categories>
@@ -1274,7 +1274,7 @@ Linux turing-desktop 2.6.32-40-generic #87-Ubuntu SMP Tue Mar 6 00:56:56 UTC 201
 <p>从机是有线连接的路由器A，仅仅使用了路由器A的交换机功能。</p>
 <p>下面好戏开始了：</p>
 <p>在主机上打开qsynergy;如图：</p>
-<p><a href="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8823%E6%97%A5-21%E6%97%B647%E5%88%8637%E7%A7%92.png"><img src="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8823%E6%97%A5-21%E6%97%B647%E5%88%8637%E7%A7%92.png"></a>[&#x2F;caption]</p>
+<p><a href="https://www.nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8823%E6%97%A5-21%E6%97%B647%E5%88%8637%E7%A7%92.png"><img src="https://www.nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8823%E6%97%A5-21%E6%97%B647%E5%88%8637%E7%A7%92.png"></a>[&#x2F;caption]</p>
 <p>按照以上配置就可以了，点击start</p>
 <p>在从机中输入：synergyc 主机IP</p>
 <p>好了，试着移动下你的鼠标到主机屏幕边缘，或者在从机内放置鼠标焦点后，使用键盘快捷键，效果即显！</p>
@@ -1547,44 +1547,44 @@ struct st3&#123;
 <p><a href="http://maps.google.com/maps?f=q&source=embed&hl=zh-CN&geocode=&q=%E8%A5%BF%E5%AE%89+%E5%A4%A7%E5%B3%AA&aq=&sll=37.0625,-95.677068&sspn=46.946584,93.076172&ie=UTF8&hq=&hnear=%E4%B8%AD%E5%9B%BD%E9%99%95%E8%A5%BF%E7%9C%81%E8%A5%BF%E5%AE%89%E9%95%BF%E5%AE%89%E5%8C%BA%E5%A4%A7%E5%B3%AA%E4%B9%A1&ll=34.018954,109.119909&spn=0.024156,0.045447&t=m&z=14">查看大图</a></p>
 <p>到达目的地大概9点吧，来的人比较多，同学是47个吧。本来目的是来捡垃圾的，所以一人发了一个垃圾袋与一只白手套。然后我们就兴冲冲出发了。</p>
 <p>出发了！</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"></a></p>
 <p>下面是路上的一些见闻（由于没有带相机，只能从师兄师姐那里盗点图了。）：</p>
 <p>拔地而起的高山：</p>
-<p><a href="http://nankor.org/uploads/2012/04/hill.jpg"><img src="http://nankor.org/uploads/2012/04/hill.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/hill.jpg"><img src="https://www.nankor.org/uploads/2012/04/hill.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"></a></p>
 <p>山上的流水：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"></a>在路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku1.jpg"><img src="http://nankor.org/uploads/2012/04/ku1.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"></a>在路上：</p>
+<p><a href="https://www.nankor.org/uploads/2012/04/ku1.jpg"><img src="https://www.nankor.org/uploads/2012/04/ku1.jpg"></a></p>
 <p>还是在路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku2.jpg"><img src="http://nankor.org/uploads/2012/04/ku2.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/ku2.jpg"><img src="https://www.nankor.org/uploads/2012/04/ku2.jpg"></a></p>
 <p>见到水库了：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"></a></p>
 <p>平湖：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku3.jpg"><img src="http://nankor.org/uploads/2012/04/ku3.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/ku3.jpg"><img src="https://www.nankor.org/uploads/2012/04/ku3.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E5%BA%932.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E5%BA%932.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E5%BA%931.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E5%BA%931.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"></a></p>
 <p>碰到的烈士陵园:</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"><img src="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"></a></p>
 <p>路上的付老师和马老师：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"></a></p>
 <p>在路上，走的比较靠前，和蒋老师聊了会儿天，蒋老师说，今天的目标是10000步，老人家真带着计步器呢</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"></a></p>
 <p>除了半路业余式的捡些垃圾，我们主要还是看好那里的鳟鱼的，要吃午饭的农家乐就是我们徒步的终点与重点。</p>
 <p>农家乐：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"></a></p>
 <p>到达半山中的农家乐大概才11点吧，和几个同级同学与师兄玩了会纸牌，就开始吃午饭了。</p>
 <p>下面是午饭的主角儿：</p>
-<p> <a href="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"></a></p>
+<p> <a href="https://www.nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"></a></p>
 <p>没有把那盘鱼给留下来做个纪念。饭间又认识了几位师兄与师姐，很尴尬的是把一位学姐当大四的了。</p>
 <p>如果说以上算平淡的游玩，下面的就有些意思了：吃完饭几个同学商量去爬山，自己没有仔细考虑就欣然同意前去了。</p>
 <p>和老祝走在盘山公路的前面为大家探山，之所以说探山，这里的山由于被盘山公路切开，没有直接从地面形成斜坡的，很多是拔地而起，我们要找个坡度合适的、时间上来的及的打下“牙祭”。看到由两位可能是采药的人在山上“逛荡”（真觉得他们很轻松的在山上），我们敲定了就爬她们所在的山。</p>
 <p>探山路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"></a></p>
 <p>去寻山路，居然没有路，我们几个男生就成为了开路着。奇岩怪石，山间荆棘遍地，巨石硕大如房屋，在没有路的野山中，披荆斩棘，望山寻路，虽然被刮伤了几处，不过路倒是开得挺顺当。随行大概20多人吧，像攀岩般体验了这次冒险，一路坎坷，大有野山寻古墓的阵势，让我不断想起《盗墓笔记》与说列宁的《日出》那段。</p>
 <p>时间有限，下山还有坐公交车，爬到一处平台，大家感觉爬的差不多了，拍照留纪念，准备下山。其实这山本就是让看的，爬起来像是在挑战这座山一样。</p>
 <p>山间平台留影：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"><img src="https://www.nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"></a></p>
 <p>下山就没什么了，蹦崩跳跳的就下来了。不过人太多，还是注意安全好。</p>
 <p>回到半腰的农家乐休息了一会儿，看天色不好我们就向山脚下赶了。</p>
 <p>回来路上和几个同学，沿盘山公路一路开跑狂奔，好不欢乐！结果是枫姐拿个对讲机使劲追我们，不断向断后的王宇报告我们的行踪。</p>
@@ -1681,7 +1681,7 @@ struct st3&#123;
 <p>与其说是沐浴城市，催流锦江，不如说是净化心扉，洗涤生命</p>
 <p>三场雨，三颗心，生命走廊多了几幅壁画，修缮了走过的飞檐，为什么不去旅行？</p>
 <p>对纯粹无世间的自然与崇高非人类的生命的向往，就去旅行了。</p>
-<p><a href="http://nankor.org/uploads/2012/06/DSCF0280.jpg"><img src="http://nankor.org/uploads/2012/06/DSCF0280.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/06/DSCF0280.jpg"><img src="https://www.nankor.org/uploads/2012/06/DSCF0280.jpg"></a></p>
 <p>茶凉了，喝茶。</p>
 ]]></content>
       <categories>
@@ -1709,7 +1709,7 @@ struct st3&#123;
 <h2 id="使用IPV6上真实的互联网"><a href="#使用IPV6上真实的互联网" class="headerlink" title="使用IPV6上真实的互联网"></a>使用IPV6上真实的互联网</h2><p>这次跟妹纸没关系。</p>
 <p>完全是怒于看不到真实的互联网了。</p>
 <p>首先你得有改hosts的经历（没有，就没必要向下看本文了），用思维导图阐述下（形容词和第一招的形容词一样多，原谅我小学没学那么多成语吧）第二招。</p>
-<p><a href="http://nankor.org/uploads/2012/08/%E5%8E%BB%E5%A4%96%E7%BD%91%E5%85%9C%E5%9C%88.jpg"><img src="http://nankor.org/uploads/2012/08/%E5%8E%BB%E5%A4%96%E7%BD%91%E5%85%9C%E5%9C%88.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/%E5%8E%BB%E5%A4%96%E7%BD%91%E5%85%9C%E5%9C%88.jpg"><img src="https://www.nankor.org/uploads/2012/08/%E5%8E%BB%E5%A4%96%E7%BD%91%E5%85%9C%E5%9C%88.jpg"></a></p>
 <h2 id="2-不改hosts，上部分IPV6的网站"><a href="#2-不改hosts，上部分IPV6的网站" class="headerlink" title="2.      不改hosts，上部分IPV6的网站"></a>2.      不改hosts，上部分IPV6的网站</h2><p>这个只能上部分网站，有兴趣的可以参考，内涵的给了一份IPV6的<a href="http://is.gd/AeVm0n">hosts</a>。</p>
 <h2 id="3-Goagent使用IPV6-GAE"><a href="#3-Goagent使用IPV6-GAE" class="headerlink" title="3.      Goagent使用IPV6 GAE"></a>3.      Goagent使用IPV6 GAE</h2><h3 id="3-1-GAE"><a href="#3-1-GAE" class="headerlink" title="3.1 GAE"></a>3.1 GAE</h3><p>GAE主页地址：<a href="http://appengine.google.com/">http://appengine.google.com/</a></p>
 <p>详细参考：<a href="https://developers.google.com/appengine/docs/">https://developers.google.com/appengine/docs/</a>****</p>
@@ -1721,7 +1721,7 @@ struct st3&#123;
 <p>Android上Goagent项目主页：<a href="https://code.google.com/p/gaeproxy/">https://code.google.com/p/gaeproxy/</a></p>
 <p>Goagent共有三种部署方式，其中一种部署方式即为部署在GAE上，另外两种为部署在php空间、python方式（PAAS）。最新版的Goagent  GAE的fetch是用go语言（猜测）开发的，稍旧的版本使用python开发。</p>
 <p>Goagent原理图：</p>
-<p><a href="http://nankor.org/uploads/2012/08/%E4%BB%A3%E7%90%86%E7%A4%BA%E6%84%8F%E5%9B%BE2.png"><img src="http://nankor.org/uploads/2012/08/%E4%BB%A3%E7%90%86%E7%A4%BA%E6%84%8F%E5%9B%BE2.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/%E4%BB%A3%E7%90%86%E7%A4%BA%E6%84%8F%E5%9B%BE2.png"><img src="https://www.nankor.org/uploads/2012/08/%E4%BB%A3%E7%90%86%E7%A4%BA%E6%84%8F%E5%9B%BE2.png"></a></p>
 <p>先叙述下原理：</p>
 <p>1、浏览器发出正常的http请求（包含IPV4的也有IPV6的），由于没有IPV4的流量，这个自然不能走正常的网络</p>
 <p>2、请求主机（本地）Goagent客户端封装正常http请求数据，我想的办法就在这步。稍后细说。</p>
@@ -1735,9 +1735,9 @@ struct st3&#123;
 <p>2、需要有可使用的GAE Appid：这个简单，搭建GAE使用goagent不是本文叙述的目的（可参考此<a href="http://ishare.cn.ms/archives/181">http://ishare.cn.ms/archives/181</a> ）</p>
 <p>3、确保Goagent走的是IPV6的google。对于上面的1、2步已经解决了，第3步是关键。</p>
 <p>看下Goagent中local目录下proxy.ini的配置文件各字段含义：</p>
-<p><a href="http://nankor.org/uploads/2012/08/proxyini1.jpg"><img src="http://nankor.org/uploads/2012/08/proxyini1.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/08/proxyini2.jpg"><img src="http://nankor.org/uploads/2012/08/proxyini2.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/08/proxyini3.jpg"><img src="http://nankor.org/uploads/2012/08/proxyini3.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/proxyini1.jpg"><img src="https://www.nankor.org/uploads/2012/08/proxyini1.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/proxyini2.jpg"><img src="https://www.nankor.org/uploads/2012/08/proxyini2.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/proxyini3.jpg"><img src="https://www.nankor.org/uploads/2012/08/proxyini3.jpg"></a></p>
 <p>第3步的解决办法：</p>
 <p>[1] 因为IPV4访问已挂，只能靠IPv6的Google了，使主机可以访问IPv6 google。</p>
 <p>修改Windows的hosts：</p>
@@ -1754,7 +1754,7 @@ struct st3&#123;
 <p>2、 使用cloudflaer CDN加速ipv4 php空间，开启空间的IPV6访问</p>
 <p>3、 搭建Goagent的php代理</p>
 <h3 id="4-1-获取IPv4-php空间与域名申请"><a href="#4-1-获取IPv4-php空间与域名申请" class="headerlink" title="4.1 获取IPv4 php空间与域名申请"></a>4.1 获取IPv4 php空间与域名申请</h3><p>关于php主机空间选择这点，穷人遵循免费的原则（虽然俺有个付费的主机空间，可不是用来折腾这个的）。我选择1freehosting的免费主机空间与tk免费域名。先说下1freehosting的免费主机空间（<a href="http://1freehosting.com/">http://1freehosting.com</a>）,这个空间的详细信息（探针发回的信息）：</p>
-<p><a href="http://nankor.org/uploads/2012/08/2012-8-26-%E5%91%A8%E6%97%A5-23-22-57.png"><img src="http://nankor.org/uploads/2012/08/2012-8-26-%E5%91%A8%E6%97%A5-23-22-57.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/2012-8-26-%E5%91%A8%E6%97%A5-23-22-57.png"><img src="https://www.nankor.org/uploads/2012/08/2012-8-26-%E5%91%A8%E6%97%A5-23-22-57.png"></a></p>
 <p>Goagent的php代理方式对于php空间是有要求的：</p>
 <p>1、 支持curl模块或者allow_url_fopen打开</p>
 <p>2、 支持zlib压缩模块</p>
@@ -1767,36 +1767,36 @@ struct st3&#123;
 <p>使用cloudflare CDN加速主机空间的访问与开通主机空间的IPV6访问，主要有这几步：</p>
 <p>1、 首先<a href="https://www.cloudflare.com/sign-up">注册cloudflare CDN</a>；</p>
 <p>2、 接着填写自己要加速的域名（例子是korlj.tk）：如下图</p>
-<p>   <a href="http://nankor.org/uploads/2012/08/cloudflarecdn11.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflarecdn11.jpg"></a></p>
+<p>   <a href="https://www.nankor.org/uploads/2012/08/cloudflarecdn11.jpg"><img src="https://www.nankor.org/uploads/2012/08/cloudflarecdn11.jpg"></a></p>
 <p>接下来Cloudflare CDN会检查你的域名是否有效（大概1 min），如果有效，contitue setup。</p>
 <p>3、  接下来cloudflare会列出域名真正的A记录 MX记录 CNAME记录，这个是核实的，不用管，“I’ve added all missing records,continue”；</p>
 <p>4、 选择是否采用免费的，这个自愿吧，你想散点财，我没意见。免费的就够用了。Continue</p>
-<p><a href="http://nankor.org/uploads/2012/08/cloudflarecdn2.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflarecdn2.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/cloudflarecdn2.jpg"><img src="https://www.nankor.org/uploads/2012/08/cloudflarecdn2.jpg"></a></p>
 <p>5、  好了，最后一步，cloudflare CDN为你的域名做了最优的DNS服务器的选择：</p>
-<p> <a href="http://nankor.org/uploads/2012/08/cloudflare3.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflare3.jpg"></a></p>
+<p> <a href="https://www.nankor.org/uploads/2012/08/cloudflare3.jpg"><img src="https://www.nankor.org/uploads/2012/08/cloudflare3.jpg"></a></p>
 <p><a href="http://korlj.tk/">http://korlj.tk</a> 原来默认使用TK提供的DNS解析服务：ns01&#x2F;2.dot.tk那两个，使用cloudflare CDN后使用lady&#x2F;seth.ns.cloudflare.com</p>
-<p>6、 继续设置空间的IPv6的访问，点击 <a href="http://nankor.org/uploads/2012/08/cloudflare4.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflare4.jpg"></a>上步</p>
+<p>6、 继续设置空间的IPv6的访问，点击 <a href="https://www.nankor.org/uploads/2012/08/cloudflare4.jpg"><img src="https://www.nankor.org/uploads/2012/08/cloudflare4.jpg"></a>上步</p>
 <p>会看到这样：</p>
-<p><a href="http://nankor.org/uploads/2012/08/cloudflare5.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflare5.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/cloudflare5.jpg"><img src="https://www.nankor.org/uploads/2012/08/cloudflare5.jpg"></a></p>
 <p>发现korlj.tk的域名还没有被加入 free plan，这是因为还没有在域名提供商那里修改为cloudflare CDN的NS所致，没关系，先设置IPv6的访问，稍后去TK那里设置。点击第一行右侧的齿轮（设置），选择第二项：</p>
-<p><a href="http://nankor.org/uploads/2012/08/cloudflare6.jpg"><img src="http://nankor.org/uploads/2012/08/cloudflare6.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/cloudflare6.jpg"><img src="https://www.nankor.org/uploads/2012/08/cloudflare6.jpg"></a></p>
 <p>7、 会看到如下图：</p>
-<p><a href="http://nankor.org/uploads/2012/08/7.png"><img src="http://nankor.org/uploads/2012/08/7.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/7.png"><img src="https://www.nankor.org/uploads/2012/08/7.png"></a></p>
 <p>将Automatic IPv6右off选择为full即可。如果选为safe，需要在域名为ipv6.korlj.tk才使用IPv6访问空间。Cloudflare CDN这边就设置完了，接下来将cloudflare分配的两个优化后的NS添加到我的域名</p>
 <p>8、 添加cloudflare CDN第三方DNS解析服务到我的域名下</p>
-<p><a href="http://nankor.org/uploads/2012/08/8.png"><img src="http://nankor.org/uploads/2012/08/8.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/8.png"><img src="https://www.nankor.org/uploads/2012/08/8.png"></a></p>
 <p>Save Changes,OK</p>
 <p>9、大概10多分钟就可以了，可以试着ping下刚才的域名（我ping之前我已经添加至Cloudflare CDN下的一个域名）：</p>
-<p><a href="http://nankor.org/uploads/2012/08/9.jpg"><img src="http://nankor.org/uploads/2012/08/9.jpg"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/9.jpg"><img src="https://www.nankor.org/uploads/2012/08/9.jpg"></a></p>
 <p>可看到已经是IPv6了，原来的IPv4是这样的：</p>
-<p><a href="http://nankor.org/uploads/2012/08/10.png"><img src="http://nankor.org/uploads/2012/08/10.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/10.png"><img src="https://www.nankor.org/uploads/2012/08/10.png"></a></p>
 <p>以上的IP地址都是cloudflare CDN提供的，下面这个更清晰：</p>
-<p><a href="http://nankor.org/uploads/2012/08/11.png"><img src="http://nankor.org/uploads/2012/08/11.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/11.png"><img src="https://www.nankor.org/uploads/2012/08/11.png"></a></p>
 <p>这样有个缺点就是如果你的主机空间原来是独立IP的，这样独立IP的优势就失去了（这也是不拿我的付费空间做试验的原因）</p>
 <p>现在已经有了IPv6的php空间，这样的空间你在没有DX校园网流量的情况下也是可以访问的。</p>
 <h3 id="4-3-Goagent-使用IPv6-php空间"><a href="#4-3-Goagent-使用IPv6-php空间" class="headerlink" title="4.3 Goagent 使用IPv6 php空间"></a>4.3 Goagent 使用IPv6 php空间</h3><p>首先使用FTP工具（Filezilla lftp都行）上传goagent&#x2F;sever&#x2F;php目录下的index.php至主机空间目录，这个一般是public-html之类的（如果与主机空间提供的冲突，可以改名：比如goagent.php），也可以上传到自己建立的目录，只要在配置文件中写到index.php(你修改后的名字)所在路径即可，比如XXX.tk&#x2F;mygoagent&#x2F;goagent.php，这样也能解除广告的困扰，解决了上面的第3条的限制。上传之后，试着访问那个页面，成功时默认跳转到google主页。</p>
 <p>下面配置Goagent本地的客户端使之采用php空间提供代理，修改proxy.ini的配置文件，如下修改：</p>
-<p><a href="http://nankor.org/uploads/2012/08/12.png"><img src="http://nankor.org/uploads/2012/08/12.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/12.png"><img src="https://www.nankor.org/uploads/2012/08/12.png"></a></p>
 <p>图中的index.php即为刚上传的那个php。</p>
 <p>好了，现在打开goagent，会看到已经启用fetchsever，设置浏览器的全局代理为127.0.0.1:8080就可以了。</p>
 <p>经过我的实验，访问一些网站还是比较快的，真实的互联网就在你的面前！</p>
@@ -1807,7 +1807,7 @@ struct st3&#123;
 <p>APJP提供的使用平台还是比较广泛的，原理与Goagent类似。有些时候，访问一些网站需要使用代理，而APJP是一项开源代理项目，是非常适合个人使用自建代理工具。APJP分为两个部分，LOCAL(客户端)和REMOTE(服务器端)，其中LOCAL部分由Java语言编写，REMOTE则分别用PHP, Java, Python, Ruby等语言编写以适应不同的平台，LOCAL部分是一个本地代理，通过和远端服务器部分连接，以RC4 128bit 加密通讯，达到一个比较完整的代理方案。</p>
 <h3 id="5-2-IPV6-php空间的获取"><a href="#5-2-IPV6-php空间的获取" class="headerlink" title="5.2 IPV6 php空间的获取"></a>5.2 IPV6 php空间的获取</h3><p>与上面Goagent获取IPv6php空间的方式一致，略去。</p>
 <h3 id="5-3-使用APJP建立IPv6-php空间代理"><a href="#5-3-使用APJP建立IPv6-php空间代理" class="headerlink" title="5.3 使用APJP建立IPv6 php空间代理"></a>5.3 使用APJP建立IPv6 php空间代理</h3><p>主要提供的平台与安装办法google code wiki写的已经比较详细了：</p>
-<p><a href="http://nankor.org/uploads/2012/08/13.png"><img src="http://nankor.org/uploads/2012/08/13.png"></a></p>
+<p><a href="https://www.nankor.org/uploads/2012/08/13.png"><img src="https://www.nankor.org/uploads/2012/08/13.png"></a></p>
 <p>这里强调下，最新APJP安装注意事项，</p>
 <p>1、 只要在APJP_REMOTE_PHP目录中的index.php填写key就可以了，上传整个APJP_REMOTE_PHP目录下的所有文件</p>
 <p>2、 目前APJP支持添加10台主机，填写APJP_LOCAL&#x2F;APJP.properties时，</p>
@@ -2060,7 +2060,7 @@ pmin&lt;=pmax;
 @gin(pmin);
 @gin(pmax);
 </code></pre>
-<p>得到： <a href="http://nankor.org/uploads/2012/12/lingo.png"><img src="http://nankor.org/uploads/2012/12/lingo.png" alt="lingo"></a> 可知P&#x3D;3~10。 那么每个p进制是否都存在a b c唯一解呢？ 同样很简单的说：已知m进制时，求解方法：</p>
+<p>得到： <a href="https://www.nankor.org/uploads/2012/12/lingo.png"><img src="https://www.nankor.org/uploads/2012/12/lingo.png" alt="lingo"></a> 可知P&#x3D;3~10。 那么每个p进制是否都存在a b c唯一解呢？ 同样很简单的说：已知m进制时，求解方法：</p>
 <pre><code>min =pmin;
 (pmin+1)*(a+b+c)=pmin^2*a+pmin*b+c;
 !a b c  为正整数;
@@ -2141,9 +2141,9 @@ c&lt;=pmin-1;
 <p>Lite2虽然不是电容的，不过薄膜的手感也不错，敲起来有中木头的感觉。这都是次要的，关键是作为Vim党，发觉ctrl的位置真是太爽了。</p>
 <p>ctrl按键在shift上方，使用vim过程中，缩短了ctrl与escape的键程，这还求什么呢？</p>
 <p>啥都不说，先上张lite2的图吧！</p>
-<p><img src="http://nankor.org/uploads/2013/05/lite202.jpg" alt="Lite2 俯视图"></p>
+<p><img src="https://www.nankor.org/uploads/2013/05/lite202.jpg" alt="Lite2 俯视图"></p>
 <p>桌子上还有另两个键盘，对比一下，屌丝与高富帅一览无余！</p>
-<p><img src="http://nankor.org/uploads/2013/05/lite203.jpg" alt="three kb"></p>
+<p><img src="https://www.nankor.org/uploads/2013/05/lite203.jpg" alt="three kb"></p>
 <p>完</p>
 ]]></content>
       <categories>
@@ -2396,7 +2396,7 @@ filesystem: /bin exists in filesystem
 <p>##扩充键鼠##</p>
 <p>小米1 不支持OTG，KT CPU都有OTG pin的，唉，小米买的早了！</p>
 <p>只好选择蓝牙键盘，从淘宝上淘的:</p>
-<p><img src="http://nankor.org/uploads/2013/05/keyboard.jpg" alt="蓝牙键盘"></p>
+<p><img src="https://www.nankor.org/uploads/2013/05/keyboard.jpg" alt="蓝牙键盘"></p>
 <p>第一行功能键大都可以用，令人很欣慰啊!</p>
 <p>目前我是一台台式机，一台本，本子上还没工作环境。。。有时候需要查看台式机上的工作代码或者环境,都是ssh+vnc，拿个本去操作太费劲了。手机ssh的作用凸显了，浏览个代码什么的。host_vim指ssh服务器端vim</p>
 <p>好了 </p>
@@ -2419,14 +2419,14 @@ filesystem: /bin exists in filesystem
 <p>输入 sl ,呵呵 :</p>
 <pre><code>$ sl
 </code></pre>
-<p><img src="http://nankor.org/uploads/2013/05/sl1.png" alt="train start "></p>
-<p><img src="http://nankor.org/uploads/2013/05/sl2.png" alt="train tail "></p>
+<p><img src="https://www.nankor.org/uploads/2013/05/sl1.png" alt="train start "></p>
+<p><img src="https://www.nankor.org/uploads/2013/05/sl2.png" alt="train tail "></p>
 <p>看下机子的信息吧：</p>
 <pre><code>$ cat /etc/issue 
 $ uname -a 
 $ haed -n10 /proc/cpuinfo
 </code></pre>
-<p><img src="http://nankor.org/uploads/2013/05/arch.png" alt="xiaomi ubuntu 12.04 info"></p>
+<p><img src="https://www.nankor.org/uploads/2013/05/arch.png" alt="xiaomi ubuntu 12.04 info"></p>
 <p>##NFS看视频##</p>
 <p>甭提sftp，看PC端视频卡！</p>
 <p>ssh fs， ssh加密压缩传输，更卡！</p>
