@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.nankor.org/"/>
-  <updated>2018-10-23T15:41:54.000Z</updated>
+  <updated>2017-06-18T17:22:52.000Z</updated>
   <id>https://www.nankor.org/</id>
   
   <author>
@@ -15,20 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>头像背后的故事</title>
-    <link href="https://www.nankor.org/Think/10/23/%E5%A4%B4%E5%83%8F%E8%83%8C%E5%90%8E%E7%9A%84%E6%95%85%E4%BA%8B.html"/>
-    <id>https://www.nankor.org/Think/10/23/头像背后的故事.html</id>
-    <published>2018-10-23T15:41:55.000Z</published>
-    <updated>2018-10-23T15:41:54.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>魏武挥:从上海的互联网产业说开去</title>
@@ -474,6 +460,32 @@
       <category term="大峪" scheme="https://www.nankor.org/tags/%E5%A4%A7%E5%B3%AA/"/>
     
       <category term="虹鳟" scheme="https://www.nankor.org/tags/%E8%99%B9%E9%B3%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux回收站</title>
+    <link href="https://www.nankor.org/Linux/04/20/linux-recycle-the-bin.html"/>
+    <id>https://www.nankor.org/Linux/04/20/linux-recycle-the-bin.html</id>
+    <published>2012-04-20T08:06:44.000Z</published>
+    <updated>2017-06-18T15:27:08.529Z</updated>
+    
+    <content type="html"><![CDATA[<p>前两天解压rar文件，是windows压缩的，在arch下解压后文件名出现乱码，删除至回收站后怎么也删不掉，估计是乱码造成的权限问题，因此想用rm -f命令删除，但是回收站在什么位置呢？</p><p>Linux默认没有回收站，arch+kde时KDE会形成回收站，这个回收站在家目录的.local&#x2F;share&#x2F;Trash下。</p><p>其下有三个文件（目录），文本文件metadata规定回收站总大小，一般是所在分区大小10%；目录files：用于保存删除至回收站的文件或目录，目录info：保存记录files内文件（目录）相关信息的文件。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;前两天解压rar文件，是windows压缩的，在arch下解压后文件名出现乱码，删除至回收站后怎么也删不掉，估计是乱码造成的权限问题，因此想用rm -f命令删除，但是回收站在什么位置呢？&lt;/p&gt;
+&lt;p&gt;Linux默认没有回收站，arch+kde时KDE会形成回收站，这个回收
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://www.nankor.org/categories/Linux/"/>
+    
+    
+      <category term="trash" scheme="https://www.nankor.org/tags/trash/"/>
     
   </entry>
   
