@@ -121,6 +121,51 @@ exit
       </tags>
   </entry>
   <entry>
+    <title>LZW算法简解</title>
+    <url>/Alogrithm/03/04/4558302-algorithm-the-simple-solutions.html</url>
+    <content><![CDATA[<p>LZW(Lempel-Ziv &amp; Welch)编码又称字串表编码，是Welch将Lemple和Ziv所提出来的无损压缩技术改进后的压缩方法。GIF图像文件采用的是一种改良的LZW压缩算法，通常称为GIF-LZW压缩算法。</p>
+<span id="more"></span>****
+
+<p><strong>LZW编码基本原理：</strong></p>
+<p>把每一个第一次出现的字符串用一个数值来编码，解码时再将数值编码还原成原来字符：如果用0X100代替字符串中的“ABCDDEEF”，那么每当这样的字符串出现时都会用0X100来表示，以达到压缩的目的。注意的是这个字符串和数值之间的关系是动态生成的。</p>
+<p><strong>LZW算法基本步骤：</strong></p>
+<p>主要包括两个部分：串表与码字值</p>
+<p>1、将待编码字符串中的所有单个字符存入字符串表（串表）中，并给每个符号赋一个码字值。</p>
+<p>2、读入第一个输入字符，将其赋值给P（P为前缀串）。</p>
+<p>3、读入下一个字符，将其赋值给S（前缀串P的扩展字符）。</p>
+<p>如果PS构成的字符串不在串表中，则将字符串PS的前缀串P对应的码字值输出；将字符串PS存入串表；给PS分配一个码字值；将PS的扩展字符S赋值给P，用P与下一个输入字符形成新的字符串。</p>
+<p><strong>OR</strong></p>
+<p>如果PS已经在串表中，则将PS赋值给P，用P与下一个输入字符形成新的字符串。</p>
+<p><strong>举个例子：</strong></p>
+<p>下面对字符串BABAABAAA进行编码。</p>
+<p>根据以上的算法，令P&#x3D;B，然后读入字符串序列中的下一个字符A，令S&#x3D;A。</p>
+<p>由于串表中并没有PS构成的字符串BA，于是将BA加入串表。</p>
+<p>由于0~255已在串表中赋给了单个的字符，这里只能给BA赋予256的码值。</p>
+<p>同时将BA的前缀B的码值（B的码值为66）输出。</p>
+<p>将BA的扩展字符赋值给P，即令P&#x3D;A，接着进行下一个循环。</p>
+<p>输出下一个（第三个）字符B,令S&#x3D;B，由PS构成新的字符串AB。</p>
+<p>由于串表中没有字符串AB，于是将AB赋码值257，并将AB存入串表中。</p>
+<p>同时输出字符串AB的前缀A对应的码值65，将AB的扩展字符B赋值给P,即P&#x3D;B。</p>
+<p>接着进行下一次循环，输入下一个（第四个）字符A，令S&#x3D;A。</p>
+<p>此时，由于PS构成的字符串BA已在串表中，所以将BA作为下一个新字符串的前缀，即P&#x3D;BA。</p>
+<p>接着重新开始下一次循环，输入下一个字符（第五个）A,令S&#x3D;A。</p>
+<p>形成新的字符串PS,即BAA，由于串表中没有BAA，于是将BAA的前缀BA对应的码值256输出，给字符串BAA赋予码值258，并将BAA存入串表中。</p>
+<p>将BAA的扩展字符A赋值给P,令P&#x3D;A，接着输入下一个字符，如此下去，直到字符串结束为止。</p>
+<p>经过词算法计算后，字符串BABAABAAA将被编码成6个代码&lt;66&gt;&lt;65&gt;&lt;256&gt;&lt;257&gt;&lt;65&gt;&lt;260&gt;。</p>
+<p>现在，基本的压缩编码便完成了。</p>
+<p>参考：</p>
+<p><a href="http://www.limou.net/?p=730">http://www.limou.net/?p=730</a></p>
+<p><a href="http://apps.hi.baidu.com/share/detail/20146343">http://apps.hi.baidu.com/share/detail/20146343</a></p>
+]]></content>
+      <categories>
+        <category>Alogrithm</category>
+      </categories>
+      <tags>
+        <tag>lzw</tag>
+        <tag>压缩</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu常见问题解决</title>
     <url>/Linux/03/03/the-ubuntu-common-problem-solving.html</url>
     <content><![CDATA[<p>自己使用ubuntu过程中总结的一些小问题及解决办法。</p>
@@ -306,51 +351,6 @@ exit
         <tag>ubuntu</tag>
         <tag>乱码</tag>
         <tag>虚拟光驱</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LZW算法简解</title>
-    <url>/Alogrithm/03/04/4558302-algorithm-the-simple-solutions.html</url>
-    <content><![CDATA[<p>LZW(Lempel-Ziv &amp; Welch)编码又称字串表编码，是Welch将Lemple和Ziv所提出来的无损压缩技术改进后的压缩方法。GIF图像文件采用的是一种改良的LZW压缩算法，通常称为GIF-LZW压缩算法。</p>
-<span id="more"></span>****
-
-<p><strong>LZW编码基本原理：</strong></p>
-<p>把每一个第一次出现的字符串用一个数值来编码，解码时再将数值编码还原成原来字符：如果用0X100代替字符串中的“ABCDDEEF”，那么每当这样的字符串出现时都会用0X100来表示，以达到压缩的目的。注意的是这个字符串和数值之间的关系是动态生成的。</p>
-<p><strong>LZW算法基本步骤：</strong></p>
-<p>主要包括两个部分：串表与码字值</p>
-<p>1、将待编码字符串中的所有单个字符存入字符串表（串表）中，并给每个符号赋一个码字值。</p>
-<p>2、读入第一个输入字符，将其赋值给P（P为前缀串）。</p>
-<p>3、读入下一个字符，将其赋值给S（前缀串P的扩展字符）。</p>
-<p>如果PS构成的字符串不在串表中，则将字符串PS的前缀串P对应的码字值输出；将字符串PS存入串表；给PS分配一个码字值；将PS的扩展字符S赋值给P，用P与下一个输入字符形成新的字符串。</p>
-<p><strong>OR</strong></p>
-<p>如果PS已经在串表中，则将PS赋值给P，用P与下一个输入字符形成新的字符串。</p>
-<p><strong>举个例子：</strong></p>
-<p>下面对字符串BABAABAAA进行编码。</p>
-<p>根据以上的算法，令P&#x3D;B，然后读入字符串序列中的下一个字符A，令S&#x3D;A。</p>
-<p>由于串表中并没有PS构成的字符串BA，于是将BA加入串表。</p>
-<p>由于0~255已在串表中赋给了单个的字符，这里只能给BA赋予256的码值。</p>
-<p>同时将BA的前缀B的码值（B的码值为66）输出。</p>
-<p>将BA的扩展字符赋值给P，即令P&#x3D;A，接着进行下一个循环。</p>
-<p>输出下一个（第三个）字符B,令S&#x3D;B，由PS构成新的字符串AB。</p>
-<p>由于串表中没有字符串AB，于是将AB赋码值257，并将AB存入串表中。</p>
-<p>同时输出字符串AB的前缀A对应的码值65，将AB的扩展字符B赋值给P,即P&#x3D;B。</p>
-<p>接着进行下一次循环，输入下一个（第四个）字符A，令S&#x3D;A。</p>
-<p>此时，由于PS构成的字符串BA已在串表中，所以将BA作为下一个新字符串的前缀，即P&#x3D;BA。</p>
-<p>接着重新开始下一次循环，输入下一个字符（第五个）A,令S&#x3D;A。</p>
-<p>形成新的字符串PS,即BAA，由于串表中没有BAA，于是将BAA的前缀BA对应的码值256输出，给字符串BAA赋予码值258，并将BAA存入串表中。</p>
-<p>将BAA的扩展字符A赋值给P,令P&#x3D;A，接着输入下一个字符，如此下去，直到字符串结束为止。</p>
-<p>经过词算法计算后，字符串BABAABAAA将被编码成6个代码&lt;66&gt;&lt;65&gt;&lt;256&gt;&lt;257&gt;&lt;65&gt;&lt;260&gt;。</p>
-<p>现在，基本的压缩编码便完成了。</p>
-<p>参考：</p>
-<p><a href="http://www.limou.net/?p=730">http://www.limou.net/?p=730</a></p>
-<p><a href="http://apps.hi.baidu.com/share/detail/20146343">http://apps.hi.baidu.com/share/detail/20146343</a></p>
-]]></content>
-      <categories>
-        <category>Alogrithm</category>
-      </categories>
-      <tags>
-        <tag>lzw</tag>
-        <tag>压缩</tag>
       </tags>
   </entry>
   <entry>
@@ -617,6 +617,31 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
       </tags>
   </entry>
   <entry>
+    <title>清明上河园游记</title>
+    <url>/Walk/03/04/the-qingming-park-travel.html</url>
+    <content><![CDATA[<p>说实在的，这篇写的太晚了。没办法，突然想起来的，今年也好久没出去玩了，也只能想过去出去玩的份，闲话少说，上几张图吧。<span id="more"></span></p>
+<p>下面是wiki关于清明上河园的介绍。</p>
+<p><strong>清明上河园</strong>是一处位于<a href="http://zh.wikipedia.org/wiki/%E6%B2%B3%E5%8D%97%E7%9C%81">河南省</a><a href="http://zh.wikipedia.org/wiki/%E5%BC%80%E5%B0%81%E5%B8%82">开封市</a><a href="http://zh.wikipedia.org/w/index.php?title=%E9%BE%99%E4%BA%AD%E6%B9%96&action=edit&redlink=1">龙亭湖</a>西岸的<a href="http://zh.wikipedia.org/wiki/%E5%AE%8B%E4%BB%A3">宋代文化</a><a href="http://zh.wikipedia.org/wiki/%E4%B8%BB%E9%A2%98%E5%85%AC%E5%9B%AD">主题公园</a>，同时也是<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B65A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA">中国国家5A级旅游景区</a>和中国非物质文化遗产展演基地。它是以画家<a href="http://zh.wikipedia.org/wiki/%E5%BC%A0%E6%8B%A9%E7%AB%AF">张择端</a>的写实画作《<a href="http://zh.wikipedia.org/wiki/%E6%B8%85%E6%98%8E%E4%B8%8A%E6%B2%B3%E5%9B%BE">清明上河图</a>》为蓝本，按照《<a href="http://zh.wikipedia.org/wiki/%E8%90%A5%E9%80%A0%E6%B3%95%E5%BC%8F">营造法式</a>》为建设标准，以宋朝市井文化、民俗风情、皇家园林和古代娱乐为题材，以游客参与体验为特点的文化主题公园。<a href="http://zh.wikipedia.org/wiki/2009%E5%B9%B4">2009年</a>，清明上河园成为中国世界纪录协会中国第一座以绘画作品为原型的仿古主题公园。</p>
+<h2 id="景区"><a href="#景区" class="headerlink" title="景区"></a>景区</h2><p>清明上河园占地600余亩，其中水域面积约120亩，建筑面积1万平方米。双亭桥将景区分为南苑和北苑。整个景区仿照《清明上河图》，设有驿站、民俗风情、特色食街、宋文化展示、花鸟鱼虫、繁华京城、休闲购物和综合服务等八个功能区，并设有校场、虹桥、民俗、宋都等四个文化区。<a href="http://zh.wikipedia.org/wiki/%E6%B8%85%E6%98%8E%E4%B8%8A%E6%B2%B3%E5%9B%AD#cite_note-4">[5]</a></p>
+<h3 id="南苑景区"><a href="#南苑景区" class="headerlink" title="南苑景区"></a>南苑景区</h3><p><a href="http://zh.wikipedia.org/wiki/File:Kaifeng1.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Kaifeng1.jpg/200px-Kaifeng1.jpg"></a></p>
+<p>夜景</p>
+<p>南苑景区主要表现北宋的<a href="http://zh.wikipedia.org/wiki/%E6%B0%91%E4%BF%97">民俗</a>风情和市井文化。南苑的设计源于宋代《清明上河图》，不同之处在于把园林设计成“如意结”。<a href="http://zh.wikipedia.org/wiki/%E6%B1%B4%E6%B2%B3">汴河</a>蜿蜒如带，形似一个硕大的如意结，串连起公园内的各个景点，使各个景区既相互独立，又血脉相连。而中国十大名桥之一的虹桥是如意结的中点，亦是清明上河园的核心部位。虹桥高5米，宽10米，跨径25米，这样的设计规模在宋代比较少见。</p>
+<p>虹桥以东是迎宾主题区，有张择端雕像矗立。虹桥以东是住宿休息区，有醉杏楼、文绣院、仿古驿站等建筑。虹桥以西是民风民俗区，有工艺和小吃一条街。虹桥以北是游艺活动区，在此可以观赏宋朝精彩表演及各种绝活。</p>
+<h3 id="北苑景区"><a href="#北苑景区" class="headerlink" title="北苑景区"></a>北苑景区</h3><p>北苑呈现的则是<a href="http://zh.wikipedia.org/wiki/%E7%9A%87%E5%AE%B6%E5%9C%92%E6%9E%97">皇家园林</a>和古代娱乐主题。按照<a href="http://zh.wikipedia.org/wiki/%E6%B8%85%E4%BB%A3">清代</a>清院版的《清明上河图》进行构造，其主要景观全部围绕着景龙湖为中心。景区包括临水大殿、茗春坊、九龙桥、拂云阁等景点，其中临水大殿由宣和殿、宣德殿两殿连接而成；水心榭四面临水，一桥相连；丹东宫由造纸馆，织锦院，司南坊，大宋官窑，火药馆等组成。</p>
+<h2 id="大宋-东京梦华"><a href="#大宋-东京梦华" class="headerlink" title="大宋.东京梦华"></a>大宋.东京梦华</h2><p>【我去那天告知：这个只有夜晚演出】</p>
+<p>《大宋·东京梦华》是在清明上河园皇家园林区的景龙湖上举行的大型水上实景演出项目。该项目由<a href="http://zh.wikipedia.org/w/index.php?title=%E6%A2%85%E5%B8%85%E5%85%83&action=edit&redlink=1">梅帅元</a>担任导演，全剧共70分钟，有700多名演员参与演出。演出把张择端的《清明上河图》长卷和<a href="http://zh.wikipedia.org/wiki/%E5%AD%9F%E5%85%83%E8%80%81">孟元老</a>的《<a href="http://zh.wikipedia.org/wiki/%E4%B8%9C%E4%BA%AC%E6%A2%A6%E5%8D%8E%E5%BD%95">东京梦华录</a>》中的相关记载作为切入点，以八阕经典<a href="http://zh.wikipedia.org/wiki/%E5%AE%8B%E8%AF%8D">宋词</a>蕴含的意境为主线，以亭台楼榭、水系桥廊为背景，生动再现了宋代都城的繁华盛景和宋朝的辉煌。版本可分为<a href="http://zh.wikipedia.org/wiki/%E6%97%A5%E9%97%B4">日间</a>现实版和<a href="http://zh.wikipedia.org/wiki/%E5%A4%9C%E9%96%93">夜间</a>梦幻版。，夜间版演出通过运用亮彩技术，映射出流光溢彩的“柳树”和随波荡漾的“水中明月”，运用机械技术设计的可自由拼合的水上栈桥，可“绽放”的菊花舞台等，制造出梦幻般的场景效果</p>
+<p>##一些照片</p>
+<p><img src="http://nankor.org/uploads/2012/03/IMG_0170.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0176.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0186.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0191.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0199.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0204.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170017.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170036.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170048.jpg"></p>
+]]></content>
+      <categories>
+        <category>Walk</category>
+      </categories>
+      <tags>
+        <tag>宋朝</tag>
+        <tag>清明上河园</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一些鲜为人知的编程真相</title>
     <url>/Think/03/09/some-little-known-programming-truth.html</url>
     <content><![CDATA[<p><img src="http://www.apkbus.com/data/attachment/forum/201203/08/161454pecpp89e8rq99ll6.jpg"></p>
@@ -647,31 +672,6 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
       <tags>
         <tag>编程效率</tag>
         <tag>软件设计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>清明上河园游记</title>
-    <url>/Walk/03/04/the-qingming-park-travel.html</url>
-    <content><![CDATA[<p>说实在的，这篇写的太晚了。没办法，突然想起来的，今年也好久没出去玩了，也只能想过去出去玩的份，闲话少说，上几张图吧。<span id="more"></span></p>
-<p>下面是wiki关于清明上河园的介绍。</p>
-<p><strong>清明上河园</strong>是一处位于<a href="http://zh.wikipedia.org/wiki/%E6%B2%B3%E5%8D%97%E7%9C%81">河南省</a><a href="http://zh.wikipedia.org/wiki/%E5%BC%80%E5%B0%81%E5%B8%82">开封市</a><a href="http://zh.wikipedia.org/w/index.php?title=%E9%BE%99%E4%BA%AD%E6%B9%96&action=edit&redlink=1">龙亭湖</a>西岸的<a href="http://zh.wikipedia.org/wiki/%E5%AE%8B%E4%BB%A3">宋代文化</a><a href="http://zh.wikipedia.org/wiki/%E4%B8%BB%E9%A2%98%E5%85%AC%E5%9B%AD">主题公园</a>，同时也是<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B65A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA">中国国家5A级旅游景区</a>和中国非物质文化遗产展演基地。它是以画家<a href="http://zh.wikipedia.org/wiki/%E5%BC%A0%E6%8B%A9%E7%AB%AF">张择端</a>的写实画作《<a href="http://zh.wikipedia.org/wiki/%E6%B8%85%E6%98%8E%E4%B8%8A%E6%B2%B3%E5%9B%BE">清明上河图</a>》为蓝本，按照《<a href="http://zh.wikipedia.org/wiki/%E8%90%A5%E9%80%A0%E6%B3%95%E5%BC%8F">营造法式</a>》为建设标准，以宋朝市井文化、民俗风情、皇家园林和古代娱乐为题材，以游客参与体验为特点的文化主题公园。<a href="http://zh.wikipedia.org/wiki/2009%E5%B9%B4">2009年</a>，清明上河园成为中国世界纪录协会中国第一座以绘画作品为原型的仿古主题公园。</p>
-<h2 id="景区"><a href="#景区" class="headerlink" title="景区"></a>景区</h2><p>清明上河园占地600余亩，其中水域面积约120亩，建筑面积1万平方米。双亭桥将景区分为南苑和北苑。整个景区仿照《清明上河图》，设有驿站、民俗风情、特色食街、宋文化展示、花鸟鱼虫、繁华京城、休闲购物和综合服务等八个功能区，并设有校场、虹桥、民俗、宋都等四个文化区。<a href="http://zh.wikipedia.org/wiki/%E6%B8%85%E6%98%8E%E4%B8%8A%E6%B2%B3%E5%9B%AD#cite_note-4">[5]</a></p>
-<h3 id="南苑景区"><a href="#南苑景区" class="headerlink" title="南苑景区"></a>南苑景区</h3><p><a href="http://zh.wikipedia.org/wiki/File:Kaifeng1.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Kaifeng1.jpg/200px-Kaifeng1.jpg"></a></p>
-<p>夜景</p>
-<p>南苑景区主要表现北宋的<a href="http://zh.wikipedia.org/wiki/%E6%B0%91%E4%BF%97">民俗</a>风情和市井文化。南苑的设计源于宋代《清明上河图》，不同之处在于把园林设计成“如意结”。<a href="http://zh.wikipedia.org/wiki/%E6%B1%B4%E6%B2%B3">汴河</a>蜿蜒如带，形似一个硕大的如意结，串连起公园内的各个景点，使各个景区既相互独立，又血脉相连。而中国十大名桥之一的虹桥是如意结的中点，亦是清明上河园的核心部位。虹桥高5米，宽10米，跨径25米，这样的设计规模在宋代比较少见。</p>
-<p>虹桥以东是迎宾主题区，有张择端雕像矗立。虹桥以东是住宿休息区，有醉杏楼、文绣院、仿古驿站等建筑。虹桥以西是民风民俗区，有工艺和小吃一条街。虹桥以北是游艺活动区，在此可以观赏宋朝精彩表演及各种绝活。</p>
-<h3 id="北苑景区"><a href="#北苑景区" class="headerlink" title="北苑景区"></a>北苑景区</h3><p>北苑呈现的则是<a href="http://zh.wikipedia.org/wiki/%E7%9A%87%E5%AE%B6%E5%9C%92%E6%9E%97">皇家园林</a>和古代娱乐主题。按照<a href="http://zh.wikipedia.org/wiki/%E6%B8%85%E4%BB%A3">清代</a>清院版的《清明上河图》进行构造，其主要景观全部围绕着景龙湖为中心。景区包括临水大殿、茗春坊、九龙桥、拂云阁等景点，其中临水大殿由宣和殿、宣德殿两殿连接而成；水心榭四面临水，一桥相连；丹东宫由造纸馆，织锦院，司南坊，大宋官窑，火药馆等组成。</p>
-<h2 id="大宋-东京梦华"><a href="#大宋-东京梦华" class="headerlink" title="大宋.东京梦华"></a>大宋.东京梦华</h2><p>【我去那天告知：这个只有夜晚演出】</p>
-<p>《大宋·东京梦华》是在清明上河园皇家园林区的景龙湖上举行的大型水上实景演出项目。该项目由<a href="http://zh.wikipedia.org/w/index.php?title=%E6%A2%85%E5%B8%85%E5%85%83&action=edit&redlink=1">梅帅元</a>担任导演，全剧共70分钟，有700多名演员参与演出。演出把张择端的《清明上河图》长卷和<a href="http://zh.wikipedia.org/wiki/%E5%AD%9F%E5%85%83%E8%80%81">孟元老</a>的《<a href="http://zh.wikipedia.org/wiki/%E4%B8%9C%E4%BA%AC%E6%A2%A6%E5%8D%8E%E5%BD%95">东京梦华录</a>》中的相关记载作为切入点，以八阕经典<a href="http://zh.wikipedia.org/wiki/%E5%AE%8B%E8%AF%8D">宋词</a>蕴含的意境为主线，以亭台楼榭、水系桥廊为背景，生动再现了宋代都城的繁华盛景和宋朝的辉煌。版本可分为<a href="http://zh.wikipedia.org/wiki/%E6%97%A5%E9%97%B4">日间</a>现实版和<a href="http://zh.wikipedia.org/wiki/%E5%A4%9C%E9%96%93">夜间</a>梦幻版。，夜间版演出通过运用亮彩技术，映射出流光溢彩的“柳树”和随波荡漾的“水中明月”，运用机械技术设计的可自由拼合的水上栈桥，可“绽放”的菊花舞台等，制造出梦幻般的场景效果</p>
-<p>##一些照片</p>
-<p><img src="http://nankor.org/uploads/2012/03/IMG_0170.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0176.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0186.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0191.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0199.jpg"><br><img src="http://nankor.org/uploads/2012/03/IMG_0204.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170017.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170036.jpg"><br><img src="http://nankor.org/uploads/2012/03/P7170048.jpg"></p>
-]]></content>
-      <categories>
-        <category>Walk</category>
-      </categories>
-      <tags>
-        <tag>宋朝</tag>
-        <tag>清明上河园</tag>
       </tags>
   </entry>
   <entry>
@@ -762,6 +762,274 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
       <tags>
         <tag>Invictus</tag>
         <tag>曼德拉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>灵活使用yaourt</title>
+    <url>/Linux/03/17/flexible-use-yaourt.html</url>
+    <content><![CDATA[<p>AUR极大的丰富了archlinux的软件仓库，所使用的工具yaourt有好处也有弊端。当AUR从第三方下载源码或者deb包较慢甚至出错时，怎么安装想要的软件呢？</p>
+<p>1）如果AUR从第三方源码处下载源码，yaourt自带工具下载太慢导致失败，怎么解决？</p>
+<p>2）如果AUR中就那么心酸的碰到一个写错的PKGBUILD，检查不能通过，无法安装软件。<span id="more"></span></p>
+<h4 id="一、下载包失败"><a href="#一、下载包失败" class="headerlink" title="一、下载包失败"></a>一、下载包失败</h4><p>我在安装jdk时，就碰到第一种情况，yaourt -S  jdk多次失败，迫于国内访问orcale的速度太慢JDK下载不成功，yaourt终止。</p>
+<p><strong>解决办法</strong>：</p>
+<p>1        —————–</p>
+<p>因为yaourt安装软件包时，其cache是&#x2F;tmp&#x2F;aur-yaourt-root&#x2F;，对于yaourt下载不成功的包，我借助其他下载软件，比如uget deluga 甚至firefox的插件DownthemAll!去下载相应的源码包或者deb包，但是前提是需要知道包下载的url。</p>
+<p>有两种方法都可以获取：</p>
+<p>（1）在yaourt -S package至Edit the PKGBUILD时，同意编辑，分析包的下载url，然后CTRL+c终止yaourt，去下载包。</p>
+<p>（2）让yaourt -S package运行至下载包阶段，从当前yaourt进程去分析当前下载的子进程。</p>
+<pre><code>pstree -p $(pgrep yaourt)
+</code></pre>
+<p>这时会看到yaourt所产生的下载子进程，没有设置过yaourt时默认是用curl下载的，curl 参数网址便是包的下载地址了~其他的axel wget与之类似，不用等包下载完成（下载不成功么），终止原yaourt。</p>
+<p>然后直接使用其他类的下载工具去下载该包。</p>
+<p>2        —————–</p>
+<p>下载完包后，执行</p>
+<pre><code>yaourt -S package-name
+</code></pre>
+<p>在不同意编辑PKGBUILD之后，有个选项是否同意安装或者build，先不管yaourt，将下载的包复制至&#x2F;tmp&#x2F;aur-yaourt-root相应的软件文件夹下，然后同意安装或者build。</p>
+<p>这是你就会发现yaourt检测到包，不再重新下载了，自动继续后面的过程。</p>
+<h4 id="二、PKGBUILD错误，即AUR中有打包错误"><a href="#二、PKGBUILD错误，即AUR中有打包错误" class="headerlink" title="二、PKGBUILD错误，即AUR中有打包错误"></a>二、PKGBUILD错误，即AUR中有打包错误</h4><p>这种情况，我就那么心酸了一次…那是安装mysql-workbench-gpl：mysql 的GUI。</p>
+<p>开始使用sudo yaourt -S mysql-workbench-gpl，当把deb下载完毕后准备build，结果出现下载的deb包md5</p>
+<p>值与PKGBUILD中验证该包的md5值不一致，编译时中断退出，修改PKGBUILD中的md5值依然出现问题。</p>
+<p>解决办法：手工打pkg.tar.xz包，本地编译安装</p>
+<p>1 ———————</p>
+<p>在<a href="https://aur.archlinux.org/">https://aur.archlinux.org/</a>中搜索需要的软件包，比如mysql-workbench，我希望从源码编译，所以选择源码那个，点击进入下级页面，下载tarball。</p>
+<p>2 ——————–</p>
+<p>看下tarball下载后是何物？其实是mysql-workbench安装所需的脚本与编译配置包</p>
+<pre><code>tar zxvf mysql-workbench.tar.gz
+mysql-workbench/
+mysql-workbench/python27.patch
+mysql-workbench/ArchLinux.xml
+mysql-workbench/PKGBUILD
+mysql-workbench/gcc46.patch
+mysql-workbench/arch.patch
+cd mysql-workbench
+</code></pre>
+<p>3 ——————–</p>
+<p>进入mysql-workbench目录后，使用makepkg下载包并build,中间如果出现第一种情况，直接下载后放置当前目录即可（不是&#x2F;tmp），最后会像这样：</p>
+<pre><code>ls -l
+总用量 32452
+-rw-r--r-- 1 turing users      778  1月  3 01:36 ArchLinux.xml
+-rw-r--r-- 1 turing users     1073  1月  3 01:36 arch.patch
+-rw-r--r-- 1 turing users      721  1月  3 01:36 gcc46.patch
+-rw-r--r-- 1 turing users 14558172  3月 17 04:26 mysql-workbench-1:5.2.38-1-i686.pkg.tar.xz
+-rw-r----- 1 turing users 18640435  3月 17 03:10 mysql-workbench-gpl-5.2.38-src.tar.gz
+drwxr-xr-x 3 turing users     4096  3月 17 04:25 pkg
+-rw-r--r-- 1 turing users     2475  2月 27 22:08 PKGBUILD
+-rw-r--r-- 1 turing users      965  1月  3 01:36 python27.patch
+drwxr-xr-x 3 turing users     4096  3月 17 03:11 src
+</code></pre>
+<p>4 ——————–</p>
+<p>长久的编译后生成的mysql-workbench-1:5.2.38-1-i686.pkg.tar.xz就可以安装了：</p>
+<pre><code>pacman -U mysql-workbench-1:5.2.38-1-i686.pkg.tar.xz
+</code></pre>
+<p>OK了！</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>aur</tag>
+        <tag>yaourt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>yaourt packer pacman加速配置</title>
+    <url>/Linux/03/17/yaourt-the-the-the-packer-the-the-the-pacman-to-accelerate-configuration.html</url>
+    <content><![CDATA[<p>使用archlinux打开AUR之后yaourt一直是使用默认的下载工具，实在忍受不了龟速，重新配置下yaourt吧。</p>
+<span id="more"></span>
+
+
+<h4 id="一、yaourt加速"><a href="#一、yaourt加速" class="headerlink" title="一、yaourt加速"></a>一、yaourt加速</h4><p>yaourt安装后其配置文件是&#x2F;etc&#x2F;makepkg.conf</p>
+<p>先看下我这个文件中的内容</p>
+<pre><code> cat  /etc/makepkg.conf |head -n 25
+#
+# /etc/makepkg.conf
+#
+
+#########################################################################
+# SOURCE ACQUISITION
+#########################################################################
+#
+#-- The download utilities that makepkg should use to acquire sources
+#  Format: &#39;protocol::agent&#39;
+DLAGENTS=(&#39;ftp::/usr/bin/axel  -n 10 -a  -o %o %u&#39;
+          &#39;http::/usr/bin/axel -n 10 -a -o %o %u&#39;
+          &#39;https::/usr/bin/axel -n 10 -a -o %o %u&#39;
+          &#39;rsync::/usr/bin/rsync -n 10 -z %u %o&#39;
+          &#39;scp::/usr/bin/scp -C %u %o&#39;)
+
+#DLAGENTS=(&#39;ftp::/usr/bin/curl -fC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;http::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;https::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;rsync::/usr/bin/rsync -z %u %o&#39;
+#          &#39;scp::/usr/bin/scp -C %u %o&#39;)
+
+# Other common tools:
+# /usr/bin/snarf
+</code></pre>
+<p>将curl更改为axel：</p>
+<pre><code> axel -n 10 -a -o %o %u
+</code></pre>
+<p>其中 -n 表示同时下载链接数</p>
+<p>-a  表示以百分比打印进度条信息</p>
+<p>-o 是输出路径</p>
+<p>%u 为下载url</p>
+<p>原来curl:</p>
+<pre><code>curl -fLC - --retry 3 --retry-delay 3 -o %o %u
+</code></pre>
+<p>是单线程下载，尝试3次失败后，更换源。</p>
+<h4 id="二、packer-pacman加速"><a href="#二、packer-pacman加速" class="headerlink" title="二、packer pacman加速"></a>二、packer pacman加速</h4><p>packer默认还是采用pacman下载，改变pacman默认下载方式就可以改变两个。</p>
+<p>pacman的配置文件是：&#x2F;etc&#x2F;pacman.conf，下面是我当前的pacman配置：</p>
+<pre><code>cat /etc/pacman.conf |grep -v &quot;^#&quot;|grep -v &quot;^$&quot;
+[options]
+HoldPkg     = pacman glibc
+SyncFirst   = pacman
+XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
+Architecture = auto
+CheckSpace
+SigLevel = Never
+[core]
+Include = /etc/pacman.d/mirrorlist
+[extra]
+Include = /etc/pacman.d/mirrorlist
+[community]
+Include = /etc/pacman.d/mirrorlist
+[archlinuxfr]
+Server = http://repo.archlinux.fr/i686
+</code></pre>
+<p>可知我当前使用的是wget下载。查看pacmon.conf的完整版</p>
+<pre><code>grep XferCommand /etc/pacman.conf 
+#XferCommand = /usr/bin/curl -C - -f %u &gt; %o
+XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
+#XferCommand = /usr/bin/axel -a -n 10  -o %o %u
+</code></pre>
+<p>注释掉其他几个即可。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>yaourt</tag>
+        <tag>axel</tag>
+        <tag>packer</tag>
+        <tag>pacman</tag>
+        <tag>wget</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Sqlite问题小结</title>
+    <url>/Program/03/21/sqlite-problem-summary.html</url>
+    <content><![CDATA[<p>最近为了学习用了一下sqlite，开始就碰上了最棘手的问题，乱码、版本不兼容等。查了些资料，自己终于想办法解决了。<span id="more"></span></p>
+<p>之前没有接触过sqlite，只是知道在嵌入式方面用的颇广，这次也算学习一下。</p>
+<h4 id="一、-版本兼容问题"><a href="#一、-版本兼容问题" class="headerlink" title="一、 版本兼容问题"></a>一、 版本兼容问题</h4><p>首先是版本兼容的问题，刚拿到的是个sqlite2数据库，而我的arch上都是sqlite3的各种包，sqlite3 pinyin.db自然失败。好吧，把sqlite2的各种包装上。</p>
+<pre><code>sudo yaourt -Ss sqlite|grep installed
+core/sqlite3 3.7.10-1 [installed]
+core/sqlite3-doc 3.7.10-1 [installed]
+community/gambas2-gb-db-sqlite2 2.23.1-8 (gambas2) [installed]
+community/gambas3-gb-db-sqlite2 3.0.0-5 (gambas3) [installed]
+community/libgda3 3.1.5-11 [installed]
+community/sqlite2 2.8.17-5 [installed]
+community/sqlitebrowser 2.0b1-2 [installed]
+community/sqliteman 1.2.2-5 [installed]
+community/sqlitemanager 1.2.4-2 [installed]
+</code></pre>
+<p>好了 尝试打开数据库：</p>
+<pre><code>sqlite pinyin.db
+SQLite version 2.8.17
+Enter &quot;.help&quot; for instructions
+sqlite&gt; .tables
+acs_active        firereport        lapes_list        netconfig
+acs_key_active    firereport_his    list_dev          pinyin
+acssub            floor             logic_detail      sys
+carddev           gz_type           logic_fixtimerun  timelist
+cardmain          gz_view           logic_list        userinfo
+devname           id100             logic_main        usertip
+devtype           language          logic_out
+sqlite&gt;
+</code></pre>
+<p>OK，顺利打开。</p>
+<p>不过我想采用GUI的方式查看数据库，我已经安装了sqliteman与sqlitebroswer，但是他们全是支持sqlite3的，好吧，需要把sqlite2的数据库转化为sqlite3的。</p>
+<p>sqlite有个.dump命令，十分好用，先看下帮助：</p>
+<pre><code>sqlite
+SQLite version 2.8.17
+Enter &quot;.help&quot; for instructions
+sqlite&gt; .help
+.databases             List names and files of attached databases
+.dump ?TABLE? ...      Dump the database in a text format
+.echo ON|OFF           Turn command echo on or off
+.exit                  Exit this program
+.explain ON|OFF        Turn output mode suitable for EXPLAIN on or off.
+.header(s) ON|OFF      Turn display of headers on or off
+.help                  Show this message
+.indices TABLE         Show names of all indices on TABLE
+.mode MODE             Set mode to one of &quot;line(s)&quot;, &quot;column(s)&quot;,
+                       &quot;insert&quot;, &quot;list&quot;, or &quot;html&quot;
+.mode insert TABLE     Generate SQL insert statements for TABLE
+.nullvalue STRING      Print STRING instead of nothing for NULL data
+.output FILENAME       Send output to FILENAME
+.output stdout         Send output to the screen
+.prompt MAIN CONTINUE  Replace the standard prompts
+.quit                  Exit this program
+.read FILENAME         Execute SQL in FILENAME
+.schema ?TABLE?        Show the CREATE statements
+.separator STRING      Change separator string for &quot;list&quot; mode
+.show                  Show the current values for various settings
+.tables ?PATTERN?      List names of tables matching a pattern
+.timeout MS            Try opening locked tables for MS milliseconds
+.width NUM NUM ...     Set column widths for &quot;column&quot; mode
+sqlite&gt;
+</code></pre>
+<p><strong>.dump 将数据库转换为文本格式保存，我理解是保存为sql，稍后会发现这个.dump确实太有用了。</strong></p>
+<p>使用下面的命令实现sqlite2与sqlite3间的装换：</p>
+<pre><code>sqlite pinyin.db .dump|sqlite3 pinyin.db3;file pinyin*
+pinyin.db:  SQLite 2.x database
+pinyin.db3: SQLite 3.x database
+</code></pre>
+<p>接下来使用sqliteman或者sqlitebroswer就能顺利打开pinyin.db3了。</p>
+<h4 id="二、UTF-8与GBK间的乱码问题"><a href="#二、UTF-8与GBK间的乱码问题" class="headerlink" title="二、UTF-8与GBK间的乱码问题"></a>二、UTF-8与GBK间的乱码问题</h4><p>——————————————————————————————————————————————————</p>
+<p>首先需要明确的是sqlite默认采用UTF-8编码；</p>
+<p>Sqlite管理器类的工具不论平台当然使用的文本编码也是UTF8；</p>
+<p>Windows中AAuto默认编码是ANSI(不是UTF8,而是GBK)；</p>
+<p>windows下AAuto标准库里的sqlite库中的sqlite类对象会自动转换编码(UTF8-&gt;ANSI或ANSI-&gt;UTF8),使用UTF8编码写入sqlite数据库,再将读取的UTF8转换为ANSI编码.而直接用sqlite库的原始API,不会自动进行编码转换,需要自已调用string.fromto()函数转换.</p>
+<p>在archlinux下xterm默认用的是UTF-8编码.</p>
+<p>——————————————————————————————————————————————————</p>
+<p>我数据库是从Windows平台下拷过来的，果不其然中间出现了乱码问题，必然需要转码了。</p>
+<p>先看下原来的编码，pinyin.db是sqlie2数据库，pinyin.db3刚转化而来的sqlite3数据库</p>
+<pre><code>enca pinyin*
+pinyin.db: Simplified Chinese National Standard; GB2312
+  Surrounded by/intermixed with non-text data
+pinyin.db3: Unrecognized encoding
+</code></pre>
+<p>一个个text让应用去转码不可能，直接在数据库中转不具备可操作性，最后我想到了dump：</p>
+<pre><code>sqlite3 pinyin.db3 .dump&gt;&gt;conv.txt;enca conv.txt
+Simplified Chinese National Standard; GB2312
+</code></pre>
+<p>将数据库以文本格式保存，对文本进行转码，这个就多了，用iconv、enconv专门转码的也可以，用vim、gedit也行；我最终选择了vim，因为转起来方便。</p>
+<p>vim conv.txt后，:set fileencoding&#x3D;utf8，最后:wq保存退出就可以了。看下结果</p>
+<pre><code>vim conv.txt
+
+
+
+
+enca conv.txt
+Universal transformation format 8 bits; UTF-8
+  Surrounded by/intermixed with non-text data
+</code></pre>
+<p>好了，sql文本已经转换为UTF-8编码，这时候问题已经基本解决了。</p>
+<p>最后重新生成sqlite3数据库即可：</p>
+<pre><code>cat conv.txt|sqlite3 utf8pinyin.db3
+</code></pre>
+<p>好了，现在可以轻松使用sqliteman或者sqlitebroswer打开utf8pinyin.db3，没有乱码了。</p>
+<p><a href="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"><img src="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"></a></p>
+<p><strong>最后，我想团队开发一定要注意工作平台，另外尽量采用广泛支持的国际unicode编码。</strong></p>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>乱码</tag>
+        <tag>sqlite</tag>
+        <tag>utf8</tag>
       </tags>
   </entry>
   <entry>
@@ -974,158 +1242,6 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
       </tags>
   </entry>
   <entry>
-    <title>灵活使用yaourt</title>
-    <url>/Linux/03/17/flexible-use-yaourt.html</url>
-    <content><![CDATA[<p>AUR极大的丰富了archlinux的软件仓库，所使用的工具yaourt有好处也有弊端。当AUR从第三方下载源码或者deb包较慢甚至出错时，怎么安装想要的软件呢？</p>
-<p>1）如果AUR从第三方源码处下载源码，yaourt自带工具下载太慢导致失败，怎么解决？</p>
-<p>2）如果AUR中就那么心酸的碰到一个写错的PKGBUILD，检查不能通过，无法安装软件。<span id="more"></span></p>
-<h4 id="一、下载包失败"><a href="#一、下载包失败" class="headerlink" title="一、下载包失败"></a>一、下载包失败</h4><p>我在安装jdk时，就碰到第一种情况，yaourt -S  jdk多次失败，迫于国内访问orcale的速度太慢JDK下载不成功，yaourt终止。</p>
-<p><strong>解决办法</strong>：</p>
-<p>1        —————–</p>
-<p>因为yaourt安装软件包时，其cache是&#x2F;tmp&#x2F;aur-yaourt-root&#x2F;，对于yaourt下载不成功的包，我借助其他下载软件，比如uget deluga 甚至firefox的插件DownthemAll!去下载相应的源码包或者deb包，但是前提是需要知道包下载的url。</p>
-<p>有两种方法都可以获取：</p>
-<p>（1）在yaourt -S package至Edit the PKGBUILD时，同意编辑，分析包的下载url，然后CTRL+c终止yaourt，去下载包。</p>
-<p>（2）让yaourt -S package运行至下载包阶段，从当前yaourt进程去分析当前下载的子进程。</p>
-<pre><code>pstree -p $(pgrep yaourt)
-</code></pre>
-<p>这时会看到yaourt所产生的下载子进程，没有设置过yaourt时默认是用curl下载的，curl 参数网址便是包的下载地址了~其他的axel wget与之类似，不用等包下载完成（下载不成功么），终止原yaourt。</p>
-<p>然后直接使用其他类的下载工具去下载该包。</p>
-<p>2        —————–</p>
-<p>下载完包后，执行</p>
-<pre><code>yaourt -S package-name
-</code></pre>
-<p>在不同意编辑PKGBUILD之后，有个选项是否同意安装或者build，先不管yaourt，将下载的包复制至&#x2F;tmp&#x2F;aur-yaourt-root相应的软件文件夹下，然后同意安装或者build。</p>
-<p>这是你就会发现yaourt检测到包，不再重新下载了，自动继续后面的过程。</p>
-<h4 id="二、PKGBUILD错误，即AUR中有打包错误"><a href="#二、PKGBUILD错误，即AUR中有打包错误" class="headerlink" title="二、PKGBUILD错误，即AUR中有打包错误"></a>二、PKGBUILD错误，即AUR中有打包错误</h4><p>这种情况，我就那么心酸了一次…那是安装mysql-workbench-gpl：mysql 的GUI。</p>
-<p>开始使用sudo yaourt -S mysql-workbench-gpl，当把deb下载完毕后准备build，结果出现下载的deb包md5</p>
-<p>值与PKGBUILD中验证该包的md5值不一致，编译时中断退出，修改PKGBUILD中的md5值依然出现问题。</p>
-<p>解决办法：手工打pkg.tar.xz包，本地编译安装</p>
-<p>1 ———————</p>
-<p>在<a href="https://aur.archlinux.org/">https://aur.archlinux.org/</a>中搜索需要的软件包，比如mysql-workbench，我希望从源码编译，所以选择源码那个，点击进入下级页面，下载tarball。</p>
-<p>2 ——————–</p>
-<p>看下tarball下载后是何物？其实是mysql-workbench安装所需的脚本与编译配置包</p>
-<pre><code>tar zxvf mysql-workbench.tar.gz
-mysql-workbench/
-mysql-workbench/python27.patch
-mysql-workbench/ArchLinux.xml
-mysql-workbench/PKGBUILD
-mysql-workbench/gcc46.patch
-mysql-workbench/arch.patch
-cd mysql-workbench
-</code></pre>
-<p>3 ——————–</p>
-<p>进入mysql-workbench目录后，使用makepkg下载包并build,中间如果出现第一种情况，直接下载后放置当前目录即可（不是&#x2F;tmp），最后会像这样：</p>
-<pre><code>ls -l
-总用量 32452
--rw-r--r-- 1 turing users      778  1月  3 01:36 ArchLinux.xml
--rw-r--r-- 1 turing users     1073  1月  3 01:36 arch.patch
--rw-r--r-- 1 turing users      721  1月  3 01:36 gcc46.patch
--rw-r--r-- 1 turing users 14558172  3月 17 04:26 mysql-workbench-1:5.2.38-1-i686.pkg.tar.xz
--rw-r----- 1 turing users 18640435  3月 17 03:10 mysql-workbench-gpl-5.2.38-src.tar.gz
-drwxr-xr-x 3 turing users     4096  3月 17 04:25 pkg
--rw-r--r-- 1 turing users     2475  2月 27 22:08 PKGBUILD
--rw-r--r-- 1 turing users      965  1月  3 01:36 python27.patch
-drwxr-xr-x 3 turing users     4096  3月 17 03:11 src
-</code></pre>
-<p>4 ——————–</p>
-<p>长久的编译后生成的mysql-workbench-1:5.2.38-1-i686.pkg.tar.xz就可以安装了：</p>
-<pre><code>pacman -U mysql-workbench-1:5.2.38-1-i686.pkg.tar.xz
-</code></pre>
-<p>OK了！</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>aur</tag>
-        <tag>yaourt</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>yaourt packer pacman加速配置</title>
-    <url>/Linux/03/17/yaourt-the-the-the-packer-the-the-the-pacman-to-accelerate-configuration.html</url>
-    <content><![CDATA[<p>使用archlinux打开AUR之后yaourt一直是使用默认的下载工具，实在忍受不了龟速，重新配置下yaourt吧。</p>
-<span id="more"></span>
-
-
-<h4 id="一、yaourt加速"><a href="#一、yaourt加速" class="headerlink" title="一、yaourt加速"></a>一、yaourt加速</h4><p>yaourt安装后其配置文件是&#x2F;etc&#x2F;makepkg.conf</p>
-<p>先看下我这个文件中的内容</p>
-<pre><code> cat  /etc/makepkg.conf |head -n 25
-#
-# /etc/makepkg.conf
-#
-
-#########################################################################
-# SOURCE ACQUISITION
-#########################################################################
-#
-#-- The download utilities that makepkg should use to acquire sources
-#  Format: &#39;protocol::agent&#39;
-DLAGENTS=(&#39;ftp::/usr/bin/axel  -n 10 -a  -o %o %u&#39;
-          &#39;http::/usr/bin/axel -n 10 -a -o %o %u&#39;
-          &#39;https::/usr/bin/axel -n 10 -a -o %o %u&#39;
-          &#39;rsync::/usr/bin/rsync -n 10 -z %u %o&#39;
-          &#39;scp::/usr/bin/scp -C %u %o&#39;)
-
-#DLAGENTS=(&#39;ftp::/usr/bin/curl -fC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;http::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;https::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;rsync::/usr/bin/rsync -z %u %o&#39;
-#          &#39;scp::/usr/bin/scp -C %u %o&#39;)
-
-# Other common tools:
-# /usr/bin/snarf
-</code></pre>
-<p>将curl更改为axel：</p>
-<pre><code> axel -n 10 -a -o %o %u
-</code></pre>
-<p>其中 -n 表示同时下载链接数</p>
-<p>-a  表示以百分比打印进度条信息</p>
-<p>-o 是输出路径</p>
-<p>%u 为下载url</p>
-<p>原来curl:</p>
-<pre><code>curl -fLC - --retry 3 --retry-delay 3 -o %o %u
-</code></pre>
-<p>是单线程下载，尝试3次失败后，更换源。</p>
-<h4 id="二、packer-pacman加速"><a href="#二、packer-pacman加速" class="headerlink" title="二、packer pacman加速"></a>二、packer pacman加速</h4><p>packer默认还是采用pacman下载，改变pacman默认下载方式就可以改变两个。</p>
-<p>pacman的配置文件是：&#x2F;etc&#x2F;pacman.conf，下面是我当前的pacman配置：</p>
-<pre><code>cat /etc/pacman.conf |grep -v &quot;^#&quot;|grep -v &quot;^$&quot;
-[options]
-HoldPkg     = pacman glibc
-SyncFirst   = pacman
-XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
-Architecture = auto
-CheckSpace
-SigLevel = Never
-[core]
-Include = /etc/pacman.d/mirrorlist
-[extra]
-Include = /etc/pacman.d/mirrorlist
-[community]
-Include = /etc/pacman.d/mirrorlist
-[archlinuxfr]
-Server = http://repo.archlinux.fr/i686
-</code></pre>
-<p>可知我当前使用的是wget下载。查看pacmon.conf的完整版</p>
-<pre><code>grep XferCommand /etc/pacman.conf 
-#XferCommand = /usr/bin/curl -C - -f %u &gt; %o
-XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
-#XferCommand = /usr/bin/axel -a -n 10  -o %o %u
-</code></pre>
-<p>注释掉其他几个即可。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>yaourt</tag>
-        <tag>axel</tag>
-        <tag>packer</tag>
-        <tag>pacman</tag>
-        <tag>wget</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Look at you girl</title>
     <url>/Think/03/18/look-at-you-girl.html</url>
     <content><![CDATA[<p>Look at you girl，一首不错的歌。<span id="more"></span></p>
@@ -1208,122 +1324,6 @@ XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
       <tags>
         <tag>girl</tag>
         <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Sqlite问题小结</title>
-    <url>/Program/03/21/sqlite-problem-summary.html</url>
-    <content><![CDATA[<p>最近为了学习用了一下sqlite，开始就碰上了最棘手的问题，乱码、版本不兼容等。查了些资料，自己终于想办法解决了。<span id="more"></span></p>
-<p>之前没有接触过sqlite，只是知道在嵌入式方面用的颇广，这次也算学习一下。</p>
-<h4 id="一、-版本兼容问题"><a href="#一、-版本兼容问题" class="headerlink" title="一、 版本兼容问题"></a>一、 版本兼容问题</h4><p>首先是版本兼容的问题，刚拿到的是个sqlite2数据库，而我的arch上都是sqlite3的各种包，sqlite3 pinyin.db自然失败。好吧，把sqlite2的各种包装上。</p>
-<pre><code>sudo yaourt -Ss sqlite|grep installed
-core/sqlite3 3.7.10-1 [installed]
-core/sqlite3-doc 3.7.10-1 [installed]
-community/gambas2-gb-db-sqlite2 2.23.1-8 (gambas2) [installed]
-community/gambas3-gb-db-sqlite2 3.0.0-5 (gambas3) [installed]
-community/libgda3 3.1.5-11 [installed]
-community/sqlite2 2.8.17-5 [installed]
-community/sqlitebrowser 2.0b1-2 [installed]
-community/sqliteman 1.2.2-5 [installed]
-community/sqlitemanager 1.2.4-2 [installed]
-</code></pre>
-<p>好了 尝试打开数据库：</p>
-<pre><code>sqlite pinyin.db
-SQLite version 2.8.17
-Enter &quot;.help&quot; for instructions
-sqlite&gt; .tables
-acs_active        firereport        lapes_list        netconfig
-acs_key_active    firereport_his    list_dev          pinyin
-acssub            floor             logic_detail      sys
-carddev           gz_type           logic_fixtimerun  timelist
-cardmain          gz_view           logic_list        userinfo
-devname           id100             logic_main        usertip
-devtype           language          logic_out
-sqlite&gt;
-</code></pre>
-<p>OK，顺利打开。</p>
-<p>不过我想采用GUI的方式查看数据库，我已经安装了sqliteman与sqlitebroswer，但是他们全是支持sqlite3的，好吧，需要把sqlite2的数据库转化为sqlite3的。</p>
-<p>sqlite有个.dump命令，十分好用，先看下帮助：</p>
-<pre><code>sqlite
-SQLite version 2.8.17
-Enter &quot;.help&quot; for instructions
-sqlite&gt; .help
-.databases             List names and files of attached databases
-.dump ?TABLE? ...      Dump the database in a text format
-.echo ON|OFF           Turn command echo on or off
-.exit                  Exit this program
-.explain ON|OFF        Turn output mode suitable for EXPLAIN on or off.
-.header(s) ON|OFF      Turn display of headers on or off
-.help                  Show this message
-.indices TABLE         Show names of all indices on TABLE
-.mode MODE             Set mode to one of &quot;line(s)&quot;, &quot;column(s)&quot;,
-                       &quot;insert&quot;, &quot;list&quot;, or &quot;html&quot;
-.mode insert TABLE     Generate SQL insert statements for TABLE
-.nullvalue STRING      Print STRING instead of nothing for NULL data
-.output FILENAME       Send output to FILENAME
-.output stdout         Send output to the screen
-.prompt MAIN CONTINUE  Replace the standard prompts
-.quit                  Exit this program
-.read FILENAME         Execute SQL in FILENAME
-.schema ?TABLE?        Show the CREATE statements
-.separator STRING      Change separator string for &quot;list&quot; mode
-.show                  Show the current values for various settings
-.tables ?PATTERN?      List names of tables matching a pattern
-.timeout MS            Try opening locked tables for MS milliseconds
-.width NUM NUM ...     Set column widths for &quot;column&quot; mode
-sqlite&gt;
-</code></pre>
-<p><strong>.dump 将数据库转换为文本格式保存，我理解是保存为sql，稍后会发现这个.dump确实太有用了。</strong></p>
-<p>使用下面的命令实现sqlite2与sqlite3间的装换：</p>
-<pre><code>sqlite pinyin.db .dump|sqlite3 pinyin.db3;file pinyin*
-pinyin.db:  SQLite 2.x database
-pinyin.db3: SQLite 3.x database
-</code></pre>
-<p>接下来使用sqliteman或者sqlitebroswer就能顺利打开pinyin.db3了。</p>
-<h4 id="二、UTF-8与GBK间的乱码问题"><a href="#二、UTF-8与GBK间的乱码问题" class="headerlink" title="二、UTF-8与GBK间的乱码问题"></a>二、UTF-8与GBK间的乱码问题</h4><p>——————————————————————————————————————————————————</p>
-<p>首先需要明确的是sqlite默认采用UTF-8编码；</p>
-<p>Sqlite管理器类的工具不论平台当然使用的文本编码也是UTF8；</p>
-<p>Windows中AAuto默认编码是ANSI(不是UTF8,而是GBK)；</p>
-<p>windows下AAuto标准库里的sqlite库中的sqlite类对象会自动转换编码(UTF8-&gt;ANSI或ANSI-&gt;UTF8),使用UTF8编码写入sqlite数据库,再将读取的UTF8转换为ANSI编码.而直接用sqlite库的原始API,不会自动进行编码转换,需要自已调用string.fromto()函数转换.</p>
-<p>在archlinux下xterm默认用的是UTF-8编码.</p>
-<p>——————————————————————————————————————————————————</p>
-<p>我数据库是从Windows平台下拷过来的，果不其然中间出现了乱码问题，必然需要转码了。</p>
-<p>先看下原来的编码，pinyin.db是sqlie2数据库，pinyin.db3刚转化而来的sqlite3数据库</p>
-<pre><code>enca pinyin*
-pinyin.db: Simplified Chinese National Standard; GB2312
-  Surrounded by/intermixed with non-text data
-pinyin.db3: Unrecognized encoding
-</code></pre>
-<p>一个个text让应用去转码不可能，直接在数据库中转不具备可操作性，最后我想到了dump：</p>
-<pre><code>sqlite3 pinyin.db3 .dump&gt;&gt;conv.txt;enca conv.txt
-Simplified Chinese National Standard; GB2312
-</code></pre>
-<p>将数据库以文本格式保存，对文本进行转码，这个就多了，用iconv、enconv专门转码的也可以，用vim、gedit也行；我最终选择了vim，因为转起来方便。</p>
-<p>vim conv.txt后，:set fileencoding&#x3D;utf8，最后:wq保存退出就可以了。看下结果</p>
-<pre><code>vim conv.txt
-
-
-
-
-enca conv.txt
-Universal transformation format 8 bits; UTF-8
-  Surrounded by/intermixed with non-text data
-</code></pre>
-<p>好了，sql文本已经转换为UTF-8编码，这时候问题已经基本解决了。</p>
-<p>最后重新生成sqlite3数据库即可：</p>
-<pre><code>cat conv.txt|sqlite3 utf8pinyin.db3
-</code></pre>
-<p>好了，现在可以轻松使用sqliteman或者sqlitebroswer打开utf8pinyin.db3，没有乱码了。</p>
-<p><a href="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"><img src="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"></a></p>
-<p><strong>最后，我想团队开发一定要注意工作平台，另外尽量采用广泛支持的国际unicode编码。</strong></p>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>乱码</tag>
-        <tag>sqlite</tag>
-        <tag>utf8</tag>
       </tags>
   </entry>
   <entry>
@@ -1538,40 +1538,6 @@ struct st3&#123;
       </tags>
   </entry>
   <entry>
-    <title>关于google搜索重定向</title>
-    <url>/Web/04/21/google-search-redirects.html</url>
-    <content><![CDATA[<p>关于国内google的重定向问题，想必使用google的用户都烦透了，当使用google搜索功能，点击搜索结果经常会出现对搜索结果重定向，有时候甚至打不开google的搜索结果。<span id="more"></span></p>
-<p><strong>什么是google的重定向？</strong></p>
-<p>Google通常将美国之外的国家&#x2F;地区的用户从 google.com重定向到面向特定国家&#x2F;地区的网站的过程叫做google的重定向（例如，针对英国的 Google 网站是 <a href="http://www.google.co.uk,针对我国的全部转为google.com.hk),这样可以使用户轻松使用面向特定国家/%E5%9C%B0%E5%8C%BA%E7%9A%84google%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD%E3%80%82">www.google.co.uk，针对我国的全部转为google.com.hk），这样可以使用户轻松使用面向特定国家/地区的google搜索功能。</a></p>
-<p><strong>google怎么做到重定向的？</strong></p>
-<p>google使用用户计算机的IP地址来确定用户位置以及相应的 Google 域，这一IP地址通常是用户计算机互联网服务提供商 (ISP) 的互联网地址。</p>
-<p><strong>旁白</strong>：Google为了统计搜索结果，在链接点击之后不会真的进入连接地址，而是跑一趟Google的重新定位服务（理由有二：1、记录浏览，提供Site-Analytics 2、广告啊！！Google可不是公益组织）</p>
-<p><strong>如何防止google的重定向？</strong></p>
-<ol>
-<li><p>如果用户希望访问 Google.com 而不进行重定向，可以单击 Google 主页右下方的”Google.com”链接。如果用户启用了 Cookie，之后每次进行访问时，用户的浏览器都会直接连接到 Google.com。如果禁用 Cookie，则每次访问 Google 时，都照样会进行重定向。</p>
-</li>
-<li><p>启用Cookie，为<a href="http://www.google.com/webhp">http://www.google.com/webhp</a> 设置书签。每次在您选择该书签时，都会转到 <a href="http://www.google.com/webhp">http://www.google.com/webhp</a>，它与 Google.com 完全相同。</p>
-</li>
-<li><p>启用Cookie，为<a href="http://www.google.com/ncr">http://www.google.com/ncr</a>  （ncr: no country redirect  不启用按国家跳转）设置书签。每次在您选择该书签时，都会转到 <a href="%20http://www.google.com/ncr">http://www.google.com/ncr</a>，它与 Google.com 完全相同。</p>
-</li>
-<li><p>各种浏览器中, 可以通过设置语言选项中, 添加英语并置为最上面</p>
-</li>
-<li><p>使用插件：<a href="http://kanoha.org/?fetchDownload=9">SkipGoogle.crx</a>，或者搜索下油猴之类的。</p>
-</li>
-<li><p>IP伪装成国外的或者肉身那个，大家都懂的。</p>
-</li>
-<li><p>google设置中把地理位置设为国外，语言么：设成英语。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>google redirect</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>大峪游玩</title>
     <url>/Walk/04/20/otani-play.html</url>
     <content><![CDATA[<p>这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。<span id="more"></span></p>
@@ -1634,6 +1600,40 @@ struct st3&#123;
       <tags>
         <tag>大峪</tag>
         <tag>虹鳟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于google搜索重定向</title>
+    <url>/Web/04/21/google-search-redirects.html</url>
+    <content><![CDATA[<p>关于国内google的重定向问题，想必使用google的用户都烦透了，当使用google搜索功能，点击搜索结果经常会出现对搜索结果重定向，有时候甚至打不开google的搜索结果。<span id="more"></span></p>
+<p><strong>什么是google的重定向？</strong></p>
+<p>Google通常将美国之外的国家&#x2F;地区的用户从 google.com重定向到面向特定国家&#x2F;地区的网站的过程叫做google的重定向（例如，针对英国的 Google 网站是 <a href="http://www.google.co.uk,针对我国的全部转为google.com.hk),这样可以使用户轻松使用面向特定国家/%E5%9C%B0%E5%8C%BA%E7%9A%84google%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD%E3%80%82">www.google.co.uk，针对我国的全部转为google.com.hk），这样可以使用户轻松使用面向特定国家/地区的google搜索功能。</a></p>
+<p><strong>google怎么做到重定向的？</strong></p>
+<p>google使用用户计算机的IP地址来确定用户位置以及相应的 Google 域，这一IP地址通常是用户计算机互联网服务提供商 (ISP) 的互联网地址。</p>
+<p><strong>旁白</strong>：Google为了统计搜索结果，在链接点击之后不会真的进入连接地址，而是跑一趟Google的重新定位服务（理由有二：1、记录浏览，提供Site-Analytics 2、广告啊！！Google可不是公益组织）</p>
+<p><strong>如何防止google的重定向？</strong></p>
+<ol>
+<li><p>如果用户希望访问 Google.com 而不进行重定向，可以单击 Google 主页右下方的”Google.com”链接。如果用户启用了 Cookie，之后每次进行访问时，用户的浏览器都会直接连接到 Google.com。如果禁用 Cookie，则每次访问 Google 时，都照样会进行重定向。</p>
+</li>
+<li><p>启用Cookie，为<a href="http://www.google.com/webhp">http://www.google.com/webhp</a> 设置书签。每次在您选择该书签时，都会转到 <a href="http://www.google.com/webhp">http://www.google.com/webhp</a>，它与 Google.com 完全相同。</p>
+</li>
+<li><p>启用Cookie，为<a href="http://www.google.com/ncr">http://www.google.com/ncr</a>  （ncr: no country redirect  不启用按国家跳转）设置书签。每次在您选择该书签时，都会转到 <a href="%20http://www.google.com/ncr">http://www.google.com/ncr</a>，它与 Google.com 完全相同。</p>
+</li>
+<li><p>各种浏览器中, 可以通过设置语言选项中, 添加英语并置为最上面</p>
+</li>
+<li><p>使用插件：<a href="http://kanoha.org/?fetchDownload=9">SkipGoogle.crx</a>，或者搜索下油猴之类的。</p>
+</li>
+<li><p>IP伪装成国外的或者肉身那个，大家都懂的。</p>
+</li>
+<li><p>google设置中把地理位置设为国外，语言么：设成英语。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>google redirect</tag>
       </tags>
   </entry>
   <entry>
@@ -2325,26 +2325,6 @@ CPPFLAGS=-I$HOME/arm/ncurses/include
       </tags>
   </entry>
   <entry>
-    <title>HHKB Lite2 in my work place</title>
-    <url>/Linux/05/31/work-place.html</url>
-    <content><![CDATA[<p>那天看到hhkb，我发现好熟悉啊，突然想起待的地方有一块，今天找剥线钳的时候，正好发现了这个Lite2。<span id="more"></span></p>
-<p>Lite2虽然不是电容的，不过薄膜的手感也不错，敲起来有中木头的感觉。这都是次要的，关键是作为Vim党，发觉ctrl的位置真是太爽了。</p>
-<p>ctrl按键在shift上方，使用vim过程中，缩短了ctrl与escape的键程，这还求什么呢？</p>
-<p>啥都不说，先上张lite2的图吧！</p>
-<p><img src="http://nankor.org/uploads/2013/05/lite202.jpg" alt="Lite2 俯视图"></p>
-<p>桌子上还有另两个键盘，对比一下，屌丝与高富帅一览无余！</p>
-<p><img src="http://nankor.org/uploads/2013/05/lite203.jpg" alt="three kb"></p>
-<p>完</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>HHKB</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一些有趣的事情关于android和网络</title>
     <url>/Linux/05/12/some-interesting-thing-about-net-on-android-and-pc.html</url>
     <content><![CDATA[<p>折腾的是小米1 android，我承认我是想把一切设备PC化。如果你的android没有root，不支持挂载loop设备，请出门左拐。<span id="more"></span></p>
@@ -2407,6 +2387,26 @@ $ haed -n10 /proc/cpuinfo
         <tag>vim</tag>
         <tag>hack</tag>
         <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HHKB Lite2 in my work place</title>
+    <url>/Linux/05/31/work-place.html</url>
+    <content><![CDATA[<p>那天看到hhkb，我发现好熟悉啊，突然想起待的地方有一块，今天找剥线钳的时候，正好发现了这个Lite2。<span id="more"></span></p>
+<p>Lite2虽然不是电容的，不过薄膜的手感也不错，敲起来有中木头的感觉。这都是次要的，关键是作为Vim党，发觉ctrl的位置真是太爽了。</p>
+<p>ctrl按键在shift上方，使用vim过程中，缩短了ctrl与escape的键程，这还求什么呢？</p>
+<p>啥都不说，先上张lite2的图吧！</p>
+<p><img src="http://nankor.org/uploads/2013/05/lite202.jpg" alt="Lite2 俯视图"></p>
+<p>桌子上还有另两个键盘，对比一下，屌丝与高富帅一览无余！</p>
+<p><img src="http://nankor.org/uploads/2013/05/lite203.jpg" alt="three kb"></p>
+<p>完</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>HHKB</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
