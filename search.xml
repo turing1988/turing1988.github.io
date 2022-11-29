@@ -121,51 +121,6 @@ exit
       </tags>
   </entry>
   <entry>
-    <title>LZW算法简解</title>
-    <url>/Alogrithm/03/04/4558302-algorithm-the-simple-solutions.html</url>
-    <content><![CDATA[<p>LZW(Lempel-Ziv &amp; Welch)编码又称字串表编码，是Welch将Lemple和Ziv所提出来的无损压缩技术改进后的压缩方法。GIF图像文件采用的是一种改良的LZW压缩算法，通常称为GIF-LZW压缩算法。</p>
-<span id="more"></span>****
-
-<p><strong>LZW编码基本原理：</strong></p>
-<p>把每一个第一次出现的字符串用一个数值来编码，解码时再将数值编码还原成原来字符：如果用0X100代替字符串中的“ABCDDEEF”，那么每当这样的字符串出现时都会用0X100来表示，以达到压缩的目的。注意的是这个字符串和数值之间的关系是动态生成的。</p>
-<p><strong>LZW算法基本步骤：</strong></p>
-<p>主要包括两个部分：串表与码字值</p>
-<p>1、将待编码字符串中的所有单个字符存入字符串表（串表）中，并给每个符号赋一个码字值。</p>
-<p>2、读入第一个输入字符，将其赋值给P（P为前缀串）。</p>
-<p>3、读入下一个字符，将其赋值给S（前缀串P的扩展字符）。</p>
-<p>如果PS构成的字符串不在串表中，则将字符串PS的前缀串P对应的码字值输出；将字符串PS存入串表；给PS分配一个码字值；将PS的扩展字符S赋值给P，用P与下一个输入字符形成新的字符串。</p>
-<p><strong>OR</strong></p>
-<p>如果PS已经在串表中，则将PS赋值给P，用P与下一个输入字符形成新的字符串。</p>
-<p><strong>举个例子：</strong></p>
-<p>下面对字符串BABAABAAA进行编码。</p>
-<p>根据以上的算法，令P&#x3D;B，然后读入字符串序列中的下一个字符A，令S&#x3D;A。</p>
-<p>由于串表中并没有PS构成的字符串BA，于是将BA加入串表。</p>
-<p>由于0~255已在串表中赋给了单个的字符，这里只能给BA赋予256的码值。</p>
-<p>同时将BA的前缀B的码值（B的码值为66）输出。</p>
-<p>将BA的扩展字符赋值给P，即令P&#x3D;A，接着进行下一个循环。</p>
-<p>输出下一个（第三个）字符B,令S&#x3D;B，由PS构成新的字符串AB。</p>
-<p>由于串表中没有字符串AB，于是将AB赋码值257，并将AB存入串表中。</p>
-<p>同时输出字符串AB的前缀A对应的码值65，将AB的扩展字符B赋值给P,即P&#x3D;B。</p>
-<p>接着进行下一次循环，输入下一个（第四个）字符A，令S&#x3D;A。</p>
-<p>此时，由于PS构成的字符串BA已在串表中，所以将BA作为下一个新字符串的前缀，即P&#x3D;BA。</p>
-<p>接着重新开始下一次循环，输入下一个字符（第五个）A,令S&#x3D;A。</p>
-<p>形成新的字符串PS,即BAA，由于串表中没有BAA，于是将BAA的前缀BA对应的码值256输出，给字符串BAA赋予码值258，并将BAA存入串表中。</p>
-<p>将BAA的扩展字符A赋值给P,令P&#x3D;A，接着输入下一个字符，如此下去，直到字符串结束为止。</p>
-<p>经过词算法计算后，字符串BABAABAAA将被编码成6个代码&lt;66&gt;&lt;65&gt;&lt;256&gt;&lt;257&gt;&lt;65&gt;&lt;260&gt;。</p>
-<p>现在，基本的压缩编码便完成了。</p>
-<p>参考：</p>
-<p><a href="http://www.limou.net/?p=730">http://www.limou.net/?p=730</a></p>
-<p><a href="http://apps.hi.baidu.com/share/detail/20146343">http://apps.hi.baidu.com/share/detail/20146343</a></p>
-]]></content>
-      <categories>
-        <category>Alogrithm</category>
-      </categories>
-      <tags>
-        <tag>lzw</tag>
-        <tag>压缩</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu常见问题解决</title>
     <url>/Linux/03/03/the-ubuntu-common-problem-solving.html</url>
     <content><![CDATA[<p>自己使用ubuntu过程中总结的一些小问题及解决办法。</p>
@@ -381,6 +336,51 @@ exit
       <tags>
         <tag>老家</tag>
         <tag>追风筝的人</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LZW算法简解</title>
+    <url>/Alogrithm/03/04/4558302-algorithm-the-simple-solutions.html</url>
+    <content><![CDATA[<p>LZW(Lempel-Ziv &amp; Welch)编码又称字串表编码，是Welch将Lemple和Ziv所提出来的无损压缩技术改进后的压缩方法。GIF图像文件采用的是一种改良的LZW压缩算法，通常称为GIF-LZW压缩算法。</p>
+<span id="more"></span>****
+
+<p><strong>LZW编码基本原理：</strong></p>
+<p>把每一个第一次出现的字符串用一个数值来编码，解码时再将数值编码还原成原来字符：如果用0X100代替字符串中的“ABCDDEEF”，那么每当这样的字符串出现时都会用0X100来表示，以达到压缩的目的。注意的是这个字符串和数值之间的关系是动态生成的。</p>
+<p><strong>LZW算法基本步骤：</strong></p>
+<p>主要包括两个部分：串表与码字值</p>
+<p>1、将待编码字符串中的所有单个字符存入字符串表（串表）中，并给每个符号赋一个码字值。</p>
+<p>2、读入第一个输入字符，将其赋值给P（P为前缀串）。</p>
+<p>3、读入下一个字符，将其赋值给S（前缀串P的扩展字符）。</p>
+<p>如果PS构成的字符串不在串表中，则将字符串PS的前缀串P对应的码字值输出；将字符串PS存入串表；给PS分配一个码字值；将PS的扩展字符S赋值给P，用P与下一个输入字符形成新的字符串。</p>
+<p><strong>OR</strong></p>
+<p>如果PS已经在串表中，则将PS赋值给P，用P与下一个输入字符形成新的字符串。</p>
+<p><strong>举个例子：</strong></p>
+<p>下面对字符串BABAABAAA进行编码。</p>
+<p>根据以上的算法，令P&#x3D;B，然后读入字符串序列中的下一个字符A，令S&#x3D;A。</p>
+<p>由于串表中并没有PS构成的字符串BA，于是将BA加入串表。</p>
+<p>由于0~255已在串表中赋给了单个的字符，这里只能给BA赋予256的码值。</p>
+<p>同时将BA的前缀B的码值（B的码值为66）输出。</p>
+<p>将BA的扩展字符赋值给P，即令P&#x3D;A，接着进行下一个循环。</p>
+<p>输出下一个（第三个）字符B,令S&#x3D;B，由PS构成新的字符串AB。</p>
+<p>由于串表中没有字符串AB，于是将AB赋码值257，并将AB存入串表中。</p>
+<p>同时输出字符串AB的前缀A对应的码值65，将AB的扩展字符B赋值给P,即P&#x3D;B。</p>
+<p>接着进行下一次循环，输入下一个（第四个）字符A，令S&#x3D;A。</p>
+<p>此时，由于PS构成的字符串BA已在串表中，所以将BA作为下一个新字符串的前缀，即P&#x3D;BA。</p>
+<p>接着重新开始下一次循环，输入下一个字符（第五个）A,令S&#x3D;A。</p>
+<p>形成新的字符串PS,即BAA，由于串表中没有BAA，于是将BAA的前缀BA对应的码值256输出，给字符串BAA赋予码值258，并将BAA存入串表中。</p>
+<p>将BAA的扩展字符A赋值给P,令P&#x3D;A，接着输入下一个字符，如此下去，直到字符串结束为止。</p>
+<p>经过词算法计算后，字符串BABAABAAA将被编码成6个代码&lt;66&gt;&lt;65&gt;&lt;256&gt;&lt;257&gt;&lt;65&gt;&lt;260&gt;。</p>
+<p>现在，基本的压缩编码便完成了。</p>
+<p>参考：</p>
+<p><a href="http://www.limou.net/?p=730">http://www.limou.net/?p=730</a></p>
+<p><a href="http://apps.hi.baidu.com/share/detail/20146343">http://apps.hi.baidu.com/share/detail/20146343</a></p>
+]]></content>
+      <categories>
+        <category>Alogrithm</category>
+      </categories>
+      <tags>
+        <tag>lzw</tag>
+        <tag>压缩</tag>
       </tags>
   </entry>
   <entry>
@@ -833,206 +833,6 @@ drwxr-xr-x 3 turing users     4096  3月 17 03:11 src
       </tags>
   </entry>
   <entry>
-    <title>yaourt packer pacman加速配置</title>
-    <url>/Linux/03/17/yaourt-the-the-the-packer-the-the-the-pacman-to-accelerate-configuration.html</url>
-    <content><![CDATA[<p>使用archlinux打开AUR之后yaourt一直是使用默认的下载工具，实在忍受不了龟速，重新配置下yaourt吧。</p>
-<span id="more"></span>
-
-
-<h4 id="一、yaourt加速"><a href="#一、yaourt加速" class="headerlink" title="一、yaourt加速"></a>一、yaourt加速</h4><p>yaourt安装后其配置文件是&#x2F;etc&#x2F;makepkg.conf</p>
-<p>先看下我这个文件中的内容</p>
-<pre><code> cat  /etc/makepkg.conf |head -n 25
-#
-# /etc/makepkg.conf
-#
-
-#########################################################################
-# SOURCE ACQUISITION
-#########################################################################
-#
-#-- The download utilities that makepkg should use to acquire sources
-#  Format: &#39;protocol::agent&#39;
-DLAGENTS=(&#39;ftp::/usr/bin/axel  -n 10 -a  -o %o %u&#39;
-          &#39;http::/usr/bin/axel -n 10 -a -o %o %u&#39;
-          &#39;https::/usr/bin/axel -n 10 -a -o %o %u&#39;
-          &#39;rsync::/usr/bin/rsync -n 10 -z %u %o&#39;
-          &#39;scp::/usr/bin/scp -C %u %o&#39;)
-
-#DLAGENTS=(&#39;ftp::/usr/bin/curl -fC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;http::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;https::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;rsync::/usr/bin/rsync -z %u %o&#39;
-#          &#39;scp::/usr/bin/scp -C %u %o&#39;)
-
-# Other common tools:
-# /usr/bin/snarf
-</code></pre>
-<p>将curl更改为axel：</p>
-<pre><code> axel -n 10 -a -o %o %u
-</code></pre>
-<p>其中 -n 表示同时下载链接数</p>
-<p>-a  表示以百分比打印进度条信息</p>
-<p>-o 是输出路径</p>
-<p>%u 为下载url</p>
-<p>原来curl:</p>
-<pre><code>curl -fLC - --retry 3 --retry-delay 3 -o %o %u
-</code></pre>
-<p>是单线程下载，尝试3次失败后，更换源。</p>
-<h4 id="二、packer-pacman加速"><a href="#二、packer-pacman加速" class="headerlink" title="二、packer pacman加速"></a>二、packer pacman加速</h4><p>packer默认还是采用pacman下载，改变pacman默认下载方式就可以改变两个。</p>
-<p>pacman的配置文件是：&#x2F;etc&#x2F;pacman.conf，下面是我当前的pacman配置：</p>
-<pre><code>cat /etc/pacman.conf |grep -v &quot;^#&quot;|grep -v &quot;^$&quot;
-[options]
-HoldPkg     = pacman glibc
-SyncFirst   = pacman
-XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
-Architecture = auto
-CheckSpace
-SigLevel = Never
-[core]
-Include = /etc/pacman.d/mirrorlist
-[extra]
-Include = /etc/pacman.d/mirrorlist
-[community]
-Include = /etc/pacman.d/mirrorlist
-[archlinuxfr]
-Server = http://repo.archlinux.fr/i686
-</code></pre>
-<p>可知我当前使用的是wget下载。查看pacmon.conf的完整版</p>
-<pre><code>grep XferCommand /etc/pacman.conf 
-#XferCommand = /usr/bin/curl -C - -f %u &gt; %o
-XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
-#XferCommand = /usr/bin/axel -a -n 10  -o %o %u
-</code></pre>
-<p>注释掉其他几个即可。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>yaourt</tag>
-        <tag>axel</tag>
-        <tag>packer</tag>
-        <tag>pacman</tag>
-        <tag>wget</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Sqlite问题小结</title>
-    <url>/Program/03/21/sqlite-problem-summary.html</url>
-    <content><![CDATA[<p>最近为了学习用了一下sqlite，开始就碰上了最棘手的问题，乱码、版本不兼容等。查了些资料，自己终于想办法解决了。<span id="more"></span></p>
-<p>之前没有接触过sqlite，只是知道在嵌入式方面用的颇广，这次也算学习一下。</p>
-<h4 id="一、-版本兼容问题"><a href="#一、-版本兼容问题" class="headerlink" title="一、 版本兼容问题"></a>一、 版本兼容问题</h4><p>首先是版本兼容的问题，刚拿到的是个sqlite2数据库，而我的arch上都是sqlite3的各种包，sqlite3 pinyin.db自然失败。好吧，把sqlite2的各种包装上。</p>
-<pre><code>sudo yaourt -Ss sqlite|grep installed
-core/sqlite3 3.7.10-1 [installed]
-core/sqlite3-doc 3.7.10-1 [installed]
-community/gambas2-gb-db-sqlite2 2.23.1-8 (gambas2) [installed]
-community/gambas3-gb-db-sqlite2 3.0.0-5 (gambas3) [installed]
-community/libgda3 3.1.5-11 [installed]
-community/sqlite2 2.8.17-5 [installed]
-community/sqlitebrowser 2.0b1-2 [installed]
-community/sqliteman 1.2.2-5 [installed]
-community/sqlitemanager 1.2.4-2 [installed]
-</code></pre>
-<p>好了 尝试打开数据库：</p>
-<pre><code>sqlite pinyin.db
-SQLite version 2.8.17
-Enter &quot;.help&quot; for instructions
-sqlite&gt; .tables
-acs_active        firereport        lapes_list        netconfig
-acs_key_active    firereport_his    list_dev          pinyin
-acssub            floor             logic_detail      sys
-carddev           gz_type           logic_fixtimerun  timelist
-cardmain          gz_view           logic_list        userinfo
-devname           id100             logic_main        usertip
-devtype           language          logic_out
-sqlite&gt;
-</code></pre>
-<p>OK，顺利打开。</p>
-<p>不过我想采用GUI的方式查看数据库，我已经安装了sqliteman与sqlitebroswer，但是他们全是支持sqlite3的，好吧，需要把sqlite2的数据库转化为sqlite3的。</p>
-<p>sqlite有个.dump命令，十分好用，先看下帮助：</p>
-<pre><code>sqlite
-SQLite version 2.8.17
-Enter &quot;.help&quot; for instructions
-sqlite&gt; .help
-.databases             List names and files of attached databases
-.dump ?TABLE? ...      Dump the database in a text format
-.echo ON|OFF           Turn command echo on or off
-.exit                  Exit this program
-.explain ON|OFF        Turn output mode suitable for EXPLAIN on or off.
-.header(s) ON|OFF      Turn display of headers on or off
-.help                  Show this message
-.indices TABLE         Show names of all indices on TABLE
-.mode MODE             Set mode to one of &quot;line(s)&quot;, &quot;column(s)&quot;,
-                       &quot;insert&quot;, &quot;list&quot;, or &quot;html&quot;
-.mode insert TABLE     Generate SQL insert statements for TABLE
-.nullvalue STRING      Print STRING instead of nothing for NULL data
-.output FILENAME       Send output to FILENAME
-.output stdout         Send output to the screen
-.prompt MAIN CONTINUE  Replace the standard prompts
-.quit                  Exit this program
-.read FILENAME         Execute SQL in FILENAME
-.schema ?TABLE?        Show the CREATE statements
-.separator STRING      Change separator string for &quot;list&quot; mode
-.show                  Show the current values for various settings
-.tables ?PATTERN?      List names of tables matching a pattern
-.timeout MS            Try opening locked tables for MS milliseconds
-.width NUM NUM ...     Set column widths for &quot;column&quot; mode
-sqlite&gt;
-</code></pre>
-<p><strong>.dump 将数据库转换为文本格式保存，我理解是保存为sql，稍后会发现这个.dump确实太有用了。</strong></p>
-<p>使用下面的命令实现sqlite2与sqlite3间的装换：</p>
-<pre><code>sqlite pinyin.db .dump|sqlite3 pinyin.db3;file pinyin*
-pinyin.db:  SQLite 2.x database
-pinyin.db3: SQLite 3.x database
-</code></pre>
-<p>接下来使用sqliteman或者sqlitebroswer就能顺利打开pinyin.db3了。</p>
-<h4 id="二、UTF-8与GBK间的乱码问题"><a href="#二、UTF-8与GBK间的乱码问题" class="headerlink" title="二、UTF-8与GBK间的乱码问题"></a>二、UTF-8与GBK间的乱码问题</h4><p>——————————————————————————————————————————————————</p>
-<p>首先需要明确的是sqlite默认采用UTF-8编码；</p>
-<p>Sqlite管理器类的工具不论平台当然使用的文本编码也是UTF8；</p>
-<p>Windows中AAuto默认编码是ANSI(不是UTF8,而是GBK)；</p>
-<p>windows下AAuto标准库里的sqlite库中的sqlite类对象会自动转换编码(UTF8-&gt;ANSI或ANSI-&gt;UTF8),使用UTF8编码写入sqlite数据库,再将读取的UTF8转换为ANSI编码.而直接用sqlite库的原始API,不会自动进行编码转换,需要自已调用string.fromto()函数转换.</p>
-<p>在archlinux下xterm默认用的是UTF-8编码.</p>
-<p>——————————————————————————————————————————————————</p>
-<p>我数据库是从Windows平台下拷过来的，果不其然中间出现了乱码问题，必然需要转码了。</p>
-<p>先看下原来的编码，pinyin.db是sqlie2数据库，pinyin.db3刚转化而来的sqlite3数据库</p>
-<pre><code>enca pinyin*
-pinyin.db: Simplified Chinese National Standard; GB2312
-  Surrounded by/intermixed with non-text data
-pinyin.db3: Unrecognized encoding
-</code></pre>
-<p>一个个text让应用去转码不可能，直接在数据库中转不具备可操作性，最后我想到了dump：</p>
-<pre><code>sqlite3 pinyin.db3 .dump&gt;&gt;conv.txt;enca conv.txt
-Simplified Chinese National Standard; GB2312
-</code></pre>
-<p>将数据库以文本格式保存，对文本进行转码，这个就多了，用iconv、enconv专门转码的也可以，用vim、gedit也行；我最终选择了vim，因为转起来方便。</p>
-<p>vim conv.txt后，:set fileencoding&#x3D;utf8，最后:wq保存退出就可以了。看下结果</p>
-<pre><code>vim conv.txt
-
-
-
-
-enca conv.txt
-Universal transformation format 8 bits; UTF-8
-  Surrounded by/intermixed with non-text data
-</code></pre>
-<p>好了，sql文本已经转换为UTF-8编码，这时候问题已经基本解决了。</p>
-<p>最后重新生成sqlite3数据库即可：</p>
-<pre><code>cat conv.txt|sqlite3 utf8pinyin.db3
-</code></pre>
-<p>好了，现在可以轻松使用sqliteman或者sqlitebroswer打开utf8pinyin.db3，没有乱码了。</p>
-<p><a href="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"><img src="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"></a></p>
-<p><strong>最后，我想团队开发一定要注意工作平台，另外尽量采用广泛支持的国际unicode编码。</strong></p>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>乱码</tag>
-        <tag>sqlite</tag>
-        <tag>utf8</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>朝花夕拾--Trace(2011/4/24)</title>
     <url>/Think/03/13/zhaohuaxishi-trace-2011424.html</url>
     <content><![CDATA[<p>I‘m on campus.</p>
@@ -1327,6 +1127,206 @@ Universal transformation format 8 bits; UTF-8
       </tags>
   </entry>
   <entry>
+    <title>yaourt packer pacman加速配置</title>
+    <url>/Linux/03/17/yaourt-the-the-the-packer-the-the-the-pacman-to-accelerate-configuration.html</url>
+    <content><![CDATA[<p>使用archlinux打开AUR之后yaourt一直是使用默认的下载工具，实在忍受不了龟速，重新配置下yaourt吧。</p>
+<span id="more"></span>
+
+
+<h4 id="一、yaourt加速"><a href="#一、yaourt加速" class="headerlink" title="一、yaourt加速"></a>一、yaourt加速</h4><p>yaourt安装后其配置文件是&#x2F;etc&#x2F;makepkg.conf</p>
+<p>先看下我这个文件中的内容</p>
+<pre><code> cat  /etc/makepkg.conf |head -n 25
+#
+# /etc/makepkg.conf
+#
+
+#########################################################################
+# SOURCE ACQUISITION
+#########################################################################
+#
+#-- The download utilities that makepkg should use to acquire sources
+#  Format: &#39;protocol::agent&#39;
+DLAGENTS=(&#39;ftp::/usr/bin/axel  -n 10 -a  -o %o %u&#39;
+          &#39;http::/usr/bin/axel -n 10 -a -o %o %u&#39;
+          &#39;https::/usr/bin/axel -n 10 -a -o %o %u&#39;
+          &#39;rsync::/usr/bin/rsync -n 10 -z %u %o&#39;
+          &#39;scp::/usr/bin/scp -C %u %o&#39;)
+
+#DLAGENTS=(&#39;ftp::/usr/bin/curl -fC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;http::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;https::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;rsync::/usr/bin/rsync -z %u %o&#39;
+#          &#39;scp::/usr/bin/scp -C %u %o&#39;)
+
+# Other common tools:
+# /usr/bin/snarf
+</code></pre>
+<p>将curl更改为axel：</p>
+<pre><code> axel -n 10 -a -o %o %u
+</code></pre>
+<p>其中 -n 表示同时下载链接数</p>
+<p>-a  表示以百分比打印进度条信息</p>
+<p>-o 是输出路径</p>
+<p>%u 为下载url</p>
+<p>原来curl:</p>
+<pre><code>curl -fLC - --retry 3 --retry-delay 3 -o %o %u
+</code></pre>
+<p>是单线程下载，尝试3次失败后，更换源。</p>
+<h4 id="二、packer-pacman加速"><a href="#二、packer-pacman加速" class="headerlink" title="二、packer pacman加速"></a>二、packer pacman加速</h4><p>packer默认还是采用pacman下载，改变pacman默认下载方式就可以改变两个。</p>
+<p>pacman的配置文件是：&#x2F;etc&#x2F;pacman.conf，下面是我当前的pacman配置：</p>
+<pre><code>cat /etc/pacman.conf |grep -v &quot;^#&quot;|grep -v &quot;^$&quot;
+[options]
+HoldPkg     = pacman glibc
+SyncFirst   = pacman
+XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
+Architecture = auto
+CheckSpace
+SigLevel = Never
+[core]
+Include = /etc/pacman.d/mirrorlist
+[extra]
+Include = /etc/pacman.d/mirrorlist
+[community]
+Include = /etc/pacman.d/mirrorlist
+[archlinuxfr]
+Server = http://repo.archlinux.fr/i686
+</code></pre>
+<p>可知我当前使用的是wget下载。查看pacmon.conf的完整版</p>
+<pre><code>grep XferCommand /etc/pacman.conf 
+#XferCommand = /usr/bin/curl -C - -f %u &gt; %o
+XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
+#XferCommand = /usr/bin/axel -a -n 10  -o %o %u
+</code></pre>
+<p>注释掉其他几个即可。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>yaourt</tag>
+        <tag>axel</tag>
+        <tag>packer</tag>
+        <tag>pacman</tag>
+        <tag>wget</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Sqlite问题小结</title>
+    <url>/Program/03/21/sqlite-problem-summary.html</url>
+    <content><![CDATA[<p>最近为了学习用了一下sqlite，开始就碰上了最棘手的问题，乱码、版本不兼容等。查了些资料，自己终于想办法解决了。<span id="more"></span></p>
+<p>之前没有接触过sqlite，只是知道在嵌入式方面用的颇广，这次也算学习一下。</p>
+<h4 id="一、-版本兼容问题"><a href="#一、-版本兼容问题" class="headerlink" title="一、 版本兼容问题"></a>一、 版本兼容问题</h4><p>首先是版本兼容的问题，刚拿到的是个sqlite2数据库，而我的arch上都是sqlite3的各种包，sqlite3 pinyin.db自然失败。好吧，把sqlite2的各种包装上。</p>
+<pre><code>sudo yaourt -Ss sqlite|grep installed
+core/sqlite3 3.7.10-1 [installed]
+core/sqlite3-doc 3.7.10-1 [installed]
+community/gambas2-gb-db-sqlite2 2.23.1-8 (gambas2) [installed]
+community/gambas3-gb-db-sqlite2 3.0.0-5 (gambas3) [installed]
+community/libgda3 3.1.5-11 [installed]
+community/sqlite2 2.8.17-5 [installed]
+community/sqlitebrowser 2.0b1-2 [installed]
+community/sqliteman 1.2.2-5 [installed]
+community/sqlitemanager 1.2.4-2 [installed]
+</code></pre>
+<p>好了 尝试打开数据库：</p>
+<pre><code>sqlite pinyin.db
+SQLite version 2.8.17
+Enter &quot;.help&quot; for instructions
+sqlite&gt; .tables
+acs_active        firereport        lapes_list        netconfig
+acs_key_active    firereport_his    list_dev          pinyin
+acssub            floor             logic_detail      sys
+carddev           gz_type           logic_fixtimerun  timelist
+cardmain          gz_view           logic_list        userinfo
+devname           id100             logic_main        usertip
+devtype           language          logic_out
+sqlite&gt;
+</code></pre>
+<p>OK，顺利打开。</p>
+<p>不过我想采用GUI的方式查看数据库，我已经安装了sqliteman与sqlitebroswer，但是他们全是支持sqlite3的，好吧，需要把sqlite2的数据库转化为sqlite3的。</p>
+<p>sqlite有个.dump命令，十分好用，先看下帮助：</p>
+<pre><code>sqlite
+SQLite version 2.8.17
+Enter &quot;.help&quot; for instructions
+sqlite&gt; .help
+.databases             List names and files of attached databases
+.dump ?TABLE? ...      Dump the database in a text format
+.echo ON|OFF           Turn command echo on or off
+.exit                  Exit this program
+.explain ON|OFF        Turn output mode suitable for EXPLAIN on or off.
+.header(s) ON|OFF      Turn display of headers on or off
+.help                  Show this message
+.indices TABLE         Show names of all indices on TABLE
+.mode MODE             Set mode to one of &quot;line(s)&quot;, &quot;column(s)&quot;,
+                       &quot;insert&quot;, &quot;list&quot;, or &quot;html&quot;
+.mode insert TABLE     Generate SQL insert statements for TABLE
+.nullvalue STRING      Print STRING instead of nothing for NULL data
+.output FILENAME       Send output to FILENAME
+.output stdout         Send output to the screen
+.prompt MAIN CONTINUE  Replace the standard prompts
+.quit                  Exit this program
+.read FILENAME         Execute SQL in FILENAME
+.schema ?TABLE?        Show the CREATE statements
+.separator STRING      Change separator string for &quot;list&quot; mode
+.show                  Show the current values for various settings
+.tables ?PATTERN?      List names of tables matching a pattern
+.timeout MS            Try opening locked tables for MS milliseconds
+.width NUM NUM ...     Set column widths for &quot;column&quot; mode
+sqlite&gt;
+</code></pre>
+<p><strong>.dump 将数据库转换为文本格式保存，我理解是保存为sql，稍后会发现这个.dump确实太有用了。</strong></p>
+<p>使用下面的命令实现sqlite2与sqlite3间的装换：</p>
+<pre><code>sqlite pinyin.db .dump|sqlite3 pinyin.db3;file pinyin*
+pinyin.db:  SQLite 2.x database
+pinyin.db3: SQLite 3.x database
+</code></pre>
+<p>接下来使用sqliteman或者sqlitebroswer就能顺利打开pinyin.db3了。</p>
+<h4 id="二、UTF-8与GBK间的乱码问题"><a href="#二、UTF-8与GBK间的乱码问题" class="headerlink" title="二、UTF-8与GBK间的乱码问题"></a>二、UTF-8与GBK间的乱码问题</h4><p>——————————————————————————————————————————————————</p>
+<p>首先需要明确的是sqlite默认采用UTF-8编码；</p>
+<p>Sqlite管理器类的工具不论平台当然使用的文本编码也是UTF8；</p>
+<p>Windows中AAuto默认编码是ANSI(不是UTF8,而是GBK)；</p>
+<p>windows下AAuto标准库里的sqlite库中的sqlite类对象会自动转换编码(UTF8-&gt;ANSI或ANSI-&gt;UTF8),使用UTF8编码写入sqlite数据库,再将读取的UTF8转换为ANSI编码.而直接用sqlite库的原始API,不会自动进行编码转换,需要自已调用string.fromto()函数转换.</p>
+<p>在archlinux下xterm默认用的是UTF-8编码.</p>
+<p>——————————————————————————————————————————————————</p>
+<p>我数据库是从Windows平台下拷过来的，果不其然中间出现了乱码问题，必然需要转码了。</p>
+<p>先看下原来的编码，pinyin.db是sqlie2数据库，pinyin.db3刚转化而来的sqlite3数据库</p>
+<pre><code>enca pinyin*
+pinyin.db: Simplified Chinese National Standard; GB2312
+  Surrounded by/intermixed with non-text data
+pinyin.db3: Unrecognized encoding
+</code></pre>
+<p>一个个text让应用去转码不可能，直接在数据库中转不具备可操作性，最后我想到了dump：</p>
+<pre><code>sqlite3 pinyin.db3 .dump&gt;&gt;conv.txt;enca conv.txt
+Simplified Chinese National Standard; GB2312
+</code></pre>
+<p>将数据库以文本格式保存，对文本进行转码，这个就多了，用iconv、enconv专门转码的也可以，用vim、gedit也行；我最终选择了vim，因为转起来方便。</p>
+<p>vim conv.txt后，:set fileencoding&#x3D;utf8，最后:wq保存退出就可以了。看下结果</p>
+<pre><code>vim conv.txt
+
+
+
+
+enca conv.txt
+Universal transformation format 8 bits; UTF-8
+  Surrounded by/intermixed with non-text data
+</code></pre>
+<p>好了，sql文本已经转换为UTF-8编码，这时候问题已经基本解决了。</p>
+<p>最后重新生成sqlite3数据库即可：</p>
+<pre><code>cat conv.txt|sqlite3 utf8pinyin.db3
+</code></pre>
+<p>好了，现在可以轻松使用sqliteman或者sqlitebroswer打开utf8pinyin.db3，没有乱码了。</p>
+<p><a href="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"><img src="http://nankor.org/uploads/2012/03/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2012%E5%B9%B403%E6%9C%8821%E6%97%A5-00%E6%97%B641%E5%88%8621%E7%A7%92.png"></a></p>
+<p><strong>最后，我想团队开发一定要注意工作平台，另外尽量采用广泛支持的国际unicode编码。</strong></p>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>乱码</tag>
+        <tag>sqlite</tag>
+        <tag>utf8</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Synergy-共享鼠标与键盘的利器</title>
     <url>/Linux/03/23/the-of-of-of-synergy-sharing-tool-for-mouse-and-keyboard.html</url>
     <content><![CDATA[<p>今下午刚拿到一款台式机，在实验室用的，屏幕19寸的比我的笔记本大多了（好象是废话），但是我的工作空间有限，带上笔记本键盘、鼠标明显有点放不下了，只好让两台电脑间共享键盘和鼠标了，使用synergy发现效果不错！<span id="more"></span></p>
@@ -1538,71 +1538,6 @@ struct st3&#123;
       </tags>
   </entry>
   <entry>
-    <title>大峪游玩</title>
-    <url>/Walk/04/20/otani-play.html</url>
-    <content><![CDATA[<p>这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。<span id="more"></span></p>
-<p>早上6点半，在床上坐起来想了想穿什么衣服，刚穿完衣服，<a href="http://www.thepunch.info/blog/">王宇</a>师兄就打手机过来催起床了。</p>
-<p>7点到新科楼前发现大家都不在，自己应该是迟到了，孙师兄刚好也赶到，就相随去门口追大伙，在外面拿了三个包子，和30多人等公交车奔赴目的地。</p>
-<p>大峪水库比较远，中间转了一趟车，然后坐923从起点到终点。</p>
-<p><a href="http://maps.google.com/maps?f=q&source=embed&hl=zh-CN&geocode=&q=%E8%A5%BF%E5%AE%89+%E5%A4%A7%E5%B3%AA&aq=&sll=37.0625,-95.677068&sspn=46.946584,93.076172&ie=UTF8&hq=&hnear=%E4%B8%AD%E5%9B%BD%E9%99%95%E8%A5%BF%E7%9C%81%E8%A5%BF%E5%AE%89%E9%95%BF%E5%AE%89%E5%8C%BA%E5%A4%A7%E5%B3%AA%E4%B9%A1&ll=34.018954,109.119909&spn=0.024156,0.045447&t=m&z=14">查看大图</a></p>
-<p>到达目的地大概9点吧，来的人比较多，同学是47个吧。本来目的是来捡垃圾的，所以一人发了一个垃圾袋与一只白手套。然后我们就兴冲冲出发了。</p>
-<p>出发了！</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"></a></p>
-<p>下面是路上的一些见闻（由于没有带相机，只能从师兄师姐那里盗点图了。）：</p>
-<p>拔地而起的高山：</p>
-<p><a href="http://nankor.org/uploads/2012/04/hill.jpg"><img src="http://nankor.org/uploads/2012/04/hill.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"></a></p>
-<p>山上的流水：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"></a>在路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku1.jpg"><img src="http://nankor.org/uploads/2012/04/ku1.jpg"></a></p>
-<p>还是在路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku2.jpg"><img src="http://nankor.org/uploads/2012/04/ku2.jpg"></a></p>
-<p>见到水库了：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"></a></p>
-<p>平湖：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku3.jpg"><img src="http://nankor.org/uploads/2012/04/ku3.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"></a></p>
-<p>碰到的烈士陵园:</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"><img src="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"></a></p>
-<p>路上的付老师和马老师：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"></a></p>
-<p>在路上，走的比较靠前，和蒋老师聊了会儿天，蒋老师说，今天的目标是10000步，老人家真带着计步器呢</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"></a></p>
-<p>除了半路业余式的捡些垃圾，我们主要还是看好那里的鳟鱼的，要吃午饭的农家乐就是我们徒步的终点与重点。</p>
-<p>农家乐：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"></a></p>
-<p>到达半山中的农家乐大概才11点吧，和几个同级同学与师兄玩了会纸牌，就开始吃午饭了。</p>
-<p>下面是午饭的主角儿：</p>
-<p> <a href="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"></a></p>
-<p>没有把那盘鱼给留下来做个纪念。饭间又认识了几位师兄与师姐，很尴尬的是把一位学姐当大四的了。</p>
-<p>如果说以上算平淡的游玩，下面的就有些意思了：吃完饭几个同学商量去爬山，自己没有仔细考虑就欣然同意前去了。</p>
-<p>和老祝走在盘山公路的前面为大家探山，之所以说探山，这里的山由于被盘山公路切开，没有直接从地面形成斜坡的，很多是拔地而起，我们要找个坡度合适的、时间上来的及的打下“牙祭”。看到由两位可能是采药的人在山上“逛荡”（真觉得他们很轻松的在山上），我们敲定了就爬她们所在的山。</p>
-<p>探山路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"></a></p>
-<p>去寻山路，居然没有路，我们几个男生就成为了开路着。奇岩怪石，山间荆棘遍地，巨石硕大如房屋，在没有路的野山中，披荆斩棘，望山寻路，虽然被刮伤了几处，不过路倒是开得挺顺当。随行大概20多人吧，像攀岩般体验了这次冒险，一路坎坷，大有野山寻古墓的阵势，让我不断想起《盗墓笔记》与说列宁的《日出》那段。</p>
-<p>时间有限，下山还有坐公交车，爬到一处平台，大家感觉爬的差不多了，拍照留纪念，准备下山。其实这山本就是让看的，爬起来像是在挑战这座山一样。</p>
-<p>山间平台留影：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"></a></p>
-<p>下山就没什么了，蹦崩跳跳的就下来了。不过人太多，还是注意安全好。</p>
-<p>回到半腰的农家乐休息了一会儿，看天色不好我们就向山脚下赶了。</p>
-<p>回来路上和几个同学，沿盘山公路一路开跑狂奔，好不欢乐！结果是枫姐拿个对讲机使劲追我们，不断向断后的王宇报告我们的行踪。</p>
-<p>中间有段路，因为喝水太多了，跑起来腹中排山倒海，只能慢下来了，从第一集团跌入第二集团。</p>
-<p>走在山谷间，闲暇的带着耳机一边听着班德瑞一边淋着雨，漫步中观察着一座座欲比天的青峰，想着再静也不过如此了。</p>
-<p>不知觉间居然被枫姐赶超了，好吧，继续狂奔。</p>
-<p>功夫不负有心人，和大四的同学一起首先回到山脚下，坐上公交除了脚底疼什么感觉都没了。</p>
-<p>时间不早了，明天写些感受吧，上面纯是流水。</p>
-]]></content>
-      <categories>
-        <category>Walk</category>
-      </categories>
-      <tags>
-        <tag>大峪</tag>
-        <tag>虹鳟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于google搜索重定向</title>
     <url>/Web/04/21/google-search-redirects.html</url>
     <content><![CDATA[<p>关于国内google的重定向问题，想必使用google的用户都烦透了，当使用google搜索功能，点击搜索结果经常会出现对搜索结果重定向，有时候甚至打不开google的搜索结果。<span id="more"></span></p>
@@ -1689,6 +1624,97 @@ struct st3&#123;
       </categories>
       <tags>
         <tag>成都</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从aa+bb+cc=abc说起</title>
+    <url>/Alogrithm/12/22/speaking-from-aa-bb-cc-abc.html</url>
+    <content><![CDATA[<p>有这样一句话“二十岁之后为优秀的人工作，三十岁之后和优秀的人合作，四十岁之后请优秀的人工作~！”；<span id="more"></span>晚上朋友告诉我学校有场求职方面的学长经验交流会，想着趁着二十岁验证下第一句话，就去听了，也是读研以来继续感受坐在下面的感觉。</p>
+<p>首先,参加经验交流的学长学姐们很优秀，我确实看到了金子在发光。</p>
+<p>然后，首先中提到的东西与本文没关系…</p>
+<p>最后，开始我的话题，参加NI面试的学长在接受NI大中华区二号人物面试时，提到面试官抛出这样的问题：</p>
+<p>aa+bb+cc&#x3D;abc;</p>
+<p>a、b、c&#x3D;1~9;</p>
+<p>求a、b、c;</p>
+<p>解下这道题。</p>
+<p>下面是我的求解思路，规律也是有的：</p>
+<p>（1）aa+bb+cc&#x3D;11(a+b+c)&#x3D;100a+10b+c;</p>
+<p>（2）a、b、c&#x3D;1<del>9，则abc范围为11*3</del>11*27&#x3D;&gt;a&#x3D;1<del>2，abc&#x3D;33</del>297中可以被11整除的数字;</p>
+<p>（3）观察一下被11整除的数：11 22 33 44 55…；121 132 143….；220 231 242….；发现木有？百位等于十位与个位之差。</p>
+<p>（4）下面就简单了，解个一元方程就OK!</p>
+<pre><code>n=1~9
+c=n;
+b=n+a;
+则：11*（a+(n+a)+n）=100*a+10*(n+a)+n  =&gt;  n=88a/11;
+</code></pre>
+<p> a&#x3D;1时，b&#x3D;9,c&#x3D;8;</p>
+<p> a&#x3D;2时，无1<del>9范围内解，即上式答案在a、b、c&#x3D;1</del>9时唯一。</p>
+<p>（5）a&#x3D;1;b&#x3D;9;c&#x3D;8。</p>
+<p>做完了，也许学长当时忘了计算机的思维，直接使用十进制去求解。但是别忘了计算机的思维，甚至是发散下思维，进制！！！！没有告诉是十进制啊？</p>
+<p>那么，对于p进制，解是什么样的，存不存在唯一解？</p>
+<p>我的想法：</p>
+<p>p进制时，这道题被化为这样：</p>
+<p>(p+1)<em>(a+b+c)&#x3D;p^2</em>a+p*b+c; a b c &#x3D;1<del>9，p&#x3D;2</del>10；a b c&lt;&#x3D;p-1；</p>
+<p>这类问题映射为整数规划问题，编程求解。</p>
+<p>下面Lingo程序，用pmin pmax分别表示p的范围,利用abc与def的替换，分别求解pmin、pmax，最后求取pmax-pmin的最大值，获得p范围</p>
+<pre><code>max =pmax-pmin;
+(pmin+1)*(a+b+c)=pmin^2*a+pmin*b+c;
+(pmax+1)*(d+e+f)=pmax^2*d+pmax*e+f;
+!a b c d e f 为正整数;
+a*b*c*d*e*f&gt;=1;
+@gin(a);
+@gin(b);
+@gin(c);
+@gin(d);
+@gin(e);
+@gin(f);
+!a b c d e f 为1位p进制数;
+a&lt;=pmin-1;
+b&lt;=pmin-1;
+c&lt;=pmin-1;
+d&lt;=pmax-1;
+e&lt;=pmax-1;
+f&lt;=pmax-1;
+!pmin pmax为2-10进制;
+@bnd(2,pmin,10);
+@bnd(2,pmax,10);
+pmin&lt;=pmax;
+@gin(pmin);
+@gin(pmax);
+</code></pre>
+<p>得到： <a href="http://nankor.org/uploads/2012/12/lingo.png"><img src="http://nankor.org/uploads/2012/12/lingo.png" alt="lingo"></a> 可知P&#x3D;3~10。 那么每个p进制是否都存在a b c唯一解呢？ 同样很简单的说：已知m进制时，求解方法：</p>
+<pre><code>min =pmin;
+(pmin+1)*(a+b+c)=pmin^2*a+pmin*b+c;
+!a b c  为正整数;
+a*b*c&gt;=1;
+@gin(a);
+@gin(b);
+@gin(c);
+!a b c 为1位p进制数;
+a&lt;=pmin-1;
+b&lt;=pmin-1;
+c&lt;=pmin-1;
+!pmin pmax为2-10进制;
+@bnd(m,pmin,10);
+@gin(pmin);
+</code></pre>
+<p>其实，对于p进制，其实当且仅当a&#x3D;1;b&#x3D;p-1;c&#x3D;p-2时，存在恒等式：</p>
+<p>(p<em>a+a)+(p</em>b+b)+(p<em>c+c)&#x3D;p^2</em>a+p<em>b+c&#x3D;2</em>(p^2-1)</p>
+<p>所以，上面问题广义而言是不存在唯一解的，但是规定p进制之后，存在唯一解：</p>
+<p>a&#x3D;1;b&#x3D;p-1;c&#x3D;p-2；</p>
+<p>这道题，本身解决十进制并不难，只要有好的思路，条理清楚很容易想到。但是，很容易忽略进制问题。另外，即使考虑进制问题，求解也是需要一番周折。</p>
+<p>当然从数学推导方面来看，上面a&#x3D;1;b&#x3D;p-1;c&#x3D;p-2，这样的普适公式是可以推导出来的，但是不用编程、纸笔，在面试现场靠心算、数学归纳法证明规律，还要做唯一解验证，确实需要运气与可以鄙视人类的智商。</p>
+<p>跳开本道题。很多时候思维的发散都是很重要的，不仅数学如此！换句话说，只有想到了未知，才理解了已知。（你理解“今天不是世界末日”这个未知命题么？）考察思维发散一直是耍人的伎俩，这点面试时都爱耍。</p>
+<p>本道题的思路经历了 简单-&gt;复杂-&gt;简单 的历程，此题如此，事物的发展变化又岂不是如此！本文也到了简单那一步……</p>
+<p>Over</p>
+]]></content>
+      <categories>
+        <category>Alogrithm</category>
+      </categories>
+      <tags>
+        <tag>lingo</tag>
+        <tag>思维发散</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -1854,97 +1880,6 @@ java -classpath APJP_LOCAL_JAVA-1.0.0.jar APJP/Main
         <tag>Goagent</tag>
         <tag>IPV6</tag>
         <tag>Knproxy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从aa+bb+cc=abc说起</title>
-    <url>/Alogrithm/12/22/speaking-from-aa-bb-cc-abc.html</url>
-    <content><![CDATA[<p>有这样一句话“二十岁之后为优秀的人工作，三十岁之后和优秀的人合作，四十岁之后请优秀的人工作~！”；<span id="more"></span>晚上朋友告诉我学校有场求职方面的学长经验交流会，想着趁着二十岁验证下第一句话，就去听了，也是读研以来继续感受坐在下面的感觉。</p>
-<p>首先,参加经验交流的学长学姐们很优秀，我确实看到了金子在发光。</p>
-<p>然后，首先中提到的东西与本文没关系…</p>
-<p>最后，开始我的话题，参加NI面试的学长在接受NI大中华区二号人物面试时，提到面试官抛出这样的问题：</p>
-<p>aa+bb+cc&#x3D;abc;</p>
-<p>a、b、c&#x3D;1~9;</p>
-<p>求a、b、c;</p>
-<p>解下这道题。</p>
-<p>下面是我的求解思路，规律也是有的：</p>
-<p>（1）aa+bb+cc&#x3D;11(a+b+c)&#x3D;100a+10b+c;</p>
-<p>（2）a、b、c&#x3D;1<del>9，则abc范围为11*3</del>11*27&#x3D;&gt;a&#x3D;1<del>2，abc&#x3D;33</del>297中可以被11整除的数字;</p>
-<p>（3）观察一下被11整除的数：11 22 33 44 55…；121 132 143….；220 231 242….；发现木有？百位等于十位与个位之差。</p>
-<p>（4）下面就简单了，解个一元方程就OK!</p>
-<pre><code>n=1~9
-c=n;
-b=n+a;
-则：11*（a+(n+a)+n）=100*a+10*(n+a)+n  =&gt;  n=88a/11;
-</code></pre>
-<p> a&#x3D;1时，b&#x3D;9,c&#x3D;8;</p>
-<p> a&#x3D;2时，无1<del>9范围内解，即上式答案在a、b、c&#x3D;1</del>9时唯一。</p>
-<p>（5）a&#x3D;1;b&#x3D;9;c&#x3D;8。</p>
-<p>做完了，也许学长当时忘了计算机的思维，直接使用十进制去求解。但是别忘了计算机的思维，甚至是发散下思维，进制！！！！没有告诉是十进制啊？</p>
-<p>那么，对于p进制，解是什么样的，存不存在唯一解？</p>
-<p>我的想法：</p>
-<p>p进制时，这道题被化为这样：</p>
-<p>(p+1)<em>(a+b+c)&#x3D;p^2</em>a+p*b+c; a b c &#x3D;1<del>9，p&#x3D;2</del>10；a b c&lt;&#x3D;p-1；</p>
-<p>这类问题映射为整数规划问题，编程求解。</p>
-<p>下面Lingo程序，用pmin pmax分别表示p的范围,利用abc与def的替换，分别求解pmin、pmax，最后求取pmax-pmin的最大值，获得p范围</p>
-<pre><code>max =pmax-pmin;
-(pmin+1)*(a+b+c)=pmin^2*a+pmin*b+c;
-(pmax+1)*(d+e+f)=pmax^2*d+pmax*e+f;
-!a b c d e f 为正整数;
-a*b*c*d*e*f&gt;=1;
-@gin(a);
-@gin(b);
-@gin(c);
-@gin(d);
-@gin(e);
-@gin(f);
-!a b c d e f 为1位p进制数;
-a&lt;=pmin-1;
-b&lt;=pmin-1;
-c&lt;=pmin-1;
-d&lt;=pmax-1;
-e&lt;=pmax-1;
-f&lt;=pmax-1;
-!pmin pmax为2-10进制;
-@bnd(2,pmin,10);
-@bnd(2,pmax,10);
-pmin&lt;=pmax;
-@gin(pmin);
-@gin(pmax);
-</code></pre>
-<p>得到： <a href="http://nankor.org/uploads/2012/12/lingo.png"><img src="http://nankor.org/uploads/2012/12/lingo.png" alt="lingo"></a> 可知P&#x3D;3~10。 那么每个p进制是否都存在a b c唯一解呢？ 同样很简单的说：已知m进制时，求解方法：</p>
-<pre><code>min =pmin;
-(pmin+1)*(a+b+c)=pmin^2*a+pmin*b+c;
-!a b c  为正整数;
-a*b*c&gt;=1;
-@gin(a);
-@gin(b);
-@gin(c);
-!a b c 为1位p进制数;
-a&lt;=pmin-1;
-b&lt;=pmin-1;
-c&lt;=pmin-1;
-!pmin pmax为2-10进制;
-@bnd(m,pmin,10);
-@gin(pmin);
-</code></pre>
-<p>其实，对于p进制，其实当且仅当a&#x3D;1;b&#x3D;p-1;c&#x3D;p-2时，存在恒等式：</p>
-<p>(p<em>a+a)+(p</em>b+b)+(p<em>c+c)&#x3D;p^2</em>a+p<em>b+c&#x3D;2</em>(p^2-1)</p>
-<p>所以，上面问题广义而言是不存在唯一解的，但是规定p进制之后，存在唯一解：</p>
-<p>a&#x3D;1;b&#x3D;p-1;c&#x3D;p-2；</p>
-<p>这道题，本身解决十进制并不难，只要有好的思路，条理清楚很容易想到。但是，很容易忽略进制问题。另外，即使考虑进制问题，求解也是需要一番周折。</p>
-<p>当然从数学推导方面来看，上面a&#x3D;1;b&#x3D;p-1;c&#x3D;p-2，这样的普适公式是可以推导出来的，但是不用编程、纸笔，在面试现场靠心算、数学归纳法证明规律，还要做唯一解验证，确实需要运气与可以鄙视人类的智商。</p>
-<p>跳开本道题。很多时候思维的发散都是很重要的，不仅数学如此！换句话说，只有想到了未知，才理解了已知。（你理解“今天不是世界末日”这个未知命题么？）考察思维发散一直是耍人的伎俩，这点面试时都爱耍。</p>
-<p>本道题的思路经历了 简单-&gt;复杂-&gt;简单 的历程，此题如此，事物的发展变化又岂不是如此！本文也到了简单那一步……</p>
-<p>Over</p>
-]]></content>
-      <categories>
-        <category>Alogrithm</category>
-      </categories>
-      <tags>
-        <tag>lingo</tag>
-        <tag>思维发散</tag>
-        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -2132,6 +2067,229 @@ c&lt;=pmin-1;
       </categories>
       <tags>
         <tag>别离</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大峪游玩</title>
+    <url>/Walk/04/20/otani-play.html</url>
+    <content><![CDATA[<p>这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。<span id="more"></span></p>
+<p>早上6点半，在床上坐起来想了想穿什么衣服，刚穿完衣服，<a href="http://www.thepunch.info/blog/">王宇</a>师兄就打手机过来催起床了。</p>
+<p>7点到新科楼前发现大家都不在，自己应该是迟到了，孙师兄刚好也赶到，就相随去门口追大伙，在外面拿了三个包子，和30多人等公交车奔赴目的地。</p>
+<p>大峪水库比较远，中间转了一趟车，然后坐923从起点到终点。</p>
+<p><a href="http://maps.google.com/maps?f=q&source=embed&hl=zh-CN&geocode=&q=%E8%A5%BF%E5%AE%89+%E5%A4%A7%E5%B3%AA&aq=&sll=37.0625,-95.677068&sspn=46.946584,93.076172&ie=UTF8&hq=&hnear=%E4%B8%AD%E5%9B%BD%E9%99%95%E8%A5%BF%E7%9C%81%E8%A5%BF%E5%AE%89%E9%95%BF%E5%AE%89%E5%8C%BA%E5%A4%A7%E5%B3%AA%E4%B9%A1&ll=34.018954,109.119909&spn=0.024156,0.045447&t=m&z=14">查看大图</a></p>
+<p>到达目的地大概9点吧，来的人比较多，同学是47个吧。本来目的是来捡垃圾的，所以一人发了一个垃圾袋与一只白手套。然后我们就兴冲冲出发了。</p>
+<p>出发了！</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"></a></p>
+<p>下面是路上的一些见闻（由于没有带相机，只能从师兄师姐那里盗点图了。）：</p>
+<p>拔地而起的高山：</p>
+<p><a href="http://nankor.org/uploads/2012/04/hill.jpg"><img src="http://nankor.org/uploads/2012/04/hill.jpg"></a></p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"></a></p>
+<p>山上的流水：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"></a>在路上：</p>
+<p><a href="http://nankor.org/uploads/2012/04/ku1.jpg"><img src="http://nankor.org/uploads/2012/04/ku1.jpg"></a></p>
+<p>还是在路上：</p>
+<p><a href="http://nankor.org/uploads/2012/04/ku2.jpg"><img src="http://nankor.org/uploads/2012/04/ku2.jpg"></a></p>
+<p>见到水库了：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"></a></p>
+<p>平湖：</p>
+<p><a href="http://nankor.org/uploads/2012/04/ku3.jpg"><img src="http://nankor.org/uploads/2012/04/ku3.jpg"></a></p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"></a></p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"></a></p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"></a></p>
+<p>碰到的烈士陵园:</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"><img src="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"></a></p>
+<p>路上的付老师和马老师：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"></a></p>
+<p>在路上，走的比较靠前，和蒋老师聊了会儿天，蒋老师说，今天的目标是10000步，老人家真带着计步器呢</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"></a></p>
+<p>除了半路业余式的捡些垃圾，我们主要还是看好那里的鳟鱼的，要吃午饭的农家乐就是我们徒步的终点与重点。</p>
+<p>农家乐：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"></a></p>
+<p>到达半山中的农家乐大概才11点吧，和几个同级同学与师兄玩了会纸牌，就开始吃午饭了。</p>
+<p>下面是午饭的主角儿：</p>
+<p> <a href="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"></a></p>
+<p>没有把那盘鱼给留下来做个纪念。饭间又认识了几位师兄与师姐，很尴尬的是把一位学姐当大四的了。</p>
+<p>如果说以上算平淡的游玩，下面的就有些意思了：吃完饭几个同学商量去爬山，自己没有仔细考虑就欣然同意前去了。</p>
+<p>和老祝走在盘山公路的前面为大家探山，之所以说探山，这里的山由于被盘山公路切开，没有直接从地面形成斜坡的，很多是拔地而起，我们要找个坡度合适的、时间上来的及的打下“牙祭”。看到由两位可能是采药的人在山上“逛荡”（真觉得他们很轻松的在山上），我们敲定了就爬她们所在的山。</p>
+<p>探山路上：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"></a></p>
+<p>去寻山路，居然没有路，我们几个男生就成为了开路着。奇岩怪石，山间荆棘遍地，巨石硕大如房屋，在没有路的野山中，披荆斩棘，望山寻路，虽然被刮伤了几处，不过路倒是开得挺顺当。随行大概20多人吧，像攀岩般体验了这次冒险，一路坎坷，大有野山寻古墓的阵势，让我不断想起《盗墓笔记》与说列宁的《日出》那段。</p>
+<p>时间有限，下山还有坐公交车，爬到一处平台，大家感觉爬的差不多了，拍照留纪念，准备下山。其实这山本就是让看的，爬起来像是在挑战这座山一样。</p>
+<p>山间平台留影：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"></a></p>
+<p>下山就没什么了，蹦崩跳跳的就下来了。不过人太多，还是注意安全好。</p>
+<p>回到半腰的农家乐休息了一会儿，看天色不好我们就向山脚下赶了。</p>
+<p>回来路上和几个同学，沿盘山公路一路开跑狂奔，好不欢乐！结果是枫姐拿个对讲机使劲追我们，不断向断后的王宇报告我们的行踪。</p>
+<p>中间有段路，因为喝水太多了，跑起来腹中排山倒海，只能慢下来了，从第一集团跌入第二集团。</p>
+<p>走在山谷间，闲暇的带着耳机一边听着班德瑞一边淋着雨，漫步中观察着一座座欲比天的青峰，想着再静也不过如此了。</p>
+<p>不知觉间居然被枫姐赶超了，好吧，继续狂奔。</p>
+<p>功夫不负有心人，和大四的同学一起首先回到山脚下，坐上公交除了脚底疼什么感觉都没了。</p>
+<p>时间不早了，明天写些感受吧，上面纯是流水。</p>
+]]></content>
+      <categories>
+        <category>Walk</category>
+      </categories>
+      <tags>
+        <tag>大峪</tag>
+        <tag>虹鳟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一些有趣的事情关于android和网络</title>
+    <url>/Linux/05/12/some-interesting-thing-about-net-on-android-and-pc.html</url>
+    <content><![CDATA[<p>折腾的是小米1 android，我承认我是想把一切设备PC化。如果你的android没有root，不支持挂载loop设备，请出门左拐。<span id="more"></span></p>
+<p>##内部网络##</p>
+<p>android使用内部网络（校园网，不是AP），现在无线方式可以的已经有3种了，分别对应手机端拨号、手机端不拨号。前提么，肯定要改得了android的mac。</p>
+<p>主要说下第一种，第二种我想稍微知道内部网络原理的人都能想到；第三种是某些地点才可以的，网页拨号。</p>
+<ul>
+<li><p>第一种：使用linux_on_android+android+拨号软件+修改后的mac waln0, 可以了。</p>
+</li>
+<li><p>第二种：自己想吧</p>
+</li>
+<li><p>第三种：很特殊，连接xd_wlan，连接，连接，请连接!（《连接内部网络 专家编程》？！）</p>
+</li>
+</ul>
+<p>##扩充键鼠##</p>
+<p>小米1 不支持OTG，KT CPU都有OTG pin的，唉，小米买的早了！</p>
+<p>只好选择蓝牙键盘，从淘宝上淘的:</p>
+<p><img src="http://nankor.org/uploads/2013/05/keyboard.jpg" alt="蓝牙键盘"></p>
+<p>第一行功能键大都可以用，令人很欣慰啊!</p>
+<p>目前我是一台台式机，一台本，本子上还没工作环境。。。有时候需要查看台式机上的工作代码或者环境,都是ssh+vnc，拿个本去操作太费劲了。手机ssh的作用凸显了，浏览个代码什么的。host_vim指ssh服务器端vim</p>
+<p>好了 </p>
+<pre><code>小米 + 蓝牙键盘 + linux_on_android + ssh+host_vim + git + synergy = PC
+</code></pre>
+<p>或者，换个搭配</p>
+<pre><code>小米 + 蓝牙键盘 + terminal IDE+ssh + host_vim
+</code></pre>
+<p>或者</p>
+<pre><code>小米 + 蓝牙键盘 + connectbot + host_vim
+</code></pre>
+<p>或者</p>
+<pre><code>小米 + 蓝牙键盘 + vimtouch + connect
+</code></pre>
+<p>或者</p>
+<pre><code>小米 + 蓝牙键盘 + git clone host repo url + vimtouch
+</code></pre>
+<p>但都没第一种方便，没有第一种的环境纯正。</p>
+<p>这里有截了几张图：</p>
+<p>输入 sl ,呵呵 :</p>
+<pre><code>$ sl
+</code></pre>
+<p><img src="http://nankor.org/uploads/2013/05/sl1.png" alt="train start "></p>
+<p><img src="http://nankor.org/uploads/2013/05/sl2.png" alt="train tail "></p>
+<p>看下机子的信息吧：</p>
+<pre><code>$ cat /etc/issue 
+$ uname -a 
+$ haed -n10 /proc/cpuinfo
+</code></pre>
+<p><img src="http://nankor.org/uploads/2013/05/arch.png" alt="xiaomi ubuntu 12.04 info"></p>
+<p>##NFS看视频##</p>
+<p>甭提sftp，看PC端视频卡！</p>
+<p>ssh fs， ssh加密压缩传输，更卡！</p>
+<p>而NFS的速度是相对比较快的．</p>
+<p>PC samba server + android samba client  + video player。</p>
+<p>完</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>vim</tag>
+        <tag>hack</tag>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HHKB Lite2 in my work place</title>
+    <url>/Linux/05/31/work-place.html</url>
+    <content><![CDATA[<p>那天看到hhkb，我发现好熟悉啊，突然想起待的地方有一块，今天找剥线钳的时候，正好发现了这个Lite2。<span id="more"></span></p>
+<p>Lite2虽然不是电容的，不过薄膜的手感也不错，敲起来有中木头的感觉。这都是次要的，关键是作为Vim党，发觉ctrl的位置真是太爽了。</p>
+<p>ctrl按键在shift上方，使用vim过程中，缩短了ctrl与escape的键程，这还求什么呢？</p>
+<p>啥都不说，先上张lite2的图吧！</p>
+<p><img src="http://nankor.org/uploads/2013/05/lite202.jpg" alt="Lite2 俯视图"></p>
+<p>桌子上还有另两个键盘，对比一下，屌丝与高富帅一览无余！</p>
+<p><img src="http://nankor.org/uploads/2013/05/lite203.jpg" alt="three kb"></p>
+<p>完</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>HHKB</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>U盘只读文件系统</title>
+    <url>/Linux/06/09/u-disk-only-read-filesystem.html</url>
+    <content><![CDATA[<p>Linux下使用U盘时，在没有卸载的情况下擅自拔出U盘后，U盘成为只读文件系统，说下修复的办法。<span id="more"></span></p>
+<p>环境：</p>
+<pre><code>OS: Linux  3.9.4-1-ARCH
+U盘：FAT32
+</code></pre>
+<p>今天向U盘上拷了文件后，没有卸载就拔了U盘，再插上电脑，稍等片刻时，发现成为只读文件系统。尝试使用<code>sudo chmod a+w /U</code>，显示为只读文件系统。只好查看打印的系统信息</p>
+<p>查看系统打印信息：</p>
+<pre><code>$ demsg | less
+</code></pre>
+<p>看到如下内容：</p>
+<pre>
+[29153.253989] usb 2-1.2.3.3: new full-speed USB device number 40 using ehci-pci
+[29153.423524] usb 2-1.2.3.3: not running at top speed; connect to a high speed hub
+[29153.431450] scsi20 : usb-storage 2-1.2.3.3:1.0
+[29154.435792] scsi 20:0:0:0: Direct-Access     Generic  Flash Disk       8.07 PQ: 0 ANSI: 2
+[29154.437255] sd 20:0:0:0: [sdb] 8212480 512-byte logical blocks: (4.20 GB/3.91 GiB)
+[29154.438207] sd 20:0:0:0: [sdb] Write Protect is off
+[29154.438214] sd 20:0:0:0: [sdb] Mode Sense: 03 00 00 00
+[29154.438930] sd 20:0:0:0: [sdb] No Caching mode page present
+[29154.438934] sd 20:0:0:0: [sdb] Assuming drive cache: write through
+[29154.442123] sd 20:0:0:0: [sdb] No Caching mode page present
+[29154.442128] sd 20:0:0:0: [sdb] Assuming drive cache: write through
+[29154.473636]  sdb: sdb1
+[29154.476380] sd 20:0:0:0: [sdb] No Caching mode page present
+[29154.476388] sd 20:0:0:0: [sdb] Assuming drive cache: write through
+[29154.476404] sd 20:0:0:0: [sdb] Attached SCSI removable disk
+[29155.527602] FAT-fs (sdb1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[29167.626139] FAT-fs (sdb1): error, fat_get_cluster: invalid cluster chain (i_pos 2111071)
+[29167.626143] FAT-fs (sdb1): Filesystem has been set read-only
+[29167.626154] FAT-fs (sdb1): error, fat_get_cluster: invalid cluster chain (i_pos 2111071)
+</pre>
+
+<p>写的很明白，被不适当的卸载造成有些数据错误，请使用fsck修复。</p>
+<p>使用fsck修复：（sdb1是U盘的分区）</p>
+<pre><code>$ sudo fsck -fy /dev/sdb1
+</code></pre>
+<p>含义:肯定回答修复损坏的扇区，保险起见可以不加f与y。</p>
+<p>修复后，正常卸载U盘，再插上U盘：</p>
+<pre><code>$ dmesg | less
+</code></pre>
+<p>看到：</p>
+<pre>
+[29665.364058] usb 2-1.2.3.3: new full-speed USB device number 43 using ehci-pci
+[29665.543688] usb 2-1.2.3.3: not running at top speed; connect to a high speed hub
+[29665.551693] scsi23 : usb-storage 2-1.2.3.3:1.0
+[29666.555758] scsi 23:0:0:0: Direct-Access     Generic  Flash Disk       8.07 PQ: 0 ANSI: 2
+[29666.557362] sd 23:0:0:0: [sdb] 8212480 512-byte logical blocks: (4.20 GB/3.91 GiB)
+[29666.557984] sd 23:0:0:0: [sdb] Write Protect is off
+[29666.557987] sd 23:0:0:0: [sdb] Mode Sense: 03 00 00 00
+[29666.558605] sd 23:0:0:0: [sdb] No Caching mode page present
+[29666.558608] sd 23:0:0:0: [sdb] Assuming drive cache: write through
+[29666.561606] sd 23:0:0:0: [sdb] No Caching mode page present
+[29666.561609] sd 23:0:0:0: [sdb] Assuming drive cache: write through
+[29666.893013]  sdb: sdb1
+[29666.895352] sd 23:0:0:0: [sdb] No Caching mode page present
+[29666.895357] sd 23:0:0:0: [sdb] Assuming drive cache: write through
+[29666.895361] sd 23:0:0:0: [sdb] Attached SCSI removable disk
+</pre>
+
+<p>打开U盘，可以正常读写了。</p>
+<p>（完）</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2325,198 +2483,6 @@ CPPFLAGS=-I$HOME/arm/ncurses/include
       </tags>
   </entry>
   <entry>
-    <title>一些有趣的事情关于android和网络</title>
-    <url>/Linux/05/12/some-interesting-thing-about-net-on-android-and-pc.html</url>
-    <content><![CDATA[<p>折腾的是小米1 android，我承认我是想把一切设备PC化。如果你的android没有root，不支持挂载loop设备，请出门左拐。<span id="more"></span></p>
-<p>##内部网络##</p>
-<p>android使用内部网络（校园网，不是AP），现在无线方式可以的已经有3种了，分别对应手机端拨号、手机端不拨号。前提么，肯定要改得了android的mac。</p>
-<p>主要说下第一种，第二种我想稍微知道内部网络原理的人都能想到；第三种是某些地点才可以的，网页拨号。</p>
-<ul>
-<li><p>第一种：使用linux_on_android+android+拨号软件+修改后的mac waln0, 可以了。</p>
-</li>
-<li><p>第二种：自己想吧</p>
-</li>
-<li><p>第三种：很特殊，连接xd_wlan，连接，连接，请连接!（《连接内部网络 专家编程》？！）</p>
-</li>
-</ul>
-<p>##扩充键鼠##</p>
-<p>小米1 不支持OTG，KT CPU都有OTG pin的，唉，小米买的早了！</p>
-<p>只好选择蓝牙键盘，从淘宝上淘的:</p>
-<p><img src="http://nankor.org/uploads/2013/05/keyboard.jpg" alt="蓝牙键盘"></p>
-<p>第一行功能键大都可以用，令人很欣慰啊!</p>
-<p>目前我是一台台式机，一台本，本子上还没工作环境。。。有时候需要查看台式机上的工作代码或者环境,都是ssh+vnc，拿个本去操作太费劲了。手机ssh的作用凸显了，浏览个代码什么的。host_vim指ssh服务器端vim</p>
-<p>好了 </p>
-<pre><code>小米 + 蓝牙键盘 + linux_on_android + ssh+host_vim + git + synergy = PC
-</code></pre>
-<p>或者，换个搭配</p>
-<pre><code>小米 + 蓝牙键盘 + terminal IDE+ssh + host_vim
-</code></pre>
-<p>或者</p>
-<pre><code>小米 + 蓝牙键盘 + connectbot + host_vim
-</code></pre>
-<p>或者</p>
-<pre><code>小米 + 蓝牙键盘 + vimtouch + connect
-</code></pre>
-<p>或者</p>
-<pre><code>小米 + 蓝牙键盘 + git clone host repo url + vimtouch
-</code></pre>
-<p>但都没第一种方便，没有第一种的环境纯正。</p>
-<p>这里有截了几张图：</p>
-<p>输入 sl ,呵呵 :</p>
-<pre><code>$ sl
-</code></pre>
-<p><img src="http://nankor.org/uploads/2013/05/sl1.png" alt="train start "></p>
-<p><img src="http://nankor.org/uploads/2013/05/sl2.png" alt="train tail "></p>
-<p>看下机子的信息吧：</p>
-<pre><code>$ cat /etc/issue 
-$ uname -a 
-$ haed -n10 /proc/cpuinfo
-</code></pre>
-<p><img src="http://nankor.org/uploads/2013/05/arch.png" alt="xiaomi ubuntu 12.04 info"></p>
-<p>##NFS看视频##</p>
-<p>甭提sftp，看PC端视频卡！</p>
-<p>ssh fs， ssh加密压缩传输，更卡！</p>
-<p>而NFS的速度是相对比较快的．</p>
-<p>PC samba server + android samba client  + video player。</p>
-<p>完</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>vim</tag>
-        <tag>hack</tag>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HHKB Lite2 in my work place</title>
-    <url>/Linux/05/31/work-place.html</url>
-    <content><![CDATA[<p>那天看到hhkb，我发现好熟悉啊，突然想起待的地方有一块，今天找剥线钳的时候，正好发现了这个Lite2。<span id="more"></span></p>
-<p>Lite2虽然不是电容的，不过薄膜的手感也不错，敲起来有中木头的感觉。这都是次要的，关键是作为Vim党，发觉ctrl的位置真是太爽了。</p>
-<p>ctrl按键在shift上方，使用vim过程中，缩短了ctrl与escape的键程，这还求什么呢？</p>
-<p>啥都不说，先上张lite2的图吧！</p>
-<p><img src="http://nankor.org/uploads/2013/05/lite202.jpg" alt="Lite2 俯视图"></p>
-<p>桌子上还有另两个键盘，对比一下，屌丝与高富帅一览无余！</p>
-<p><img src="http://nankor.org/uploads/2013/05/lite203.jpg" alt="three kb"></p>
-<p>完</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>HHKB</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>激进的archlinux</title>
-    <url>/Linux/06/04/radical-archlinux.html</url>
-    <content><![CDATA[<p>今天查看feedly，突然看到arch关于更新的通知，不得不惊叹，arch的激进主义！<span id="more"></span></p>
-<p><a href="https://www.archlinux.org/news/binaries-move-to-usrbin-requiring-update-intervention/">原文</a>,<br>翻译如下：</p>
-<p>在您下次更新时，你将得到如下的错误信息：</p>
-<pre><code>error: failed to commit transaction (conflicting files)
-filesystem: /bin exists in filesystem
-</code></pre>
-<p>这次更新把所有二进制文件都转移至统一的目录&#x2F;usr&#x2F;bin。移除这个 二进制文件的存放位置的差别对arch系统没有太大影响，但是却简化了开发团队的包维护工作。你可以参考这篇<a href="https://mailman.archlinux.org/pipermail/arch-dev-public/2012-March/022625.html">文章</a>来得到这次变化的进一步解释。</p>
-<p>按照以下说明，进行安全更新：</p>
-<ol>
-<li>整理&#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;bin目录下的所有非官方源安装包，把它们放进&#x2F;usr&#x2F;bin目录下。按照以下方法可以得到需要整理的非官方源的安装包清单：<br> $ pacman -Qqo &#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;sbin | pacman -Qm -</li>
-</ol>
-<p>也可以使用如下方法检查识别非官方源的安装包：<br>    $ paclist <repo> | awk ‘ { print $1 } ‘ | pacman -Ql - | grep ‘ &#x2F;s?bin&#x2F;| &#x2F;usr&#x2F;sbin&#x2F;‘</p>
-<ol start="2">
-<li><p>确保任何一个在IgnorePkg或IgnoreGroup中的安装包没有相关的文件放置在&#x2F;bin、&#x2F;sbin或&#x2F;usr&#x2F;bin目录下。如果需要，整理修复这些软件包</p>
-</li>
-<li><p>如果您有一些不被任何安装包拥有的文件放置在&#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;bin目录下，您需要移除他们。使用如下方法得到这类文件清单：<br> $ find &#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;sbin -exec pacman -Qo – { } + &gt;&#x2F;dev&#x2F;null</p>
-</li>
-<li><p>如果您使用了autofs，确保所有分区被挂载，因为在稍后的更新中它们可能不会自动挂载。</p>
-</li>
-<li><p>升级系统</p>
-</li>
-</ol>
-<p>在执行更新之前，你可能需要确保你有一个备用的具有root权限的终端,比如在这些情况下：用于不常见的系统修复，尤其是通过ssh进行远程升级。可以如下做：<br>    #pacman -Syu –ignore filesystem,bash<br>    #pacman -S bash<br>    #pacman -Su</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>archlinux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>U盘只读文件系统</title>
-    <url>/Linux/06/09/u-disk-only-read-filesystem.html</url>
-    <content><![CDATA[<p>Linux下使用U盘时，在没有卸载的情况下擅自拔出U盘后，U盘成为只读文件系统，说下修复的办法。<span id="more"></span></p>
-<p>环境：</p>
-<pre><code>OS: Linux  3.9.4-1-ARCH
-U盘：FAT32
-</code></pre>
-<p>今天向U盘上拷了文件后，没有卸载就拔了U盘，再插上电脑，稍等片刻时，发现成为只读文件系统。尝试使用<code>sudo chmod a+w /U</code>，显示为只读文件系统。只好查看打印的系统信息</p>
-<p>查看系统打印信息：</p>
-<pre><code>$ demsg | less
-</code></pre>
-<p>看到如下内容：</p>
-<pre>
-[29153.253989] usb 2-1.2.3.3: new full-speed USB device number 40 using ehci-pci
-[29153.423524] usb 2-1.2.3.3: not running at top speed; connect to a high speed hub
-[29153.431450] scsi20 : usb-storage 2-1.2.3.3:1.0
-[29154.435792] scsi 20:0:0:0: Direct-Access     Generic  Flash Disk       8.07 PQ: 0 ANSI: 2
-[29154.437255] sd 20:0:0:0: [sdb] 8212480 512-byte logical blocks: (4.20 GB/3.91 GiB)
-[29154.438207] sd 20:0:0:0: [sdb] Write Protect is off
-[29154.438214] sd 20:0:0:0: [sdb] Mode Sense: 03 00 00 00
-[29154.438930] sd 20:0:0:0: [sdb] No Caching mode page present
-[29154.438934] sd 20:0:0:0: [sdb] Assuming drive cache: write through
-[29154.442123] sd 20:0:0:0: [sdb] No Caching mode page present
-[29154.442128] sd 20:0:0:0: [sdb] Assuming drive cache: write through
-[29154.473636]  sdb: sdb1
-[29154.476380] sd 20:0:0:0: [sdb] No Caching mode page present
-[29154.476388] sd 20:0:0:0: [sdb] Assuming drive cache: write through
-[29154.476404] sd 20:0:0:0: [sdb] Attached SCSI removable disk
-[29155.527602] FAT-fs (sdb1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
-[29167.626139] FAT-fs (sdb1): error, fat_get_cluster: invalid cluster chain (i_pos 2111071)
-[29167.626143] FAT-fs (sdb1): Filesystem has been set read-only
-[29167.626154] FAT-fs (sdb1): error, fat_get_cluster: invalid cluster chain (i_pos 2111071)
-</pre>
-
-<p>写的很明白，被不适当的卸载造成有些数据错误，请使用fsck修复。</p>
-<p>使用fsck修复：（sdb1是U盘的分区）</p>
-<pre><code>$ sudo fsck -fy /dev/sdb1
-</code></pre>
-<p>含义:肯定回答修复损坏的扇区，保险起见可以不加f与y。</p>
-<p>修复后，正常卸载U盘，再插上U盘：</p>
-<pre><code>$ dmesg | less
-</code></pre>
-<p>看到：</p>
-<pre>
-[29665.364058] usb 2-1.2.3.3: new full-speed USB device number 43 using ehci-pci
-[29665.543688] usb 2-1.2.3.3: not running at top speed; connect to a high speed hub
-[29665.551693] scsi23 : usb-storage 2-1.2.3.3:1.0
-[29666.555758] scsi 23:0:0:0: Direct-Access     Generic  Flash Disk       8.07 PQ: 0 ANSI: 2
-[29666.557362] sd 23:0:0:0: [sdb] 8212480 512-byte logical blocks: (4.20 GB/3.91 GiB)
-[29666.557984] sd 23:0:0:0: [sdb] Write Protect is off
-[29666.557987] sd 23:0:0:0: [sdb] Mode Sense: 03 00 00 00
-[29666.558605] sd 23:0:0:0: [sdb] No Caching mode page present
-[29666.558608] sd 23:0:0:0: [sdb] Assuming drive cache: write through
-[29666.561606] sd 23:0:0:0: [sdb] No Caching mode page present
-[29666.561609] sd 23:0:0:0: [sdb] Assuming drive cache: write through
-[29666.893013]  sdb: sdb1
-[29666.895352] sd 23:0:0:0: [sdb] No Caching mode page present
-[29666.895357] sd 23:0:0:0: [sdb] Assuming drive cache: write through
-[29666.895361] sd 23:0:0:0: [sdb] Attached SCSI removable disk
-</pre>
-
-<p>打开U盘，可以正常读写了。</p>
-<p>（完）</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>archlinux</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于Vim添加文件末尾空行</title>
     <url>/Program/08/18/avoid-inserting-blank-line-by-vim.html</url>
     <content><![CDATA[<p>今天使用hexo编辑link类型的文章，发现总是不能良好的转换，查明原因原来是vim在编辑保存markdown文件后在末尾加入空行所致。<span id="more"></span></p>
@@ -2541,23 +2507,6 @@ U盘：FAT32
       </categories>
       <tags>
         <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++智能指针漫谈</title>
-    <url>/Program/08/19/about-c++-smart-ptr.html</url>
-    <content><![CDATA[<p>关于C++智能指针三篇文章</p>
-<span id="more"></span>
-
-<p><a href="http://my.oschina.net/sulliy/blog/79991">C++智能指针漫谈[上]</a></p>
-<p><a href="http://my.oschina.net/sulliy/blog/79993">C++智能指针漫谈[中]</a></p>
-<p><a href="http://my.oschina.net/sulliy/blog/79995">C++智能指针漫谈[下]</a></p>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -2623,8 +2572,59 @@ U盘：FAT32
       </tags>
   </entry>
   <entry>
+    <title>激进的archlinux</title>
+    <url>/Linux/06/04/radical-archlinux.html</url>
+    <content><![CDATA[<p>今天查看feedly，突然看到arch关于更新的通知，不得不惊叹，arch的激进主义！<span id="more"></span></p>
+<p><a href="https://www.archlinux.org/news/binaries-move-to-usrbin-requiring-update-intervention/">原文</a>,<br>翻译如下：</p>
+<p>在您下次更新时，你将得到如下的错误信息：</p>
+<pre><code>error: failed to commit transaction (conflicting files)
+filesystem: /bin exists in filesystem
+</code></pre>
+<p>这次更新把所有二进制文件都转移至统一的目录&#x2F;usr&#x2F;bin。移除这个 二进制文件的存放位置的差别对arch系统没有太大影响，但是却简化了开发团队的包维护工作。你可以参考这篇<a href="https://mailman.archlinux.org/pipermail/arch-dev-public/2012-March/022625.html">文章</a>来得到这次变化的进一步解释。</p>
+<p>按照以下说明，进行安全更新：</p>
+<ol>
+<li>整理&#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;bin目录下的所有非官方源安装包，把它们放进&#x2F;usr&#x2F;bin目录下。按照以下方法可以得到需要整理的非官方源的安装包清单：<br> $ pacman -Qqo &#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;sbin | pacman -Qm -</li>
+</ol>
+<p>也可以使用如下方法检查识别非官方源的安装包：<br>    $ paclist <repo> | awk ‘ { print $1 } ‘ | pacman -Ql - | grep ‘ &#x2F;s?bin&#x2F;| &#x2F;usr&#x2F;sbin&#x2F;‘</p>
+<ol start="2">
+<li><p>确保任何一个在IgnorePkg或IgnoreGroup中的安装包没有相关的文件放置在&#x2F;bin、&#x2F;sbin或&#x2F;usr&#x2F;bin目录下。如果需要，整理修复这些软件包</p>
+</li>
+<li><p>如果您有一些不被任何安装包拥有的文件放置在&#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;bin目录下，您需要移除他们。使用如下方法得到这类文件清单：<br> $ find &#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;sbin -exec pacman -Qo – { } + &gt;&#x2F;dev&#x2F;null</p>
+</li>
+<li><p>如果您使用了autofs，确保所有分区被挂载，因为在稍后的更新中它们可能不会自动挂载。</p>
+</li>
+<li><p>升级系统</p>
+</li>
+</ol>
+<p>在执行更新之前，你可能需要确保你有一个备用的具有root权限的终端,比如在这些情况下：用于不常见的系统修复，尤其是通过ssh进行远程升级。可以如下做：<br>    #pacman -Syu –ignore filesystem,bash<br>    #pacman -S bash<br>    #pacman -Su</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>archlinux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>头像背后的故事</title>
     <url>/Think/10/23/%E5%A4%B4%E5%83%8F%E8%83%8C%E5%90%8E%E7%9A%84%E6%95%85%E4%BA%8B.html</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>C++智能指针漫谈</title>
+    <url>/Program/08/19/about-c++-smart-ptr.html</url>
+    <content><![CDATA[<p>关于C++智能指针三篇文章</p>
+<span id="more"></span>
+
+<p><a href="http://my.oschina.net/sulliy/blog/79991">C++智能指针漫谈[上]</a></p>
+<p><a href="http://my.oschina.net/sulliy/blog/79993">C++智能指针漫谈[中]</a></p>
+<p><a href="http://my.oschina.net/sulliy/blog/79995">C++智能指针漫谈[下]</a></p>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
   </entry>
 </search>
