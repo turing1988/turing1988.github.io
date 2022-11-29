@@ -23,104 +23,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于Fcitx的提议 (一)</title>
-    <url>/Linux/03/03/fcitx-proposal-a.html</url>
-    <content><![CDATA[<p>小企鹅（Fcitx）输入法英文自动输入的提议。<span id="more"></span></p>
-<p>在使用fcitx输入法的过程中，突然有点小想法。在fcitx输入法的配置中有个小功能“自动英文模式”：</p>
-<p><img src="http://nankor.org/uploads/2012/03/1.jpg"></p>
-<p>正如所说“在输入特定字符串时切换到英文模式”，打开之后看配置的英文模式触发词库:</p>
-<p><img src="http://nankor.org/uploads/2012/03/2.jpg"></p>
-<p>这些英文单词与标点很清楚的表明接下来要输入英文了，输入法不用手工切换自动转换为英文输入模式。举个例子：</p>
-<p><img src="http://nankor.org/uploads/2012/03/3.jpg"></p>
-<p>当我在中文汉字输入法模式下输入“www”，上图看到输入法还处于中文模式，当我再输入“.”时，输入法自动切换（如下图）：</p>
-<p><img src="http://nankor.org/uploads/2012/03/4.jpg"></p>
-<p>这是个很节约时间的输入状态，但是fcitx所给的英文模式触发词显然太少了，在*nix下CLI是经常需要打开终端就输入的，一旦开启了输入法在所有程序间“共享”，打开终端输入“sudo”就成了“速度哦”，反映快点可以按下回车（设定为自动提交输入），但是若习惯使然输入命令的快感使我提前按下了空格，提交了“速度哦”，这时输入本次输入就算失败了</p>
-<p><img src="http://nankor.org/uploads/2012/03/5.jpg"></p>
-<p>假如我反映够灵敏，我按下回车把sudo准确提交了，但接下来仍得手动去切换英文输入法了，因为我没把握一直这么灵敏，这就要按下shift（假设我输入英文切换键是shift）换到真正的英文模式。等命令输入完毕，我回来写一篇中文文档，要用“shift”唤回中文汉字输入法，这中间我需要按两次“shift”。</p>
-<p>有没有办法让我在输入命令时自动识别不再显示中文候选词并且阻止上面的一系列切换，使我一直处于中文输入法状态下呢？我打起了fcitx自动触发英文模式的主意！在终端输入的命令基本都来自于超级用户与普通用户的执行程序目录下，看下我bash的执行路径：</p>
-<p><img src="http://nankor.org/uploads/2012/03/6.jpg"></p>
-<p>shell外部命令就来自于上图所列目录，把这些目录下的二进制程序名加入英文模式触发词库后，fcitx是不是就会自动检测我输入的是shell命令而自动停止显示候选词触发英文模式呢？</p>
-<p>这应该是个不错的想法….尝试下，我先把sudo加入英文模式触发词词库，重启下fcitx看下效果：</p>
-<p><img src="http://nankor.org/uploads/2012/03/7.jpg"></p>
-<p>fcitx已经识别我输入的是shell指令，不再显示中文候选词了，看起来效果不错！我把上面路径的binary file name全加入我的英文模式触发词库吧!</p>
-<p>先把超级用户的执行程序名加入英文模式触发词，#:ls &#x2F;sbin|sort&gt;&#x2F;usr&#x2F;share&#x2F;fcitx&#x2F;data&#x2F;AutoEn.dat，貌似感觉好多了（看起来很厉害的样子！！！）我挑个命令试下：su</p>
-<p><img src="http://nankor.org/uploads/2012/03/8.jpg"></p>
-<p>正常输入，自动识别……这好象缺点什么？？貌似我没有办法输入拼音“su”了，更别说打出“su”音 “suo”音等的汉字了！</p>
-<p>一个新的问题：这些二进制可执行程序名中有多少与汉语拼音有冲突？尽量把这些排除在外，或者当输入“su”时，fcitx能够自动把su作为按频率统计的第一候选词，也就是候选词要中英文混排。</p>
-<p>首先解决汉语拼音与命令冲突的问题，先下载汉语拼音音节表(共计398个)，稍后需要从这里过滤文本：</p>
-<pre><code>a ai an ao ang 
-
-b babobaibeibaobanbenbangbengbibiebiaobianbinbing  
-
-p papopaipaopoupanpenpangpengpipiepiaopianpinping 
-
-m mamomemaimaomoumanmenmangmengmimiemiaomiumianminming   
-
-f fafofeifoufanfenfangfeng
-
-d dadedaideidaodoudandangdengdidiediaodiudianding
-
-t tatetaitaotoutantangtengtitietiaotianting
-
-n nanaineinaononennangnengninieniaoniunianninniangning
-
-l lalelaileilaoloulanlanglenglilialieliaoliulianlinliangling
-
-g gagegaigeigaogougangenganggeng
-
-k kakekaikoukankenkangkeng
-
-h hahehaiheihaohouhenhangheng
-
-j jijiajiejiaojiujianjinjiangjing
-
-q qiqiaqieqiaoqiuqianqinqiangqing
-
-x xixiaxiexiaoxiuxianxinxiangxing
-
-zh zhazhezhizhaizhaozhouzhanzhenzhangzheng
-
-ch chachechichaichouchanchenchangcheng
-
-sh shasheshishaishaoshoushanshenshangsheng
-
-r reriraorouranrenrangreng
-
-z zazezizaizaozouzangzeng
-
-c cacecicaicaocoucancencangceng
-
-s sasesisaisaosousansensangseng
-
-y yayaoyouyanyangyuyeyueyuanyiyinyunying
-
-w wawowaiweiwanwenwangwengwu
-</code></pre>
-<p>from <a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8">http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8</a></p>
-<p>下面将所有二进制程序名按单词首字母排序：</p>
-<pre><code>#!/bin/bash
-i=1;
-for i in ` seq 8 ` ;
- do
-     ls $(echo $PATH|cut -d &quot;:&quot; -f $i)|sort&gt;&gt;bins;
- done
-sort bins&gt;bins.ok;rm bins
-exit
-</code></pre>
-<p>文本文件bins.ok几乎涵盖shell所有外部命令，当然这里还有shell内建指令没有包含进来，如cd等，都是很少的了。</p>
-<p><img src="http://nankor.org/uploads/2012/03/9.jpg"></p>
-<p>分析中间“不听话”的命令把它揪出来！上图看到这有3000多行，人工怎么一个个揪出来！！这时拼音音节表要用上了，这像是编译原理的词法分析？？！！差不多，该啐觉了，以后再按拼音音节分解英文单词。</p>
-<p>2012.2.22 凌晨</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>fcitx</tag>
-        <tag>英文自动输入</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu常见问题解决</title>
     <url>/Linux/03/03/the-ubuntu-common-problem-solving.html</url>
     <content><![CDATA[<p>自己使用ubuntu过程中总结的一些小问题及解决办法。</p>
@@ -306,6 +208,149 @@ exit
         <tag>ubuntu</tag>
         <tag>乱码</tag>
         <tag>虚拟光驱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于Fcitx的提议 (一)</title>
+    <url>/Linux/03/03/fcitx-proposal-a.html</url>
+    <content><![CDATA[<p>小企鹅（Fcitx）输入法英文自动输入的提议。<span id="more"></span></p>
+<p>在使用fcitx输入法的过程中，突然有点小想法。在fcitx输入法的配置中有个小功能“自动英文模式”：</p>
+<p><img src="http://nankor.org/uploads/2012/03/1.jpg"></p>
+<p>正如所说“在输入特定字符串时切换到英文模式”，打开之后看配置的英文模式触发词库:</p>
+<p><img src="http://nankor.org/uploads/2012/03/2.jpg"></p>
+<p>这些英文单词与标点很清楚的表明接下来要输入英文了，输入法不用手工切换自动转换为英文输入模式。举个例子：</p>
+<p><img src="http://nankor.org/uploads/2012/03/3.jpg"></p>
+<p>当我在中文汉字输入法模式下输入“www”，上图看到输入法还处于中文模式，当我再输入“.”时，输入法自动切换（如下图）：</p>
+<p><img src="http://nankor.org/uploads/2012/03/4.jpg"></p>
+<p>这是个很节约时间的输入状态，但是fcitx所给的英文模式触发词显然太少了，在*nix下CLI是经常需要打开终端就输入的，一旦开启了输入法在所有程序间“共享”，打开终端输入“sudo”就成了“速度哦”，反映快点可以按下回车（设定为自动提交输入），但是若习惯使然输入命令的快感使我提前按下了空格，提交了“速度哦”，这时输入本次输入就算失败了</p>
+<p><img src="http://nankor.org/uploads/2012/03/5.jpg"></p>
+<p>假如我反映够灵敏，我按下回车把sudo准确提交了，但接下来仍得手动去切换英文输入法了，因为我没把握一直这么灵敏，这就要按下shift（假设我输入英文切换键是shift）换到真正的英文模式。等命令输入完毕，我回来写一篇中文文档，要用“shift”唤回中文汉字输入法，这中间我需要按两次“shift”。</p>
+<p>有没有办法让我在输入命令时自动识别不再显示中文候选词并且阻止上面的一系列切换，使我一直处于中文输入法状态下呢？我打起了fcitx自动触发英文模式的主意！在终端输入的命令基本都来自于超级用户与普通用户的执行程序目录下，看下我bash的执行路径：</p>
+<p><img src="http://nankor.org/uploads/2012/03/6.jpg"></p>
+<p>shell外部命令就来自于上图所列目录，把这些目录下的二进制程序名加入英文模式触发词库后，fcitx是不是就会自动检测我输入的是shell命令而自动停止显示候选词触发英文模式呢？</p>
+<p>这应该是个不错的想法….尝试下，我先把sudo加入英文模式触发词词库，重启下fcitx看下效果：</p>
+<p><img src="http://nankor.org/uploads/2012/03/7.jpg"></p>
+<p>fcitx已经识别我输入的是shell指令，不再显示中文候选词了，看起来效果不错！我把上面路径的binary file name全加入我的英文模式触发词库吧!</p>
+<p>先把超级用户的执行程序名加入英文模式触发词，#:ls &#x2F;sbin|sort&gt;&#x2F;usr&#x2F;share&#x2F;fcitx&#x2F;data&#x2F;AutoEn.dat，貌似感觉好多了（看起来很厉害的样子！！！）我挑个命令试下：su</p>
+<p><img src="http://nankor.org/uploads/2012/03/8.jpg"></p>
+<p>正常输入，自动识别……这好象缺点什么？？貌似我没有办法输入拼音“su”了，更别说打出“su”音 “suo”音等的汉字了！</p>
+<p>一个新的问题：这些二进制可执行程序名中有多少与汉语拼音有冲突？尽量把这些排除在外，或者当输入“su”时，fcitx能够自动把su作为按频率统计的第一候选词，也就是候选词要中英文混排。</p>
+<p>首先解决汉语拼音与命令冲突的问题，先下载汉语拼音音节表(共计398个)，稍后需要从这里过滤文本：</p>
+<pre><code>a ai an ao ang 
+
+b babobaibeibaobanbenbangbengbibiebiaobianbinbing  
+
+p papopaipaopoupanpenpangpengpipiepiaopianpinping 
+
+m mamomemaimaomoumanmenmangmengmimiemiaomiumianminming   
+
+f fafofeifoufanfenfangfeng
+
+d dadedaideidaodoudandangdengdidiediaodiudianding
+
+t tatetaitaotoutantangtengtitietiaotianting
+
+n nanaineinaononennangnengninieniaoniunianninniangning
+
+l lalelaileilaoloulanlanglenglilialieliaoliulianlinliangling
+
+g gagegaigeigaogougangenganggeng
+
+k kakekaikoukankenkangkeng
+
+h hahehaiheihaohouhenhangheng
+
+j jijiajiejiaojiujianjinjiangjing
+
+q qiqiaqieqiaoqiuqianqinqiangqing
+
+x xixiaxiexiaoxiuxianxinxiangxing
+
+zh zhazhezhizhaizhaozhouzhanzhenzhangzheng
+
+ch chachechichaichouchanchenchangcheng
+
+sh shasheshishaishaoshoushanshenshangsheng
+
+r reriraorouranrenrangreng
+
+z zazezizaizaozouzangzeng
+
+c cacecicaicaocoucancencangceng
+
+s sasesisaisaosousansensangseng
+
+y yayaoyouyanyangyuyeyueyuanyiyinyunying
+
+w wawowaiweiwanwenwangwengwu
+</code></pre>
+<p>from <a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8">http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8</a></p>
+<p>下面将所有二进制程序名按单词首字母排序：</p>
+<pre><code>#!/bin/bash
+i=1;
+for i in ` seq 8 ` ;
+ do
+     ls $(echo $PATH|cut -d &quot;:&quot; -f $i)|sort&gt;&gt;bins;
+ done
+sort bins&gt;bins.ok;rm bins
+exit
+</code></pre>
+<p>文本文件bins.ok几乎涵盖shell所有外部命令，当然这里还有shell内建指令没有包含进来，如cd等，都是很少的了。</p>
+<p><img src="http://nankor.org/uploads/2012/03/9.jpg"></p>
+<p>分析中间“不听话”的命令把它揪出来！上图看到这有3000多行，人工怎么一个个揪出来！！这时拼音音节表要用上了，这像是编译原理的词法分析？？！！差不多，该啐觉了，以后再按拼音音节分解英文单词。</p>
+<p>2012.2.22 凌晨</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>fcitx</tag>
+        <tag>英文自动输入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LZW算法简解</title>
+    <url>/Alogrithm/03/04/4558302-algorithm-the-simple-solutions.html</url>
+    <content><![CDATA[<p>LZW(Lempel-Ziv &amp; Welch)编码又称字串表编码，是Welch将Lemple和Ziv所提出来的无损压缩技术改进后的压缩方法。GIF图像文件采用的是一种改良的LZW压缩算法，通常称为GIF-LZW压缩算法。</p>
+<span id="more"></span>****
+
+<p><strong>LZW编码基本原理：</strong></p>
+<p>把每一个第一次出现的字符串用一个数值来编码，解码时再将数值编码还原成原来字符：如果用0X100代替字符串中的“ABCDDEEF”，那么每当这样的字符串出现时都会用0X100来表示，以达到压缩的目的。注意的是这个字符串和数值之间的关系是动态生成的。</p>
+<p><strong>LZW算法基本步骤：</strong></p>
+<p>主要包括两个部分：串表与码字值</p>
+<p>1、将待编码字符串中的所有单个字符存入字符串表（串表）中，并给每个符号赋一个码字值。</p>
+<p>2、读入第一个输入字符，将其赋值给P（P为前缀串）。</p>
+<p>3、读入下一个字符，将其赋值给S（前缀串P的扩展字符）。</p>
+<p>如果PS构成的字符串不在串表中，则将字符串PS的前缀串P对应的码字值输出；将字符串PS存入串表；给PS分配一个码字值；将PS的扩展字符S赋值给P，用P与下一个输入字符形成新的字符串。</p>
+<p><strong>OR</strong></p>
+<p>如果PS已经在串表中，则将PS赋值给P，用P与下一个输入字符形成新的字符串。</p>
+<p><strong>举个例子：</strong></p>
+<p>下面对字符串BABAABAAA进行编码。</p>
+<p>根据以上的算法，令P&#x3D;B，然后读入字符串序列中的下一个字符A，令S&#x3D;A。</p>
+<p>由于串表中并没有PS构成的字符串BA，于是将BA加入串表。</p>
+<p>由于0~255已在串表中赋给了单个的字符，这里只能给BA赋予256的码值。</p>
+<p>同时将BA的前缀B的码值（B的码值为66）输出。</p>
+<p>将BA的扩展字符赋值给P，即令P&#x3D;A，接着进行下一个循环。</p>
+<p>输出下一个（第三个）字符B,令S&#x3D;B，由PS构成新的字符串AB。</p>
+<p>由于串表中没有字符串AB，于是将AB赋码值257，并将AB存入串表中。</p>
+<p>同时输出字符串AB的前缀A对应的码值65，将AB的扩展字符B赋值给P,即P&#x3D;B。</p>
+<p>接着进行下一次循环，输入下一个（第四个）字符A，令S&#x3D;A。</p>
+<p>此时，由于PS构成的字符串BA已在串表中，所以将BA作为下一个新字符串的前缀，即P&#x3D;BA。</p>
+<p>接着重新开始下一次循环，输入下一个字符（第五个）A,令S&#x3D;A。</p>
+<p>形成新的字符串PS,即BAA，由于串表中没有BAA，于是将BAA的前缀BA对应的码值256输出，给字符串BAA赋予码值258，并将BAA存入串表中。</p>
+<p>将BAA的扩展字符A赋值给P,令P&#x3D;A，接着输入下一个字符，如此下去，直到字符串结束为止。</p>
+<p>经过词算法计算后，字符串BABAABAAA将被编码成6个代码&lt;66&gt;&lt;65&gt;&lt;256&gt;&lt;257&gt;&lt;65&gt;&lt;260&gt;。</p>
+<p>现在，基本的压缩编码便完成了。</p>
+<p>参考：</p>
+<p><a href="http://www.limou.net/?p=730">http://www.limou.net/?p=730</a></p>
+<p><a href="http://apps.hi.baidu.com/share/detail/20146343">http://apps.hi.baidu.com/share/detail/20146343</a></p>
+]]></content>
+      <categories>
+        <category>Alogrithm</category>
+      </categories>
+      <tags>
+        <tag>lzw</tag>
+        <tag>压缩</tag>
       </tags>
   </entry>
   <entry>
@@ -572,51 +617,6 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
       </tags>
   </entry>
   <entry>
-    <title>LZW算法简解</title>
-    <url>/Alogrithm/03/04/4558302-algorithm-the-simple-solutions.html</url>
-    <content><![CDATA[<p>LZW(Lempel-Ziv &amp; Welch)编码又称字串表编码，是Welch将Lemple和Ziv所提出来的无损压缩技术改进后的压缩方法。GIF图像文件采用的是一种改良的LZW压缩算法，通常称为GIF-LZW压缩算法。</p>
-<span id="more"></span>****
-
-<p><strong>LZW编码基本原理：</strong></p>
-<p>把每一个第一次出现的字符串用一个数值来编码，解码时再将数值编码还原成原来字符：如果用0X100代替字符串中的“ABCDDEEF”，那么每当这样的字符串出现时都会用0X100来表示，以达到压缩的目的。注意的是这个字符串和数值之间的关系是动态生成的。</p>
-<p><strong>LZW算法基本步骤：</strong></p>
-<p>主要包括两个部分：串表与码字值</p>
-<p>1、将待编码字符串中的所有单个字符存入字符串表（串表）中，并给每个符号赋一个码字值。</p>
-<p>2、读入第一个输入字符，将其赋值给P（P为前缀串）。</p>
-<p>3、读入下一个字符，将其赋值给S（前缀串P的扩展字符）。</p>
-<p>如果PS构成的字符串不在串表中，则将字符串PS的前缀串P对应的码字值输出；将字符串PS存入串表；给PS分配一个码字值；将PS的扩展字符S赋值给P，用P与下一个输入字符形成新的字符串。</p>
-<p><strong>OR</strong></p>
-<p>如果PS已经在串表中，则将PS赋值给P，用P与下一个输入字符形成新的字符串。</p>
-<p><strong>举个例子：</strong></p>
-<p>下面对字符串BABAABAAA进行编码。</p>
-<p>根据以上的算法，令P&#x3D;B，然后读入字符串序列中的下一个字符A，令S&#x3D;A。</p>
-<p>由于串表中并没有PS构成的字符串BA，于是将BA加入串表。</p>
-<p>由于0~255已在串表中赋给了单个的字符，这里只能给BA赋予256的码值。</p>
-<p>同时将BA的前缀B的码值（B的码值为66）输出。</p>
-<p>将BA的扩展字符赋值给P，即令P&#x3D;A，接着进行下一个循环。</p>
-<p>输出下一个（第三个）字符B,令S&#x3D;B，由PS构成新的字符串AB。</p>
-<p>由于串表中没有字符串AB，于是将AB赋码值257，并将AB存入串表中。</p>
-<p>同时输出字符串AB的前缀A对应的码值65，将AB的扩展字符B赋值给P,即P&#x3D;B。</p>
-<p>接着进行下一次循环，输入下一个（第四个）字符A，令S&#x3D;A。</p>
-<p>此时，由于PS构成的字符串BA已在串表中，所以将BA作为下一个新字符串的前缀，即P&#x3D;BA。</p>
-<p>接着重新开始下一次循环，输入下一个字符（第五个）A,令S&#x3D;A。</p>
-<p>形成新的字符串PS,即BAA，由于串表中没有BAA，于是将BAA的前缀BA对应的码值256输出，给字符串BAA赋予码值258，并将BAA存入串表中。</p>
-<p>将BAA的扩展字符A赋值给P,令P&#x3D;A，接着输入下一个字符，如此下去，直到字符串结束为止。</p>
-<p>经过词算法计算后，字符串BABAABAAA将被编码成6个代码&lt;66&gt;&lt;65&gt;&lt;256&gt;&lt;257&gt;&lt;65&gt;&lt;260&gt;。</p>
-<p>现在，基本的压缩编码便完成了。</p>
-<p>参考：</p>
-<p><a href="http://www.limou.net/?p=730">http://www.limou.net/?p=730</a></p>
-<p><a href="http://apps.hi.baidu.com/share/detail/20146343">http://apps.hi.baidu.com/share/detail/20146343</a></p>
-]]></content>
-      <categories>
-        <category>Alogrithm</category>
-      </categories>
-      <tags>
-        <tag>lzw</tag>
-        <tag>压缩</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>清明上河园游记</title>
     <url>/Walk/03/04/the-qingming-park-travel.html</url>
     <content><![CDATA[<p>说实在的，这篇写的太晚了。没办法，突然想起来的，今年也好久没出去玩了，也只能想过去出去玩的份，闲话少说，上几张图吧。<span id="more"></span></p>
@@ -639,23 +639,6 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
       <tags>
         <tag>宋朝</tag>
         <tag>清明上河园</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>曾经Ubuntu的3D秀</title>
-    <url>/Linux/03/13/once-the-ubuntu-3d-show.html</url>
-    <content><![CDATA[<p>今天翻日志，看到以前自己录的一段ubuntu的3D桌面视频，当时用的是wine+屏幕录像大师之类的软件，录3D时丟帧情况不是太严重，当然如果用ffmpeg效果应该比这个好多了。</p>
-<span id="more"></span>这是2011年1月2日录制的视频，没有经过后期处理，中间一些杂音就隐去了吧...隐去了吧...
-
-<p>当时没有对主题界面进行美化;如果采用Emerald安装特色的主题，其效果应好于KDE，并且内存占用少于KDE，当时没有那样折腾。</p>
-<p><object width="533" height="400" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value="http://player.youku.com/player.php/sid/XMjM0MTA5OTY0/v.swf" /><embed width="533" height="400" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/XMjM0MTA5OTY0/v.swf" /></object></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>3D</tag>
       </tags>
   </entry>
   <entry>
@@ -689,6 +672,23 @@ exec /hsphere/shared/php5/bin/php-cgi -c 我的域名目录/cgi-bin/php.ini
       <tags>
         <tag>编程效率</tag>
         <tag>软件设计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>曾经Ubuntu的3D秀</title>
+    <url>/Linux/03/13/once-the-ubuntu-3d-show.html</url>
+    <content><![CDATA[<p>今天翻日志，看到以前自己录的一段ubuntu的3D桌面视频，当时用的是wine+屏幕录像大师之类的软件，录3D时丟帧情况不是太严重，当然如果用ffmpeg效果应该比这个好多了。</p>
+<span id="more"></span>这是2011年1月2日录制的视频，没有经过后期处理，中间一些杂音就隐去了吧...隐去了吧...
+
+<p>当时没有对主题界面进行美化;如果采用Emerald安装特色的主题，其效果应好于KDE，并且内存占用少于KDE，当时没有那样折腾。</p>
+<p><object width="533" height="400" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value="http://player.youku.com/player.php/sid/XMjM0MTA5OTY0/v.swf" /><embed width="533" height="400" type="application/x-shockwave-flash" src="http://player.youku.com/player.php/sid/XMjM0MTA5OTY0/v.swf" /></object></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>3D</tag>
       </tags>
   </entry>
   <entry>
@@ -833,212 +833,87 @@ drwxr-xr-x 3 turing users     4096  3月 17 03:11 src
       </tags>
   </entry>
   <entry>
-    <title>朝花夕拾--Trace(2011/4/24)</title>
-    <url>/Think/03/13/zhaohuaxishi-trace-2011424.html</url>
-    <content><![CDATA[<p>I‘m on campus.</p>
-<p>目录</p>
-<p>2008年6月21日：爱是一场马拉松—只有起点，终点还很遥远，爱是一场马拉松。… 2</p>
-<p>2008年9月12日：结束了… 2</p>
-<p>2009年1月1日: 盘点我的2008. 3</p>
-<p>2009年1月7日：写在考前… 3</p>
-<p>2009年1月17日：My 2009. 4</p>
-<p>2009年6月16日：这学期忙的好累…. 4</p>
-<p>2009年6月19日：想你，只在夜风中向空气诉说…….. 6</p>
-<p>2009年10月19日：蒙昧稚嫩.青春物语… 7</p>
-<p>2009年12月29日:《软件工程理论与实践》的悲剧译者… 7</p>
-<p>2010年1月27日：人在大学… 8</p>
-<p>2010年2月28日：了结：是喜欢你，但已是曾经…… 8</p>
-<p>2010年3月12日：2010我的序… 9</p>
-<p>2010年5月22日：SNS的悲剧… 10</p>
-<p>2010年7月10日：大二滚了… 10</p>
-<p>2010年9月21日：我告诉你：中秋我们快乐… 11</p>
-<p>2010年12月24日：一些想法，杂谈… 12</p>
-<p>2011年2月5日：游子吟-孟郊… 12</p>
-<p>2011年2月22日：过去由过去，未来说未来… 13</p>
-<p>2011年3月10日:（G|O|A|L）… 16</p>
-<p>2011年4月24日：今天这篇日志… 16</p>
+    <title>yaourt packer pacman加速配置</title>
+    <url>/Linux/03/17/yaourt-the-the-the-packer-the-the-the-pacman-to-accelerate-configuration.html</url>
+    <content><![CDATA[<p>使用archlinux打开AUR之后yaourt一直是使用默认的下载工具，实在忍受不了龟速，重新配置下yaourt吧。</p>
 <span id="more"></span>
 
 
-<p>2008年6月21日：爱是一场马拉松</p>
-<p>—只有起点，终点还很遥远，爱是一场马拉松。</p>
-<p>她与他没有太多的语言交流，她知道他身藏不露，她觉得自己在他面前显得太渺小。可是他不这样想，他欣赏她的性格，她的处世看法。距离的相隔让两人觉得他好象把她甩在跑道的最后，可是他依然不断回头注视她，不管她是否在继续爱的这场马拉松。</p>
-<p>有人说，他太可悲：这是你自己的马拉松，没有对手，你是一个可悲的寂寞者。但他说，不，我相信她在后方一直追赶着我，只不过我比她早绕几到弯，望不见她罢了。</p>
-<p>也有人说，他太固执：她或许早已经退出了这场比赛，你还在竭力奔跑。但他说，不，我相信她只不过在暂时的休息，她没有对马拉松弃权，我听得见她的每一步。</p>
-<p>更有人说，他太愚蠢：她或许已经在进行另外一场马拉松，而你全然不觉。但他说，不，爱的马拉松就是愚蠢的比拼，我相信她在坚持着愚蠢。</p>
-<p>还有人说，他太……但他说，不，我相信……</p>
-<p>…….</p>
-<p>太多的<del>我相信</del>，他相信马拉松就是一种坚持的信仰，一种等待的坚持，一种信任的等待，一种长远的信任，一种记忆的长远。</p>
-<p>在他即将到达终点的那一刻，她从旁边的跑道过来了！！！他为她等待终点。 ……他们携手撞线，不分他们眼中的彼此与先后。</p>
-<p>到达终点后，她告诉他，自己路上很辛苦，有人递给她水喝；有人劝她参加另一场；有人想与她携手比赛……他都婉言拒绝了，她知道他在终点的最后一刻坚持等她。</p>
-<p>爱是一场马拉松，坚持就是希望与胜利。他相信她……</p>
-<p>—————————————————————————————————</p>
-<h2 id="2008年9月12日：结束了"><a href="#2008年9月12日：结束了" class="headerlink" title="2008年9月12日：结束了"></a>2008年9月12日：结束了</h2><p>军训结束了，明白了许多，知道了什么是痛，什么是苦，什么是欢，什么是乐。</p>
-<p>—————————————————————————————————</p>
-<h2 id="2009年1月1日-盘点我的2008"><a href="#2009年1月1日-盘点我的2008" class="headerlink" title="2009年1月1日:盘点我的2008"></a>2009年1月1日:盘点我的2008</h2><p>首先祝贺自己和大家新年Happy！</p>
-<p>2008年是自己与国家结合最紧密的一年。回顾过去，心情很复杂——为自己，也为中国！</p>
-<p>自己，2008年，自己经历了太多的自然奇观，5月10日，双道彩虹现身天空，5月12日14：28，大地震撼，8月1日，仰望日食。也经历了太多的生活变更，走进了西电，一所据说是毛泽东亲手创办的高校，但历史还没我的高中历史悠久，来到西电最大的感觉是，学校太古板。西电是国家二级保密单位，不怎么敢炫耀，因此许多人不知道这所院校。但近一段，西电因为一件事而全国闻名了，“卡门”事件，不想多说了，西电确实做得太过了！大一此时已过去了，可西电还没被我看透。自己到陕师大校园，那里无不透漏着些许人文气息，可西电没有！</p>
-<p>中国，2008年迎来了灾难与机遇，雪灾，地震，金融危机，许许多多，当然机遇就是奥运会了，相信中国的力量，也相信自己的力量。地震是对自己影响最大的了，很难想象一个庞大的灵魂在这场灾难面前所显示出的镇定！不曾想，自己高考作文竟是关于地震的。奥运会是自己最兴奋的时候了，拿着通知书就像自己拿着金牌了，呵呵！</p>
-<p>2008，相信每个人都有一段不同的回忆，不论是奥运现场，还是神七遨游太空，我们都会见证那些美好。无论是汶川灾区，还是雪灾现场，我们都会见证那些悲痛！</p>
-<p>2008走了，满载而归，有我的泪，有我的笑——我知道也有你的！2008，有中国的泪，有中国的笑！</p>
-<p>2009来了，我将用我的手笔用心来充实它，充实自己！就像日益站起的China!</p>
-<p>—————————————————————————————————</p>
-<h2 id="2009年1月7日：写在考前"><a href="#2009年1月7日：写在考前" class="headerlink" title="2009年1月7日：写在考前"></a>2009年1月7日：写在考前</h2><p>不知不觉，就要考试了，大学生活因此变得紧张异常。一向门可罗雀的自习室一下子人满为患，自己大清早没吃饭用书包占个位子，吃完饭回来竟见那位置居然有人坐着，“欲哭无泪”啊！走在路上,同学们都拿着课本在用功,唉！该考试了，大家还是相互同情一下吧！</p>
-<p>碰到考试，难免有些老师会透透风，应用创造学老师那是相当～慷慨，一张卷子给我们说的一题不漏；可历史老师就狡猾的很了,只给我们划不考的题目,但今我十分放心的是历史开卷考;思修老师留给我们一本练习册,说那是葵花宝典式的名著,但它也太厚了点吧！C语言老师给我们许下承诺“同学们,我保证你们70分没问题,那题是相当简单的,也就十几道英文选择题,几道读程与编程题！”,但愿它英语专业术语别太多,要不直接和英语一起考得了.剩下的就只有高数了,感觉新的没学到,像是又把高中数学复习了一遍！</p>
-<p>八号开考,头天两门,休息三天,继续作战,四门考完,舍友们聚个餐,拜个早年,十七号就可以出关中,贯华山,历灵宝,经洛阳,奔新郑了.我的假期倒是挺“冗长”的,三月一日开学！别羡慕,我们可是八月二十三日就被从家里拽来的哦！</p>
-<p>噢！对了,如果没有特殊情况,我在家还用西安的手机号，经常联系哦！</p>
-<p>现在还是赶紧再背几道思修题吧！</p>
-<p>—————————————————————————————————</p>
-<h2 id="2009年1月17日：My-2009"><a href="#2009年1月17日：My-2009" class="headerlink" title="2009年1月17日：My 2009"></a>2009年1月17日：My 2009</h2><p>1.好好学习，天天向上！</p>
-<p>2.凡事想简单点，做深入点。</p>
-<p>3.多给爸妈打电话。</p>
-<p>4.广交好友，让电话簿上人数升至1.5倍。</p>
-<p>5.品味西安的小吃与风景。</p>
-<p>6.不要老是发短信，多给老朋友打些电话。</p>
-<p>7.改革西电棋轩。</p>
-<p>我的2009,我来耍！哈哈！</p>
-<p>—————————————————————————————————</p>
-<h2 id="2009年6月16日：这学期忙的好累…"><a href="#2009年6月16日：这学期忙的好累…" class="headerlink" title="2009年6月16日：这学期忙的好累…."></a>2009年6月16日：这学期忙的好累….</h2><p>时间逃跑地不明不白，大一的尾巴就像回家的那列火车，仔细抓住它，感似有无限的无奈不愿放弃那个挣扎的小孩……</p>
-<p>最近像很久以前忙地不知所措。</p>
-<p>也许自己的“第二桶金”给时间一个流失的借口；</p>
-<p>也许K出去的声音振动的不是空气与耳膜，而是不同人的心；</p>
-<p>也许长途电话卡值得珍藏，总被攥在手里而眼眸爱映着远方飞来的那行短信；</p>
-<p>也许渴望数模的美妙，毫无犹豫地钻进设的模型，80小时仅用15小时去梦梦想；</p>
-<p>也许该到的期末审判需要我劳累地把压缩的时间无穷拉伸以填充那本高数或大物练习册；</p>
-<p>也许坚持“朋友”的秉性使C代码中赫然出现了#include“南柯子.h”的稀有包含；</p>
-<p>也许羽毛球、篮球或者桌球不懂运动的含义，总是不听话地期待去不断地挨揍；</p>
-<p>也许社团活动吸引不了自己，自习室的迷宫足以让我走不进期望的棋局（社团～西电棋轩）；</p>
-<p>也许她说的是对的，“一天一个理由，认识我三年了，一千个了吧？”～张学友不会唱的那首；</p>
-<p>也许是高冠瀑布的美让我双腿紧贴着岩壁，走进无量洞，求得“好人一生平安”的红色绸带；</p>
-<p>也许项羽猜不透嬴政的心思，一把火留下兵马俑上那层逝不去的炭灰，那好似经过的往事；</p>
-<p>也许《程序员》、CSDN的高深陷进去出不来，在里面实在太迷惑……</p>
-<p>心的疲惫和生活的重量，也许容我休息……太多的也许填充过去，也许现在留做下刻的回忆不会后悔。</p>
-<p>未来仍在继续……</p>
-<p>今天的忙碌伴随《今天》结束吧！</p>
-<p>走过岁月我才发现<br>世界多不完美<br>成功或失败都有一些错觉<br>沧海有多广江湖有多深<br>局中人才了解<br>生命开始情不情愿总要走完一生<br>交出一片心不怕被你误解<br>谁没受过伤谁没流过泪<br>何必要躲在黑暗里<br>自苦又自怜</p>
-<p>我不断失望不断希望<br>苦自己尝笑与你分享<br>如今站在台上也难免心慌<br>如果要飞得高就该把地平线忘掉……</p>
-<p>—————————————————————————————————</p>
-<h2 id="2009年6月19日：想你，只在夜风中向空气诉说……"><a href="#2009年6月19日：想你，只在夜风中向空气诉说……" class="headerlink" title="2009年6月19日：想你，只在夜风中向空气诉说……"></a>2009年6月19日：想你，只在夜风中向空气诉说……</h2><p>站立在夜风中，</p>
-<p>想你，</p>
-<p>只在夜风中向空气诉说……</p>
-<p>幻想着，</p>
-<p>你我在一起的时间……</p>
-<p>我不是浪漫人，</p>
-<p>却时刻想着，</p>
-<p>和你在一起浪漫地度过……</p>
-<p>想你的时候，</p>
-<p>就喜欢在这温柔的夜风中，</p>
-<p>让思绪变的更淡更淡……</p>
-<p>闭上眼睛想象，</p>
-<p>此刻的你在世界的哪个角落……</p>
-<p>塞上耳朵，</p>
-<p>夜风依然轻柔的从我身边拂过，</p>
-<p>这种感觉，</p>
-<p>像你在对我诉说……</p>
-<p>诉说着你也不知自己在世界的哪个角落……</p>
-<p>仿佛我已经习惯了这种生活，</p>
-<p>想你，</p>
-<p>只在夜风中向空气诉说……</p>
-<p>—————————————————————————————————</p>
-<h2 id="2009年10月19日：蒙昧稚嫩-青春物语"><a href="#2009年10月19日：蒙昧稚嫩-青春物语" class="headerlink" title="2009年10月19日：蒙昧稚嫩.青春物语"></a>2009年10月19日：蒙昧稚嫩.青春物语</h2><p>儿时的无邪笑声只能倾听于手机的和弦，成长的放肆无畏不愿压缩在年轮的中心。</p>
-<p>蒙昧，原始社会与麻木不前的诠释者，用来束缚成长却不被人觉得。年轮的层叠透不过树干的皮肤，笑声的和弦无情响不出无邪。成长，你剥掉稚嫩的外壳太慢，你扫除蒙昧的时间太长。蜗牛的痛不在悲哀自己的速度，而在它留下的明亮足迹——生命的成长足迹。不该抱怨成长的加速度太小，只是成长的初速度太低。蒙昧与稚嫩的容颜何时被岁月刻刀留下睿智与成熟？回答在你，启迪在我。</p>
-<p>时光的帆永远有风在吹，成长的船已离开海岸，蒙昧与稚嫩的水手在出海的瞬间成了岁月的守护神，当然，不是斯派洛，也不是特纳。当回忆把帆压倒，停顿的成长有了思考，特纳在了……在世界的尽头，成长将水手蜕变为斯派洛……蒙昧的牺牲是生命，稚嫩的残害是心灵。成长给予青春舞台，镁光灯给予青春四射的耀眼，蒙昧与稚嫩你给了青春什么？成长的夕阳不待人，稚嫩蒙昧的青春物语不再有过。美丽境界在成长的沉默与前行中体味，不在青春的蒙昧激扬，不在青春的稚嫩无畏。走出青春的牢笼，欣赏的确是种不错的艺术！</p>
-<p>—————————————————————————————————</p>
-<h2 id="2009年12月29日-《软件工程理论与实践》的悲剧译者"><a href="#2009年12月29日-《软件工程理论与实践》的悲剧译者" class="headerlink" title="2009年12月29日:《软件工程理论与实践》的悲剧译者"></a>2009年12月29日:《软件工程理论与实践》的悲剧译者</h2><p>小弟不才，有幸拜读《软件工程理论与实践》之大作，感于本卷之博大精深，故作斯文。</p>
-<p>每读之，则思韩愈言古风之要，现取其文，练句读：“如果一个转移的目的状态是一个超状态，则其作用相当于到超状态的默认初始状态的转移”，此非“乾坤大挪移”者，乃“UML状态图”也。</p>
-<p>细究之，难思量，凭读者之慧不解之。不闻“杨卫东”何许人也，此卷观之，必非凡人哉！想泱泱华夏，汉言之精，能译如此者，微人乎？今查原作，兴赞之“A transition whose destination state is a superstate acts as a transition to the superstate’s default initial state.”,</p>
-<p>服Shari Lawrence Pfleeger Joanne M.Atlee之精辟之见！</p>
-<p>—————————————————————————————————</p>
-<h2 id="2010年1月27日：人在大学"><a href="#2010年1月27日：人在大学" class="headerlink" title="2010年1月27日：人在大学"></a>2010年1月27日：人在大学</h2><p>大学的确是个小社会，只是缺乏了各种行业。这个“社会”里，有人叹息没有真正的朋友，是！的确没有，除非你找到了她，但那也许是朵毕业即凋零的花，有太多人以为两个人一起就没了寂寞；这个“社会”里，有人一直那么昏着，要么一天在自习中度过，要么一天在床上、电脑前度过，大学的学习内容足以留下可观的时间让你去好奇于其他，只是你不习惯改变罢了；这个“社会”里，行走是最平常的事情，有人一秒走一米，有人一秒走五米，你试试：把一秒重复到生命的周期，把长度平均到每件事……这个“社会”里，有人为拿到文凭欣喜若狂，更多为学到知识而暗自鼓励，但很少为求得成熟的思想而兴奋。这个“社会”需要东西来充实，不是我们索取的知识，而是我们共享思想；这个“社会”需要“计划生育”，需要清除学术路上的肮脏毒瘤，需要叫醒学习路上的昏睡者；这个“社会”做着创建<strong>一流的梦，却经常拿不出</strong>一流的作品。走的是自己的路，有人说，从地狱到天堂，经历了人间～大学。</p>
-<p>—————————————————————————————————</p>
-<h2 id="2010年2月28日：了结：是喜欢你，但已是曾经……"><a href="#2010年2月28日：了结：是喜欢你，但已是曾经……" class="headerlink" title="2010年2月28日：了结：是喜欢你，但已是曾经……"></a>2010年2月28日：了结：是喜欢你，但已是曾经……</h2><p>把你的号码从通讯录中删除，不出意外的话，我们不会再有交集了吧，反正，你已经好久没有主动打电话给我，甚至没有主动发过一条短信，我们，就这样了吧。就这样，不再爱你了。<br>不再在嘈杂的人声中捕捉你的嗓音了<br>不再在滚滚人流中追逐你的身影了<br>不再因为你出现而再三斟酌自己的言语，动作甚至表情了<br>不再，为你心动了。<br>你从来没有发现，喊出你的名字的时候，是我最温柔的时候，甚至声音有微微的颤抖；经过你的身旁，我的脚步总是放的又轻又慢；我从不敢直视你的眼睛，怕泄露了太多的情感；在无意识的发呆时，草稿纸上满页满页都是你的名字，我能把你的名字写得比我的名字还溜；分开的时候，满脑子满脑子都是你的身影，回忆一刹那只剩与你有关的点点滴滴；吃饭的时候，睡觉的时候，逛街的时候，发呆的时候，都在想你在干什么呢，会不会，会不会像我想你一样想我呢……<br>那样纯粹而淡然的生活，那样以你为中心的生活，因为回忆而丰满，因为现实而枯萎。距离拉长了思念，却阻隔了见面；时间沉淀了暗恋，让你离我好远好远。眼看着身边的人一个一个都有了轰轰烈烈，我想，是该放下你了，回忆，仅仅是用来回忆。<br>不要说我不甘寂寞，因为我已经寂寞了好久，不要说我用情不专，因为你从来不属于我，也不要说我轻言放弃，你甚至，连一个微小的回应都不曾给我。<br>不再留着你的短信不舍得删掉了<br>不再一遍一遍的回看我们的聊天记录了<br>不再眼巴巴的盯着手机期望你的电话了<br>不再上一整晚的QQ等你现身了<br>不再向好友倾诉自己的心酸了<br>你拨动了我的心弦，却不曾为我驻足，当我以为你还在的时候，你已没有踪影，当你回头找寻我的时候，我已开始寻找自己的天空，亲爱的，我把最美好最美好的年华留给了你，我，于你无愧。亲爱的，我的青春有限，承担不起一生一世的等待。<br>请不要怀疑，曾经，我愿意不顾一切的等你，愿意随时随地陪你，愿意在你身后默默的看你，为你的快乐而快乐，为你的悲伤而悲伤，尽管，那些情绪，与我无关啊……<br>等待不苦，苦的是，没有希望的等待……</p>
-<p>—————————————————————————————————</p>
-<h2 id="2010年3月12日：2010我的序"><a href="#2010年3月12日：2010我的序" class="headerlink" title="2010年3月12日：2010我的序"></a>2010年3月12日：2010我的序</h2><p>不知不觉大学的年华已在眼前飘过一载半，从大一的懵懂到大二的淡然与“安定”，世界发生的许多变化，如同映射在我的身上。</p>
-<p>生的思考</p>
-<p>如果生命对于每人只有一次，假如是八十年，我愿意用三十年去思考。发现许多事情不经意间的随便唠叨是对生命的亵渎，承认人类能力有限的前提下，我还是愿意尝试去把人类的沉默的智慧发挥到最大。对于宇宙而言，地球文明连第三类文明都不是，即连行星的命运也控制不了，人类看似浩淼的科学知识只是宇宙文明的沧海一栗。地球的未来好像离我们很远，但我会从你那里得到集腋成裘作用的肯定。一个人的博爱之心体现在什么地方？</p>
-<p>活的追求</p>
-<p>走在被认为大学里最痛苦的年月，我没有了之前的所以然，更多的是希望看到实际，看到实力。不需要太多的花言巧语，我需要的是使我闭嘴的智慧与使我欣赏的才学。大学作为社会的个性工厂，设计师正是自己。我学的是软件，喜欢把它看做建筑，把它看做一篇文章，在建筑与文章面前，我会尽力让欣赏者为之一颤。</p>
-<p>水落石出</p>
-<p>好似文章里看不到硬硬的笔尖，建筑里看不到软软的泥土，想象的软件里好似忽略了硬件……为了挽回错误的想法，我接近了硬件与底层。水落石出的干脆与震撼不亚于代码疑惑之时在硬件中得到解答的明了与陶醉。行走在水中巨石间，可乐水，可乐山。在确保功能的前提下，电脑的个性化是追求的永恒，水落石出时，文章里自有笔的锋芒，建筑里自有花土的清香。</p>
-<p>等待花开</p>
-<p>这四个字转自朋友，先借用了。不必多说，希望此花灿烂，但不在此时。</p>
-<p>南柯子 于10.3.12晚</p>
-<p>—————————————————————————————————</p>
-<h2 id="2010年5月22日：SNS的悲剧"><a href="#2010年5月22日：SNS的悲剧" class="headerlink" title="2010年5月22日：SNS的悲剧"></a>2010年5月22日：SNS的悲剧</h2><p>1.欲颠覆不该的；</p>
-<p>2.泛滥太空乏的；</p>
-<p>3.一对一的肤浅；</p>
-<p>4.难消化的快餐。</p>
-<p>—————————————————————————————————</p>
-<h2 id="2010年7月10日：大二滚了"><a href="#2010年7月10日：大二滚了" class="headerlink" title="2010年7月10日：大二滚了"></a>2010年7月10日：大二滚了</h2><p>振动着西安燥热的空气分子，大二的旋律插入了休止符。吃了散伙饭，淋着罕见的雨走在两年熟识的那条路上，感觉着这场插曲的凉雨……</p>
-<p>如果阳光可以作为怀念，那片阳光下的树叶还在么？顽皮的习惯不经意去拽一片青叶，生命在绿叶干枯与丢弃中成长。在成长的蜕变中，无数次的警告命运，人生在计划与变化之间划过。成长的束缚有时是件好事，分寸在毫厘之间，善于自我束缚是种坚持的智慧。成长的苦涩方向没有急转弯，它在慢慢偏移中告诉我了它的平淡无奇，却有丰富跌宕！如果坚持给了我力量，成长的方向给了我踏上它的勇气。</p>
-<p>如果泡面可以作为夜宵，那根泡面旁的香肠还在么？在关怀下，养生占据心扉，没有来得及与垃圾食品告别，开心之窗，面朝健康，人就是这样，犯了错，就要改的毫不留情！一次次的称重，一次次的期待完美，在镜子中与双瞳中，突然一句话“你瘦了！”。彻夜的锻炼，彻月的体验，明白掌握自己的身体时钟，把他精准在以小时的单位里，我跟他上了自由的发条！</p>
-<p>如果泳池的水可以再脏点，以后还会去那里游泳么？也许吧，执着于本能，奋力划动不标准的动作，在烈日下畅快着水溅起的感觉，水脏么？心净，知足了。多少个夜晚，拖着疲惫的身躯，甩起僵硬的右臂，轮几下深陷的眼珠，在黑暗的跑道线中循环往复，圈圈画着强有力的未来。</p>
-<p>如果餐厅还有饭，那么你还会为我带点饭么？朋友说，她有了一辈子的朋友，我告诉她，我每年都会收获一个，她说你太幸运了，一知己足矣。非亲的另外生命，在南柯子的生命里体验到不至是一个生命，而是思想，两个人的思想不约而相交，这就是知己吧。争吵过，纯口水之战，相同立场的深情对峙。</p>
-<p>大二滚了，暖着咖啡，静静地拿给你，今天在苦与甜中延续……</p>
-<p>—————————————————————————————————</p>
-<h2 id="2010年9月21日：我告诉你：中秋我们快乐"><a href="#2010年9月21日：我告诉你：中秋我们快乐" class="headerlink" title="2010年9月21日：我告诉你：中秋我们快乐"></a>2010年9月21日：我告诉你：中秋我们快乐</h2><p>也许暑假回家时间太短，想起了这句话在今天。</p>
-<p>在外有几年了，心中家的概念向来没有这么清晰过，也许年龄大了、成熟了，被家拽的更紧了。在外的忙碌生活抹去了回忆过去的清闲，偶尔回想琐事，妈妈早上催促起床的声音也是那么令人怀念。</p>
-<p>奔波的过去依然为了现在奔波的未来，没有停止的漂泊也就继续着没有停止的思念。年年明月摆过黑夜，年年思绪寄予明月。</p>
-<p>兄弟、朋友，无情的感情已见过那么多，唯独对家的感情不曾淡忘。岁月用时间度量脚步，思念用心灵条分缕析，教室、实验室、聚餐桌旁寡言的不是无语，而是最平静的祝福。算了，待几天，寻找温暖的回归，继续用铭言享受惊人的沉默。</p>
-<p>A：中秋快乐！</p>
-<p>B：同乐，同乐！</p>
-<p>—————————————————————————————————</p>
-<h2 id="2010年12月24日：一些想法，杂谈"><a href="#2010年12月24日：一些想法，杂谈" class="headerlink" title="2010年12月24日：一些想法，杂谈"></a>2010年12月24日：一些想法，杂谈</h2><p>1、许多组织的目标都是改变世界，可是改变世界的前提是改变自我；</p>
-<p>2、阅读别人的思想比看懂她的行为更具震撼性与影响作用；</p>
-<p>3、从善如登，从恶如崩；</p>
-<p>4、我还是我的那个梦想，只不过走了一些弯路；</p>
-<p>5、有自己的想法最好，尤其是关于自己命运的；</p>
-<p>6、腾出时间留给自己思考未来；</p>
-<p>7、独立不仅是说生存，更多的应该是在思想；</p>
-<p>8、组织的目的不是组织，而是无组织；</p>
-<p>9、要会计划，计划是必须的；</p>
-<p>10、活的很高效，指的是方式，但并不说明活得目的很正确；</p>
-<p>11、少熬些夜，否则害处会慢慢体现；</p>
-<p>12、日子是一天天过的，不是一段一段过的；</p>
-<p>13、未来荣辱自取，不求于人；</p>
-<p>14、向上是种态度，一种你坚持了才叫向上的态度。</p>
-<p>—————————————————————————————————</p>
-<h2 id="2011年2月5日：游子吟-孟郊"><a href="#2011年2月5日：游子吟-孟郊" class="headerlink" title="2011年2月5日：游子吟-孟郊"></a>2011年2月5日：游子吟-孟郊</h2><p>慈母手中线，游子身上衣。</p>
-<p>临行密密缝，意恐迟迟归。</p>
-<p>谁言寸草心，报得三春晖。</p>
-<p>–于辛卯年正月初三郑州至西安</p>
-<p>—————————————————————————————————</p>
-<h2 id="2011年2月22日：过去由过去，未来说未来"><a href="#2011年2月22日：过去由过去，未来说未来" class="headerlink" title="2011年2月22日：过去由过去，未来说未来"></a>2011年2月22日：过去由过去，未来说未来</h2><p>许久没有写过像样的日志，今天是大三下学期的第一天，也是大学的最后一个学习学期，想想，希望自己对一件事做个总结，便是数模。</p>
-<p>数学建模对于许多人并不陌生，尤其是对我的大学校友而言，从校赛走到国赛，再从国赛参加美赛，一路走来，学到的不仅仅是没有情味的一些知识。</p>
-<p>关于数模，先回头看下自己走的足迹：</p>
-<p>2009年5月1日-5月3日初生牛犊不怕虎。</p>
-<p>09年大一下学期，看到学校的数模校赛通知，感到是件有趣的事情，随即和自己的朋友Z商定，决心搞这个，虽然中途不断换人、但最终还是顺利参加了，并且结识了优秀的队友L1与W，优秀的教练G。在校赛中，前两天队友L1埋头一语不发，资料看的烂熟于胸。第三天L1终于举手发言了，说出了自己的思路，大概明白L1的思路后，接着三人便是赶制论文。在5月4日晚上0点多自己回到宿舍，突然发现已经修改后的论文居然没有保存在拿着的U盘中，这篇论文是要在当天早上8点之前发送的！赶紧叫醒已回到宿舍的队友，去拿可能含有备份的修改过的论文的U盘，我和队友宿舍已经锁门了。没办法，半夜找朋友，若无其事的从我的宿舍楼一楼宿舍阳台翻了出去，来到队友宿舍楼紧闭的玻璃大门前，队友将小小的U盘从门缝里塞了出来，拿着U盘，回到宿舍借来同学的电脑，又是一篇没有修改的论文，自己修改吧，挑灯夜战到半夜两点，终于在电脑没电前，把论文修改的差不多了。早上六点宿舍一来电，爬起来打开电脑，联网，邮件发送，第一次数模就这样度过了，大学的第一个五一也就这样度过了。在此次数模中收获最大的是Excel与SPSS的使用，尤其是EXCEL自己用的太顺手了，当然收获的也有其中结识的日后的队友。</p>
-<p>虽然校赛结果不是太理想，但是自己努力了，大一参加总算没有把努力白费。当时想起学校校队集训的选拔，感觉到自己的硬件与软件都有所欠缺，还是修炼一年再来参加选拔吧。</p>
-<p>2010年5月1日-5月3日而今迈步从头越</p>
-<p>有过一次参赛的经验，第二年的组队在半年前就敲定了，H与L1，H与L1的确是两个很有思路的队友，我在队里承担着编程验证模型解答正确性的任务，教练对于我们的队伍莫名的信任，莫名的自信，以至于最后我们的论文几乎没有被教练审查。最后一夜自己是带着未尽的论文回到宿舍的，当时自己已经有了电脑，宿舍没有通宵供电，只好来到空无一人的宿舍玻璃房，那里很凉快，倒寂静，插上电脑插座。凌晨4点，摘要写完了，把末尾收了。大概4点半时（应该是这个时间），不知不觉就睡着了，醒来时已经是早上6点半了，赶快打印装订，交给教练，快8点了，买了杯奶茶回宿舍没喝完就又睡着了……大学的第二个五一假期也被这样度过了……</p>
-<p>第二次觉得没有第一次尽力，也没有第一次的思路活跃，但结果貌似比第一次好点。校级二等，具备参加校队集训的笔试条件，接着便拉开了自己走向国赛的序幕—-校队选拔。</p>
-<p>校队选拔，不知所云。</p>
-<p>第一关笔试，7道大题，4、5道是概率论吧，大二上学的概率论都快忘完了，当时概率分布的定义都不知道，也只好凭着自己在笔试前看完的数模课件来应对了，做完后自己感觉不是太满意，但还是抱有信心的。果不其然，笔试成绩为B，意味着自己具备参加面试的条。面试的过程确实有点紧张，不知道老师会问什么问题，自己是编程的，他不会问什么遗传啊，神经网络算法吧…..事实证明面试老师是极其“仁慈”的，他问了我校赛中为什么选择那道题，在校赛中是什么角色拖了后腿，我从容回答后，感觉没什么问题，接着他又问了一起面试的另一名同学“你俩编程比赛过么？”！！！我和旁边的大一ACM的学弟刚认识，怎么可能切磋过编程？“他是ACM队的，我们认识也是在开源社区，没有切磋过。”老师估计他是大一的，感觉数学基础知识还有所欠缺，最终选定了我。不过大一的学弟也确实很努力，在代表西电ACM巡回赛中，夺得了不错的成绩！</p>
-<p>校队集训，真正的地狱训练。2010年7月12-2010年9月9日</p>
-<p>第一阶段比较轻松，在地狱的边缘徘徊。上午听课，每天一个新知识点；下午实践，每天一个新的编程实例。MATLAB\LINGO\EXCEL\WORD\SPSS\MATHMATICAS，要个个认识。尤其是MATLAB\EXCEL\LINGO，是保命的。接着是恐怖的第二阶段，下地狱了，和两名优秀的队友B与L2，五天一道题，包括拿题、解答、成论文、交付、答辩、总结。五天中有三天是必然会熬通宵的，就如此，5天*7,35天后奔赴国赛战场，自不必说集训的生活，就说吃的吧，早上两个鸡蛋饼加一包奶，这样吃了一暑假，回头想起，再也不吃鸡蛋饼了，晚上宿舍几乎没怎么回来过。有次修改队内的论文，半夜已经躺在床上了，感觉论文写得不是太好，起床，修改论文，一坐就坐到了早上10点，10个小时过去了，70多页的论文就这样迎着黎明诞生了。当然也忘不了，自己从通宵修改一篇论文，一直修改到下午2点，当走出实验室时，已快要晕倒了，只好打开手机音乐，插上耳机，把音量调到最大，插入耳朵，才使得自己没有瘫睡在回宿舍的路上。</p>
-<p>国赛。2010年9月10日-9月13日</p>
-<p>国赛是个转折点，在整个过程中，没有国赛也没有延续，没有国赛也没有前面。国赛的选题很艰难，老师辅导了三个队，另两个队徘徊后选择了B题，一道讨论上海世博会影响的题目。我们选择了一道比较险的题目：一道有唯一正确答案的题目。如果做对了，极有可能拿奖；否则，什么就没有。看似一道很简单的积分题目，拿到手后，到了第三天凌晨5点，最后一问还是没有解出来，8点就要交论文了，我们急了，解析积分是无论如何也积不出来了，数值积分吧，MATLAB\MAPLE报错：“我们没有办法积分”。近似解决—思路就这样被逼出来了，近似后，问题被很轻易解决了，其中出现了超定方程与非线性最小二乘法优化的问题。当在8点论文修改完格式后，我没有仔细看论文，装订后就交付了。我们三个很是垂头丧气，感觉一个暑假的努力也许就这样被白费了，因为我们知道自己写的怎么样，除了结构与分析比较出彩外，最后一问的解答实在不敢恭维。</p>
-<p>答辩：2010年10月6日下午西北大学</p>
-<p>付出总归是有收获的。当自己失望的在家度过大三的十一假期时，10月5日自己被通知10月6日答辩，这个答辩一般是省里评出推送至国家一等奖的答辩。自己当时正好订的10月6日早到达西安的火车票，只好硬着头皮，给两位在校的队友打电话，让他们迅速准备答辩的PPT，当晚凌晨自己一上火车，打开笔记本利用手机联网，下载了他们白天做的PPT，在火车上进行了进一步修改，就这样答辩的PPT就做好了。6日下午到达西北大学在第一组第一个进行了答辩，两位陕西赛区鼎鼎有名的数模人物接受了我们的答辩，总体感觉还是好的。</p>
-<p>最终成绩出来，获得不错的成绩，确实在此感谢队友，感谢乔老师与李老师！</p>
-<p>美赛ICM，2011年2月11日-2011年2月15日</p>
-<p>国赛的成绩坚定了自己参加美赛的决心，和队友商议后，我们感觉应该满足自己参赛的一个心愿。为了这个心愿，毅然奔赴美赛赛场。美赛刚过，不便多说，但给自己的教训与收获兼有，待到日后有机会再填充此处空白，还是祝大家美梦成真吧！</p>
-<p>以上是自己走过的数模竞赛的足迹，一脚深一脚浅的留下在时光抛撒的泥泞路上，有自己的心酸也有自己的欢乐。弯下腰摸摸自己的足迹，其中留给自己的有毅力、有汗水，有思想的光辉、有粗心的愤怒，有面对电脑眼睛发涩的疼痛流泪，有不眠之夜的一个人在实验室的敲打键盘。当然在一同走过的日子，也有朋友最坚实的帮助：没有W在那里删去多余的逗号，我无法将C++的数组数据读入MATLAB；没有L带来的一顿顿的饭菜，我无法保证我们的进度；没有教练G与X的点滴帮助，我关于数模的前途没有更多的认识。</p>
-<p>感谢W、L1、H、Z、G、X、L2、B、L3，感谢Q、L、Q，你们有我并肩作战的队友，有我的教练，有我的朋友！不论现在的结果如何，我相信你们是绝对优秀的！</p>
-<p>引用数模队中一位队友的话：我们大学中很少有这样的时间：我们不为考试与过级而担忧，我们不为分数与奖学金而学习，我们做数模，只为了自己的未来，在数模中切实感觉到自己在为自己的未来奋斗，而这个，在大学的四年时光中是很少见的！</p>
-<p>过去有过去，未来说未来……</p>
-<p>—————————————————————————————————</p>
-<h2 id="2011年3月10日-（G-O-A-L）"><a href="#2011年3月10日-（G-O-A-L）" class="headerlink" title="2011年3月10日:（G|O|A|L）"></a>2011年3月10日:（G|O|A|L）</h2><p>SHE,ENGLISH, mysterious dream.</p>
-<p>—————————————————————————————————</p>
-<h2 id="2011年4月24日：今天这篇日志"><a href="#2011年4月24日：今天这篇日志" class="headerlink" title="2011年4月24日：今天这篇日志"></a>2011年4月24日：今天这篇日志</h2><p>这篇日志是对自己三年来在校内上所有自己思考东西的总结（不包含一些“技术贴”），纯粹是对经历的拷问与回忆，走过的路程大概就这样吧，日后看情况会有补充。</p>
-<embed src='http://recordings.talkshoe.com/TC-20708/TS-12558.mp3' autostart='true' type='audio/mpeg' loop='true' >
+<h4 id="一、yaourt加速"><a href="#一、yaourt加速" class="headerlink" title="一、yaourt加速"></a>一、yaourt加速</h4><p>yaourt安装后其配置文件是&#x2F;etc&#x2F;makepkg.conf</p>
+<p>先看下我这个文件中的内容</p>
+<pre><code> cat  /etc/makepkg.conf |head -n 25
+#
+# /etc/makepkg.conf
+#
+
+#########################################################################
+# SOURCE ACQUISITION
+#########################################################################
+#
+#-- The download utilities that makepkg should use to acquire sources
+#  Format: &#39;protocol::agent&#39;
+DLAGENTS=(&#39;ftp::/usr/bin/axel  -n 10 -a  -o %o %u&#39;
+          &#39;http::/usr/bin/axel -n 10 -a -o %o %u&#39;
+          &#39;https::/usr/bin/axel -n 10 -a -o %o %u&#39;
+          &#39;rsync::/usr/bin/rsync -n 10 -z %u %o&#39;
+          &#39;scp::/usr/bin/scp -C %u %o&#39;)
+
+#DLAGENTS=(&#39;ftp::/usr/bin/curl -fC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;http::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;https::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
+#          &#39;rsync::/usr/bin/rsync -z %u %o&#39;
+#          &#39;scp::/usr/bin/scp -C %u %o&#39;)
+
+# Other common tools:
+# /usr/bin/snarf
+</code></pre>
+<p>将curl更改为axel：</p>
+<pre><code> axel -n 10 -a -o %o %u
+</code></pre>
+<p>其中 -n 表示同时下载链接数</p>
+<p>-a  表示以百分比打印进度条信息</p>
+<p>-o 是输出路径</p>
+<p>%u 为下载url</p>
+<p>原来curl:</p>
+<pre><code>curl -fLC - --retry 3 --retry-delay 3 -o %o %u
+</code></pre>
+<p>是单线程下载，尝试3次失败后，更换源。</p>
+<h4 id="二、packer-pacman加速"><a href="#二、packer-pacman加速" class="headerlink" title="二、packer pacman加速"></a>二、packer pacman加速</h4><p>packer默认还是采用pacman下载，改变pacman默认下载方式就可以改变两个。</p>
+<p>pacman的配置文件是：&#x2F;etc&#x2F;pacman.conf，下面是我当前的pacman配置：</p>
+<pre><code>cat /etc/pacman.conf |grep -v &quot;^#&quot;|grep -v &quot;^$&quot;
+[options]
+HoldPkg     = pacman glibc
+SyncFirst   = pacman
+XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
+Architecture = auto
+CheckSpace
+SigLevel = Never
+[core]
+Include = /etc/pacman.d/mirrorlist
+[extra]
+Include = /etc/pacman.d/mirrorlist
+[community]
+Include = /etc/pacman.d/mirrorlist
+[archlinuxfr]
+Server = http://repo.archlinux.fr/i686
+</code></pre>
+<p>可知我当前使用的是wget下载。查看pacmon.conf的完整版</p>
+<pre><code>grep XferCommand /etc/pacman.conf 
+#XferCommand = /usr/bin/curl -C - -f %u &gt; %o
+XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
+#XferCommand = /usr/bin/axel -a -n 10  -o %o %u
+</code></pre>
+<p>注释掉其他几个即可。</p>
 ]]></content>
       <categories>
-        <category>Think</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>trace</tag>
-        <tag>杂</tag>
+        <tag>yaourt</tag>
+        <tag>axel</tag>
+        <tag>packer</tag>
+        <tag>pacman</tag>
+        <tag>wget</tag>
       </tags>
   </entry>
   <entry>
@@ -1124,90 +999,6 @@ drwxr-xr-x 3 turing users     4096  3月 17 03:11 src
       <tags>
         <tag>girl</tag>
         <tag>music</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>yaourt packer pacman加速配置</title>
-    <url>/Linux/03/17/yaourt-the-the-the-packer-the-the-the-pacman-to-accelerate-configuration.html</url>
-    <content><![CDATA[<p>使用archlinux打开AUR之后yaourt一直是使用默认的下载工具，实在忍受不了龟速，重新配置下yaourt吧。</p>
-<span id="more"></span>
-
-
-<h4 id="一、yaourt加速"><a href="#一、yaourt加速" class="headerlink" title="一、yaourt加速"></a>一、yaourt加速</h4><p>yaourt安装后其配置文件是&#x2F;etc&#x2F;makepkg.conf</p>
-<p>先看下我这个文件中的内容</p>
-<pre><code> cat  /etc/makepkg.conf |head -n 25
-#
-# /etc/makepkg.conf
-#
-
-#########################################################################
-# SOURCE ACQUISITION
-#########################################################################
-#
-#-- The download utilities that makepkg should use to acquire sources
-#  Format: &#39;protocol::agent&#39;
-DLAGENTS=(&#39;ftp::/usr/bin/axel  -n 10 -a  -o %o %u&#39;
-          &#39;http::/usr/bin/axel -n 10 -a -o %o %u&#39;
-          &#39;https::/usr/bin/axel -n 10 -a -o %o %u&#39;
-          &#39;rsync::/usr/bin/rsync -n 10 -z %u %o&#39;
-          &#39;scp::/usr/bin/scp -C %u %o&#39;)
-
-#DLAGENTS=(&#39;ftp::/usr/bin/curl -fC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;http::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;https::/usr/bin/curl -fLC - --retry 3 --retry-delay 3 -o %o %u&#39;
-#          &#39;rsync::/usr/bin/rsync -z %u %o&#39;
-#          &#39;scp::/usr/bin/scp -C %u %o&#39;)
-
-# Other common tools:
-# /usr/bin/snarf
-</code></pre>
-<p>将curl更改为axel：</p>
-<pre><code> axel -n 10 -a -o %o %u
-</code></pre>
-<p>其中 -n 表示同时下载链接数</p>
-<p>-a  表示以百分比打印进度条信息</p>
-<p>-o 是输出路径</p>
-<p>%u 为下载url</p>
-<p>原来curl:</p>
-<pre><code>curl -fLC - --retry 3 --retry-delay 3 -o %o %u
-</code></pre>
-<p>是单线程下载，尝试3次失败后，更换源。</p>
-<h4 id="二、packer-pacman加速"><a href="#二、packer-pacman加速" class="headerlink" title="二、packer pacman加速"></a>二、packer pacman加速</h4><p>packer默认还是采用pacman下载，改变pacman默认下载方式就可以改变两个。</p>
-<p>pacman的配置文件是：&#x2F;etc&#x2F;pacman.conf，下面是我当前的pacman配置：</p>
-<pre><code>cat /etc/pacman.conf |grep -v &quot;^#&quot;|grep -v &quot;^$&quot;
-[options]
-HoldPkg     = pacman glibc
-SyncFirst   = pacman
-XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
-Architecture = auto
-CheckSpace
-SigLevel = Never
-[core]
-Include = /etc/pacman.d/mirrorlist
-[extra]
-Include = /etc/pacman.d/mirrorlist
-[community]
-Include = /etc/pacman.d/mirrorlist
-[archlinuxfr]
-Server = http://repo.archlinux.fr/i686
-</code></pre>
-<p>可知我当前使用的是wget下载。查看pacmon.conf的完整版</p>
-<pre><code>grep XferCommand /etc/pacman.conf 
-#XferCommand = /usr/bin/curl -C - -f %u &gt; %o
-XferCommand = /usr/bin/wget --passive-ftp -q -c -O %o %u
-#XferCommand = /usr/bin/axel -a -n 10  -o %o %u
-</code></pre>
-<p>注释掉其他几个即可。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>yaourt</tag>
-        <tag>axel</tag>
-        <tag>packer</tag>
-        <tag>pacman</tag>
-        <tag>wget</tag>
       </tags>
   </entry>
   <entry>
@@ -1432,6 +1223,60 @@ end
       </tags>
   </entry>
   <entry>
+    <title>一句Shell</title>
+    <url>/Linux/04/23/a-shell.html</url>
+    <content><![CDATA[<p>这篇博文主要记录下那些比较妙的shell语句，一般为一句解决问题（慢慢积累）<span id="more"></span></p>
+<ul>
+<li>匹配当前目录下同时含有字符串str1与字符串str2的文件，并打印文件名</li>
+</ul>
+<pre><code>grep &#39;srt1&#39; -R *|egrep -v &#39;cscope|tags&#39;|cut -d : -f 1|xargs grep &#39;MAIN&#39; -R|cut -d : -f 1|uniq	
+</code></pre>
+<ul>
+<li><p>ls的结果拷贝至新目录(限制要使用xargs)</p>
+<p>ls &#x2F;etc&#x2F;a* |xargs cp -a -t .</p>
+</li>
+<li><p>获取目录以及该目录下所有文件的属性 ，保存至save.facl</p>
+<p>getfacl . -R</p>
+<p>getfacl . -R &gt; save.facl </p>
+</li>
+<li><p>恢复某目录下及该目录下所有文件属性</p>
+<p>setfacl  –restore&#x3D;save.facl . -R </p>
+</li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>grep</tag>
+        <tag>shell</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习Linux与编程的几张图片（不断完善）</title>
+    <url>/Linux/04/09/a-few-pictures-to-learn-the-linux-programming-continuous-improvement.html</url>
+    <content><![CDATA[<p>在学习linux的过程中，一些图片很直观与快速的帮助学习者理解linux与以上应用的使用，下面会根据我的学习情况不断完善。</p>
+<span id="more"></span>
+
+
+<h2 id="1、Vim-Mind"><a href="#1、Vim-Mind" class="headerlink" title="1、Vim_Mind"></a>1、Vim_Mind</h2><p><a href="http://nankor.org/uploads/2012/04/Vim_mind.png"><img src="http://nankor.org/uploads/2012/04/Vim_mind.png"></a></p>
+<h2 id="2、linux-io-stack-diagram"><a href="#2、linux-io-stack-diagram" class="headerlink" title="2、linux-io-stack-diagram"></a>2、linux-io-stack-diagram</h2><p><a href="http://nankor.org/uploads/2012/04/linux-io-stack-diagram_v0.1.png"><img src="http://nankor.org/uploads/2012/04/linux-io-stack-diagram_v0.1.png"></a></p>
+<h2 id="3、STL-Containers"><a href="#3、STL-Containers" class="headerlink" title="3、STL-Containers"></a>3、STL-Containers</h2><p><a href="http://nankor.org/uploads/2012/04/STL-Containers.png"><img src="http://nankor.org/uploads/2012/04/STL-Containers.png"></a></p>
+<h2 id="4、主流开源协议比较"><a href="#4、主流开源协议比较" class="headerlink" title="4、主流开源协议比较"></a>4、主流开源协议比较</h2><p><a href="http://nankor.org/uploads/2012/04/protocol.jpg"><img src="http://nankor.org/uploads/2012/04/protocol.jpg"></a></p>
+<p>以后慢慢配上注释。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>IO-Stack</tag>
+        <tag>mindmap</tag>
+        <tag>STL</tag>
+        <tag>vim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言结构体字节对齐</title>
     <url>/Program/04/16/byte-alignment-of-the-c-language-structure.html</url>
     <content><![CDATA[<p>看到西邮linux用户组在讨论这个问题，仔细看了一下，果断mark，之前我记微软有年笔试题曾考过此类。</p>
@@ -1470,51 +1315,6 @@ struct st3&#123;
       </tags>
   </entry>
   <entry>
-    <title>一句Shell</title>
-    <url>/Linux/04/23/a-shell.html</url>
-    <content><![CDATA[<p>这篇博文主要记录下那些比较妙的shell语句，一般为一句解决问题（慢慢积累）<span id="more"></span></p>
-<ul>
-<li>匹配当前目录下同时含有字符串str1与字符串str2的文件，并打印文件名</li>
-</ul>
-<pre><code>grep &#39;srt1&#39; -R *|egrep -v &#39;cscope|tags&#39;|cut -d : -f 1|xargs grep &#39;MAIN&#39; -R|cut -d : -f 1|uniq	
-</code></pre>
-<ul>
-<li><p>ls的结果拷贝至新目录(限制要使用xargs)</p>
-<p>ls &#x2F;etc&#x2F;a* |xargs cp -a -t .</p>
-</li>
-<li><p>获取目录以及该目录下所有文件的属性 ，保存至save.facl</p>
-<p>getfacl . -R</p>
-<p>getfacl . -R &gt; save.facl </p>
-</li>
-<li><p>恢复某目录下及该目录下所有文件属性</p>
-<p>setfacl  –restore&#x3D;save.facl . -R </p>
-</li>
-<li></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>grep</tag>
-        <tag>shell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux回收站</title>
-    <url>/Linux/04/20/linux-recycle-the-bin.html</url>
-    <content><![CDATA[<p>前两天解压rar文件，是windows压缩的，在arch下解压后文件名出现乱码，删除至回收站后怎么也删不掉，估计是乱码造成的权限问题，因此想用rm -f命令删除，但是回收站在什么位置呢？</p>
-<p>Linux默认没有回收站，arch+kde时KDE会形成回收站，这个回收站在家目录的.local&#x2F;share&#x2F;Trash下。</p>
-<p>其下有三个文件（目录），文本文件metadata规定回收站总大小，一般是所在分区大小10%；目录files：用于保存删除至回收站的文件或目录，目录info：保存记录files内文件（目录）相关信息的文件。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>trash</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于google搜索重定向</title>
     <url>/Web/04/21/google-search-redirects.html</url>
     <content><![CDATA[<p>关于国内google的重定向问题，想必使用google的用户都烦透了，当使用google搜索功能，点击搜索结果经常会出现对搜索结果重定向，有时候甚至打不开google的搜索结果。<span id="more"></span></p>
@@ -1549,94 +1349,6 @@ struct st3&#123;
       </tags>
   </entry>
   <entry>
-    <title>学习Linux与编程的几张图片（不断完善）</title>
-    <url>/Linux/04/09/a-few-pictures-to-learn-the-linux-programming-continuous-improvement.html</url>
-    <content><![CDATA[<p>在学习linux的过程中，一些图片很直观与快速的帮助学习者理解linux与以上应用的使用，下面会根据我的学习情况不断完善。</p>
-<span id="more"></span>
-
-
-<h2 id="1、Vim-Mind"><a href="#1、Vim-Mind" class="headerlink" title="1、Vim_Mind"></a>1、Vim_Mind</h2><p><a href="http://nankor.org/uploads/2012/04/Vim_mind.png"><img src="http://nankor.org/uploads/2012/04/Vim_mind.png"></a></p>
-<h2 id="2、linux-io-stack-diagram"><a href="#2、linux-io-stack-diagram" class="headerlink" title="2、linux-io-stack-diagram"></a>2、linux-io-stack-diagram</h2><p><a href="http://nankor.org/uploads/2012/04/linux-io-stack-diagram_v0.1.png"><img src="http://nankor.org/uploads/2012/04/linux-io-stack-diagram_v0.1.png"></a></p>
-<h2 id="3、STL-Containers"><a href="#3、STL-Containers" class="headerlink" title="3、STL-Containers"></a>3、STL-Containers</h2><p><a href="http://nankor.org/uploads/2012/04/STL-Containers.png"><img src="http://nankor.org/uploads/2012/04/STL-Containers.png"></a></p>
-<h2 id="4、主流开源协议比较"><a href="#4、主流开源协议比较" class="headerlink" title="4、主流开源协议比较"></a>4、主流开源协议比较</h2><p><a href="http://nankor.org/uploads/2012/04/protocol.jpg"><img src="http://nankor.org/uploads/2012/04/protocol.jpg"></a></p>
-<p>以后慢慢配上注释。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>IO-Stack</tag>
-        <tag>mindmap</tag>
-        <tag>STL</tag>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大峪游玩</title>
-    <url>/Walk/04/20/otani-play.html</url>
-    <content><![CDATA[<p>这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。<span id="more"></span></p>
-<p>早上6点半，在床上坐起来想了想穿什么衣服，刚穿完衣服，<a href="http://www.thepunch.info/blog/">王宇</a>师兄就打手机过来催起床了。</p>
-<p>7点到新科楼前发现大家都不在，自己应该是迟到了，孙师兄刚好也赶到，就相随去门口追大伙，在外面拿了三个包子，和30多人等公交车奔赴目的地。</p>
-<p>大峪水库比较远，中间转了一趟车，然后坐923从起点到终点。</p>
-<p><a href="http://maps.google.com/maps?f=q&source=embed&hl=zh-CN&geocode=&q=%E8%A5%BF%E5%AE%89+%E5%A4%A7%E5%B3%AA&aq=&sll=37.0625,-95.677068&sspn=46.946584,93.076172&ie=UTF8&hq=&hnear=%E4%B8%AD%E5%9B%BD%E9%99%95%E8%A5%BF%E7%9C%81%E8%A5%BF%E5%AE%89%E9%95%BF%E5%AE%89%E5%8C%BA%E5%A4%A7%E5%B3%AA%E4%B9%A1&ll=34.018954,109.119909&spn=0.024156,0.045447&t=m&z=14">查看大图</a></p>
-<p>到达目的地大概9点吧，来的人比较多，同学是47个吧。本来目的是来捡垃圾的，所以一人发了一个垃圾袋与一只白手套。然后我们就兴冲冲出发了。</p>
-<p>出发了！</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"></a></p>
-<p>下面是路上的一些见闻（由于没有带相机，只能从师兄师姐那里盗点图了。）：</p>
-<p>拔地而起的高山：</p>
-<p><a href="http://nankor.org/uploads/2012/04/hill.jpg"><img src="http://nankor.org/uploads/2012/04/hill.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"></a></p>
-<p>山上的流水：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"></a>在路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku1.jpg"><img src="http://nankor.org/uploads/2012/04/ku1.jpg"></a></p>
-<p>还是在路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku2.jpg"><img src="http://nankor.org/uploads/2012/04/ku2.jpg"></a></p>
-<p>见到水库了：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"></a></p>
-<p>平湖：</p>
-<p><a href="http://nankor.org/uploads/2012/04/ku3.jpg"><img src="http://nankor.org/uploads/2012/04/ku3.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"></a></p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"></a></p>
-<p>碰到的烈士陵园:</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"><img src="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"></a></p>
-<p>路上的付老师和马老师：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"></a></p>
-<p>在路上，走的比较靠前，和蒋老师聊了会儿天，蒋老师说，今天的目标是10000步，老人家真带着计步器呢</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"></a></p>
-<p>除了半路业余式的捡些垃圾，我们主要还是看好那里的鳟鱼的，要吃午饭的农家乐就是我们徒步的终点与重点。</p>
-<p>农家乐：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"></a></p>
-<p>到达半山中的农家乐大概才11点吧，和几个同级同学与师兄玩了会纸牌，就开始吃午饭了。</p>
-<p>下面是午饭的主角儿：</p>
-<p> <a href="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"></a></p>
-<p>没有把那盘鱼给留下来做个纪念。饭间又认识了几位师兄与师姐，很尴尬的是把一位学姐当大四的了。</p>
-<p>如果说以上算平淡的游玩，下面的就有些意思了：吃完饭几个同学商量去爬山，自己没有仔细考虑就欣然同意前去了。</p>
-<p>和老祝走在盘山公路的前面为大家探山，之所以说探山，这里的山由于被盘山公路切开，没有直接从地面形成斜坡的，很多是拔地而起，我们要找个坡度合适的、时间上来的及的打下“牙祭”。看到由两位可能是采药的人在山上“逛荡”（真觉得他们很轻松的在山上），我们敲定了就爬她们所在的山。</p>
-<p>探山路上：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"></a></p>
-<p>去寻山路，居然没有路，我们几个男生就成为了开路着。奇岩怪石，山间荆棘遍地，巨石硕大如房屋，在没有路的野山中，披荆斩棘，望山寻路，虽然被刮伤了几处，不过路倒是开得挺顺当。随行大概20多人吧，像攀岩般体验了这次冒险，一路坎坷，大有野山寻古墓的阵势，让我不断想起《盗墓笔记》与说列宁的《日出》那段。</p>
-<p>时间有限，下山还有坐公交车，爬到一处平台，大家感觉爬的差不多了，拍照留纪念，准备下山。其实这山本就是让看的，爬起来像是在挑战这座山一样。</p>
-<p>山间平台留影：</p>
-<p><a href="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"></a></p>
-<p>下山就没什么了，蹦崩跳跳的就下来了。不过人太多，还是注意安全好。</p>
-<p>回到半腰的农家乐休息了一会儿，看天色不好我们就向山脚下赶了。</p>
-<p>回来路上和几个同学，沿盘山公路一路开跑狂奔，好不欢乐！结果是枫姐拿个对讲机使劲追我们，不断向断后的王宇报告我们的行踪。</p>
-<p>中间有段路，因为喝水太多了，跑起来腹中排山倒海，只能慢下来了，从第一集团跌入第二集团。</p>
-<p>走在山谷间，闲暇的带着耳机一边听着班德瑞一边淋着雨，漫步中观察着一座座欲比天的青峰，想着再静也不过如此了。</p>
-<p>不知觉间居然被枫姐赶超了，好吧，继续狂奔。</p>
-<p>功夫不负有心人，和大四的同学一起首先回到山脚下，坐上公交除了脚底疼什么感觉都没了。</p>
-<p>时间不早了，明天写些感受吧，上面纯是流水。</p>
-]]></content>
-      <categories>
-        <category>Walk</category>
-      </categories>
-      <tags>
-        <tag>大峪</tag>
-        <tag>虹鳟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>蓝莲花——写在《英雄主义》之后</title>
     <url>/Think/05/29/blue-lotus-written-after-the-heroism.html</url>
     <content><![CDATA[<p><span style="font-family: 'comic sans ms', sans-serif; font-size: large;">       5月20日晚上七点，在新校区给2011级同学做了一场<a href="http://xgc.xidian.edu.cn/view.asp?newsid=1758">报告</a>，自己想对他们说的都说了，但是缺点对自己说的东西。</span><span style="font-family: 'comic sans ms', sans-serif;"><span id="more"></span></span></p>
@@ -1656,6 +1368,262 @@ struct st3&#123;
       <tags>
         <tag>自由</tag>
         <tag>英雄主义</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>朝花夕拾--Trace(2011/4/24)</title>
+    <url>/Think/03/13/zhaohuaxishi-trace-2011424.html</url>
+    <content><![CDATA[<p>I‘m on campus.</p>
+<p>目录</p>
+<p>2008年6月21日：爱是一场马拉松—只有起点，终点还很遥远，爱是一场马拉松。… 2</p>
+<p>2008年9月12日：结束了… 2</p>
+<p>2009年1月1日: 盘点我的2008. 3</p>
+<p>2009年1月7日：写在考前… 3</p>
+<p>2009年1月17日：My 2009. 4</p>
+<p>2009年6月16日：这学期忙的好累…. 4</p>
+<p>2009年6月19日：想你，只在夜风中向空气诉说…….. 6</p>
+<p>2009年10月19日：蒙昧稚嫩.青春物语… 7</p>
+<p>2009年12月29日:《软件工程理论与实践》的悲剧译者… 7</p>
+<p>2010年1月27日：人在大学… 8</p>
+<p>2010年2月28日：了结：是喜欢你，但已是曾经…… 8</p>
+<p>2010年3月12日：2010我的序… 9</p>
+<p>2010年5月22日：SNS的悲剧… 10</p>
+<p>2010年7月10日：大二滚了… 10</p>
+<p>2010年9月21日：我告诉你：中秋我们快乐… 11</p>
+<p>2010年12月24日：一些想法，杂谈… 12</p>
+<p>2011年2月5日：游子吟-孟郊… 12</p>
+<p>2011年2月22日：过去由过去，未来说未来… 13</p>
+<p>2011年3月10日:（G|O|A|L）… 16</p>
+<p>2011年4月24日：今天这篇日志… 16</p>
+<span id="more"></span>
+
+
+<p>2008年6月21日：爱是一场马拉松</p>
+<p>—只有起点，终点还很遥远，爱是一场马拉松。</p>
+<p>她与他没有太多的语言交流，她知道他身藏不露，她觉得自己在他面前显得太渺小。可是他不这样想，他欣赏她的性格，她的处世看法。距离的相隔让两人觉得他好象把她甩在跑道的最后，可是他依然不断回头注视她，不管她是否在继续爱的这场马拉松。</p>
+<p>有人说，他太可悲：这是你自己的马拉松，没有对手，你是一个可悲的寂寞者。但他说，不，我相信她在后方一直追赶着我，只不过我比她早绕几到弯，望不见她罢了。</p>
+<p>也有人说，他太固执：她或许早已经退出了这场比赛，你还在竭力奔跑。但他说，不，我相信她只不过在暂时的休息，她没有对马拉松弃权，我听得见她的每一步。</p>
+<p>更有人说，他太愚蠢：她或许已经在进行另外一场马拉松，而你全然不觉。但他说，不，爱的马拉松就是愚蠢的比拼，我相信她在坚持着愚蠢。</p>
+<p>还有人说，他太……但他说，不，我相信……</p>
+<p>…….</p>
+<p>太多的<del>我相信</del>，他相信马拉松就是一种坚持的信仰，一种等待的坚持，一种信任的等待，一种长远的信任，一种记忆的长远。</p>
+<p>在他即将到达终点的那一刻，她从旁边的跑道过来了！！！他为她等待终点。 ……他们携手撞线，不分他们眼中的彼此与先后。</p>
+<p>到达终点后，她告诉他，自己路上很辛苦，有人递给她水喝；有人劝她参加另一场；有人想与她携手比赛……他都婉言拒绝了，她知道他在终点的最后一刻坚持等她。</p>
+<p>爱是一场马拉松，坚持就是希望与胜利。他相信她……</p>
+<p>—————————————————————————————————</p>
+<h2 id="2008年9月12日：结束了"><a href="#2008年9月12日：结束了" class="headerlink" title="2008年9月12日：结束了"></a>2008年9月12日：结束了</h2><p>军训结束了，明白了许多，知道了什么是痛，什么是苦，什么是欢，什么是乐。</p>
+<p>—————————————————————————————————</p>
+<h2 id="2009年1月1日-盘点我的2008"><a href="#2009年1月1日-盘点我的2008" class="headerlink" title="2009年1月1日:盘点我的2008"></a>2009年1月1日:盘点我的2008</h2><p>首先祝贺自己和大家新年Happy！</p>
+<p>2008年是自己与国家结合最紧密的一年。回顾过去，心情很复杂——为自己，也为中国！</p>
+<p>自己，2008年，自己经历了太多的自然奇观，5月10日，双道彩虹现身天空，5月12日14：28，大地震撼，8月1日，仰望日食。也经历了太多的生活变更，走进了西电，一所据说是毛泽东亲手创办的高校，但历史还没我的高中历史悠久，来到西电最大的感觉是，学校太古板。西电是国家二级保密单位，不怎么敢炫耀，因此许多人不知道这所院校。但近一段，西电因为一件事而全国闻名了，“卡门”事件，不想多说了，西电确实做得太过了！大一此时已过去了，可西电还没被我看透。自己到陕师大校园，那里无不透漏着些许人文气息，可西电没有！</p>
+<p>中国，2008年迎来了灾难与机遇，雪灾，地震，金融危机，许许多多，当然机遇就是奥运会了，相信中国的力量，也相信自己的力量。地震是对自己影响最大的了，很难想象一个庞大的灵魂在这场灾难面前所显示出的镇定！不曾想，自己高考作文竟是关于地震的。奥运会是自己最兴奋的时候了，拿着通知书就像自己拿着金牌了，呵呵！</p>
+<p>2008，相信每个人都有一段不同的回忆，不论是奥运现场，还是神七遨游太空，我们都会见证那些美好。无论是汶川灾区，还是雪灾现场，我们都会见证那些悲痛！</p>
+<p>2008走了，满载而归，有我的泪，有我的笑——我知道也有你的！2008，有中国的泪，有中国的笑！</p>
+<p>2009来了，我将用我的手笔用心来充实它，充实自己！就像日益站起的China!</p>
+<p>—————————————————————————————————</p>
+<h2 id="2009年1月7日：写在考前"><a href="#2009年1月7日：写在考前" class="headerlink" title="2009年1月7日：写在考前"></a>2009年1月7日：写在考前</h2><p>不知不觉，就要考试了，大学生活因此变得紧张异常。一向门可罗雀的自习室一下子人满为患，自己大清早没吃饭用书包占个位子，吃完饭回来竟见那位置居然有人坐着，“欲哭无泪”啊！走在路上,同学们都拿着课本在用功,唉！该考试了，大家还是相互同情一下吧！</p>
+<p>碰到考试，难免有些老师会透透风，应用创造学老师那是相当～慷慨，一张卷子给我们说的一题不漏；可历史老师就狡猾的很了,只给我们划不考的题目,但今我十分放心的是历史开卷考;思修老师留给我们一本练习册,说那是葵花宝典式的名著,但它也太厚了点吧！C语言老师给我们许下承诺“同学们,我保证你们70分没问题,那题是相当简单的,也就十几道英文选择题,几道读程与编程题！”,但愿它英语专业术语别太多,要不直接和英语一起考得了.剩下的就只有高数了,感觉新的没学到,像是又把高中数学复习了一遍！</p>
+<p>八号开考,头天两门,休息三天,继续作战,四门考完,舍友们聚个餐,拜个早年,十七号就可以出关中,贯华山,历灵宝,经洛阳,奔新郑了.我的假期倒是挺“冗长”的,三月一日开学！别羡慕,我们可是八月二十三日就被从家里拽来的哦！</p>
+<p>噢！对了,如果没有特殊情况,我在家还用西安的手机号，经常联系哦！</p>
+<p>现在还是赶紧再背几道思修题吧！</p>
+<p>—————————————————————————————————</p>
+<h2 id="2009年1月17日：My-2009"><a href="#2009年1月17日：My-2009" class="headerlink" title="2009年1月17日：My 2009"></a>2009年1月17日：My 2009</h2><p>1.好好学习，天天向上！</p>
+<p>2.凡事想简单点，做深入点。</p>
+<p>3.多给爸妈打电话。</p>
+<p>4.广交好友，让电话簿上人数升至1.5倍。</p>
+<p>5.品味西安的小吃与风景。</p>
+<p>6.不要老是发短信，多给老朋友打些电话。</p>
+<p>7.改革西电棋轩。</p>
+<p>我的2009,我来耍！哈哈！</p>
+<p>—————————————————————————————————</p>
+<h2 id="2009年6月16日：这学期忙的好累…"><a href="#2009年6月16日：这学期忙的好累…" class="headerlink" title="2009年6月16日：这学期忙的好累…."></a>2009年6月16日：这学期忙的好累….</h2><p>时间逃跑地不明不白，大一的尾巴就像回家的那列火车，仔细抓住它，感似有无限的无奈不愿放弃那个挣扎的小孩……</p>
+<p>最近像很久以前忙地不知所措。</p>
+<p>也许自己的“第二桶金”给时间一个流失的借口；</p>
+<p>也许K出去的声音振动的不是空气与耳膜，而是不同人的心；</p>
+<p>也许长途电话卡值得珍藏，总被攥在手里而眼眸爱映着远方飞来的那行短信；</p>
+<p>也许渴望数模的美妙，毫无犹豫地钻进设的模型，80小时仅用15小时去梦梦想；</p>
+<p>也许该到的期末审判需要我劳累地把压缩的时间无穷拉伸以填充那本高数或大物练习册；</p>
+<p>也许坚持“朋友”的秉性使C代码中赫然出现了#include“南柯子.h”的稀有包含；</p>
+<p>也许羽毛球、篮球或者桌球不懂运动的含义，总是不听话地期待去不断地挨揍；</p>
+<p>也许社团活动吸引不了自己，自习室的迷宫足以让我走不进期望的棋局（社团～西电棋轩）；</p>
+<p>也许她说的是对的，“一天一个理由，认识我三年了，一千个了吧？”～张学友不会唱的那首；</p>
+<p>也许是高冠瀑布的美让我双腿紧贴着岩壁，走进无量洞，求得“好人一生平安”的红色绸带；</p>
+<p>也许项羽猜不透嬴政的心思，一把火留下兵马俑上那层逝不去的炭灰，那好似经过的往事；</p>
+<p>也许《程序员》、CSDN的高深陷进去出不来，在里面实在太迷惑……</p>
+<p>心的疲惫和生活的重量，也许容我休息……太多的也许填充过去，也许现在留做下刻的回忆不会后悔。</p>
+<p>未来仍在继续……</p>
+<p>今天的忙碌伴随《今天》结束吧！</p>
+<p>走过岁月我才发现<br>世界多不完美<br>成功或失败都有一些错觉<br>沧海有多广江湖有多深<br>局中人才了解<br>生命开始情不情愿总要走完一生<br>交出一片心不怕被你误解<br>谁没受过伤谁没流过泪<br>何必要躲在黑暗里<br>自苦又自怜</p>
+<p>我不断失望不断希望<br>苦自己尝笑与你分享<br>如今站在台上也难免心慌<br>如果要飞得高就该把地平线忘掉……</p>
+<p>—————————————————————————————————</p>
+<h2 id="2009年6月19日：想你，只在夜风中向空气诉说……"><a href="#2009年6月19日：想你，只在夜风中向空气诉说……" class="headerlink" title="2009年6月19日：想你，只在夜风中向空气诉说……"></a>2009年6月19日：想你，只在夜风中向空气诉说……</h2><p>站立在夜风中，</p>
+<p>想你，</p>
+<p>只在夜风中向空气诉说……</p>
+<p>幻想着，</p>
+<p>你我在一起的时间……</p>
+<p>我不是浪漫人，</p>
+<p>却时刻想着，</p>
+<p>和你在一起浪漫地度过……</p>
+<p>想你的时候，</p>
+<p>就喜欢在这温柔的夜风中，</p>
+<p>让思绪变的更淡更淡……</p>
+<p>闭上眼睛想象，</p>
+<p>此刻的你在世界的哪个角落……</p>
+<p>塞上耳朵，</p>
+<p>夜风依然轻柔的从我身边拂过，</p>
+<p>这种感觉，</p>
+<p>像你在对我诉说……</p>
+<p>诉说着你也不知自己在世界的哪个角落……</p>
+<p>仿佛我已经习惯了这种生活，</p>
+<p>想你，</p>
+<p>只在夜风中向空气诉说……</p>
+<p>—————————————————————————————————</p>
+<h2 id="2009年10月19日：蒙昧稚嫩-青春物语"><a href="#2009年10月19日：蒙昧稚嫩-青春物语" class="headerlink" title="2009年10月19日：蒙昧稚嫩.青春物语"></a>2009年10月19日：蒙昧稚嫩.青春物语</h2><p>儿时的无邪笑声只能倾听于手机的和弦，成长的放肆无畏不愿压缩在年轮的中心。</p>
+<p>蒙昧，原始社会与麻木不前的诠释者，用来束缚成长却不被人觉得。年轮的层叠透不过树干的皮肤，笑声的和弦无情响不出无邪。成长，你剥掉稚嫩的外壳太慢，你扫除蒙昧的时间太长。蜗牛的痛不在悲哀自己的速度，而在它留下的明亮足迹——生命的成长足迹。不该抱怨成长的加速度太小，只是成长的初速度太低。蒙昧与稚嫩的容颜何时被岁月刻刀留下睿智与成熟？回答在你，启迪在我。</p>
+<p>时光的帆永远有风在吹，成长的船已离开海岸，蒙昧与稚嫩的水手在出海的瞬间成了岁月的守护神，当然，不是斯派洛，也不是特纳。当回忆把帆压倒，停顿的成长有了思考，特纳在了……在世界的尽头，成长将水手蜕变为斯派洛……蒙昧的牺牲是生命，稚嫩的残害是心灵。成长给予青春舞台，镁光灯给予青春四射的耀眼，蒙昧与稚嫩你给了青春什么？成长的夕阳不待人，稚嫩蒙昧的青春物语不再有过。美丽境界在成长的沉默与前行中体味，不在青春的蒙昧激扬，不在青春的稚嫩无畏。走出青春的牢笼，欣赏的确是种不错的艺术！</p>
+<p>—————————————————————————————————</p>
+<h2 id="2009年12月29日-《软件工程理论与实践》的悲剧译者"><a href="#2009年12月29日-《软件工程理论与实践》的悲剧译者" class="headerlink" title="2009年12月29日:《软件工程理论与实践》的悲剧译者"></a>2009年12月29日:《软件工程理论与实践》的悲剧译者</h2><p>小弟不才，有幸拜读《软件工程理论与实践》之大作，感于本卷之博大精深，故作斯文。</p>
+<p>每读之，则思韩愈言古风之要，现取其文，练句读：“如果一个转移的目的状态是一个超状态，则其作用相当于到超状态的默认初始状态的转移”，此非“乾坤大挪移”者，乃“UML状态图”也。</p>
+<p>细究之，难思量，凭读者之慧不解之。不闻“杨卫东”何许人也，此卷观之，必非凡人哉！想泱泱华夏，汉言之精，能译如此者，微人乎？今查原作，兴赞之“A transition whose destination state is a superstate acts as a transition to the superstate’s default initial state.”,</p>
+<p>服Shari Lawrence Pfleeger Joanne M.Atlee之精辟之见！</p>
+<p>—————————————————————————————————</p>
+<h2 id="2010年1月27日：人在大学"><a href="#2010年1月27日：人在大学" class="headerlink" title="2010年1月27日：人在大学"></a>2010年1月27日：人在大学</h2><p>大学的确是个小社会，只是缺乏了各种行业。这个“社会”里，有人叹息没有真正的朋友，是！的确没有，除非你找到了她，但那也许是朵毕业即凋零的花，有太多人以为两个人一起就没了寂寞；这个“社会”里，有人一直那么昏着，要么一天在自习中度过，要么一天在床上、电脑前度过，大学的学习内容足以留下可观的时间让你去好奇于其他，只是你不习惯改变罢了；这个“社会”里，行走是最平常的事情，有人一秒走一米，有人一秒走五米，你试试：把一秒重复到生命的周期，把长度平均到每件事……这个“社会”里，有人为拿到文凭欣喜若狂，更多为学到知识而暗自鼓励，但很少为求得成熟的思想而兴奋。这个“社会”需要东西来充实，不是我们索取的知识，而是我们共享思想；这个“社会”需要“计划生育”，需要清除学术路上的肮脏毒瘤，需要叫醒学习路上的昏睡者；这个“社会”做着创建<strong>一流的梦，却经常拿不出</strong>一流的作品。走的是自己的路，有人说，从地狱到天堂，经历了人间～大学。</p>
+<p>—————————————————————————————————</p>
+<h2 id="2010年2月28日：了结：是喜欢你，但已是曾经……"><a href="#2010年2月28日：了结：是喜欢你，但已是曾经……" class="headerlink" title="2010年2月28日：了结：是喜欢你，但已是曾经……"></a>2010年2月28日：了结：是喜欢你，但已是曾经……</h2><p>把你的号码从通讯录中删除，不出意外的话，我们不会再有交集了吧，反正，你已经好久没有主动打电话给我，甚至没有主动发过一条短信，我们，就这样了吧。就这样，不再爱你了。<br>不再在嘈杂的人声中捕捉你的嗓音了<br>不再在滚滚人流中追逐你的身影了<br>不再因为你出现而再三斟酌自己的言语，动作甚至表情了<br>不再，为你心动了。<br>你从来没有发现，喊出你的名字的时候，是我最温柔的时候，甚至声音有微微的颤抖；经过你的身旁，我的脚步总是放的又轻又慢；我从不敢直视你的眼睛，怕泄露了太多的情感；在无意识的发呆时，草稿纸上满页满页都是你的名字，我能把你的名字写得比我的名字还溜；分开的时候，满脑子满脑子都是你的身影，回忆一刹那只剩与你有关的点点滴滴；吃饭的时候，睡觉的时候，逛街的时候，发呆的时候，都在想你在干什么呢，会不会，会不会像我想你一样想我呢……<br>那样纯粹而淡然的生活，那样以你为中心的生活，因为回忆而丰满，因为现实而枯萎。距离拉长了思念，却阻隔了见面；时间沉淀了暗恋，让你离我好远好远。眼看着身边的人一个一个都有了轰轰烈烈，我想，是该放下你了，回忆，仅仅是用来回忆。<br>不要说我不甘寂寞，因为我已经寂寞了好久，不要说我用情不专，因为你从来不属于我，也不要说我轻言放弃，你甚至，连一个微小的回应都不曾给我。<br>不再留着你的短信不舍得删掉了<br>不再一遍一遍的回看我们的聊天记录了<br>不再眼巴巴的盯着手机期望你的电话了<br>不再上一整晚的QQ等你现身了<br>不再向好友倾诉自己的心酸了<br>你拨动了我的心弦，却不曾为我驻足，当我以为你还在的时候，你已没有踪影，当你回头找寻我的时候，我已开始寻找自己的天空，亲爱的，我把最美好最美好的年华留给了你，我，于你无愧。亲爱的，我的青春有限，承担不起一生一世的等待。<br>请不要怀疑，曾经，我愿意不顾一切的等你，愿意随时随地陪你，愿意在你身后默默的看你，为你的快乐而快乐，为你的悲伤而悲伤，尽管，那些情绪，与我无关啊……<br>等待不苦，苦的是，没有希望的等待……</p>
+<p>—————————————————————————————————</p>
+<h2 id="2010年3月12日：2010我的序"><a href="#2010年3月12日：2010我的序" class="headerlink" title="2010年3月12日：2010我的序"></a>2010年3月12日：2010我的序</h2><p>不知不觉大学的年华已在眼前飘过一载半，从大一的懵懂到大二的淡然与“安定”，世界发生的许多变化，如同映射在我的身上。</p>
+<p>生的思考</p>
+<p>如果生命对于每人只有一次，假如是八十年，我愿意用三十年去思考。发现许多事情不经意间的随便唠叨是对生命的亵渎，承认人类能力有限的前提下，我还是愿意尝试去把人类的沉默的智慧发挥到最大。对于宇宙而言，地球文明连第三类文明都不是，即连行星的命运也控制不了，人类看似浩淼的科学知识只是宇宙文明的沧海一栗。地球的未来好像离我们很远，但我会从你那里得到集腋成裘作用的肯定。一个人的博爱之心体现在什么地方？</p>
+<p>活的追求</p>
+<p>走在被认为大学里最痛苦的年月，我没有了之前的所以然，更多的是希望看到实际，看到实力。不需要太多的花言巧语，我需要的是使我闭嘴的智慧与使我欣赏的才学。大学作为社会的个性工厂，设计师正是自己。我学的是软件，喜欢把它看做建筑，把它看做一篇文章，在建筑与文章面前，我会尽力让欣赏者为之一颤。</p>
+<p>水落石出</p>
+<p>好似文章里看不到硬硬的笔尖，建筑里看不到软软的泥土，想象的软件里好似忽略了硬件……为了挽回错误的想法，我接近了硬件与底层。水落石出的干脆与震撼不亚于代码疑惑之时在硬件中得到解答的明了与陶醉。行走在水中巨石间，可乐水，可乐山。在确保功能的前提下，电脑的个性化是追求的永恒，水落石出时，文章里自有笔的锋芒，建筑里自有花土的清香。</p>
+<p>等待花开</p>
+<p>这四个字转自朋友，先借用了。不必多说，希望此花灿烂，但不在此时。</p>
+<p>南柯子 于10.3.12晚</p>
+<p>—————————————————————————————————</p>
+<h2 id="2010年5月22日：SNS的悲剧"><a href="#2010年5月22日：SNS的悲剧" class="headerlink" title="2010年5月22日：SNS的悲剧"></a>2010年5月22日：SNS的悲剧</h2><p>1.欲颠覆不该的；</p>
+<p>2.泛滥太空乏的；</p>
+<p>3.一对一的肤浅；</p>
+<p>4.难消化的快餐。</p>
+<p>—————————————————————————————————</p>
+<h2 id="2010年7月10日：大二滚了"><a href="#2010年7月10日：大二滚了" class="headerlink" title="2010年7月10日：大二滚了"></a>2010年7月10日：大二滚了</h2><p>振动着西安燥热的空气分子，大二的旋律插入了休止符。吃了散伙饭，淋着罕见的雨走在两年熟识的那条路上，感觉着这场插曲的凉雨……</p>
+<p>如果阳光可以作为怀念，那片阳光下的树叶还在么？顽皮的习惯不经意去拽一片青叶，生命在绿叶干枯与丢弃中成长。在成长的蜕变中，无数次的警告命运，人生在计划与变化之间划过。成长的束缚有时是件好事，分寸在毫厘之间，善于自我束缚是种坚持的智慧。成长的苦涩方向没有急转弯，它在慢慢偏移中告诉我了它的平淡无奇，却有丰富跌宕！如果坚持给了我力量，成长的方向给了我踏上它的勇气。</p>
+<p>如果泡面可以作为夜宵，那根泡面旁的香肠还在么？在关怀下，养生占据心扉，没有来得及与垃圾食品告别，开心之窗，面朝健康，人就是这样，犯了错，就要改的毫不留情！一次次的称重，一次次的期待完美，在镜子中与双瞳中，突然一句话“你瘦了！”。彻夜的锻炼，彻月的体验，明白掌握自己的身体时钟，把他精准在以小时的单位里，我跟他上了自由的发条！</p>
+<p>如果泳池的水可以再脏点，以后还会去那里游泳么？也许吧，执着于本能，奋力划动不标准的动作，在烈日下畅快着水溅起的感觉，水脏么？心净，知足了。多少个夜晚，拖着疲惫的身躯，甩起僵硬的右臂，轮几下深陷的眼珠，在黑暗的跑道线中循环往复，圈圈画着强有力的未来。</p>
+<p>如果餐厅还有饭，那么你还会为我带点饭么？朋友说，她有了一辈子的朋友，我告诉她，我每年都会收获一个，她说你太幸运了，一知己足矣。非亲的另外生命，在南柯子的生命里体验到不至是一个生命，而是思想，两个人的思想不约而相交，这就是知己吧。争吵过，纯口水之战，相同立场的深情对峙。</p>
+<p>大二滚了，暖着咖啡，静静地拿给你，今天在苦与甜中延续……</p>
+<p>—————————————————————————————————</p>
+<h2 id="2010年9月21日：我告诉你：中秋我们快乐"><a href="#2010年9月21日：我告诉你：中秋我们快乐" class="headerlink" title="2010年9月21日：我告诉你：中秋我们快乐"></a>2010年9月21日：我告诉你：中秋我们快乐</h2><p>也许暑假回家时间太短，想起了这句话在今天。</p>
+<p>在外有几年了，心中家的概念向来没有这么清晰过，也许年龄大了、成熟了，被家拽的更紧了。在外的忙碌生活抹去了回忆过去的清闲，偶尔回想琐事，妈妈早上催促起床的声音也是那么令人怀念。</p>
+<p>奔波的过去依然为了现在奔波的未来，没有停止的漂泊也就继续着没有停止的思念。年年明月摆过黑夜，年年思绪寄予明月。</p>
+<p>兄弟、朋友，无情的感情已见过那么多，唯独对家的感情不曾淡忘。岁月用时间度量脚步，思念用心灵条分缕析，教室、实验室、聚餐桌旁寡言的不是无语，而是最平静的祝福。算了，待几天，寻找温暖的回归，继续用铭言享受惊人的沉默。</p>
+<p>A：中秋快乐！</p>
+<p>B：同乐，同乐！</p>
+<p>—————————————————————————————————</p>
+<h2 id="2010年12月24日：一些想法，杂谈"><a href="#2010年12月24日：一些想法，杂谈" class="headerlink" title="2010年12月24日：一些想法，杂谈"></a>2010年12月24日：一些想法，杂谈</h2><p>1、许多组织的目标都是改变世界，可是改变世界的前提是改变自我；</p>
+<p>2、阅读别人的思想比看懂她的行为更具震撼性与影响作用；</p>
+<p>3、从善如登，从恶如崩；</p>
+<p>4、我还是我的那个梦想，只不过走了一些弯路；</p>
+<p>5、有自己的想法最好，尤其是关于自己命运的；</p>
+<p>6、腾出时间留给自己思考未来；</p>
+<p>7、独立不仅是说生存，更多的应该是在思想；</p>
+<p>8、组织的目的不是组织，而是无组织；</p>
+<p>9、要会计划，计划是必须的；</p>
+<p>10、活的很高效，指的是方式，但并不说明活得目的很正确；</p>
+<p>11、少熬些夜，否则害处会慢慢体现；</p>
+<p>12、日子是一天天过的，不是一段一段过的；</p>
+<p>13、未来荣辱自取，不求于人；</p>
+<p>14、向上是种态度，一种你坚持了才叫向上的态度。</p>
+<p>—————————————————————————————————</p>
+<h2 id="2011年2月5日：游子吟-孟郊"><a href="#2011年2月5日：游子吟-孟郊" class="headerlink" title="2011年2月5日：游子吟-孟郊"></a>2011年2月5日：游子吟-孟郊</h2><p>慈母手中线，游子身上衣。</p>
+<p>临行密密缝，意恐迟迟归。</p>
+<p>谁言寸草心，报得三春晖。</p>
+<p>–于辛卯年正月初三郑州至西安</p>
+<p>—————————————————————————————————</p>
+<h2 id="2011年2月22日：过去由过去，未来说未来"><a href="#2011年2月22日：过去由过去，未来说未来" class="headerlink" title="2011年2月22日：过去由过去，未来说未来"></a>2011年2月22日：过去由过去，未来说未来</h2><p>许久没有写过像样的日志，今天是大三下学期的第一天，也是大学的最后一个学习学期，想想，希望自己对一件事做个总结，便是数模。</p>
+<p>数学建模对于许多人并不陌生，尤其是对我的大学校友而言，从校赛走到国赛，再从国赛参加美赛，一路走来，学到的不仅仅是没有情味的一些知识。</p>
+<p>关于数模，先回头看下自己走的足迹：</p>
+<p>2009年5月1日-5月3日初生牛犊不怕虎。</p>
+<p>09年大一下学期，看到学校的数模校赛通知，感到是件有趣的事情，随即和自己的朋友Z商定，决心搞这个，虽然中途不断换人、但最终还是顺利参加了，并且结识了优秀的队友L1与W，优秀的教练G。在校赛中，前两天队友L1埋头一语不发，资料看的烂熟于胸。第三天L1终于举手发言了，说出了自己的思路，大概明白L1的思路后，接着三人便是赶制论文。在5月4日晚上0点多自己回到宿舍，突然发现已经修改后的论文居然没有保存在拿着的U盘中，这篇论文是要在当天早上8点之前发送的！赶紧叫醒已回到宿舍的队友，去拿可能含有备份的修改过的论文的U盘，我和队友宿舍已经锁门了。没办法，半夜找朋友，若无其事的从我的宿舍楼一楼宿舍阳台翻了出去，来到队友宿舍楼紧闭的玻璃大门前，队友将小小的U盘从门缝里塞了出来，拿着U盘，回到宿舍借来同学的电脑，又是一篇没有修改的论文，自己修改吧，挑灯夜战到半夜两点，终于在电脑没电前，把论文修改的差不多了。早上六点宿舍一来电，爬起来打开电脑，联网，邮件发送，第一次数模就这样度过了，大学的第一个五一也就这样度过了。在此次数模中收获最大的是Excel与SPSS的使用，尤其是EXCEL自己用的太顺手了，当然收获的也有其中结识的日后的队友。</p>
+<p>虽然校赛结果不是太理想，但是自己努力了，大一参加总算没有把努力白费。当时想起学校校队集训的选拔，感觉到自己的硬件与软件都有所欠缺，还是修炼一年再来参加选拔吧。</p>
+<p>2010年5月1日-5月3日而今迈步从头越</p>
+<p>有过一次参赛的经验，第二年的组队在半年前就敲定了，H与L1，H与L1的确是两个很有思路的队友，我在队里承担着编程验证模型解答正确性的任务，教练对于我们的队伍莫名的信任，莫名的自信，以至于最后我们的论文几乎没有被教练审查。最后一夜自己是带着未尽的论文回到宿舍的，当时自己已经有了电脑，宿舍没有通宵供电，只好来到空无一人的宿舍玻璃房，那里很凉快，倒寂静，插上电脑插座。凌晨4点，摘要写完了，把末尾收了。大概4点半时（应该是这个时间），不知不觉就睡着了，醒来时已经是早上6点半了，赶快打印装订，交给教练，快8点了，买了杯奶茶回宿舍没喝完就又睡着了……大学的第二个五一假期也被这样度过了……</p>
+<p>第二次觉得没有第一次尽力，也没有第一次的思路活跃，但结果貌似比第一次好点。校级二等，具备参加校队集训的笔试条件，接着便拉开了自己走向国赛的序幕—-校队选拔。</p>
+<p>校队选拔，不知所云。</p>
+<p>第一关笔试，7道大题，4、5道是概率论吧，大二上学的概率论都快忘完了，当时概率分布的定义都不知道，也只好凭着自己在笔试前看完的数模课件来应对了，做完后自己感觉不是太满意，但还是抱有信心的。果不其然，笔试成绩为B，意味着自己具备参加面试的条。面试的过程确实有点紧张，不知道老师会问什么问题，自己是编程的，他不会问什么遗传啊，神经网络算法吧…..事实证明面试老师是极其“仁慈”的，他问了我校赛中为什么选择那道题，在校赛中是什么角色拖了后腿，我从容回答后，感觉没什么问题，接着他又问了一起面试的另一名同学“你俩编程比赛过么？”！！！我和旁边的大一ACM的学弟刚认识，怎么可能切磋过编程？“他是ACM队的，我们认识也是在开源社区，没有切磋过。”老师估计他是大一的，感觉数学基础知识还有所欠缺，最终选定了我。不过大一的学弟也确实很努力，在代表西电ACM巡回赛中，夺得了不错的成绩！</p>
+<p>校队集训，真正的地狱训练。2010年7月12-2010年9月9日</p>
+<p>第一阶段比较轻松，在地狱的边缘徘徊。上午听课，每天一个新知识点；下午实践，每天一个新的编程实例。MATLAB\LINGO\EXCEL\WORD\SPSS\MATHMATICAS，要个个认识。尤其是MATLAB\EXCEL\LINGO，是保命的。接着是恐怖的第二阶段，下地狱了，和两名优秀的队友B与L2，五天一道题，包括拿题、解答、成论文、交付、答辩、总结。五天中有三天是必然会熬通宵的，就如此，5天*7,35天后奔赴国赛战场，自不必说集训的生活，就说吃的吧，早上两个鸡蛋饼加一包奶，这样吃了一暑假，回头想起，再也不吃鸡蛋饼了，晚上宿舍几乎没怎么回来过。有次修改队内的论文，半夜已经躺在床上了，感觉论文写得不是太好，起床，修改论文，一坐就坐到了早上10点，10个小时过去了，70多页的论文就这样迎着黎明诞生了。当然也忘不了，自己从通宵修改一篇论文，一直修改到下午2点，当走出实验室时，已快要晕倒了，只好打开手机音乐，插上耳机，把音量调到最大，插入耳朵，才使得自己没有瘫睡在回宿舍的路上。</p>
+<p>国赛。2010年9月10日-9月13日</p>
+<p>国赛是个转折点，在整个过程中，没有国赛也没有延续，没有国赛也没有前面。国赛的选题很艰难，老师辅导了三个队，另两个队徘徊后选择了B题，一道讨论上海世博会影响的题目。我们选择了一道比较险的题目：一道有唯一正确答案的题目。如果做对了，极有可能拿奖；否则，什么就没有。看似一道很简单的积分题目，拿到手后，到了第三天凌晨5点，最后一问还是没有解出来，8点就要交论文了，我们急了，解析积分是无论如何也积不出来了，数值积分吧，MATLAB\MAPLE报错：“我们没有办法积分”。近似解决—思路就这样被逼出来了，近似后，问题被很轻易解决了，其中出现了超定方程与非线性最小二乘法优化的问题。当在8点论文修改完格式后，我没有仔细看论文，装订后就交付了。我们三个很是垂头丧气，感觉一个暑假的努力也许就这样被白费了，因为我们知道自己写的怎么样，除了结构与分析比较出彩外，最后一问的解答实在不敢恭维。</p>
+<p>答辩：2010年10月6日下午西北大学</p>
+<p>付出总归是有收获的。当自己失望的在家度过大三的十一假期时，10月5日自己被通知10月6日答辩，这个答辩一般是省里评出推送至国家一等奖的答辩。自己当时正好订的10月6日早到达西安的火车票，只好硬着头皮，给两位在校的队友打电话，让他们迅速准备答辩的PPT，当晚凌晨自己一上火车，打开笔记本利用手机联网，下载了他们白天做的PPT，在火车上进行了进一步修改，就这样答辩的PPT就做好了。6日下午到达西北大学在第一组第一个进行了答辩，两位陕西赛区鼎鼎有名的数模人物接受了我们的答辩，总体感觉还是好的。</p>
+<p>最终成绩出来，获得不错的成绩，确实在此感谢队友，感谢乔老师与李老师！</p>
+<p>美赛ICM，2011年2月11日-2011年2月15日</p>
+<p>国赛的成绩坚定了自己参加美赛的决心，和队友商议后，我们感觉应该满足自己参赛的一个心愿。为了这个心愿，毅然奔赴美赛赛场。美赛刚过，不便多说，但给自己的教训与收获兼有，待到日后有机会再填充此处空白，还是祝大家美梦成真吧！</p>
+<p>以上是自己走过的数模竞赛的足迹，一脚深一脚浅的留下在时光抛撒的泥泞路上，有自己的心酸也有自己的欢乐。弯下腰摸摸自己的足迹，其中留给自己的有毅力、有汗水，有思想的光辉、有粗心的愤怒，有面对电脑眼睛发涩的疼痛流泪，有不眠之夜的一个人在实验室的敲打键盘。当然在一同走过的日子，也有朋友最坚实的帮助：没有W在那里删去多余的逗号，我无法将C++的数组数据读入MATLAB；没有L带来的一顿顿的饭菜，我无法保证我们的进度；没有教练G与X的点滴帮助，我关于数模的前途没有更多的认识。</p>
+<p>感谢W、L1、H、Z、G、X、L2、B、L3，感谢Q、L、Q，你们有我并肩作战的队友，有我的教练，有我的朋友！不论现在的结果如何，我相信你们是绝对优秀的！</p>
+<p>引用数模队中一位队友的话：我们大学中很少有这样的时间：我们不为考试与过级而担忧，我们不为分数与奖学金而学习，我们做数模，只为了自己的未来，在数模中切实感觉到自己在为自己的未来奋斗，而这个，在大学的四年时光中是很少见的！</p>
+<p>过去有过去，未来说未来……</p>
+<p>—————————————————————————————————</p>
+<h2 id="2011年3月10日-（G-O-A-L）"><a href="#2011年3月10日-（G-O-A-L）" class="headerlink" title="2011年3月10日:（G|O|A|L）"></a>2011年3月10日:（G|O|A|L）</h2><p>SHE,ENGLISH, mysterious dream.</p>
+<p>—————————————————————————————————</p>
+<h2 id="2011年4月24日：今天这篇日志"><a href="#2011年4月24日：今天这篇日志" class="headerlink" title="2011年4月24日：今天这篇日志"></a>2011年4月24日：今天这篇日志</h2><p>这篇日志是对自己三年来在校内上所有自己思考东西的总结（不包含一些“技术贴”），纯粹是对经历的拷问与回忆，走过的路程大概就这样吧，日后看情况会有补充。</p>
+<embed src='http://recordings.talkshoe.com/TC-20708/TS-12558.mp3' autostart='true' type='audio/mpeg' loop='true' >
+]]></content>
+      <categories>
+        <category>Think</category>
+      </categories>
+      <tags>
+        <tag>trace</tag>
+        <tag>杂</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux回收站</title>
+    <url>/Linux/04/20/linux-recycle-the-bin.html</url>
+    <content><![CDATA[<p>前两天解压rar文件，是windows压缩的，在arch下解压后文件名出现乱码，删除至回收站后怎么也删不掉，估计是乱码造成的权限问题，因此想用rm -f命令删除，但是回收站在什么位置呢？</p>
+<p>Linux默认没有回收站，arch+kde时KDE会形成回收站，这个回收站在家目录的.local&#x2F;share&#x2F;Trash下。</p>
+<p>其下有三个文件（目录），文本文件metadata规定回收站总大小，一般是所在分区大小10%；目录files：用于保存删除至回收站的文件或目录，目录info：保存记录files内文件（目录）相关信息的文件。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>trash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我为什么要去旅行</title>
+    <url>/Walk/06/11/why-travel.html</url>
+    <content><![CDATA[<p>公元2012年5月31日晚，伴随K165次列车出站一声长长鸣笛，我和flyer夜中离开西安前往成都。<span id="more"></span></p>
+<p>去成都旅行的决定我俩做的都很干脆：flyer说他是中午起床（原谅IT人的习惯吧）吃完饭后突发奇想决定去成都转一趟。下午1点在实验室的我看到他的QQ头像闪了，与flyer几句交谈后，在QQ上答应了，接下来搞定双程火车票。</p>
+<p>当时是5月31号，我的本科毕设验收是在6月6号，答辩在7号。决定旅行三天，火车6月1日下午到成都，6月4日晚离开成都返回西安。</p>
+<p>仗着还年轻，仗着毕设前期工作终了，没有告知更多的人，没有多余的思考，也没有多余的准备，我依然赴身前往。</p>
+<p>这是自由压抑久了，一次短暂的释放？</p>
+<p>这是行动派的一次集中体现？</p>
+<p>带着相机与衣服，拿了Kindle与Mp3就走了……</p>
+<p>我为什么要去旅行？</p>
+<p>回到5月31日中午的实验室，是学习生活的逃避？毕业旅行的跟风？为了扔掉几斤赘肉？响应“读万卷书，行万里路”？释放心灵的压力？</p>
+<p>得了吧，全是借口！</p>
+<p>抛弃除相机外的其他电子设备，作为自然个体去融合自然</p>
+<p>不要拿起kindle去看书，不要按下手机翻twitter，不要用“粗糙”的信息去玷污追求的清朗夏天与定格的美丽瞬间，自然远比人类要纯粹，要干净？</p>
+<p>把心放在另一个地方，找回脑海最想要的场景，去旅行</p>
+<p>成都是座慢城市，除了静谧，没有更好的词去形容她。</p>
+<p>一头乌龟飘荡在无际的海洋，不去思考哪里有彼岸，伫立在乌龟之上，人心，动乎？静乎？</p>
+<p>作为人在成都的想象，尽力挖掘最纯粹的审美观去动心，去静心，去旅行</p>
+<p>夏天的蜀都每个下午两点，总有一场细雨洗净天空</p>
+<p>与其说是沐浴城市，催流锦江，不如说是净化心扉，洗涤生命</p>
+<p>三场雨，三颗心，生命走廊多了几幅壁画，修缮了走过的飞檐，为什么不去旅行？</p>
+<p>对纯粹无世间的自然与崇高非人类的生命的向往，就去旅行了。</p>
+<p><a href="http://nankor.org/uploads/2012/06/DSCF0280.jpg"><img src="http://nankor.org/uploads/2012/06/DSCF0280.jpg"></a></p>
+<p>茶凉了，喝茶。</p>
+]]></content>
+      <categories>
+        <category>Walk</category>
+      </categories>
+      <tags>
+        <tag>成都</tag>
       </tags>
   </entry>
   <entry>
@@ -1747,39 +1715,6 @@ c&lt;=pmin-1;
         <tag>lingo</tag>
         <tag>思维发散</tag>
         <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我为什么要去旅行</title>
-    <url>/Walk/06/11/why-travel.html</url>
-    <content><![CDATA[<p>公元2012年5月31日晚，伴随K165次列车出站一声长长鸣笛，我和flyer夜中离开西安前往成都。<span id="more"></span></p>
-<p>去成都旅行的决定我俩做的都很干脆：flyer说他是中午起床（原谅IT人的习惯吧）吃完饭后突发奇想决定去成都转一趟。下午1点在实验室的我看到他的QQ头像闪了，与flyer几句交谈后，在QQ上答应了，接下来搞定双程火车票。</p>
-<p>当时是5月31号，我的本科毕设验收是在6月6号，答辩在7号。决定旅行三天，火车6月1日下午到成都，6月4日晚离开成都返回西安。</p>
-<p>仗着还年轻，仗着毕设前期工作终了，没有告知更多的人，没有多余的思考，也没有多余的准备，我依然赴身前往。</p>
-<p>这是自由压抑久了，一次短暂的释放？</p>
-<p>这是行动派的一次集中体现？</p>
-<p>带着相机与衣服，拿了Kindle与Mp3就走了……</p>
-<p>我为什么要去旅行？</p>
-<p>回到5月31日中午的实验室，是学习生活的逃避？毕业旅行的跟风？为了扔掉几斤赘肉？响应“读万卷书，行万里路”？释放心灵的压力？</p>
-<p>得了吧，全是借口！</p>
-<p>抛弃除相机外的其他电子设备，作为自然个体去融合自然</p>
-<p>不要拿起kindle去看书，不要按下手机翻twitter，不要用“粗糙”的信息去玷污追求的清朗夏天与定格的美丽瞬间，自然远比人类要纯粹，要干净？</p>
-<p>把心放在另一个地方，找回脑海最想要的场景，去旅行</p>
-<p>成都是座慢城市，除了静谧，没有更好的词去形容她。</p>
-<p>一头乌龟飘荡在无际的海洋，不去思考哪里有彼岸，伫立在乌龟之上，人心，动乎？静乎？</p>
-<p>作为人在成都的想象，尽力挖掘最纯粹的审美观去动心，去静心，去旅行</p>
-<p>夏天的蜀都每个下午两点，总有一场细雨洗净天空</p>
-<p>与其说是沐浴城市，催流锦江，不如说是净化心扉，洗涤生命</p>
-<p>三场雨，三颗心，生命走廊多了几幅壁画，修缮了走过的飞檐，为什么不去旅行？</p>
-<p>对纯粹无世间的自然与崇高非人类的生命的向往，就去旅行了。</p>
-<p><a href="http://nankor.org/uploads/2012/06/DSCF0280.jpg"><img src="http://nankor.org/uploads/2012/06/DSCF0280.jpg"></a></p>
-<p>茶凉了，喝茶。</p>
-]]></content>
-      <categories>
-        <category>Walk</category>
-      </categories>
-      <tags>
-        <tag>成都</tag>
       </tags>
   </entry>
   <entry>
@@ -2279,49 +2214,23 @@ CPPFLAGS=-I$HOME/arm/ncurses/include
       </tags>
   </entry>
   <entry>
-    <title>在linux下使用一些windows应用程序</title>
-    <url>/Linux/03/23/how-to-use-some-windows-apps-in-linux.html</url>
-    <content><![CDATA[<p>由于有些MS软件的私有格式、个别商业公司的利益驱动，在Linux下时使用一些软件时遇到一些问题。结合这两三年使用linux的经验，对win下个别软件在Linux下的使用，记录下自己的处理办法。<span id="more"></span></p>
-<p>主要说如下几个<strong>Dota2</strong>、<strong>MS office</strong>、<strong>QQ</strong>、<strong>Edit PDF</strong>。</p>
-<h3 id="Dota2"><a href="#Dota2" class="headerlink" title="Dota2"></a>Dota2</h3><p>本来不玩游戏的，可是打Dota做为宿舍每天的集体娱乐项目之一，不得不保留一下，每天也只是一刀。在linux下玩Dota本就不是一件难事，因为强大的wine。</p>
-<p>魔兽争霸开发语言主要是JASS，暴雪自己的开发语言，与C++类似；界面设计使用delphi；插件脚本大部分采用Lua。Lua做为一种轻量级的解释型语言，可移植性相当之强。</p>
-<p>wine做为Linux下windows的模拟环境，对于魔兽争霸的模拟已经足够了。</p>
-<p>主要谈下使用wine玩Dota时遇到的一些问题。</p>
-<p>1、 画面卡</p>
-<p>使用openGL:<code>wine war3.exe -opengl</code></p>
-<p>或者</p>
-<p>修改wine注册表：在<code>HKEY_CURRENT_USER/Software/Blizzard Entertainment/Warcraft III/ </code>新建DWORD类型键值Gfx OpenGL，值为1。</p>
-<p>2、分辨率不正常，无法全屏</p>
-<p>如果想全屏：修改wine注册表 <code>HKEY_CURRENT_USER/Software/Blizzard Entertainment/Warcraft III/video </code>中的resheight和reswidth，将其修改为相应的屏幕分辨率（高 宽）即可。</p>
-<p>3、 alt建冲突问题</p>
-<p>Alt按键的冲突问题：Gnome下：系统-首选项-窗口，将移动按键由ALT改成super。KDE下：系统设置-窗口行为-窗口动作-修饰键由ALT改成Meta。</p>
-<p>4、 无法启动 报错</p>
-<p>export LANG&#x3D;zh_CN</p>
-<h3 id="MS-amp-copy-Office-Visio"><a href="#MS-amp-copy-Office-Visio" class="headerlink" title="MS&amp;copy; Office Visio"></a>MS&amp;copy; Office Visio</h3><p>目前<a href="http://zh-cn.libreoffice.org/">LibreOffice&amp;copy;</a>对于MS&amp;copy; Office的兼容相比<a href="http://www.openoffice.org/zh-cn/">OpenOffice&amp;copy;</a>，做的已经很好了，但是使用LibreOffice Writer打开MS Word的doc后，在Win下重新打开时，文档格式会发生变化。因此不推荐在Linux下使用LibreOffice 编辑MS Office的私有格式文件。</p>
-<p>####替代方法</p>
-<ul>
-<li><p>对于2003版 MS Word Excel Powerpoint，国内用户强烈推荐使用<a href="http://bbs.wps.cn/thread-22358932-1-1.html">WPS&amp;copy; for Linux</a>，目前已经开发至Beta了，界面风格与MS Office已几无差异，而且比较稳定。</p>
-</li>
-<li><p>对于2007版MS Office，推荐使用<a href="http://www.yozosoft.com/indexch.jsp">Linux 永中&amp;copy; Office</a>。</p>
-</li>
-</ul>
-<p>####<strong>Visio</strong></p>
-<p>Libreoffice Draw 3.5已经开始支持打开MS Visio,但是需要安装libvisio。</p>
-<h3 id="QQ"><a href="#QQ" class="headerlink" title="QQ"></a>QQ</h3><p>关于QQ的使用，一直是初始linuxer最先遇到的问题，在过去有不同的插件完成，但随着TX对于QQ协议的疯狂升级，可使用的插件已所剩无几。最方便的是QQ的大多功能都可以保留。</p>
-<p>webqq是种解决方案，但是用于传输文件时，速度奇慢，截图也是非常不方便。</p>
-<p>我使用的是龍井的<a href="http://www.longene.org/forum/viewtopic.php?f=6&t=4700">wineqq2012 beta3</a> ;除了相互视频时有些问题，其他运行流畅，无重大bug。</p>
-<h3 id="PDFXChange"><a href="#PDFXChange" class="headerlink" title="PDFXChange"></a>PDFXChange</h3><p>在Linux下修改已被封装PDF是件比较麻烦的事情。Linux下原生的可以通过Mupdf做简单修改，比如加书签。但是如果要修改内容，暂时还没有发现。</p>
-<p>对于封装好的PDF，我使用的是wine下的<a href="http://www.soft711.com/html/PDF-XChangePro.html">PDFXchange2.04</a>。可对文档进行修改，以及增加水印、填写注释等等。</p>
-<p>（完）</p>
+    <title>HHKB Lite2 in my work place</title>
+    <url>/Linux/05/31/work-place.html</url>
+    <content><![CDATA[<p>那天看到hhkb，我发现好熟悉啊，突然想起待的地方有一块，今天找剥线钳的时候，正好发现了这个Lite2。<span id="more"></span></p>
+<p>Lite2虽然不是电容的，不过薄膜的手感也不错，敲起来有中木头的感觉。这都是次要的，关键是作为Vim党，发觉ctrl的位置真是太爽了。</p>
+<p>ctrl按键在shift上方，使用vim过程中，缩短了ctrl与escape的键程，这还求什么呢？</p>
+<p>啥都不说，先上张lite2的图吧！</p>
+<p><img src="http://nankor.org/uploads/2013/05/lite202.jpg" alt="Lite2 俯视图"></p>
+<p>桌子上还有另两个键盘，对比一下，屌丝与高富帅一览无余！</p>
+<p><img src="http://nankor.org/uploads/2013/05/lite203.jpg" alt="three kb"></p>
+<p>完</p>
 ]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Dota</tag>
-        <tag>MS-office</tag>
-        <tag>PDFXChange</tag>
-        <tag>wineqq</tag>
+        <tag>HHKB</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2390,23 +2299,37 @@ $ haed -n10 /proc/cpuinfo
       </tags>
   </entry>
   <entry>
-    <title>HHKB Lite2 in my work place</title>
-    <url>/Linux/05/31/work-place.html</url>
-    <content><![CDATA[<p>那天看到hhkb，我发现好熟悉啊，突然想起待的地方有一块，今天找剥线钳的时候，正好发现了这个Lite2。<span id="more"></span></p>
-<p>Lite2虽然不是电容的，不过薄膜的手感也不错，敲起来有中木头的感觉。这都是次要的，关键是作为Vim党，发觉ctrl的位置真是太爽了。</p>
-<p>ctrl按键在shift上方，使用vim过程中，缩短了ctrl与escape的键程，这还求什么呢？</p>
-<p>啥都不说，先上张lite2的图吧！</p>
-<p><img src="http://nankor.org/uploads/2013/05/lite202.jpg" alt="Lite2 俯视图"></p>
-<p>桌子上还有另两个键盘，对比一下，屌丝与高富帅一览无余！</p>
-<p><img src="http://nankor.org/uploads/2013/05/lite203.jpg" alt="three kb"></p>
-<p>完</p>
+    <title>激进的archlinux</title>
+    <url>/Linux/06/04/radical-archlinux.html</url>
+    <content><![CDATA[<p>今天查看feedly，突然看到arch关于更新的通知，不得不惊叹，arch的激进主义！<span id="more"></span></p>
+<p><a href="https://www.archlinux.org/news/binaries-move-to-usrbin-requiring-update-intervention/">原文</a>,<br>翻译如下：</p>
+<p>在您下次更新时，你将得到如下的错误信息：</p>
+<pre><code>error: failed to commit transaction (conflicting files)
+filesystem: /bin exists in filesystem
+</code></pre>
+<p>这次更新把所有二进制文件都转移至统一的目录&#x2F;usr&#x2F;bin。移除这个 二进制文件的存放位置的差别对arch系统没有太大影响，但是却简化了开发团队的包维护工作。你可以参考这篇<a href="https://mailman.archlinux.org/pipermail/arch-dev-public/2012-March/022625.html">文章</a>来得到这次变化的进一步解释。</p>
+<p>按照以下说明，进行安全更新：</p>
+<ol>
+<li>整理&#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;bin目录下的所有非官方源安装包，把它们放进&#x2F;usr&#x2F;bin目录下。按照以下方法可以得到需要整理的非官方源的安装包清单：<br> $ pacman -Qqo &#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;sbin | pacman -Qm -</li>
+</ol>
+<p>也可以使用如下方法检查识别非官方源的安装包：<br>    $ paclist <repo> | awk ‘ { print $1 } ‘ | pacman -Ql - | grep ‘ &#x2F;s?bin&#x2F;| &#x2F;usr&#x2F;sbin&#x2F;‘</p>
+<ol start="2">
+<li><p>确保任何一个在IgnorePkg或IgnoreGroup中的安装包没有相关的文件放置在&#x2F;bin、&#x2F;sbin或&#x2F;usr&#x2F;bin目录下。如果需要，整理修复这些软件包</p>
+</li>
+<li><p>如果您有一些不被任何安装包拥有的文件放置在&#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;bin目录下，您需要移除他们。使用如下方法得到这类文件清单：<br> $ find &#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;sbin -exec pacman -Qo – { } + &gt;&#x2F;dev&#x2F;null</p>
+</li>
+<li><p>如果您使用了autofs，确保所有分区被挂载，因为在稍后的更新中它们可能不会自动挂载。</p>
+</li>
+<li><p>升级系统</p>
+</li>
+</ol>
+<p>在执行更新之前，你可能需要确保你有一个备用的具有root权限的终端,比如在这些情况下：用于不常见的系统修复，尤其是通过ssh进行远程升级。可以如下做：<br>    #pacman -Syu –ignore filesystem,bash<br>    #pacman -S bash<br>    #pacman -Su</p>
 ]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>HHKB</tag>
-        <tag>Linux</tag>
+        <tag>archlinux</tag>
       </tags>
   </entry>
   <entry>
@@ -2510,40 +2433,6 @@ U盘：FAT32
       </tags>
   </entry>
   <entry>
-    <title>激进的archlinux</title>
-    <url>/Linux/06/04/radical-archlinux.html</url>
-    <content><![CDATA[<p>今天查看feedly，突然看到arch关于更新的通知，不得不惊叹，arch的激进主义！<span id="more"></span></p>
-<p><a href="https://www.archlinux.org/news/binaries-move-to-usrbin-requiring-update-intervention/">原文</a>,<br>翻译如下：</p>
-<p>在您下次更新时，你将得到如下的错误信息：</p>
-<pre><code>error: failed to commit transaction (conflicting files)
-filesystem: /bin exists in filesystem
-</code></pre>
-<p>这次更新把所有二进制文件都转移至统一的目录&#x2F;usr&#x2F;bin。移除这个 二进制文件的存放位置的差别对arch系统没有太大影响，但是却简化了开发团队的包维护工作。你可以参考这篇<a href="https://mailman.archlinux.org/pipermail/arch-dev-public/2012-March/022625.html">文章</a>来得到这次变化的进一步解释。</p>
-<p>按照以下说明，进行安全更新：</p>
-<ol>
-<li>整理&#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;bin目录下的所有非官方源安装包，把它们放进&#x2F;usr&#x2F;bin目录下。按照以下方法可以得到需要整理的非官方源的安装包清单：<br> $ pacman -Qqo &#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;sbin | pacman -Qm -</li>
-</ol>
-<p>也可以使用如下方法检查识别非官方源的安装包：<br>    $ paclist <repo> | awk ‘ { print $1 } ‘ | pacman -Ql - | grep ‘ &#x2F;s?bin&#x2F;| &#x2F;usr&#x2F;sbin&#x2F;‘</p>
-<ol start="2">
-<li><p>确保任何一个在IgnorePkg或IgnoreGroup中的安装包没有相关的文件放置在&#x2F;bin、&#x2F;sbin或&#x2F;usr&#x2F;bin目录下。如果需要，整理修复这些软件包</p>
-</li>
-<li><p>如果您有一些不被任何安装包拥有的文件放置在&#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;bin目录下，您需要移除他们。使用如下方法得到这类文件清单：<br> $ find &#x2F;bin &#x2F;sbin &#x2F;usr&#x2F;sbin -exec pacman -Qo – { } + &gt;&#x2F;dev&#x2F;null</p>
-</li>
-<li><p>如果您使用了autofs，确保所有分区被挂载，因为在稍后的更新中它们可能不会自动挂载。</p>
-</li>
-<li><p>升级系统</p>
-</li>
-</ol>
-<p>在执行更新之前，你可能需要确保你有一个备用的具有root权限的终端,比如在这些情况下：用于不常见的系统修复，尤其是通过ssh进行远程升级。可以如下做：<br>    #pacman -Syu –ignore filesystem,bash<br>    #pacman -S bash<br>    #pacman -Su</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>archlinux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>怎样才算会一门编程语言</title>
     <url>/Program/08/18/master-a-language.html</url>
     <content><![CDATA[]]></content>
@@ -2569,9 +2458,69 @@ filesystem: /bin exists in filesystem
       </tags>
   </entry>
   <entry>
-    <title>头像背后的故事</title>
-    <url>/Think/10/23/%E5%A4%B4%E5%83%8F%E8%83%8C%E5%90%8E%E7%9A%84%E6%95%85%E4%BA%8B.html</url>
-    <content><![CDATA[]]></content>
+    <title>大峪游玩</title>
+    <url>/Walk/04/20/otani-play.html</url>
+    <content><![CDATA[<p>这次活动成行已经被拖延好几周了，来的晚总比没有来的好，虽然回来路上在雨里淋了一段，但还是玩的比较满意的，觉得要写点东西把4月19号的经历记录下来。<span id="more"></span></p>
+<p>早上6点半，在床上坐起来想了想穿什么衣服，刚穿完衣服，<a href="http://www.thepunch.info/blog/">王宇</a>师兄就打手机过来催起床了。</p>
+<p>7点到新科楼前发现大家都不在，自己应该是迟到了，孙师兄刚好也赶到，就相随去门口追大伙，在外面拿了三个包子，和30多人等公交车奔赴目的地。</p>
+<p>大峪水库比较远，中间转了一趟车，然后坐923从起点到终点。</p>
+<p><a href="http://maps.google.com/maps?f=q&source=embed&hl=zh-CN&geocode=&q=%E8%A5%BF%E5%AE%89+%E5%A4%A7%E5%B3%AA&aq=&sll=37.0625,-95.677068&sspn=46.946584,93.076172&ie=UTF8&hq=&hnear=%E4%B8%AD%E5%9B%BD%E9%99%95%E8%A5%BF%E7%9C%81%E8%A5%BF%E5%AE%89%E9%95%BF%E5%AE%89%E5%8C%BA%E5%A4%A7%E5%B3%AA%E4%B9%A1&ll=34.018954,109.119909&spn=0.024156,0.045447&t=m&z=14">查看大图</a></p>
+<p>到达目的地大概9点吧，来的人比较多，同学是47个吧。本来目的是来捡垃圾的，所以一人发了一个垃圾袋与一只白手套。然后我们就兴冲冲出发了。</p>
+<p>出发了！</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%87%BA%E5%8F%91.jpg"></a></p>
+<p>下面是路上的一些见闻（由于没有带相机，只能从师兄师姐那里盗点图了。）：</p>
+<p>拔地而起的高山：</p>
+<p><a href="http://nankor.org/uploads/2012/04/hill.jpg"><img src="http://nankor.org/uploads/2012/04/hill.jpg"></a></p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B2%A9%E7%9F%B3.jpg"></a></p>
+<p>山上的流水：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%B0%B4%E6%B5%81.jpg"></a>在路上：</p>
+<p><a href="http://nankor.org/uploads/2012/04/ku1.jpg"><img src="http://nankor.org/uploads/2012/04/ku1.jpg"></a></p>
+<p>还是在路上：</p>
+<p><a href="http://nankor.org/uploads/2012/04/ku2.jpg"><img src="http://nankor.org/uploads/2012/04/ku2.jpg"></a></p>
+<p>见到水库了：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93.jpg"></a></p>
+<p>平湖：</p>
+<p><a href="http://nankor.org/uploads/2012/04/ku3.jpg"><img src="http://nankor.org/uploads/2012/04/ku3.jpg"></a></p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%932.jpg"></a></p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%BA%931.jpg"></a></p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%A4%A7%E5%B3%AA%E6%B0%B4%E5%BA%93%E7%AE%80%E4%BB%8B.jpg"></a></p>
+<p>碰到的烈士陵园:</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"><img src="http://nankor.org/uploads/2012/04/%E7%83%88%E5%A3%AB1.jpg"></a></p>
+<p>路上的付老师和马老师：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E9%A9%AC%E8%80%81%E5%B8%88%E5%92%8C%E4%BB%98%E8%80%81%E5%B8%88.jpg"></a></p>
+<p>在路上，走的比较靠前，和蒋老师聊了会儿天，蒋老师说，今天的目标是10000步，老人家真带着计步器呢</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%92%8B%E8%80%81%E5%B8%88.jpg"></a></p>
+<p>除了半路业余式的捡些垃圾，我们主要还是看好那里的鳟鱼的，要吃午饭的农家乐就是我们徒步的终点与重点。</p>
+<p>农家乐：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%AC%A2%E8%BF%8E%E5%86%8D%E6%AC%A1%E5%85%89%E4%B8%B4.jpg"></a></p>
+<p>到达半山中的农家乐大概才11点吧，和几个同级同学与师兄玩了会纸牌，就开始吃午饭了。</p>
+<p>下面是午饭的主角儿：</p>
+<p> <a href="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"><img src="http://nankor.org/uploads/2012/04/%E8%99%B9%E9%B3%9F.jpg"></a></p>
+<p>没有把那盘鱼给留下来做个纪念。饭间又认识了几位师兄与师姐，很尴尬的是把一位学姐当大四的了。</p>
+<p>如果说以上算平淡的游玩，下面的就有些意思了：吃完饭几个同学商量去爬山，自己没有仔细考虑就欣然同意前去了。</p>
+<p>和老祝走在盘山公路的前面为大家探山，之所以说探山，这里的山由于被盘山公路切开，没有直接从地面形成斜坡的，很多是拔地而起，我们要找个坡度合适的、时间上来的及的打下“牙祭”。看到由两位可能是采药的人在山上“逛荡”（真觉得他们很轻松的在山上），我们敲定了就爬她们所在的山。</p>
+<p>探山路上：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"><img src="http://nankor.org/uploads/2012/04/%E6%8E%A2%E5%B1%B1%E8%B7%AF%E4%B8%8A.jpg"></a></p>
+<p>去寻山路，居然没有路，我们几个男生就成为了开路着。奇岩怪石，山间荆棘遍地，巨石硕大如房屋，在没有路的野山中，披荆斩棘，望山寻路，虽然被刮伤了几处，不过路倒是开得挺顺当。随行大概20多人吧，像攀岩般体验了这次冒险，一路坎坷，大有野山寻古墓的阵势，让我不断想起《盗墓笔记》与说列宁的《日出》那段。</p>
+<p>时间有限，下山还有坐公交车，爬到一处平台，大家感觉爬的差不多了，拍照留纪念，准备下山。其实这山本就是让看的，爬起来像是在挑战这座山一样。</p>
+<p>山间平台留影：</p>
+<p><a href="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"><img src="http://nankor.org/uploads/2012/04/%E5%B9%B3%E5%8F%B0%E4%BC%91%E6%81%AF.jpg"></a></p>
+<p>下山就没什么了，蹦崩跳跳的就下来了。不过人太多，还是注意安全好。</p>
+<p>回到半腰的农家乐休息了一会儿，看天色不好我们就向山脚下赶了。</p>
+<p>回来路上和几个同学，沿盘山公路一路开跑狂奔，好不欢乐！结果是枫姐拿个对讲机使劲追我们，不断向断后的王宇报告我们的行踪。</p>
+<p>中间有段路，因为喝水太多了，跑起来腹中排山倒海，只能慢下来了，从第一集团跌入第二集团。</p>
+<p>走在山谷间，闲暇的带着耳机一边听着班德瑞一边淋着雨，漫步中观察着一座座欲比天的青峰，想着再静也不过如此了。</p>
+<p>不知觉间居然被枫姐赶超了，好吧，继续狂奔。</p>
+<p>功夫不负有心人，和大四的同学一起首先回到山脚下，坐上公交除了脚底疼什么感觉都没了。</p>
+<p>时间不早了，明天写些感受吧，上面纯是流水。</p>
+]]></content>
+      <categories>
+        <category>Walk</category>
+      </categories>
+      <tags>
+        <tag>大峪</tag>
+        <tag>虹鳟</tag>
+      </tags>
   </entry>
   <entry>
     <title>魏武挥:从上海的互联网产业说开去</title>
@@ -2626,5 +2575,56 @@ filesystem: /bin exists in filesystem
         <tag>互联网</tag>
         <tag>上海</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>在linux下使用一些windows应用程序</title>
+    <url>/Linux/03/23/how-to-use-some-windows-apps-in-linux.html</url>
+    <content><![CDATA[<p>由于有些MS软件的私有格式、个别商业公司的利益驱动，在Linux下时使用一些软件时遇到一些问题。结合这两三年使用linux的经验，对win下个别软件在Linux下的使用，记录下自己的处理办法。<span id="more"></span></p>
+<p>主要说如下几个<strong>Dota2</strong>、<strong>MS office</strong>、<strong>QQ</strong>、<strong>Edit PDF</strong>。</p>
+<h3 id="Dota2"><a href="#Dota2" class="headerlink" title="Dota2"></a>Dota2</h3><p>本来不玩游戏的，可是打Dota做为宿舍每天的集体娱乐项目之一，不得不保留一下，每天也只是一刀。在linux下玩Dota本就不是一件难事，因为强大的wine。</p>
+<p>魔兽争霸开发语言主要是JASS，暴雪自己的开发语言，与C++类似；界面设计使用delphi；插件脚本大部分采用Lua。Lua做为一种轻量级的解释型语言，可移植性相当之强。</p>
+<p>wine做为Linux下windows的模拟环境，对于魔兽争霸的模拟已经足够了。</p>
+<p>主要谈下使用wine玩Dota时遇到的一些问题。</p>
+<p>1、 画面卡</p>
+<p>使用openGL:<code>wine war3.exe -opengl</code></p>
+<p>或者</p>
+<p>修改wine注册表：在<code>HKEY_CURRENT_USER/Software/Blizzard Entertainment/Warcraft III/ </code>新建DWORD类型键值Gfx OpenGL，值为1。</p>
+<p>2、分辨率不正常，无法全屏</p>
+<p>如果想全屏：修改wine注册表 <code>HKEY_CURRENT_USER/Software/Blizzard Entertainment/Warcraft III/video </code>中的resheight和reswidth，将其修改为相应的屏幕分辨率（高 宽）即可。</p>
+<p>3、 alt建冲突问题</p>
+<p>Alt按键的冲突问题：Gnome下：系统-首选项-窗口，将移动按键由ALT改成super。KDE下：系统设置-窗口行为-窗口动作-修饰键由ALT改成Meta。</p>
+<p>4、 无法启动 报错</p>
+<p>export LANG&#x3D;zh_CN</p>
+<h3 id="MS-amp-copy-Office-Visio"><a href="#MS-amp-copy-Office-Visio" class="headerlink" title="MS&amp;copy; Office Visio"></a>MS&amp;copy; Office Visio</h3><p>目前<a href="http://zh-cn.libreoffice.org/">LibreOffice&amp;copy;</a>对于MS&amp;copy; Office的兼容相比<a href="http://www.openoffice.org/zh-cn/">OpenOffice&amp;copy;</a>，做的已经很好了，但是使用LibreOffice Writer打开MS Word的doc后，在Win下重新打开时，文档格式会发生变化。因此不推荐在Linux下使用LibreOffice 编辑MS Office的私有格式文件。</p>
+<p>####替代方法</p>
+<ul>
+<li><p>对于2003版 MS Word Excel Powerpoint，国内用户强烈推荐使用<a href="http://bbs.wps.cn/thread-22358932-1-1.html">WPS&amp;copy; for Linux</a>，目前已经开发至Beta了，界面风格与MS Office已几无差异，而且比较稳定。</p>
+</li>
+<li><p>对于2007版MS Office，推荐使用<a href="http://www.yozosoft.com/indexch.jsp">Linux 永中&amp;copy; Office</a>。</p>
+</li>
+</ul>
+<p>####<strong>Visio</strong></p>
+<p>Libreoffice Draw 3.5已经开始支持打开MS Visio,但是需要安装libvisio。</p>
+<h3 id="QQ"><a href="#QQ" class="headerlink" title="QQ"></a>QQ</h3><p>关于QQ的使用，一直是初始linuxer最先遇到的问题，在过去有不同的插件完成，但随着TX对于QQ协议的疯狂升级，可使用的插件已所剩无几。最方便的是QQ的大多功能都可以保留。</p>
+<p>webqq是种解决方案，但是用于传输文件时，速度奇慢，截图也是非常不方便。</p>
+<p>我使用的是龍井的<a href="http://www.longene.org/forum/viewtopic.php?f=6&t=4700">wineqq2012 beta3</a> ;除了相互视频时有些问题，其他运行流畅，无重大bug。</p>
+<h3 id="PDFXChange"><a href="#PDFXChange" class="headerlink" title="PDFXChange"></a>PDFXChange</h3><p>在Linux下修改已被封装PDF是件比较麻烦的事情。Linux下原生的可以通过Mupdf做简单修改，比如加书签。但是如果要修改内容，暂时还没有发现。</p>
+<p>对于封装好的PDF，我使用的是wine下的<a href="http://www.soft711.com/html/PDF-XChangePro.html">PDFXchange2.04</a>。可对文档进行修改，以及增加水印、填写注释等等。</p>
+<p>（完）</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Dota</tag>
+        <tag>MS-office</tag>
+        <tag>PDFXChange</tag>
+        <tag>wineqq</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>头像背后的故事</title>
+    <url>/Think/10/23/%E5%A4%B4%E5%83%8F%E8%83%8C%E5%90%8E%E7%9A%84%E6%95%85%E4%BA%8B.html</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
